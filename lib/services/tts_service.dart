@@ -55,7 +55,12 @@ class TtsService extends ChangeNotifier {
       notifyListeners();
       await _tts.speak(text);
     } catch (_) {
-      _italianVoiceAvailable = false;
+      // A transient failure to speak says nothing about whether an Italian
+      // voice is installed on the device — only `init`'s own check decides
+      // that. Flipping it here on any speak error (a network hiccup, the
+      // engine still warming up) wrongly sent the user to the "install a
+      // voice" guide for problems that have nothing to do with a missing
+      // voice.
     } finally {
       _speaking = false;
       notifyListeners();

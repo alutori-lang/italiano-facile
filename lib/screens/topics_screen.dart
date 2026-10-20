@@ -85,6 +85,11 @@ class _TopicTile extends StatelessWidget {
         key: ValueKey<String>('topic:${topic.id}'),
         onTap: () => Navigator.of(context).push(
           MaterialPageRoute<void>(
+            // Nothing in the word list below is worth keeping alive while a
+            // card, flashcard set or quiz is open on top of it — kept alive,
+            // its words and translations stay in the tree (just invisible),
+            // where they can collide with identical text on the screen above.
+            maintainState: false,
             builder: (_) => TopicDetailScreen(topic: topic),
           ),
         ),
