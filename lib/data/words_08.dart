@@ -147,7 +147,7 @@ final List<Word> words08 = <Word>[
       ],
       'Mi può aiutare, per favore?',
       ['Can you help me, please?', 'براہِ کرم میری مدد کر سکتے ہیں؟', 'مہربانی نال میری مدد کر سکدے او؟', 'ਕਿਰਪਾ ਕਰਕੇ ਮੇਰੀ ਮਦਦ ਕਰ ਸਕਦੇ ਹੋ?', 'অনুগ্রহ করে আমাকে সাহায্য করতে পারেন?', 'කරුණාකර මට උදව් කරන්න පුළුවන්ද?', '请问您能帮我吗？', 'Pouvez-vous m\'aider, s\'il vous plaît ?', '¿Me puede ayudar, por favor?', '¿Me puede ayudar, por favor?']),
-  w('rinnovare', v, 'verbs', null,
+  w('rinnovare', v, 'verbs', '🔄',
       ['to renew', 'تجدید کرانا', 'تجدید کراوݨا', 'ਨਵਿਆਉਣਾ', 'নবায়ন করা', 'අලුත් කරන්න', '续期', 'renouveler', 'renovar', 'renovar'],
       [
         'To renew a document, a permit or a contract.',
