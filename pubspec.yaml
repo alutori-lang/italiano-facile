@@ -1,0 +1,52 @@
+name: simple_flutter_app_651
+description: "Italian Words: Learn & Play — offline Italian vocabulary for people living in Italy."
+publish_to: 'none'
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.0.0 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  flutter_localizations:
+    sdk: flutter
+  intl: any
+
+  cupertino_icons: ^1.0.8
+  shared_preferences: ^2.3.2
+  flutter_tts: ^4.2.0
+  http: ^1.2.2
+  google_mobile_ads: 5.3.1
+  in_app_purchase: ^3.2.0
+  app_tracking_transparency: ^2.0.6
+  flutter_local_notifications: ^18.0.1
+  timezone: ^0.9.4
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^6.0.0
+
+flutter:
+  uses-material-design: true
+  generate: true
+
+  # Script fonts. Drop the .ttf files into assets/fonts/ and uncomment to bundle
+  # them so Urdu / Shahmukhi / Gurmukhi / Bengali / Sinhala / Chinese never show
+  # empty boxes on devices that lack the system Noto fonts.
+  # fonts:
+  #   - family: PlusJakartaSans
+  #     fonts:
+  #       - asset: assets/fonts/PlusJakartaSans-Regular.ttf
+  #       - asset: assets/fonts/PlusJakartaSans-Medium.ttf
+  #         weight: 500
+  #       - asset: assets/fonts/PlusJakartaSans-Bold.ttf
+  #         weight: 700
+  #       - asset: assets/fonts/PlusJakartaSans-ExtraBold.ttf
+  #         weight: 800
+  #   - family: NotoNastaliqUrdu
+  #     fonts:
+  #       - asset: assets/fonts/NotoNastaliqUrdu-Regular.ttf
+  #       - asset: assets/fonts/NotoNastaliqUrdu-Bold.ttf
+  #         weight: 700

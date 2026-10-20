@@ -1,0 +1,35 @@
+{
+    "name": "Italian Words: Learn & Play",
+    "short_name": "Italian Words",
+    "start_url": ".",
+    "display": "standalone",
+    "background_color": "#F7F5F0",
+    "theme_color": "#E83827",
+    "description": "Learn Italian words offline: search, ten words a day and true/false quizzes.",
+    "orientation": "portrait-primary",
+    "prefer_related_applications": false,
+    "icons": [
+        {
+            "src": "icons/Icon-192.png",
+            "sizes": "192x192",
+            "type": "image/png"
+        },
+        {
+            "src": "icons/Icon-512.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        },
+        {
+            "src": "icons/Icon-maskable-192.png",
+            "sizes": "192x192",
+            "type": "image/png",
+            "purpose": "maskable"
+        },
+        {
+            "src": "icons/Icon-maskable-512.png",
+            "sizes": "512x512",
+            "type": "image/png",
+            "purpose": "maskable"
+        }
+    ]
+}
