@@ -24,8 +24,9 @@ class BigHit {
 
   final BigEntry entry;
 
-  /// 1000 Italian word, 950 meaning, 900 Latin-letter spelling, 850 Italian
-  /// form (andavamo → andare), 600/550/500 the same as a prefix.
+  /// 1000 Italian word, 950 meaning in the chosen language (930 in a close
+  /// language or English), 900 Latin-letter spelling (890 close language),
+  /// 850 Italian form (andavamo → andare), 600/550/500 the same as a prefix.
   final int score;
 
   bool get exact => score >= 850;
@@ -105,10 +106,62 @@ class BigDictionary extends ChangeNotifier {
   /// Milliseconds the last copy / last index build took (for the tests and
   /// the report; 0 when nothing was needed).
   int lastCopyMs = 0;
+
+  /// How many times this instance copied big.db from the assets (0 or 1).
+  int copies = 0;
   int lastIndexMs = 0;
 
-  /// Latin-letter index slot per language (see build_bigdb.py ROM_SLOT).
-  static int? romSlotFor(LearnerLanguage lang) {
+  /// Latin-letter index slots (see build_bigdb.py ROM_SLOT).
+  static const Map<String, int> romSlots = <String, int>{
+    'ur': 11,
+    'pa': 12,
+    'bn': 14,
+    'zh': 16,
+  };
+
+  /// Bumped when the set of indexed slots per language changes, so an old
+  /// index on the phone is rebuilt.
+  static const String indexSchema = '2';
+
+  /// Translation slots searched when [lang] is chosen. Urdu and the two
+  /// Punjabi scripts are close: their users type each other's words
+  /// (پیار is in the Punjabi column, Urdu users type it too), so all three
+  /// search both Arabic-script columns (1, 2) and Gurmukhi also its own (3).
+  /// English (0) is searched for everyone: many users know English words.
+  /// Results still SHOW the meaning in the chosen language only.
+  static List<int> trSlotsFor(LearnerLanguage lang) {
+    final Set<int> slots = <int>{lang.slot, LearnerLanguage.english.slot};
+    switch (lang) {
+      case LearnerLanguage.urdu:
+      case LearnerLanguage.punjabiShahmukhi:
+        slots.addAll(<int>[1, 2]);
+      case LearnerLanguage.punjabiGurmukhi:
+        slots.addAll(<int>[1, 2, 3]);
+      default:
+        break;
+    }
+    return slots.toList()..sort();
+  }
+
+  /// Latin-letter spellings searched when [lang] is chosen (Roman Urdu and
+  /// Roman Punjabi together for the three close languages).
+  static Map<String, int> romSlotsFor(LearnerLanguage lang) {
+    switch (lang) {
+      case LearnerLanguage.urdu:
+      case LearnerLanguage.punjabiShahmukhi:
+      case LearnerLanguage.punjabiGurmukhi:
+        return const <String, int>{'ur': 11, 'pa': 12};
+      case LearnerLanguage.bengali:
+        return const <String, int>{'bn': 14};
+      case LearnerLanguage.chineseSimplified:
+        return const <String, int>{'zh': 16};
+      default:
+        return const <String, int>{};
+    }
+  }
+
+  /// The Latin-letter slot of the chosen language itself (ranked first).
+  static int? ownRomSlot(LearnerLanguage lang) {
     switch (lang) {
       case LearnerLanguage.urdu:
         return 11;
@@ -122,20 +175,6 @@ class BigDictionary extends ChangeNotifier {
       default:
         return null;
     }
-  }
-
-  static String? romLangFor(LearnerLanguage lang) {
-    switch (romSlotFor(lang)) {
-      case 11:
-        return 'ur';
-      case 12:
-        return 'pa';
-      case 14:
-        return 'bn';
-      case 16:
-        return 'zh';
-    }
-    return null;
   }
 
   // ---------------------------------------------------------------- start
@@ -176,6 +215,7 @@ class BigDictionary extends ChangeNotifier {
           final Stopwatch sw = Stopwatch()..start();
           await _copyAsset(bigPath);
           lastCopyMs = sw.elapsedMilliseconds;
+          copies++;
         } finally {
           _endBusy();
         }
@@ -202,14 +242,15 @@ class BigDictionary extends ChangeNotifier {
         }
       }
       final String? indexedFor = await _umeta(db, 'big_version');
-      if (indexedFor != _bigVersion) {
-        // A new dictionary: the old reverse index points to old ids.
+      final String? schema = await _umeta(db, 'idx_schema');
+      if (indexedFor != _bigVersion || schema != indexSchema) {
+        // A new dictionary (the old reverse index points to old ids) or a
+        // new set of indexed slots: start the index again.
         await db.transaction((sqflite.Transaction txn) async {
           await txn.delete('keys');
           await txn.rawDelete("DELETE FROM umeta WHERE k LIKE 'idx_%'");
-          await txn.rawInsert(
-              'INSERT OR REPLACE INTO umeta(k, v) VALUES (?, ?)',
-              <Object>['big_version', _bigVersion]);
+          await _setUmeta(txn, 'big_version', _bigVersion);
+          await _setUmeta(txn, 'idx_schema', indexSchema);
         });
       }
       final List<Map<String, Object?>> idx = await db.rawQuery(
@@ -237,9 +278,17 @@ class BigDictionary extends ChangeNotifier {
         'id INTEGER PRIMARY KEY AUTOINCREMENT, it TEXT NOT NULL, '
         'it_norm TEXT NOT NULL, pos TEXT, g TEXT, pl TEXT, gloss TEXT, '
         'ex_it TEXT, ex_en TEXT, tr TEXT NOT NULL, rom TEXT, rank INTEGER, '
-        'updated_at TEXT)');
+        'updated_at TEXT, server_id INTEGER)');
+    // Older user.db (before the server id was stored): add the column.
+    final List<Map<String, Object?>> cols =
+        await db.rawQuery('PRAGMA table_info(learned)');
+    if (!cols.any((Map<String, Object?> c) => c['name'] == 'server_id')) {
+      await db.execute('ALTER TABLE learned ADD COLUMN server_id INTEGER');
+    }
     await db
         .execute('CREATE INDEX IF NOT EXISTS learned_it ON learned(it_norm)');
+    await db.execute(
+        'CREATE INDEX IF NOT EXISTS learned_server ON learned(server_id)');
   }
 
   Future<String?> _readVersion(
@@ -306,8 +355,6 @@ class BigDictionary extends ChangeNotifier {
     _beginBusy();
     final Stopwatch sw = Stopwatch()..start();
     try {
-      final int? romSlot = romSlotFor(lang);
-      final String? romLang = romLangFor(lang);
       int lastId = 0;
       const int chunk = 4000;
       while (true) {
@@ -318,11 +365,11 @@ class BigDictionary extends ChangeNotifier {
         );
         if (rows.isEmpty) break;
         lastId = rows.last['id']! as int;
-        await _insertKeys(db, rows, lang.slot, romSlot, romLang, 1);
+        await _insertKeys(db, rows, lang, 1);
       }
       final List<Map<String, Object?>> learned =
           await db.rawQuery('SELECT id, tr, rom FROM learned');
-      await _insertKeys(db, learned, lang.slot, romSlot, romLang, -1);
+      await _insertKeys(db, learned, lang, -1);
       await _setUmeta(db, 'idx_${lang.slot}', _bigVersion);
       _indexed.add(lang.slot);
       lastIndexMs = sw.elapsedMilliseconds;
@@ -335,12 +382,11 @@ class BigDictionary extends ChangeNotifier {
   Future<void> _insertKeys(
     sqflite.DatabaseExecutor db,
     List<Map<String, Object?>> rows,
-    int slot,
-    int? romSlot,
-    String? romLang,
+    LearnerLanguage lang,
     int idSign,
   ) async {
     if (rows.isEmpty) return;
+    final Map<String, int> roms = romSlotsFor(lang);
     final KeyJob job = KeyJob(
       ids: <int>[
         for (final Map<String, Object?> r in rows) (r['id']! as int) * idSign
@@ -351,9 +397,9 @@ class BigDictionary extends ChangeNotifier {
       rom: <String>[
         for (final Map<String, Object?> r in rows) (r['rom'] as String?) ?? ''
       ],
-      slot: slot,
-      romSlot: romSlot,
-      romLang: romLang,
+      trSlots: trSlotsFor(lang),
+      romLangs: roms.keys.toList(),
+      romSlotList: roms.values.toList(),
     );
     final List<Object> flat =
         useIsolate ? await _runJob(job) : computeKeys(job);
@@ -445,32 +491,42 @@ class BigDictionary extends ChangeNotifier {
       }
     }
 
-    // 2. The chosen language, in its own script (or English/French/Spanish).
-    Future<void> keyLookup(
-        String key, int slot, int exact, int prefix, bool allowPrefix) async {
+    // 2. Meanings: the chosen language in its own script, the close
+    //    languages (Urdu ⇄ Punjabi) and English. The chosen language's own
+    //    column ranks first.
+    Future<void> keyLookup(String key, List<int> slots, int ownSlot, int exact,
+        int exactOther, int prefix, bool allowPrefix) async {
+      if (slots.isEmpty) return;
+      final String inSlots = List<String>.filled(slots.length, '?').join(',');
       final List<Map<String, Object?>> rows = allowPrefix
           ? await db.rawQuery(
-              'SELECT k.entry_id AS id, k.key AS key FROM keys k '
+              'SELECT k.entry_id AS id, k.key AS key, k.slot AS slot FROM keys k '
               'LEFT JOIN big.entries e ON e.id = k.entry_id '
-              'WHERE k.key >= ? AND k.key < ? AND k.slot = ? '
-              'ORDER BY k.key = ? DESC, e.rank IS NULL, e.rank LIMIT 80',
-              <Object>[key, '$key$_top', slot, key])
+              'WHERE k.key >= ? AND k.key < ? AND k.slot IN ($inSlots) '
+              'ORDER BY k.key = ? DESC, e.rank IS NULL, e.rank LIMIT 120',
+              <Object>[key, '$key$_top', ...slots, key])
           : await db.rawQuery(
-              'SELECT entry_id AS id, key FROM keys WHERE key = ? AND slot = ?',
-              <Object>[key, slot]);
+              'SELECT entry_id AS id, key, slot FROM keys '
+              'WHERE key = ? AND slot IN ($inSlots)',
+              <Object>[key, ...slots]);
       for (final Map<String, Object?> r in rows) {
-        hit(r['id']! as int, r['key'] == key ? exact : prefix);
+        final bool isExact = r['key'] == key;
+        hit(
+          r['id']! as int,
+          !isExact ? prefix : (r['slot'] == ownSlot ? exact : exactOther),
+        );
       }
     }
 
-    await keyLookup(q, lang.slot, 950, 550, length >= 2);
+    await keyLookup(q, trSlotsFor(lang), lang.slot, 950, 930, 550, length >= 2);
 
-    // 3. The same language typed in Latin letters (piyar, bhalobasha, fanqie).
-    final int? romSlot = romSlotFor(lang);
-    if (latin && romSlot != null) {
+    // 3. Latin letters (piyar, bhalobasha, fanqie).
+    final Map<String, int> roms = romSlotsFor(lang);
+    if (latin && roms.isNotEmpty) {
       final String rk = TextNorm.romkey(raw);
       if (rk.length >= 2) {
-        await keyLookup(rk, romSlot, 900, 500, rk.length >= 3);
+        await keyLookup(rk, roms.values.toList(), ownRomSlot(lang) ?? -1, 900,
+            890, 500, rk.length >= 3);
       }
     }
 
@@ -517,13 +573,15 @@ class BigDictionary extends ChangeNotifier {
 
   // ---------------------------------------------------------------- server
 
-  /// Asks the word server about a word found nowhere on the phone. The
-  /// answer is saved ("learned"), indexed and returned. Null when the
-  /// feature is off, offline, or the server does not know the word.
-  Future<BigEntry?> askServer(String raw, LearnerLanguage lang) async {
+  /// Asks the word server (server/src/app.js, `POST /v1/lookup`) about a
+  /// word found nowhere on the phone. A found word is saved ("learned"),
+  /// indexed and returned. Never throws.
+  Future<ServerLookup> askServer(String raw, LearnerLanguage lang) async {
     final sqflite.Database? db = _db;
     final String q = raw.trim();
-    if (!serverEnabled || db == null || q.isEmpty) return null;
+    if (!serverEnabled || db == null || q.isEmpty) {
+      return const ServerLookup(ServerLookupStatus.off);
+    }
     final http.Client client = _client ?? http.Client();
     try {
       final http.Response res = await client
@@ -534,73 +592,119 @@ class BigDictionary extends ChangeNotifier {
             },
             body: jsonEncode(<String, String>{'q': q, 'lang': lang.tag}),
           )
-          .timeout(ServerConfig.timeout);
-      if (res.statusCode != 200) return null;
-      Object? json = jsonDecode(utf8.decode(res.bodyBytes));
-      if (json is Map && json['entry'] != null) json = json['entry'];
+          .timeout(ServerConfig.lookupTimeout);
+      if (res.statusCode == 422) {
+        return const ServerLookup(ServerLookupStatus.notAllowed);
+      }
+      if (res.statusCode == 404) {
+        return const ServerLookup(ServerLookupStatus.notFound);
+      }
+      if (res.statusCode != 200) {
+        return const ServerLookup(ServerLookupStatus.failed);
+      }
+      final Object? json = jsonDecode(utf8.decode(res.bodyBytes));
       final BigEntry? entry = BigEntry.fromJson(json);
-      if (entry == null) return null;
-      return await _saveLearned(
-          db, entry, json is Map ? json['updated_at'] : null);
+      if (entry == null) return const ServerLookup(ServerLookupStatus.failed);
+      final BigEntry saved = await _saveLearned(db, entry, json);
+      notifyListeners();
+      return ServerLookup(ServerLookupStatus.found, saved);
     } catch (e) {
       debugPrint('BigDictionary: server lookup failed ($e)');
-      return null;
+      return const ServerLookup(ServerLookupStatus.failed);
     } finally {
       if (_client == null) client.close();
     }
   }
 
-  /// Brings new and corrected words from the server. Never throws.
-  Future<int> syncUpdates() async {
+  /// Brings new and corrected words from the server
+  /// (`GET /v1/updates?since=<ms>&limit=` →
+  /// `{entries, next, more, removed}`), page after page while `more` is
+  /// true (bounded), and deletes the words the server removed. Returns how
+  /// many words were saved. Never throws.
+  Future<int> syncUpdates({int pageSize = 1000, int maxPages = 50}) async {
     final sqflite.Database? db = _db;
     if (!serverEnabled || db == null) return 0;
     final http.Client client = _client ?? http.Client();
+    int saved = 0;
+    int removed = 0;
     try {
-      final String since = await _umeta(db, 'updates_since') ?? '';
-      final http.Response res = await client
-          .get(Uri.parse('$_baseUrl/v1/updates')
-              .replace(queryParameters: <String, String>{'since': since}))
-          .timeout(ServerConfig.timeout);
-      if (res.statusCode != 200) return 0;
-      final Object? json = jsonDecode(utf8.decode(res.bodyBytes));
-      final List<dynamic> list = json is List
-          ? json
-          : (json is Map && json['entries'] is List)
-              ? json['entries'] as List<dynamic>
-              : const <dynamic>[];
-      String next = '';
-      int saved = 0;
-      for (final Object? item in list) {
-        final BigEntry? entry = BigEntry.fromJson(item);
-        if (entry == null) continue;
-        final Object? stamp = item is Map ? item['updated_at'] : null;
-        await _saveLearned(db, entry, stamp);
-        saved++;
-        if (stamp is String && stamp.compareTo(next) > 0) next = stamp;
+      int since = int.tryParse(await _umeta(db, 'updates_since') ?? '') ?? 0;
+      for (int page = 0; page < maxPages; page++) {
+        final http.Response res = await client
+            .get(Uri.parse('$_baseUrl/v1/updates').replace(
+              queryParameters: <String, String>{
+                'since': '$since',
+                'limit': '$pageSize',
+              },
+            ))
+            .timeout(ServerConfig.updatesTimeout);
+        if (res.statusCode != 200) break;
+        final Object? json = jsonDecode(utf8.decode(res.bodyBytes));
+        if (json is! Map) break;
+        final Object? list = json['entries'];
+        if (list is List) {
+          for (final Object? item in list) {
+            final BigEntry? entry = BigEntry.fromJson(item);
+            if (entry == null) continue;
+            await _saveLearned(db, entry, item);
+            saved++;
+          }
+        }
+        final Object? gone = json['removed'];
+        if (gone is List) {
+          removed += await _removeLearned(db, <int>[
+            for (final Object? id in gone)
+              if (id is int) id
+          ]);
+        }
+        final Object? next = json['next'];
+        final int nextSince = next is int
+            ? next
+            : (next is num ? next.toInt() : int.tryParse('$next') ?? since);
+        final bool advanced = nextSince > since;
+        if (advanced) {
+          since = nextSince;
+          await _setUmeta(db, 'updates_since', '$since');
+        }
+        if (json['more'] != true || !advanced) break;
       }
-      if (json is Map) {
-        final Object? now = json['now'] ?? json['since'];
-        if (now is String && now.isNotEmpty) next = now;
-      }
-      if (next.isEmpty && saved > 0) {
-        next = DateTime.now().toUtc().toIso8601String();
-      }
-      if (next.isNotEmpty) await _setUmeta(db, 'updates_since', next);
-      if (saved > 0) notifyListeners();
       return saved;
     } catch (e) {
       debugPrint('BigDictionary: updates failed ($e)');
-      return 0;
+      return saved;
     } finally {
       if (_client == null) client.close();
+      if (saved > 0 || removed > 0) notifyListeners();
     }
   }
 
+  Future<int> _removeLearned(sqflite.Database db, List<int> serverIds) async {
+    if (serverIds.isEmpty) return 0;
+    int count = 0;
+    await db.transaction((sqflite.Transaction txn) async {
+      for (final int sid in serverIds) {
+        final List<Map<String, Object?>> rows = await txn.rawQuery(
+            'SELECT id FROM learned WHERE server_id = ?', <Object>[sid]);
+        for (final Map<String, Object?> r in rows) {
+          final int id = r['id']! as int;
+          await txn
+              .delete('keys', where: 'entry_id = ?', whereArgs: <Object>[-id]);
+          await txn.delete('learned', where: 'id = ?', whereArgs: <Object>[id]);
+          count++;
+        }
+      }
+    });
+    return count;
+  }
+
   Future<BigEntry> _saveLearned(
-      sqflite.Database db, BigEntry e, Object? stamp) async {
-    final String updatedAt = stamp is String && stamp.isNotEmpty
-        ? stamp
-        : DateTime.now().toUtc().toIso8601String();
+      sqflite.Database db, BigEntry e, Object? json) async {
+    final Object? sid = json is Map ? json['id'] : null;
+    final int? serverId = sid is int ? sid : null;
+    final Object? stamp = json is Map ? json['created_at'] : null;
+    final String updatedAt = stamp is num
+        ? '${stamp.toInt()}'
+        : '${DateTime.now().millisecondsSinceEpoch}';
     final Map<String, Object?> row = <String, Object?>{
       'it': e.it,
       'it_norm': TextNorm.norm(e.it),
@@ -614,11 +718,18 @@ class BigDictionary extends ChangeNotifier {
       'rom': jsonEncode(e.rom),
       'rank': e.rank,
       'updated_at': updatedAt,
+      'server_id': serverId,
     };
     return db.transaction((sqflite.Transaction txn) async {
-      final List<Map<String, Object?>> old = await txn.rawQuery(
-          'SELECT id FROM learned WHERE it_norm = ? AND pos = ?',
-          <Object>[row['it_norm']!, e.pos]);
+      List<Map<String, Object?>> old = serverId == null
+          ? const <Map<String, Object?>>[]
+          : await txn.rawQuery(
+              'SELECT id FROM learned WHERE server_id = ?', <Object>[serverId]);
+      if (old.isEmpty) {
+        old = await txn.rawQuery(
+            'SELECT id FROM learned WHERE it_norm = ? AND pos = ?',
+            <Object>[row['it_norm']!, e.pos]);
+      }
       int id;
       if (old.isEmpty) {
         id = await txn.insert('learned', row);
@@ -633,8 +744,7 @@ class BigDictionary extends ChangeNotifier {
       for (final int slot in _indexed) {
         final LearnerLanguage lang = LearnerLanguage.values
             .firstWhere((LearnerLanguage l) => l.slot == slot);
-        await _insertKeys(txn, <Map<String, Object?>>[saved], slot,
-            romSlotFor(lang), romLangFor(lang), -1);
+        await _insertKeys(txn, <Map<String, Object?>>[saved], lang, -1);
       }
       return BigEntry.fromRow(saved, learned: true);
     });
@@ -694,52 +804,70 @@ class KeyJob {
     required this.ids,
     required this.tr,
     required this.rom,
-    required this.slot,
-    required this.romSlot,
-    required this.romLang,
+    required this.trSlots,
+    this.romLangs = const <String>[],
+    this.romSlotList = const <int>[],
   });
 
   final List<int> ids;
   final List<String> tr;
   final List<String> rom;
-  final int slot;
-  final int? romSlot;
-  final String? romLang;
+
+  /// Translation columns to index (norm(variants(tr[slot]))).
+  final List<int> trSlots;
+
+  /// Latin-letter spellings to index: rom[romLangs[i]] into romSlotList[i].
+  final List<String> romLangs;
+  final List<int> romSlotList;
 }
 
-/// The reverse-index rows for one language, flattened [key, slot, id, …]:
-/// norm(variants(tr[slot])) and, for languages written in Latin letters too,
-/// romkey(rom[lang]) — exactly as build_bigdb.py counts them.
+/// The reverse-index rows, flattened [key, slot, id, …], exactly as
+/// build_bigdb.py counts them: one row per distinct (key, slot) per entry.
 List<Object> computeKeys(KeyJob job) {
   final List<Object> out = <Object>[];
   for (int i = 0; i < job.ids.length; i++) {
     final int id = job.ids[i];
-    final Set<String> seen = <String>{};
     final List<String> tr = job.tr[i].split(BigEntry.separator);
-    if (job.slot < tr.length) {
-      for (final String v in TextNorm.variants(tr[job.slot])) {
+    for (final int slot in job.trSlots) {
+      if (slot >= tr.length) continue;
+      final Set<String> seen = <String>{};
+      for (final String v in TextNorm.variants(tr[slot])) {
         final String k = TextNorm.norm(v);
         if (k.isNotEmpty && seen.add(k)) {
           out
             ..add(k)
-            ..add(job.slot)
+            ..add(slot)
             ..add(id);
         }
       }
     }
-    if (job.romSlot != null && job.romLang != null) {
-      final String spelled = BigEntry.decodeRom(job.rom[i])[job.romLang] ?? '';
-      final Set<String> seenRom = <String>{};
+    if (job.romLangs.isEmpty) continue;
+    final Map<String, String> rom = BigEntry.decodeRom(job.rom[i]);
+    for (int r = 0; r < job.romLangs.length; r++) {
+      final String spelled = rom[job.romLangs[r]] ?? '';
+      final Set<String> seen = <String>{};
       for (final String v in spelled.split('|')) {
         final String k = TextNorm.romkey(v);
-        if (k.isNotEmpty && seenRom.add(k)) {
+        if (k.isNotEmpty && seen.add(k)) {
           out
             ..add(k)
-            ..add(job.romSlot!)
+            ..add(job.romSlotList[r])
             ..add(id);
         }
       }
     }
   }
   return out;
+}
+
+/// What the word server answered.
+enum ServerLookupStatus { off, found, notAllowed, notFound, failed }
+
+class ServerLookup {
+  const ServerLookup(this.status, [this.entry]);
+
+  final ServerLookupStatus status;
+
+  /// The saved word when [status] is [ServerLookupStatus.found].
+  final BigEntry? entry;
 }

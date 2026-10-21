@@ -61,6 +61,8 @@ class _SearchScreenState extends State<SearchScreen> {
   int _bigSeq = 0;
   bool _bigIndexedSeen = false;
   Timer? _serverTimer;
+  bool _serverSearching = false;
+  ServerLookupStatus _server = ServerLookupStatus.off;
 
   /// Curated words by their normalized headword without article.
   static Map<String, Word>? _curatedByBare;
@@ -133,11 +135,17 @@ class _SearchScreenState extends State<SearchScreen> {
     _serverTimer?.cancel();
     final BigDictionary? big = _big;
     if (big == null || !big.ready || query.trim().isEmpty) {
-      if (_bigWords.isNotEmpty || _bigEntries.isNotEmpty || _bigPending) {
+      if (_bigWords.isNotEmpty ||
+          _bigEntries.isNotEmpty ||
+          _bigPending ||
+          _serverSearching ||
+          _server != ServerLookupStatus.off) {
         setState(() {
           _bigWords = const <Word>[];
           _bigEntries = const <BigEntry>[];
           _bigPending = false;
+          _serverSearching = false;
+          _server = ServerLookupStatus.off;
         });
       }
       return;
@@ -162,17 +170,27 @@ class _SearchScreenState extends State<SearchScreen> {
       _bigWords = words;
       _bigEntries = entries;
       _bigPending = false;
+      _server = ServerLookupStatus.off;
+      _serverSearching = false;
     });
     // Nothing anywhere on the phone: ask the word server once the user
-    // stops typing (only when it is configured — see ServerConfig).
+    // stops typing (only when it is configured — see ServerConfig). It can
+    // take up to a minute (the server may ask Gemini), so it is shown.
     if (hits.isEmpty &&
         found.isEmpty &&
         big.serverEnabled &&
         query.trim().length >= 2) {
       _serverTimer = Timer(const Duration(milliseconds: 700), () async {
-        final BigEntry? entry = await big.askServer(query, lang);
-        if (!mounted || seq != _bigSeq || entry == null) return;
-        setState(() => _bigEntries = <BigEntry>[entry]);
+        if (!mounted || seq != _bigSeq) return;
+        setState(() => _serverSearching = true);
+        final ServerLookup answer = await big.askServer(query, lang);
+        if (!mounted || seq != _bigSeq) return;
+        final BigEntry? entry = answer.entry;
+        setState(() {
+          _serverSearching = false;
+          _server = answer.status;
+          if (entry != null) _bigEntries = <BigEntry>[entry];
+        });
       });
     }
   }
@@ -351,7 +369,47 @@ class _SearchScreenState extends State<SearchScreen> {
                     ),
                   // While the big dictionary is still answering, do not
                   // flash "nothing found".
-                  if (query.isNotEmpty && !anyResult && !_bigPending)
+                  if (query.isNotEmpty && !anyResult && _serverSearching)
+                    Row(
+                      key: const ValueKey<String>('big-online-searching'),
+                      children: <Widget>[
+                        const SizedBox(
+                          width: 18,
+                          height: 18,
+                          child: CircularProgressIndicator(strokeWidth: 2),
+                        ),
+                        const SizedBox(width: AppSpace.m),
+                        Expanded(
+                          child: Text(
+                            t.bigSearchingOnline,
+                            style: context.texts.bodyMedium,
+                          ),
+                        ),
+                      ],
+                    ),
+                  if (query.isNotEmpty &&
+                      !anyResult &&
+                      !_serverSearching &&
+                      (_server == ServerLookupStatus.notAllowed ||
+                          _server == ServerLookupStatus.notFound))
+                    Padding(
+                      padding: const EdgeInsets.only(bottom: AppSpace.l),
+                      child: Text(
+                        _server == ServerLookupStatus.notAllowed
+                            ? t.bigNotAllowed
+                            : t.bigNotFoundOnline,
+                        key: ValueKey<String>(
+                          _server == ServerLookupStatus.notAllowed
+                              ? 'big-online-not-allowed'
+                              : 'big-online-not-found',
+                        ),
+                        style: context.texts.bodyMedium,
+                      ),
+                    ),
+                  if (query.isNotEmpty &&
+                      !anyResult &&
+                      !_bigPending &&
+                      !_serverSearching)
                     ..._emptyContent(t, query),
                 ],
               ),

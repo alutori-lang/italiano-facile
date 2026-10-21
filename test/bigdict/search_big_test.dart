@@ -1,7 +1,11 @@
+import 'dart:async';
+import 'dart:convert';
 import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:http/http.dart' as http;
+import 'package:http/testing.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:simple_flutter_app_651/app_scope.dart';
 import 'package:simple_flutter_app_651/data/big_dictionary.dart';
@@ -30,7 +34,11 @@ import 'big_support.dart';
 late Directory _dir;
 late BigDictionary _big;
 
-Future<void> _pumpSearch(WidgetTester tester, Locale translation) async {
+Future<void> _pumpSearch(
+  WidgetTester tester,
+  Locale translation, {
+  BigDictionary? big,
+}) async {
   SharedPreferences.setMockInitialValues(<String, Object>{});
   tester.view.physicalSize = const Size(390, 844);
   tester.view.devicePixelRatio = 1.0;
@@ -47,7 +55,7 @@ Future<void> _pumpSearch(WidgetTester tester, Locale translation) async {
       purchases: PurchaseService(prefs),
       notifications: NotificationService(),
       online: OnlineLookupService(),
-      big: _big,
+      big: big ?? _big,
       child: MaterialApp(
         theme: AppTheme.light(),
         locale: const Locale('it'),
@@ -190,5 +198,44 @@ void main() {
     );
     await _type(tester, 'piyar');
     expect(find.textContaining('amore'), findsWidgets);
+  });
+
+  testWidgets(
+      'Search: nothing on the phone → "Sto cercando online…", then the '
+      'server answers (422 → word cannot be added)',
+      (WidgetTester tester) async {
+    final Completer<http.Response> answer = Completer<http.Response>();
+    final BigDictionary online = (await tester.runAsync(() async {
+      final BigDictionary d = makeBigDictionary(
+        _dir,
+        factory: databaseFactoryFfiNoIsolate,
+        useIsolate: false,
+        baseUrl: 'https://words.test',
+        client: MockClient((http.Request req) {
+          expect(req.url.path, '/v1/lookup');
+          return answer.future;
+        }),
+      );
+      await d.start(LearnerLanguage.urdu);
+      return d;
+    }))!;
+    await _pumpSearch(tester, const Locale('ur'), big: online);
+    await _type(tester, 'zzqqparolaccia');
+    expect(find.text('Nessuna parola trovata'), findsOneWidget);
+    // The server is asked once the user stops typing (700 ms).
+    await tester.pump(const Duration(milliseconds: 800));
+    expect(find.byKey(const ValueKey<String>('big-online-searching')),
+        findsOneWidget);
+    expect(find.text('Sto cercando online…'), findsOneWidget);
+    expect(find.text('Nessuna parola trovata'), findsNothing);
+    answer.complete(http.Response(
+        jsonEncode(<String, String>{'error': 'not_allowed'}), 422));
+    await tester.pump();
+    await tester.pump();
+    expect(find.byKey(const ValueKey<String>('big-online-searching')),
+        findsNothing);
+    expect(find.text('Questa parola non si può aggiungere al dizionario.'),
+        findsOneWidget);
+    await tester.runAsync(online.close);
   });
 }

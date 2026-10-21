@@ -555,4 +555,14 @@ class AppLocalizationsHi extends AppLocalizations {
   @override
   String get bigDictCredits =>
       'The big dictionary of Italian words (over 100,000 words when complete) comes from Wiktionary, through kaikki.org, under the CC BY-SA 4.0 licence. The meanings in the ten languages were prepared for this app from the Wiktionary definitions.';
+
+  @override
+  String get bigSearchingOnline => 'Searching online…';
+
+  @override
+  String get bigNotAllowed => 'This word cannot be added to the dictionary.';
+
+  @override
+  String get bigNotFoundOnline =>
+      'Not found online either: check how you wrote it.';
 }

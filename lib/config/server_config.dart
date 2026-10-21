@@ -1,21 +1,26 @@
-/// The PatronApp-style word server that will teach the app new words.
+/// The shared word server (server/ in this repo, see server/README.md).
 ///
-/// The server does not exist yet: while [baseUrl] is empty the whole feature
-/// is off and the app makes NO network call for it. When it is set:
+/// While [baseUrl] is empty the whole feature is off and the app makes NO
+/// network call for it. When it is set:
 ///  * a word found nowhere on the phone is asked to
 ///    `POST {baseUrl}/v1/lookup` with `{"q": ..., "lang": <LearnerLanguage.tag>}`
-///    and the answer is saved on the phone ("learned" words);
-///  * at start-up `GET {baseUrl}/v1/updates?since=<last>` brings corrections
-///    and new words.
+///    → 200 entry JSON, 404 not a word, 422 `{"error":"not_allowed"}`;
+///    the answer is saved on the phone ("learned" words);
+///  * at start-up `GET {baseUrl}/v1/updates?since=<ms>&limit=<n>` →
+///    `{entries, next, more, removed}` brings new words page by page and
+///    deletes the removed ones.
 /// Network failures never break the search.
 class ServerConfig {
   const ServerConfig._();
 
-  /// e.g. 'https://words.example.org' (no trailing slash). Empty = off.
+  /// e.g. 'https://api.example.org' (https, no trailing slash). Empty = off.
   static const String baseUrl = '';
 
   static bool get enabled => baseUrl.isNotEmpty;
 
-  /// How long one request may take before it is given up.
-  static const Duration timeout = Duration(seconds: 8);
+  /// A lookup may ask Gemini: the server gives up after 50 s.
+  static const Duration lookupTimeout = Duration(seconds: 60);
+
+  /// One page of updates.
+  static const Duration updatesTimeout = Duration(seconds: 20);
 }

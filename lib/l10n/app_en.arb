@@ -758,5 +758,17 @@
   "bigDictCredits": "The big dictionary of Italian words (over 100,000 words when complete) comes from Wiktionary, through kaikki.org, under the CC BY-SA 4.0 licence. The meanings in the ten languages were prepared for this app from the Wiktionary definitions.",
   "@bigDictCredits": {
     "description": "bigDictCredits"
+  },
+  "bigSearchingOnline": "Searching online…",
+  "@bigSearchingOnline": {
+    "description": "bigSearchingOnline"
+  },
+  "bigNotAllowed": "This word cannot be added to the dictionary.",
+  "@bigNotAllowed": {
+    "description": "bigNotAllowed"
+  },
+  "bigNotFoundOnline": "Not found online either: check how you wrote it.",
+  "@bigNotFoundOnline": {
+    "description": "bigNotFoundOnline"
   }
 }

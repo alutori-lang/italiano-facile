@@ -171,5 +171,8 @@
   "posPronoun": "Pronome",
   "posOther": "Parola",
   "bigDictTitle": "Grande dizionario",
-  "bigDictCredits": "Il grande dizionario delle parole italiane (oltre 100.000 parole a lavoro finito) viene da Wiktionary, tramite kaikki.org, con licenza CC BY-SA 4.0. I significati nelle dieci lingue sono stati preparati per questa app a partire dalle definizioni di Wiktionary."
+  "bigDictCredits": "Il grande dizionario delle parole italiane (oltre 100.000 parole a lavoro finito) viene da Wiktionary, tramite kaikki.org, con licenza CC BY-SA 4.0. I significati nelle dieci lingue sono stati preparati per questa app a partire dalle definizioni di Wiktionary.",
+  "bigSearchingOnline": "Sto cercando online…",
+  "bigNotAllowed": "Questa parola non si può aggiungere al dizionario.",
+  "bigNotFoundOnline": "Non l'abbiamo trovata nemmeno online: controlla come l'hai scritta."
 }

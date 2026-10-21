@@ -560,4 +560,15 @@ class AppLocalizationsIt extends AppLocalizations {
   @override
   String get bigDictCredits =>
       'Il grande dizionario delle parole italiane (oltre 100.000 parole a lavoro finito) viene da Wiktionary, tramite kaikki.org, con licenza CC BY-SA 4.0. I significati nelle dieci lingue sono stati preparati per questa app a partire dalle definizioni di Wiktionary.';
+
+  @override
+  String get bigSearchingOnline => 'Sto cercando online…';
+
+  @override
+  String get bigNotAllowed =>
+      'Questa parola non si può aggiungere al dizionario.';
+
+  @override
+  String get bigNotFoundOnline =>
+      'Non l\'abbiamo trovata nemmeno online: controlla come l\'hai scritta.';
 }

@@ -154,6 +154,37 @@ void main() {
     );
   });
 
+  test(
+      'Big dictionary: Urdu chosen also finds Punjabi words (pyaar, piyar, '
+      'پیار → amore), meaning still shown in Urdu', () async {
+    final List<BigHit> script = await big.lookup('پیار', LearnerLanguage.urdu);
+    final List<String> pyaar = await its('pyaar', LearnerLanguage.urdu);
+    final List<String> piyar = await its('piyar', LearnerLanguage.urdu);
+    // ignore: avoid_print
+    print('ur پیار → ${script.take(3).map((BigHit h) => h.entry.it)}; '
+        'pyaar → ${pyaar.take(3)}; piyar → ${piyar.take(3)}');
+    expect(script.map((BigHit h) => h.entry.it), contains('amore'));
+    expect(pyaar, contains('amore'));
+    expect(piyar, contains('amore'));
+    final BigEntry amore =
+        script.firstWhere((BigHit h) => h.entry.it == 'amore').entry;
+    expect(amore.translation(LearnerLanguage.urdu), 'محبت');
+  });
+
+  test('Big dictionary: English words work for every language', () async {
+    await big.useLanguage(LearnerLanguage.bengali);
+    expect(await its('love', LearnerLanguage.bengali), contains('amore'));
+    expect(await its('water', LearnerLanguage.urdu), contains('acqua'));
+  });
+
+  test('Big dictionary: the chosen language ranks before the close ones',
+      () async {
+    final List<BigHit> hits = await big.lookup('محبت', LearnerLanguage.urdu);
+    expect(hits.first.score, 950);
+    final List<BigHit> en = await big.lookup('love', LearnerLanguage.urdu);
+    expect(en.firstWhere((BigHit h) => h.entry.it == 'amore').score, 930);
+  });
+
   test('Big dictionary: the phone index has exactly the builder\'s keys',
       () async {
     // build_bigdb.py counts (key, slot) rows per entry over all ten slots and
@@ -168,47 +199,32 @@ void main() {
         (await db.rawQuery("SELECT v FROM meta WHERE k = 'keys'")).first['v']!
             as String;
     await db.close();
-    final KeyJob base = KeyJob(
+    final List<Object> all = computeKeys(KeyJob(
       ids: <int>[for (final Map<String, Object?> r in rows) r['id']! as int],
       tr: <String>[
-        for (final Map<String, Object?> r in rows) r['tr']! as String
+        for (final Map<String, Object?> r in rows) r['tr']! as String,
       ],
       rom: <String>[
-        for (final Map<String, Object?> r in rows) (r['rom'] as String?) ?? ''
+        for (final Map<String, Object?> r in rows) (r['rom'] as String?) ?? '',
       ],
-      slot: 0,
-      romSlot: null,
-      romLang: null,
-    );
-    int total = 0;
-    for (int slot = 0; slot < LearnerLanguage.count; slot++) {
-      total += computeKeys(KeyJob(
-                  ids: base.ids,
-                  tr: base.tr,
-                  rom: base.rom,
-                  slot: slot,
-                  romSlot: null,
-                  romLang: null))
-              .length ~/
-          3;
-    }
-    for (final MapEntry<String, int> rom in const <String, int>{
-      'ur': 11,
-      'pa': 12,
-      'bn': 14,
-      'zh': 16,
-    }.entries) {
-      total += computeKeys(KeyJob(
-                  ids: base.ids,
-                  tr: base.tr,
-                  rom: base.rom,
-                  slot: 99,
-                  romSlot: rom.value,
-                  romLang: rom.key))
-              .length ~/
-          3;
-    }
-    expect(total, int.parse(want));
+      trSlots: List<int>.generate(LearnerLanguage.count, (int i) => i),
+      romLangs: BigDictionary.romSlots.keys.toList(),
+      romSlotList: BigDictionary.romSlots.values.toList(),
+    ));
+    expect(all.length ~/ 3, int.parse(want));
+  });
+
+  test('Big dictionary: indexed slots per language', () {
+    expect(BigDictionary.trSlotsFor(LearnerLanguage.urdu), <int>[0, 1, 2]);
+    expect(BigDictionary.trSlotsFor(LearnerLanguage.punjabiShahmukhi),
+        <int>[0, 1, 2]);
+    expect(BigDictionary.trSlotsFor(LearnerLanguage.punjabiGurmukhi),
+        <int>[0, 1, 2, 3]);
+    expect(BigDictionary.trSlotsFor(LearnerLanguage.bengali), <int>[0, 4]);
+    expect(BigDictionary.trSlotsFor(LearnerLanguage.english), <int>[0]);
+    expect(BigDictionary.romSlotsFor(LearnerLanguage.punjabiGurmukhi).keys,
+        <String>['ur', 'pa']);
+    expect(BigDictionary.romSlotsFor(LearnerLanguage.french), isEmpty);
   });
 
   test('Big dictionary: a second start reuses the copy and the index',
@@ -217,82 +233,134 @@ void main() {
         makeBigDictionary(dir, factory: databaseFactoryFfi);
     await again.open();
     expect(again.ready, isTrue);
-    expect(again.lastCopyMs, 0, reason: 'same version: no new copy');
+    expect(again.copies, 0, reason: 'same version: no new copy');
     expect(again.isIndexed(LearnerLanguage.urdu), isTrue);
     await again.close();
   });
 
+  test('Big dictionary: a changed bundled version copies big.db again',
+      () async {
+    final Directory d5 = await Directory.systemTemp.createTemp('bigdict_ver');
+    String version = File('assets/dict/big_version.txt').readAsStringSync();
+    expect(version.trim(), matches(RegExp(r'^[0-9a-f]{12}$')),
+        reason: 'meta.version is a short content hash');
+    BigDictionary make() => BigDictionary(
+          databaseFactory: databaseFactoryFfi,
+          directory: () async => d5,
+          loadAsset: (String key) async =>
+              ByteData.sublistView(await File(key).readAsBytes()),
+          loadString: (String key) async => version,
+        );
+    final BigDictionary first = make();
+    await first.open();
+    expect(first.copies, 1, reason: 'first launch copies');
+    expect(File('${d5.path}/big.db').existsSync(), isTrue);
+    await first.close();
+    // Same version: no copy.
+    final BigDictionary same = make();
+    await same.open();
+    expect(same.copies, 0);
+    await same.close();
+    // A different bundled version (new content): copied again.
+    version = 'ffffffffffff';
+    final BigDictionary changed = make();
+    await changed.open();
+    expect(changed.ready, isTrue);
+    expect(changed.copies, 1, reason: 'new content hash: copied again');
+    await changed.close();
+    try {
+      await d5.delete(recursive: true);
+    } catch (_) {}
+  });
+
   test(
-      'Big dictionary: learned words from the server (feature off when '
-      'the URL is empty)', () async {
+      'Big dictionary: the word server (lookup, updates paging, removed, '
+      '422/404; feature off when the URL is empty)', () async {
     final Directory d2 = await Directory.systemTemp.createTemp('bigdict_srv');
+    List<String> tr(String en, String ur) =>
+        <String>[en, ur, '', '', '', '', '', '', '', ''];
+    // The exact shape of server/src/db.js rowToEntry.
+    Map<String, Object?> entry(
+            int id, String it, String pos, String en, String ur, int createdAt,
+            {String? g, String? pl, Map<String, String>? rom}) =>
+        <String, Object?>{
+          'id': id,
+          'it': it,
+          'pos': pos,
+          'g': g,
+          'pl': pl,
+          'gloss': en,
+          'ex_it': null,
+          'ex_en': null,
+          'tr': tr(en, ur),
+          'rom': rom ?? <String, String>{},
+          'created_at': createdAt,
+        };
     int calls = 0;
+    final List<String> sinces = <String>[];
+    http.Response json(Object body, [int status = 200]) =>
+        http.Response.bytes(utf8.encode(jsonEncode(body)), status,
+            headers: <String, String>{'content-type': 'application/json'});
     final MockClient client = MockClient((http.Request req) async {
       calls++;
       if (req.url.path == '/v1/lookup') {
         final Map<String, dynamic> body =
             jsonDecode(req.body) as Map<String, dynamic>;
         expect(body['lang'], 'ur');
-        return http.Response.bytes(
-          utf8.encode(jsonEncode(<String, Object>{
-            'it': 'zzparolanuova',
-            'pos': 'noun',
-            'g': 'f',
-            'pl': 'zzparolenuove',
-            'gloss': 'new word',
-            'tr': <String>[
-              'new word',
-              'نیا لفظ',
-              '',
-              '',
-              '',
-              '',
-              '',
-              '',
-              '',
-              ''
-            ],
-            'rom': <String, String>{'ur': 'naya lafz'},
-          })),
-          200,
-        );
+        if (body['q'] == 'parolaccia') {
+          return json(<String, String>{'error': 'not_allowed'}, 422);
+        }
+        if (body['q'] == 'xqzw') {
+          return json(<String, String>{'error': 'not_found'}, 404);
+        }
+        return json(<String, Object?>{
+          ...entry(7, 'la zzparolanuova', 'noun', 'new word', 'نیا لفظ', 1000,
+              g: 'f',
+              pl: 'le zzparolenuove',
+              rom: <String, String>{'ur': 'naya lafz'}),
+          'cached': false,
+        });
       }
       if (req.url.path == '/v1/updates') {
-        return http.Response.bytes(
-          utf8.encode(jsonEncode(<String, Object>{
-            'now': '2026-10-22T10:00:00Z',
-            'entries': <Object>[
-              <String, Object>{
-                'it': 'zzaggiornata',
-                'pos': 'adj',
-                'gloss': 'updated',
-                'tr': <String>[
-                  'updated',
-                  'تازہ',
-                  '',
-                  '',
-                  '',
-                  '',
-                  '',
-                  '',
-                  '',
-                  ''
-                ],
-                'updated_at': '2026-10-22T09:00:00Z',
-              },
+        final String since = req.url.queryParameters['since'] ?? '';
+        sinces.add(since);
+        expect(req.url.queryParameters['limit'], isNotNull);
+        if (since == '0') {
+          return json(<String, Object?>{
+            'entries': <Object?>[
+              entry(8, 'zzaggiornata', 'adj', 'updated', 'تازہ', 2000),
             ],
-          })),
-          200,
-        );
+            'next': 2000,
+            'more': true,
+            'removed': <int>[],
+          });
+        }
+        if (since == '2000') {
+          return json(<String, Object?>{
+            'entries': <Object?>[
+              entry(9, 'zzseconda', 'adj', 'second page', 'دوسرا صفحہ', 3000),
+            ],
+            'next': 3000,
+            'more': false,
+            'removed': <int>[7],
+          });
+        }
+        return json(<String, Object?>{
+          'entries': <Object?>[],
+          'next': int.parse(since),
+          'more': false,
+          'removed': <int>[],
+        });
       }
-      return http.Response('no', 404);
+      return json(<String, String>{'error': 'no_route'}, 404);
     });
 
     final BigDictionary off = makeBigDictionary(d2,
         factory: databaseFactoryFfi, client: client, baseUrl: '');
     await off.start(LearnerLanguage.urdu);
     expect(off.serverEnabled, isFalse);
-    expect(await off.askServer('zzparolanuova', LearnerLanguage.urdu), isNull);
+    expect((await off.askServer('zzparolanuova', LearnerLanguage.urdu)).status,
+        ServerLookupStatus.off);
     expect(await off.syncUpdates(), 0);
     expect(calls, 0, reason: 'empty URL = no network call');
     await off.close();
@@ -302,11 +370,12 @@ void main() {
         client: client,
         baseUrl: 'https://words.test');
     await on.start(LearnerLanguage.urdu);
-    final BigEntry? got =
+    final ServerLookup got =
         await on.askServer('zzparolanuova', LearnerLanguage.urdu);
-    expect(got, isNotNull);
-    expect(got!.learned, isTrue);
-    expect(got.headword, 'la zzparolanuova');
+    expect(got.status, ServerLookupStatus.found);
+    expect(got.entry!.learned, isTrue);
+    expect(got.entry!.it, 'zzparolanuova', reason: 'article stripped');
+    expect(got.entry!.headword, 'la zzparolanuova');
     expect(
         (await on.lookup('zzparolanuova', LearnerLanguage.urdu)).first.entry.it,
         'zzparolanuova');
@@ -314,11 +383,28 @@ void main() {
         'zzparolanuova');
     expect((await on.lookup('naya lafz', LearnerLanguage.urdu)).first.entry.it,
         'zzparolanuova');
-    expect(await on.syncUpdates(), 1);
+    expect((await on.askServer('parolaccia', LearnerLanguage.urdu)).status,
+        ServerLookupStatus.notAllowed);
+    expect((await on.askServer('xqzw', LearnerLanguage.urdu)).status,
+        ServerLookupStatus.notFound);
+
+    // Two pages (more: true, then false); the second removes server id 7.
+    expect(await on.syncUpdates(), 2);
+    expect(sinces, <String>['0', '2000']);
     expect(
         (await on.lookup('تازہ', LearnerLanguage.urdu))
             .map((BigHit h) => h.entry.it),
         contains('zzaggiornata'));
+    expect(
+        (await on.lookup('second page', LearnerLanguage.urdu))
+            .map((BigHit h) => h.entry.it),
+        contains('zzseconda'));
+    expect(await on.lookup('zzparolanuova', LearnerLanguage.urdu), isEmpty,
+        reason: 'removed on the server');
+    expect(await on.lookup('naya lafz', LearnerLanguage.urdu), isEmpty);
+    // Next sync starts from the saved `next`.
+    await on.syncUpdates();
+    expect(sinces.last, '3000');
     await on.close();
 
     // Offline / broken server: never an exception.
@@ -327,10 +413,11 @@ void main() {
         client: MockClient((_) async => throw const SocketException('offline')),
         baseUrl: 'https://words.test');
     await broken.start(LearnerLanguage.urdu);
-    expect(await broken.askServer('qualcosa', LearnerLanguage.urdu), isNull);
+    expect((await broken.askServer('qualcosa', LearnerLanguage.urdu)).status,
+        ServerLookupStatus.failed);
     expect(await broken.syncUpdates(), 0);
-    // The learned word survived the restart.
-    expect((await broken.lookup('zzparolanuova', LearnerLanguage.urdu)),
+    // The learned words survived the restart.
+    expect((await broken.lookup('zzaggiornata', LearnerLanguage.urdu)),
         isNotEmpty);
     await broken.close();
     try {

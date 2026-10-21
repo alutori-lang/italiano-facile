@@ -1157,6 +1157,24 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'The big dictionary of Italian words (over 100,000 words when complete) comes from Wiktionary, through kaikki.org, under the CC BY-SA 4.0 licence. The meanings in the ten languages were prepared for this app from the Wiktionary definitions.'**
   String get bigDictCredits;
+
+  /// bigSearchingOnline
+  ///
+  /// In en, this message translates to:
+  /// **'Searching online…'**
+  String get bigSearchingOnline;
+
+  /// bigNotAllowed
+  ///
+  /// In en, this message translates to:
+  /// **'This word cannot be added to the dictionary.'**
+  String get bigNotAllowed;
+
+  /// bigNotFoundOnline
+  ///
+  /// In en, this message translates to:
+  /// **'Not found online either: check how you wrote it.'**
+  String get bigNotFoundOnline;
 }
 
 class _AppLocalizationsDelegate

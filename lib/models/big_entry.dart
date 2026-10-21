@@ -136,7 +136,9 @@ class BigEntry {
     }
     return BigEntry(
       id: id,
-      it: it.trim(),
+      // The server writes nouns with their article ("il pomodoro"); the
+      // entry keeps the bare word, [headword] puts the article back.
+      it: (json['pos'] == 'noun') ? stripArticle(it.trim()) : it.trim(),
       pos: (json['pos'] as String?) ?? '',
       g: _blank(json['g']),
       pl: _blank(json['pl']),
@@ -148,6 +150,19 @@ class BigEntry {
       rank: json['rank'] is int ? json['rank'] as int : null,
     );
   }
+
+  /// "il pomodoro" → "pomodoro", "l'acqua" → "acqua", "lo/la …" too.
+  static String stripArticle(String word) {
+    final RegExpMatch? m = _article.firstMatch(word);
+    if (m == null) return word;
+    final String rest = word.substring(m.end).trim();
+    return rest.isEmpty ? word : rest;
+  }
+
+  static final RegExp _article = RegExp(
+    r"^(?:(?:il|lo|la|i|gli|le)(?:/(?:il|lo|la))?\s+|l['’])",
+    caseSensitive: false,
+  );
 
   static Map<String, String> decodeRom(String? raw) {
     if (raw == null || raw.isEmpty) return const <String, String>{};
