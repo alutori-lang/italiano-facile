@@ -5,9 +5,9 @@
 "ex":"Mi stanco subito quando cammino tanto.",
 "exTr":["I get tired quickly when I walk a lot.","جب میں زیادہ چلتا ہوں تو جلدی تھک جاتا ہوں۔","جدوں میں بہتا ٹردا آں تے چھیتی تھک جاندا آں۔","ਜਦੋਂ ਮੈਂ ਬਹੁਤ ਤੁਰਦਾ ਹਾਂ ਤਾਂ ਛੇਤੀ ਥੱਕ ਜਾਂਦਾ ਹਾਂ।","অনেক হাঁটলে আমি তাড়াতাড়ি ক্লান্ত হয়ে যাই।","ගොඩක් ඇවිද්දම මට ඉක්මනට මහන්සි වෙනවා.","我走很多路就很快累了。","Je me fatigue vite quand je marche beaucoup.","Me canso enseguida cuando camino mucho.","Me canso rápido cuando camino mucho."]},
 
-{"it":"succedere","type":"v","topic":"verbs","emoji":"❓",
+{"it":"succedere","type":"v","topic":"verbs","emoji":null,
 "tr":["to happen","ہونا / پیش آنا","ہونا / واپرنا","ਹੋਣਾ / ਵਾਪਰਨਾ","ঘটা","සිද්ධ වෙනවා","发生","arriver / se passer","pasar / suceder","pasar / suceder"],
-"expl":["When an event takes place; 'cosa è successo?' = what happened?","جب کوئی واقعہ ہوتا ہے؛ 'کوزا ای سُچیسو' = کیا ہوا؟","جدوں کوئی واقعہ ہوندا اے؛ 'کوزا ای سُچیسو' = کی ہویا؟","ਜਦੋਂ ਕੋਈ ਘਟਨਾ ਵਾਪਰਦੀ ਹੈ; 'ਕੋਜ਼ਾ ਏ ਸੁਚੇਸੋ' = ਕੀ ਹੋਇਆ?","যখন কোনো ঘটনা ঘটে; 'কোজা এ সুচেসো' = কী হয়েছে?","යමක් සිද්ධ වෙනකොට; 'කෝසා ඒ සුචේසෝ' = මොකද වුණේ?","事情发生；'cosa è successo'就是出什么事了。","Quand un événement a lieu ; « cosa è successo ? » = que s'est-il passé ?","Cuando ocurre algo; «cosa è successo?» = ¿qué ha pasado?","Cuando ocurre algo; «cosa è successo?» = ¿qué pasó?"],
+"expl":["When an event takes place; 'cosa è successo?' = what happened?","جب کوئی واقعہ ہوتا ہے؛ 'cosa è successo?' = کیا ہوا؟","جدوں کوئی واقعہ ہوندا اے؛ 'cosa è successo?' = کی ہویا؟","ਜਦੋਂ ਕੋਈ ਘਟਨਾ ਵਾਪਰਦੀ ਹੈ; 'cosa è successo?' = ਕੀ ਹੋਇਆ?","যখন কোনো ঘটনা ঘটে; 'cosa è successo?' = কী হয়েছে?","යමක් සිද්ධ වෙනකොට; 'cosa è successo?' = මොකද වුණේ?","事情发生；'cosa è successo'就是出什么事了。","Quand un événement a lieu ; « cosa è successo ? » = que s'est-il passé ?","Cuando ocurre algo; «cosa è successo?» = ¿qué ha pasado?","Cuando ocurre algo; «cosa è successo?» = ¿qué pasó?"],
 "ex":"Cosa succede? Perché c'è la polizia?",
 "exTr":["What's happening? Why are the police here?","کیا ہو رہا ہے؟ پولیس کیوں آئی ہے؟","کی ہو رہیا اے؟ پولیس کیوں آئی اے؟","ਕੀ ਹੋ ਰਿਹਾ ਹੈ? ਪੁਲਿਸ ਕਿਉਂ ਆਈ ਹੈ?","কী হচ্ছে? পুলিশ কেন এসেছে?","මොකද වෙන්නේ? පොලිසිය ඇයි ඇවිත් ඉන්නේ?","怎么了？为什么有警察？","Qu'est-ce qui se passe ? Pourquoi il y a la police ?","¿Qué pasa? ¿Por qué está la policía?","¿Qué pasa? ¿Por qué está la policía?"]},
 
@@ -48,7 +48,7 @@
 "exTr":["Sorry, I have to run, it's late!","معاف کرنا، مجھے جلدی جانا ہے، دیر ہو گئی!","معاف کرنا، مینوں نسنا پینا اے، دیر ہو گئی!","ਮਾਫ਼ ਕਰਨਾ, ਮੈਨੂੰ ਭੱਜਣਾ ਪੈਣਾ ਹੈ, ਦੇਰ ਹੋ ਗਈ!","মাফ করো, আমাকে এখনই যেতে হবে, দেরি হয়ে গেছে!","සමාවෙන්න, මට දුවන්න වෙනවා, පරක්කුයි!","不好意思，我得赶紧走了，太晚了！","Désolé, je dois filer, il est tard !","Perdonad, tengo que irme corriendo, ¡es tarde!","Perdón, me tengo que ir corriendo, ¡ya es tarde!"]},
 
 {"it":"separarsi","type":"v","topic":"verbs","emoji":"💔",
-"tr":["to separate / to split up","الگ ہونا / علیحدگی","وکھ ہونا","ਵੱਖ ਹੋਣਾ","আলাদা হওয়া","වෙන් වෙනවා","分居 / 分开","se séparer","separarse","separarse"],
+"tr":["to separate / to split up","الگ ہونا / علیحدہ ہونا","وکھ ہونا","ਵੱਖ ਹੋਣਾ","আলাদা হওয়া","වෙන් වෙනවා","分居 / 分开","se séparer","separarse","separarse"],
 "expl":["When a married couple decides to live apart.","جب شادی شدہ جوڑا الگ رہنے کا فیصلہ کرتا ہے۔","جدوں ویاہیا جوڑا وکھ رہن دا فیصلہ کردا اے۔","ਜਦੋਂ ਵਿਆਹਿਆ ਜੋੜਾ ਵੱਖ ਰਹਿਣ ਦਾ ਫ਼ੈਸਲਾ ਕਰਦਾ ਹੈ।","যখন বিবাহিত দম্পতি আলাদা থাকার সিদ্ধান্ত নেয়।","කසාද බැඳපු දෙන්නෙක් වෙන වෙනම ඉන්න තීරණය කරනකොට.","已婚夫妻决定分开住。","Quand un couple marié décide de vivre séparément.","Cuando una pareja casada decide vivir por separado.","Cuando una pareja casada decide vivir por separado."],
 "ex":"I miei vicini si separano.",
 "exTr":["My neighbours are splitting up.","میرے پڑوسی الگ ہو رہے ہیں۔","میرے گوانڈی وکھ ہو رہے نیں۔","ਮੇਰੇ ਗੁਆਂਢੀ ਵੱਖ ਹੋ ਰਹੇ ਹਨ।","আমার প্রতিবেশীরা আলাদা হয়ে যাচ্ছে।","මගේ අල්ලපු ගෙදර අය වෙන් වෙනවා.","我的邻居要分居了。","Mes voisins se séparent.","Mis vecinos se separan.","Mis vecinos se están separando."]},
@@ -57,33 +57,33 @@
 "tr":["to lose (a document)","گم کر دینا","گوا دینا","ਗੁਆ ਦੇਣਾ","হারিয়ে ফেলা","නැති කරගන්නවා","遗失","égarer / perdre","extraviar","extraviar"],
 "expl":["Formal word for losing something, used in police reports for lost documents.","کھو دینے کا رسمی لفظ، گمشدہ کاغذات کی پولیس رپورٹ میں۔","گواچن دا رسمی لفظ، گواچے کاغذاں دی پولیس رپورٹ وچ۔","ਗੁਆਉਣ ਦਾ ਰਸਮੀ ਸ਼ਬਦ, ਗੁਆਚੇ ਕਾਗ਼ਜ਼ਾਂ ਦੀ ਪੁਲਿਸ ਰਿਪੋਰਟ ਵਿੱਚ।","হারানোর আনুষ্ঠানিক শব্দ, হারানো কাগজের পুলিশ রিপোর্টে ব্যবহৃত।","නැති කරගන්නවා කියන නිල වචනය, ලියකියවිලි නැති වුණාම පොලිසියේ පාවිච්චි කරනවා.","丢失东西的正式说法，用于证件遗失报案。","Mot formel pour perdre, utilisé pour déclarer des papiers perdus.","Palabra formal para perder, se usa al denunciar documentos perdidos.","Palabra formal para perder, se usa al reportar documentos perdidos."],
 "ex":"Ho smarrito il permesso di soggiorno.",
-"exTr":["I have lost my residence permit.","میرا رہائشی اجازت نامہ گم ہو گیا ہے۔","میرا پرمیسو گواچ گیا اے۔","ਮੇਰਾ ਰਿਹਾਇਸ਼ੀ ਪਰਮਿਟ ਗੁਆਚ ਗਿਆ ਹੈ।","আমার রেসিডেন্স পারমিট হারিয়ে গেছে।","මගේ පදිංචි බලපත්‍රය නැති වුණා.","我的居留证丢了。","J'ai égaré mon titre de séjour.","He extraviado mi permiso de residencia.","Extravié mi permiso de residencia."]},
+"exTr":["I have lost my residence permit.","میرا رہائشی اجازت نامہ گم ہو گیا ہے۔","میرا رہائشی پرمٹ گواچ گیا اے۔","ਮੇਰਾ ਰਿਹਾਇਸ਼ੀ ਪਰਮਿਟ ਗੁਆਚ ਗਿਆ ਹੈ।","আমার রেসিডেন্স পারমিট হারিয়ে গেছে।","මගේ පදිංචි බලපත්‍රය නැති වුණා.","我的居留证丢了。","J'ai égaré mon titre de séjour.","He extraviado mi permiso de residencia.","Extravié mi permiso de residencia."]},
 
-{"it":"squillare","type":"v","topic":"verbs","emoji":"📳",
+{"it":"squillare","type":"v","topic":"verbs","emoji":null,
 "tr":["to ring","گھنٹی بجنا","گھنٹی وجنا","ਘੰਟੀ ਵੱਜਣਾ","বাজা (ফোন)","නාද වෙනවා","（电话）响","sonner","sonar","sonar"],
 "expl":["When a phone or bell makes its sound.","جب فون یا گھنٹی کی آواز آتی ہے۔","جدوں فون یا گھنٹی دی آواز آؤندی اے۔","ਜਦੋਂ ਫ਼ੋਨ ਜਾਂ ਘੰਟੀ ਦੀ ਆਵਾਜ਼ ਆਉਂਦੀ ਹੈ।","যখন ফোন বা ঘণ্টা বেজে ওঠে।","ෆෝන් එකක් හරි සීනුවක් හරි නාද වෙනකොට.","电话或铃发出声音。","Quand un téléphone ou une sonnerie fait du bruit.","Cuando un teléfono o un timbre hace ruido.","Cuando un teléfono o un timbre hace ruido."],
 "ex":"Il telefono squilla, rispondi tu?",
 "exTr":["The phone is ringing, will you answer?","فون بج رہا ہے، تم اٹھاؤ گے؟","فون وج رہیا اے، توں چُکیں گا؟","ਫ਼ੋਨ ਵੱਜ ਰਿਹਾ ਹੈ, ਤੂੰ ਚੁੱਕੇਂਗਾ?","ফোন বাজছে, তুমি ধরবে?","ෆෝන් එක නාද වෙනවා, ඔයා ගන්නවද?","电话响了，你接一下？","Le téléphone sonne, tu réponds ?","Suena el teléfono, ¿contestas tú?","Está sonando el teléfono, ¿contestas tú?"]},
 
 {"it":"somigliare","type":"v","topic":"verbs","emoji":null,
-"tr":["to look like / to resemble","ملتا جلتا ہونا / شکل ملنا","رلدا ملدا ہونا","ਮਿਲਦਾ-ਜੁਲਦਾ ਹੋਣਾ","দেখতে মিল থাকা","සමාන වෙනවා / වගේ","像 / 长得像","ressembler","parecerse","parecerse"],
+"tr":["to look like / to resemble","ملتا جلتا ہونا / شکل ملنا","رلدا ملدا ہونا","ਮਿਲਦਾ-ਜੁਲਦਾ ਹੋਣਾ","দেখতে মিল থাকা","සමාන වෙනවා / වගේ ඉන්නවා","像 / 长得像","ressembler","parecerse","parecerse"],
 "expl":["To be similar to another person, especially in the face.","کسی دوسرے سے ملتا جلتا ہونا، خاص طور پر چہرے میں۔","کسے دوجے نال رلدا ملدا ہونا، خاص کر کے مونہہ وچ۔","ਕਿਸੇ ਦੂਜੇ ਨਾਲ ਮਿਲਦਾ-ਜੁਲਦਾ ਹੋਣਾ, ਖ਼ਾਸ ਕਰਕੇ ਚਿਹਰੇ ਵਿੱਚ।","অন্য কারও মতো দেখতে হওয়া, বিশেষ করে চেহারায়।","වෙන කෙනෙක් වගේ පේනවා, විශේෂයෙන් මූණෙන්.","和别人相像，特别是长相。","Être semblable à une autre personne, surtout de visage.","Ser parecido a otra persona, sobre todo en la cara.","Ser parecido a otra persona, sobre todo en la cara."],
 "ex":"Tuo figlio ti somiglia molto.",
 "exTr":["Your son looks a lot like you.","تمہارا بیٹا بالکل تم جیسا لگتا ہے۔","تیرا پُتر بالکل تیرے ورگا لگدا اے۔","ਤੇਰਾ ਪੁੱਤਰ ਬਿਲਕੁਲ ਤੇਰੇ ਵਰਗਾ ਲੱਗਦਾ ਹੈ।","তোমার ছেলে দেখতে একদম তোমার মতো।","ඔයාගේ පුතා හරියට ඔයා වගේ.","你儿子长得很像你。","Ton fils te ressemble beaucoup.","Tu hijo se parece mucho a ti.","Tu hijo se parece mucho a ti."]},
 
 {"it":"sopportare","type":"v","topic":"verbs","emoji":null,
 "tr":["to bear / to stand","برداشت کرنا","جھلنا / برداشت کرنا","ਝੱਲਣਾ / ਬਰਦਾਸ਼ਤ ਕਰਨਾ","সহ্য করা","ඉවසනවා","忍受","supporter","soportar / aguantar","soportar / aguantar"],
-"expl":["To accept something unpleasant; 'non sopporto' = I can't stand it.","کسی ناپسندیدہ چیز کو سہنا؛ 'نون سوپورتو' = میں برداشت نہیں کر سکتا۔","کسے بھیڑی شے نوں جھلنا؛ 'نون سوپورتو' = میں نئیں جھل سکدا۔","ਕਿਸੇ ਮਾੜੀ ਚੀਜ਼ ਨੂੰ ਝੱਲਣਾ; 'ਨੋਨ ਸੋਪੋਰਤੋ' = ਮੈਂ ਨਹੀਂ ਝੱਲ ਸਕਦਾ।","অপ্রিয় কিছু মেনে নেওয়া; 'নোন সোপোর্তো' = আমি সহ্য করতে পারি না।","අකමැති දෙයක් ඉවසනවා; 'නොන් සොප්පෝර්තෝ' = මට ඉවසන්න බෑ.","接受不愉快的事；'non sopporto'就是我受不了。","Accepter une chose désagréable ; « non sopporto » = je ne supporte pas.","Aceptar algo desagradable; «non sopporto» = no lo soporto.","Aceptar algo desagradable; «non sopporto» = no lo aguanto."],
+"expl":["To accept something unpleasant; 'non sopporto' = I can't stand it.","کسی ناپسندیدہ چیز کو سہنا؛ 'non sopporto' = میں برداشت نہیں کر سکتا۔","کسے بھیڑی شے نوں جھلنا؛ 'non sopporto' = میں نئیں جھل سکدا۔","ਕਿਸੇ ਮਾੜੀ ਚੀਜ਼ ਨੂੰ ਝੱਲਣਾ; 'non sopporto' = ਮੈਂ ਨਹੀਂ ਝੱਲ ਸਕਦਾ।","অপ্রিয় কিছু মেনে নেওয়া; 'non sopporto' = আমি সহ্য করতে পারি না।","අකමැති දෙයක් ඉවසනවා; 'non sopporto' = මට ඉවසන්න බෑ.","接受不愉快的事；'non sopporto'就是我受不了。","Accepter une chose désagréable ; « non sopporto » = je ne supporte pas.","Aceptar algo desagradable; «non sopporto» = no lo soporto.","Aceptar algo desagradable; «non sopporto» = no lo aguanto."],
 "ex":"Non sopporto il freddo di Milano.",
 "exTr":["I can't stand the cold in Milan.","میں میلان کی سردی برداشت نہیں کر سکتا۔","میں میلان دی ٹھنڈ نئیں جھل سکدا۔","ਮੈਂ ਮਿਲਾਨ ਦੀ ਠੰਢ ਨਹੀਂ ਝੱਲ ਸਕਦਾ।","আমি মিলানের ঠান্ডা সহ্য করতে পারি না।","මට මිලාන් වල සීතල ඉවසන්න බෑ.","我受不了米兰的冷。","Je ne supporte pas le froid de Milan.","No soporto el frío de Milán.","No aguanto el frío de Milán."]},
 
-{"it":"suggerire","type":"v","topic":"verbs","emoji":"💬",
+{"it":"suggerire","type":"v","topic":"verbs","emoji":null,
 "tr":["to suggest / to advise","مشورہ دینا","صلاح دینا","ਸਲਾਹ ਦੇਣਾ","পরামর্শ দেওয়া","උපදෙස් දෙනවා / යෝජනා කරනවා","建议","conseiller / suggérer","sugerir / aconsejar","sugerir / aconsejar"],
 "expl":["To give someone an idea about what to do.","کسی کو بتانا کہ کیا کرنا اچھا ہوگا۔","کسے نوں دسنا پئی کی کرنا چنگا ہووے گا۔","ਕਿਸੇ ਨੂੰ ਦੱਸਣਾ ਕਿ ਕੀ ਕਰਨਾ ਚੰਗਾ ਹੋਵੇਗਾ।","কাউকে বলা কী করা ভালো হবে।","මොකක්ද කරන්න හොඳ කියලා කෙනෙකුට කියනවා.","告诉别人做什么比较好。","Donner à quelqu'un une idée de ce qu'il faut faire.","Dar a alguien una idea de qué hacer.","Dar a alguien una idea de qué hacer."],
 "ex":"Che cosa mi suggerisci di fare?",
 "exTr":["What do you suggest I do?","تم مجھے کیا کرنے کا مشورہ دیتے ہو؟","توں مینوں کی کرن دی صلاح دیندا ایں؟","ਤੂੰ ਮੈਨੂੰ ਕੀ ਕਰਨ ਦੀ ਸਲਾਹ ਦਿੰਦਾ ਹੈਂ?","তুমি আমাকে কী করার পরামর্শ দাও?","මම මොකද කරන්න ඕනේ කියලා ඔයා හිතන්නේ?","你建议我怎么做？","Qu'est-ce que tu me conseilles de faire ?","¿Qué me sugieres que haga?","¿Qué me sugieres que haga?"]},
 
-{"it":"tenere","type":"v","topic":"verbs","emoji":"✋",
+{"it":"tenere","type":"v","topic":"verbs","emoji":null,
 "tr":["to hold / to keep","پکڑنا / رکھنا","پھڑنا / رکھنا","ਫੜਨਾ / ਰੱਖਣਾ","ধরা / রাখা","අල්ලගෙන ඉන්නවා / තියාගන්නවා","拿着 / 保留","tenir / garder","sujetar / quedarse con","agarrar / quedarse con"],
 "expl":["To have something in your hand; also to keep it for yourself.","کوئی چیز ہاتھ میں پکڑنا؛ یا اپنے پاس رکھنا۔","کوئی شے ہتھ وچ پھڑنی؛ یا اپنے کول رکھنی۔","ਕੋਈ ਚੀਜ਼ ਹੱਥ ਵਿੱਚ ਫੜਨਾ; ਜਾਂ ਆਪਣੇ ਕੋਲ ਰੱਖਣਾ।","কোনো কিছু হাতে ধরে রাখা; বা নিজের কাছে রেখে দেওয়া।","දෙයක් අතේ අල්ලගෙන ඉන්නවා; නැත්නම් තමන් ළඟ තියාගන්නවා.","手里拿着东西；也指留给自己。","Avoir quelque chose dans la main ; aussi le garder.","Tener algo en la mano; también guardarlo para ti.","Tener algo en la mano; también guardarlo para ti."],
 "ex":"Tieni la borsa, per favore.",
@@ -95,13 +95,13 @@
 "ex":"Per aprire la porta, tira.",
 "exTr":["To open the door, pull.","دروازہ کھولنے کے لیے کھینچو۔","بوہا کھولن لئی کھچ۔","ਦਰਵਾਜ਼ਾ ਖੋਲ੍ਹਣ ਲਈ ਖਿੱਚ।","দরজা খুলতে টানো।","දොර අරින්න අදින්න.","要开门，就拉。","Pour ouvrir la porte, tire.","Para abrir la puerta, tira.","Para abrir la puerta, jala."]},
 
-{"it":"tornare","type":"v","topic":"verbs","emoji":"🔙",
+{"it":"tornare","type":"v","topic":"verbs","emoji":null,
 "tr":["to come back / to go back","واپس آنا / لوٹنا","مڑنا / پرتنا","ਮੁੜਨਾ / ਵਾਪਸ ਆਉਣਾ","ফিরে আসা / ফেরা","ආපහු එනවා","回来 / 回去","revenir / rentrer","volver","regresar / volver"],
 "expl":["To come again to a place; the most common word for 'return'.","کسی جگہ پر دوبارہ آنا؛ واپسی کا سب سے عام لفظ۔","کسے تھاں تے مڑ آؤنا؛ واپسی لئی سب توں عام لفظ۔","ਕਿਸੇ ਥਾਂ 'ਤੇ ਮੁੜ ਆਉਣਾ; ਵਾਪਸੀ ਲਈ ਸਭ ਤੋਂ ਆਮ ਸ਼ਬਦ।","কোনো জায়গায় আবার আসা; ফেরার সবচেয়ে সাধারণ শব্দ।","තැනකට ආයෙත් එනවා; ආපහු එනවා කියන්න නිතරම පාවිච්චි කරන වචනය.","再次来到某地；表示'回'最常用的词。","Venir de nouveau dans un lieu ; le mot le plus courant pour revenir.","Venir otra vez a un lugar; la palabra más común para regresar.","Venir otra vez a un lugar; la palabra más común para regresar."],
 "ex":"A che ora torni dal lavoro?",
 "exTr":["What time do you get back from work?","تم کام سے کس وقت واپس آتے ہو؟","توں کم توں کنے وجے مڑدا ایں؟","ਤੂੰ ਕੰਮ ਤੋਂ ਕਿੰਨੇ ਵਜੇ ਮੁੜਦਾ ਹੈਂ?","তুমি কাজ থেকে কয়টায় ফেরো?","ඔයා වැඩ ඇරිලා කීයටද ආපහු එන්නේ?","你几点下班回来？","À quelle heure tu rentres du travail ?","¿A qué hora vuelves del trabajo?","¿A qué hora regresas del trabajo?"]},
 
-{"it":"trovare","type":"v","topic":"verbs","emoji":"🔎",
+{"it":"trovare","type":"v","topic":"verbs","emoji":null,
 "tr":["to find","ڈھونڈنا / مل جانا","لبھنا","ਲੱਭਣਾ","খুঁজে পাওয়া","හොයාගන්නවා","找到","trouver","encontrar","encontrar"],
 "expl":["To see or get something you were looking for.","جس چیز کو تلاش کر رہے تھے وہ مل جانا۔","جیہڑی شے لبھ رہے سی اوہ مل جانی۔","ਜਿਹੜੀ ਚੀਜ਼ ਲੱਭ ਰਹੇ ਸੀ ਉਹ ਮਿਲ ਜਾਣਾ।","যা খুঁজছিলেন তা পেয়ে যাওয়া।","හොයපු දෙයක් හම්බ වෙනවා.","看到或得到你在找的东西。","Voir ou obtenir ce qu'on cherchait.","Ver o conseguir lo que buscabas.","Ver o conseguir lo que buscabas."],
 "ex":"Non trovo le chiavi di casa.",
@@ -111,7 +111,7 @@
 "tr":["to phone / to call","فون کرنا","فون کرنا","ਫ਼ੋਨ ਕਰਨਾ","ফোন করা","කෝල් කරනවා","打电话","téléphoner","llamar (por teléfono)","llamar (por teléfono)"],
 "expl":["To speak to someone using the phone.","فون کے ذریعے کسی سے بات کرنا۔","فون راہیں کسے نال گل کرنی۔","ਫ਼ੋਨ ਰਾਹੀਂ ਕਿਸੇ ਨਾਲ ਗੱਲ ਕਰਨਾ।","ফোনে কারও সাথে কথা বলা।","ෆෝන් එකෙන් කෙනෙක් එක්ක කතා කරනවා.","用电话和别人说话。","Parler à quelqu'un au téléphone.","Hablar con alguien por teléfono.","Hablar con alguien por teléfono."],
 "ex":"Telefono a mia madre ogni sera.",
-"exTr":["I call my mother every evening.","میں ہر شام اپنی امی کو فون کرتا ہوں۔","میں ہر شام اپنی ماں نوں فون کردا آں۔","ਮੈਂ ਹਰ ਸ਼ਾਮ ਆਪਣੀ ਮਾਂ ਨੂੰ ਫ਼ੋਨ ਕਰਦਾ ਹਾਂ।","আমি প্রতি সন্ধ্যায় মাকে ফোন করি।","මම හැමදාම හවසට අම්මට කෝල් කරනවා.","我每天晚上给妈妈打电话。","J'appelle ma mère tous les soirs.","Llamo a mi madre todas las noches.","Le llamo a mi mamá todas las noches."]},
+"exTr":["I call my mother every evening.","میں ہر شام اپنی امی کو فون کرتا ہوں۔","میں ہر شام اپنی ماں نوں فون کردا آں۔","ਮੈਂ ਹਰ ਸ਼ਾਮ ਆਪਣੀ ਮਾਂ ਨੂੰ ਫ਼ੋਨ ਕਰਦਾ ਹਾਂ।","আমি প্রতি সন্ধ্যায় মাকে ফোন করি।","මම හැමදාම හවසට අම්මට කෝල් කරනවා.","我每天晚上给妈妈打电话。","J'appelle ma mère tous les soirs.","Llamo a mi madre todas las noches.","Llamo a mi mamá todas las noches."]},
 
 {"it":"trasferirsi","type":"v","topic":"verbs","emoji":"🚚",
 "tr":["to move (to another place)","منتقل ہونا / شفٹ ہونا","شفٹ ہونا","ਸ਼ਿਫ਼ਟ ਹੋਣਾ / ਬਦਲ ਕੇ ਜਾਣਾ","স্থানান্তরিত হওয়া / চলে যাওয়া","පදිංචියට යනවා / මාරු වෙනවා","搬到 / 迁居","déménager / s'installer","trasladarse / mudarse","mudarse / cambiarse"],
@@ -121,7 +121,7 @@
 
 {"it":"trovarsi","type":"v","topic":"verbs","emoji":"📍",
 "tr":["to be (located) / to get on","واقع ہونا / خوش رہنا","ہونا / راضی رہنا","ਸਥਿਤ ਹੋਣਾ / ਮਨ ਲੱਗਣਾ","অবস্থিত হওয়া / ভালো লাগা","පිහිටලා තියෙනවා / හොඳින් ඉන්නවා","位于 / 过得（好）","se trouver / se sentir","encontrarse / estar","encontrarse / estar"],
-"expl":["To be in a place; 'mi trovo bene' = I feel good here.","کسی جگہ پر ہونا؛ 'می تروو بینے' = مجھے یہاں اچھا لگتا ہے۔","کسے تھاں تے ہونا؛ 'می تروو بینے' = مینوں ایتھے چنگا لگدا اے۔","ਕਿਸੇ ਥਾਂ 'ਤੇ ਹੋਣਾ; 'ਮੀ ਤਰੋਵੋ ਬੇਨੇ' = ਮੈਨੂੰ ਇੱਥੇ ਚੰਗਾ ਲੱਗਦਾ ਹੈ।","কোনো জায়গায় থাকা; 'মি ত্রোভো বেনে' = এখানে আমার ভালো লাগে।","තැනක තියෙනවා; 'මි ත්‍රෝවෝ බේනේ' = මට මෙහෙ හොඳයි.","在某个地方；'mi trovo bene'就是我在这里过得好。","Être dans un lieu ; « mi trovo bene » = je me sens bien ici.","Estar en un lugar; «mi trovo bene» = estoy a gusto.","Estar en un lugar; «mi trovo bene» = estoy a gusto."],
+"expl":["To be in a place; 'mi trovo bene' = I feel good here.","کسی جگہ پر ہونا؛ 'mi trovo bene' = مجھے یہاں اچھا لگتا ہے۔","کسے تھاں تے ہونا؛ 'mi trovo bene' = مینوں ایتھے چنگا لگدا اے۔","ਕਿਸੇ ਥਾਂ 'mi trovo bene'ਮੀ ਤਰੋਵੋ ਬੇਨੇ' = ਮੈਨੂੰ ਇੱਥੇ ਚੰਗਾ ਲੱਗਦਾ ਹੈ।","কোনো জায়গায় থাকা; 'mi trovo bene' = এখানে আমার ভালো লাগে।","තැනක තියෙනවා; 'mi trovo bene' = මට මෙහෙ හොඳයි.","在某个地方；'mi trovo bene'就是我在这里过得好。","Être dans un lieu ; « mi trovo bene » = je me sens bien ici.","Estar en un lugar; «mi trovo bene» = estoy a gusto.","Estar en un lugar; «mi trovo bene» = estoy a gusto."],
 "ex":"Dove si trova l'ufficio postale?",
 "exTr":["Where is the post office?","ڈاک خانہ کہاں ہے؟","ڈاک خانہ کتھے اے؟","ਡਾਕਖ਼ਾਨਾ ਕਿੱਥੇ ਹੈ?","পোস্ট অফিসটা কোথায়?","තැපැල් කන්තෝරුව තියෙන්නේ කොහෙද?","邮局在哪里？","Où se trouve le bureau de poste ?","¿Dónde está la oficina de correos?","¿Dónde está la oficina de correos?"]},
 
@@ -143,7 +143,7 @@
 "ex":"Ho la febbre e tremo.",
 "exTr":["I have a fever and I'm shivering.","مجھے بخار ہے اور میں کانپ رہا ہوں۔","مینوں تاپ اے تے میں کمب رہیا آں۔","ਮੈਨੂੰ ਬੁਖ਼ਾਰ ਹੈ ਤੇ ਮੈਂ ਕੰਬ ਰਿਹਾ ਹਾਂ।","আমার জ্বর আর আমি কাঁপছি।","මට උණ, මම වෙව්ලනවා.","我发烧了，一直发抖。","J'ai de la fièvre et je tremble.","Tengo fiebre y tiemblo.","Tengo fiebre y estoy temblando."]},
 
-{"it":"tuffarsi","type":"v","topic":"verbs","emoji":"🤿",
+{"it":"tuffarsi","type":"v","topic":"verbs","emoji":null,
 "tr":["to dive / to jump in","چھلانگ لگانا / غوطہ لگانا","چھال مارنا","ਛਾਲ ਮਾਰਨਾ / ਟੁੱਬੀ ਲਾਉਣਾ","ঝাঁপ দেওয়া","පනිනවා / කිමිදෙනවා","跳水","plonger","tirarse al agua","aventarse al agua / clavarse"],
 "expl":["To jump into the water, in the sea or a swimming pool.","سمندر یا سوئمنگ پول کے پانی میں کودنا۔","سمندر یا سوئمنگ پول دے پانی وچ چھال مارنی۔","ਸਮੁੰਦਰ ਜਾਂ ਸਵਿਮਿੰਗ ਪੂਲ ਦੇ ਪਾਣੀ ਵਿੱਚ ਛਾਲ ਮਾਰਨਾ।","সমুদ্রে বা সুইমিং পুলের পানিতে ঝাঁপ দেওয়া।","මුහුදට හරි පිහිනුම් තටාකෙට හරි පනිනවා.","跳进海里或游泳池里。","Sauter dans l'eau, à la mer ou à la piscine.","Saltar al agua, en el mar o en la piscina.","Saltar al agua, en el mar o en la alberca."],
 "ex":"I ragazzi si tuffano in piscina.",
@@ -193,13 +193,13 @@
 
 {"it":"volere","type":"v","topic":"verbs","emoji":null,
 "tr":["to want","چاہنا","چاہنا","ਚਾਹੁਣਾ","চাওয়া","ඕනේ / කැමතියි","想要","vouloir","querer","querer"],
-"expl":["To wish to have or to do something; 'vorrei' is the polite form.","کوئی چیز لینے یا کرنے کی خواہش؛ 'وورّے' شائستہ طریقہ ہے۔","کوئی شے لین یا کرن دی خواہش؛ 'وورّے' ادب والا طریقہ اے۔","ਕੋਈ ਚੀਜ਼ ਲੈਣ ਜਾਂ ਕਰਨ ਦੀ ਇੱਛਾ; 'ਵੋਰੇ' ਨਿਮਰ ਤਰੀਕਾ ਹੈ।","কিছু পেতে বা করতে ইচ্ছা করা; 'ভোর্রেই' হলো ভদ্র রূপ।","යමක් ගන්න හරි කරන්න හරි ආසයි; 'වොර්රේයි' කියන්නේ ආචාරශීලී විදිහ.","希望得到或做某事；'vorrei'是礼貌的说法。","Désirer avoir ou faire quelque chose ; « vorrei » est la forme polie.","Desear tener o hacer algo; «vorrei» es la forma educada.","Desear tener o hacer algo; «vorrei» es la forma amable."],
+"expl":["To wish to have or to do something; 'vorrei' is the polite form.","کوئی چیز لینے یا کرنے کی خواہش؛ 'vorrei' شائستہ طریقہ ہے۔","کوئی شے لین یا کرن دی خواہش؛ 'vorrei' ادب والا طریقہ اے۔","ਕੋਈ ਚੀਜ਼ ਲੈਣ ਜਾਂ ਕਰਨ ਦੀ ਇੱਛਾ; 'vorrei' ਨਿਮਰ ਤਰੀਕਾ ਹੈ।","কিছু পেতে বা করতে ইচ্ছা করা; 'vorrei' হলো ভদ্র রূপ।","යමක් ගන්න හරි කරන්න හරි ආසයි; 'vorrei' කියන්නේ ආචාරශීලී විදිහ.","希望得到或做某事；'vorrei'是礼貌的说法。","Désirer avoir ou faire quelque chose ; « vorrei » est la forme polie.","Desear tener o hacer algo; «vorrei» es la forma educada.","Desear tener o hacer algo; «vorrei» es la forma amable."],
 "ex":"Voglio imparare bene l'italiano.",
 "exTr":["I want to learn Italian well.","میں اچھی طرح اطالوی سیکھنا چاہتا ہوں۔","میں چنگی طرح اطالوی سکھنا چاہندا آں۔","ਮੈਂ ਚੰਗੀ ਤਰ੍ਹਾਂ ਇਤਾਲਵੀ ਸਿੱਖਣਾ ਚਾਹੁੰਦਾ ਹਾਂ।","আমি ভালোভাবে ইতালীয় ভাষা শিখতে চাই।","මට ඉතාලි භාෂාව හොඳට ඉගෙනගන්න ඕනේ.","我想学好意大利语。","Je veux bien apprendre l'italien.","Quiero aprender bien italiano.","Quiero aprender bien el italiano."]},
 
 {"it":"vietare","type":"v","topic":"verbs","emoji":"🚫",
 "tr":["to forbid / to ban","منع کرنا / پابندی لگانا","منع کرنا / روکنا","ਮਨ੍ਹਾ ਕਰਨਾ / ਰੋਕ ਲਾਉਣਾ","নিষেধ করা","තහනම් කරනවා","禁止","interdire","prohibir","prohibir"],
-"expl":["To say that something is not allowed; signs say 'vietato'.","یہ کہنا کہ کوئی کام منع ہے؛ بورڈ پر 'ویئتاتو' لکھا ہوتا ہے۔","ایہہ آکھنا پئی کوئی کم منع اے؛ بورڈ تے 'ویئتاتو' لکھیا ہوندا اے۔","ਇਹ ਕਹਿਣਾ ਕਿ ਕੋਈ ਕੰਮ ਮਨ੍ਹਾ ਹੈ; ਬੋਰਡ 'ਤੇ 'ਵੀਏਤਾਤੋ' ਲਿਖਿਆ ਹੁੰਦਾ ਹੈ।","বলা যে কোনো কিছু করা যাবে না; সাইনবোর্ডে লেখা থাকে 'ভিয়েতাতো'।","යමක් කරන්න බෑ කියලා කියනවා; පුවරුවල 'වියේතාතෝ' කියලා ලියලා තියෙනවා.","说某事不被允许；标牌上写'vietato'。","Dire que quelque chose n'est pas permis ; les panneaux disent « vietato ».","Decir que algo no está permitido; los carteles dicen «vietato».","Decir que algo no está permitido; los letreros dicen «vietato»."],
+"expl":["To say that something is not allowed; signs say 'vietato'.","یہ کہنا کہ کوئی کام منع ہے؛ بورڈ پر 'vietato' لکھا ہوتا ہے۔","ایہہ آکھنا پئی کوئی کم منع اے؛ بورڈ تے 'vietato' لکھیا ہوندا اے۔","ਇਹ ਕਹਿਣਾ ਕਿ ਕੋਈ ਕੰਮ ਮਨ੍ਹਾ ਹੈ; ਬੋਰਡ 'vietato'ਵੀਏਤਾਤੋ' ਲਿਖਿਆ ਹੁੰਦਾ ਹੈ।","বলা যে কোনো কিছু করা যাবে না; সাইনবোর্ডে লেখা থাকে 'vietato'।","යමක් කරන්න බෑ කියලා කියනවා; පුවරුවල 'vietato' කියලා ලියලා තියෙනවා.","说某事不被允许；标牌上写'vietato'。","Dire que quelque chose n'est pas permis ; les panneaux disent « vietato ».","Decir que algo no está permitido; los carteles dicen «vietato».","Decir que algo no está permitido; los letreros dicen «vietato»."],
 "ex":"La legge vieta di fumare nei locali.",
 "exTr":["The law forbids smoking in public places.","قانون عوامی جگہوں پر سگریٹ پینے سے منع کرتا ہے۔","قانون عام تھاواں تے سگریٹ پین توں روکدا اے۔","ਕਾਨੂੰਨ ਜਨਤਕ ਥਾਵਾਂ 'ਤੇ ਸਿਗਰਟ ਪੀਣ ਤੋਂ ਮਨ੍ਹਾ ਕਰਦਾ ਹੈ।","আইন অনুযায়ী দোকান-রেস্তোরাঁয় ধূমপান নিষেধ।","නීතියෙන් පොදු ස්ථානවල දුම් බීම තහනම් කරනවා.","法律禁止在室内公共场所吸烟。","La loi interdit de fumer dans les lieux publics.","La ley prohíbe fumar en los locales.","La ley prohíbe fumar en los locales."]},
 

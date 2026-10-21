@@ -103,16 +103,17 @@ class PurchaseService extends ChangeNotifier {
     if (!supportedOnThisPlatform) return;
     _state = PurchaseState.loading;
     notifyListeners();
-    try {
-      // The store answers through the purchase stream, which sets the state
-      // to "owned" when an earlier purchase comes back.
-      await _iap.restorePurchases();
-      if (!adsRemoved && _state == PurchaseState.loading) {
-        _state = PurchaseState.idle;
-        notifyListeners();
-      }
-    } catch (_) {
+    // The request is sent without waiting on it: the store answers through
+    // the purchase stream (which sets the state to "owned" when an earlier
+    // purchase comes back), and a store that never replies must not leave
+    // the app stuck on "loading" with the Buy button disabled.
+    unawaited(_iap.restorePurchases().catchError((Object _) {
       _state = PurchaseState.error;
+      notifyListeners();
+    }));
+    await Future<void>.delayed(Duration.zero);
+    if (!adsRemoved && _state == PurchaseState.loading) {
+      _state = PurchaseState.idle;
       notifyListeners();
     }
   }

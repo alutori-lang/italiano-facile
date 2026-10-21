@@ -6,7 +6,7 @@
 "emoji": "👋",
 "tr": [
 "My name is Fatima, and you?",
-"میرا نام فاطمہ ہے، اور آپ کا؟",
+"میرا نام فاطمہ ہے، اور تمہارا؟",
 "میرا ناں فاطمہ اے، تے تہاڈا؟",
 "ਮੇਰਾ ਨਾਂ ਫ਼ਾਤਿਮਾ ਹੈ, ਤੇ ਤੁਹਾਡਾ?",
 "আমার নাম ফাতিমা, আর তোমার?",
@@ -31,7 +31,7 @@
 "ex": "Ciao! Mi chiamo Fatima, e tu?",
 "exTr": [
 "Hi! My name is Fatima, and you?",
-"ہیلو! میرا نام فاطمہ ہے، اور آپ کا؟",
+"ہیلو! میرا نام فاطمہ ہے، اور تمہارا؟",
 "سلام! میرا ناں فاطمہ اے، تے تہاڈا؟",
 "ਸਤ ਸ੍ਰੀ ਅਕਾਲ! ਮੇਰਾ ਨਾਂ ਫ਼ਾਤਿਮਾ ਹੈ, ਤੇ ਤੁਹਾਡਾ?",
 "হ্যালো! আমার নাম ফাতিমা, আর তোমার?",
@@ -74,7 +74,7 @@
 "ex": "Buongiorno, signora, come si chiama?",
 "exTr": [
 "Good morning, madam, what is your name?",
-"السلام علیکم، خاتون، آپ کا نام کیا ہے؟",
+"السلام علیکم محترمہ، آپ کا نام کیا ہے؟",
 "سلام جی، بی بی جی، تہاڈا ناں کی اے؟",
 "ਸਤ ਸ੍ਰੀ ਅਕਾਲ ਜੀ, ਬੀਬੀ ਜੀ, ਤੁਹਾਡਾ ਨਾਂ ਕੀ ਹੈ?",
 "শুভ সকাল, ম্যাডাম, আপনার নাম কী?",
@@ -196,7 +196,7 @@
 "আনুষ্ঠানিক (Lei): বস, ডাক্তার, অফিসার বা বয়স্ক কারো জন্য।",
 "විධිමත් (Lei): ප්‍රධානියා, වෛද්‍යවරයා, නිලධාරියා හෝ වැඩිහිටියෙකුට.",
 "正式（Lei）：对老板、医生、官员或长辈说。",
-"Formel (Lei) : pour un patron, un médecin, un employé ou une personne âgée.",
+"Formel (Lei) : pour un patron, un médecin, un fonctionnaire ou une personne âgée.",
 "Formal (usted): para un jefe, médico, funcionario o persona mayor.",
 "Formal (usted): para un jefe, médico, funcionario o persona mayor."
 ],
@@ -469,7 +469,7 @@
 "我是中国人，但在这里住了十年了。",
 "Je suis chinois, mais je vis ici depuis dix ans.",
 "Soy chino, pero vivo aquí desde hace diez años.",
-"Soy chino, pero vivo aquí hace diez años."
+"Soy chino, pero hace diez años que vivo aquí."
 ]
 },
 {
@@ -737,7 +737,7 @@
 "emoji": "❓",
 "tr": [
 "How long have you been in Italy?",
-"آپ کب سے اٹلی میں ہیں؟",
+"تم کب سے اٹلی میں ہو؟",
 "توں کدوں توں اٹلی وچ ایں؟",
 "ਤੂੰ ਕਦੋਂ ਤੋਂ ਇਟਲੀ ਵਿੱਚ ਹੈਂ?",
 "তুমি কতদিন ধরে ইতালিতে আছ?",
@@ -762,7 +762,7 @@
 "ex": "Da quanto tempo sei in Italia? – Da tre anni.",
 "exTr": [
 "How long have you been in Italy? – For three years.",
-"آپ کب سے اٹلی میں ہیں؟ – تین سال سے۔",
+"تم کب سے اٹلی میں ہو؟ – تین سال سے۔",
 "توں کدوں توں اٹلی وچ ایں؟ – تن سال توں۔",
 "ਤੂੰ ਕਦੋਂ ਤੋਂ ਇਟਲੀ ਵਿੱਚ ਹੈਂ? – ਤਿੰਨ ਸਾਲਾਂ ਤੋਂ।",
 "তুমি কতদিন ধরে ইতালিতে আছ? – তিন বছর ধরে।",
@@ -831,7 +831,7 @@
 "我在帕尔马住了五年了。",
 "J'habite à Parme depuis cinq ans.",
 "Vivo en Parma desde hace cinco años.",
-"Vivo en Parma hace cinco años."
+"Hace cinco años que vivo en Parma."
 ],
 "expl": [
 "Present tense + \"da\" says how long something is still going on.",
@@ -856,7 +856,7 @@
 "我在帕尔马住了五年，也在这里工作。",
 "J'habite à Parme depuis cinq ans et je travaille ici.",
 "Vivo en Parma desde hace cinco años y trabajo aquí.",
-"Vivo en Parma hace cinco años y trabajo aquí."
+"Hace cinco años que vivo en Parma y trabajo aquí."
 ]
 },
 {
@@ -1028,7 +1028,7 @@
 "我和家人在这里两年了。",
 "Je suis ici avec ma famille depuis deux ans.",
 "Estoy aquí con mi familia desde hace dos años.",
-"Estoy aquí con mi familia hace dos años."
+"Hace dos años que estoy aquí con mi familia."
 ]
 },
 {
@@ -1293,7 +1293,7 @@
 "it": "Possiamo darci del tu?",
 "type": "p",
 "topic": "phrases",
-"emoji": "🙂",
+"emoji": null,
 "tr": [
 "Shall we use \"tu\"?",
 "کیا ہم بے تکلفی سے بات کر سکتے ہیں؟",
@@ -1364,7 +1364,7 @@
 "ex": "Signora, quanti anni ha suo figlio?",
 "exTr": [
 "Madam, how old is your son?",
-"خاتون، آپ کے بیٹے کی عمر کتنی ہے؟",
+"محترمہ، آپ کے بیٹے کی عمر کتنی ہے؟",
 "بی بی جی، تہاڈے پتر دی عمر کنی اے؟",
 "ਬੀਬੀ ਜੀ, ਤੁਹਾਡੇ ਪੁੱਤਰ ਦੀ ਉਮਰ ਕਿੰਨੀ ਹੈ?",
 "ম্যাডাম, আপনার ছেলের বয়স কত?",

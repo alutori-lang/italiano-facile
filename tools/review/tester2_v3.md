@@ -1,0 +1,142 @@
+# Tester 2 — v3 (verbs P–Z and verb expressions)
+
+Files: tools/dict_src/v3_1..4.json
+Entries checked: 137 (every field: it, type, topic, emoji, tr, expl, ex, exTr in all 10 slots)
+Entries removed: 0
+Corrections: 117 (in 52 entries)
+
+Final validator: `python -I tools/check_dict.py tools/dict_src/v3_*.json`
+→ `137 entries in 4 files, 0 errors`
+
+Notes
+- Italian: all headwords, the reflexive verbs (-rsi) and accents, plus every example sentence and its verb form, were correct. No Italian had to change.
+- Transliterated Italian in expl (spec: never write Italian in another script): in 11 entries, slots 1–5 (Urdu, Shahmukhi, Gurmukhi, Bengali, Sinhala) had the quoted Italian form written in local script (e.g. 'می پیاچے', 'කෝසා ඒ සුචේසෝ'). These are now in plain lower-case Latin like the other slots: mi piace, come stai?, cosa è successo?, non sopporto, mi trovo bene, vorrei, vietato, taci!, ci vediamo!, amare, cosa vuol dire?. That is 55 slot fixes.
+- Emoji: kept only where the picture really shows the action. Set to null: 🤞 (promettere: shows luck, not a promise), 🏠/🏡 (restare, rientrare), 🔙/↩️ (ritornare, tornare, riportare), 💥 (rompere), 🤲 (prendersi cura), 🦹 (rubare), 🎯 (raggiungere: the example means "join you"), 📵 (riattaccare: this is the "no phones" sign), ⏰ (ritardare), 🧹 (riordinare: a broom means sweeping), 🚮 (sprecare: the "litter" sign), 🔍/🔎 (scoprire, trovare: these mean searching), ❓ (succedere, voler dire), 📳 (squillare: vibrate mode), 💬 (suggerire), ✋ (tenere), 🤿 (tuffarsi: snorkel mask), 🔁 (scambiare: the "repeat" button), 🤝 (stringere: the example is a seat belt), 🔓 (riaprire). Changed 😋 to 👍 for piacere.
+- Pitfall from the SPEC: in pregare, the Sinhala example used පල්ලිය (church) for the mosque. It is now මුස්ලිම් පල්ලිය.
+- Untranslated Italian written in Arabic script inside exTr and tr: پرمیسو ("permesso") in smarrire and rinnovare il permesso. It is now رہائشی پرمٹ.
+- South Asian "bar": in raggiungere, the Urdu, Shahmukhi, Gurmukhi and Bengali examples said بار/ਬਾਰ/বার, which means a pub that serves alcohol there. They now say café, like the English slot.
+- Shahmukhi spelling: منننا/منننی (three noons) corrected to منّنا/منّنی.
+- Wrong meanings fixed in expl. French rendre/rompere/rovinare/sporcare had broken logic (e.g. "Rendre quelque chose qui n'est plus propre"). Spanish rendere "Dar otra vez" meant "give again". Sedersi "Ponerse en una silla" was not natural.
+- Sinhala tr: changed non-verb forms to verbs (වගේ → වගේ පේනවා, තේරුම → අදහස් කරනවා, ආදරෙයි → ආදරය කරනවා). Urdu tr: fixed grammar (رہائشی اجازت نامے کی تجدید کرانا, اس قابل ہونا, علیحدہ ہونا).
+- LatAm leísmo "Le llamo a mi mamá" / "le llamo al doctor" corrected.
+- Layout kept: v3_1 and v3_4 one entry per line (CRLF), v3_2 and v3_3 one field per line (LF).
+
+## Corrections (file#index — field — wrong → right)
+
+- v3_1.json#2 (piacere) — emoji — 😋 → 👍
+- v3_1.json#2 (piacere) — expl[1] — کسی چیز کا اچھا لگنا؛ اطالوی میں 'می پیاچے' کہتے ہیں۔ → کسی چیز کا اچھا لگنا؛ اطالوی میں 'mi piace' کہتے ہیں۔
+- v3_1.json#2 (piacere) — expl[2] — کسے شے دا چنگا لگنا؛ اطالوی وچ 'می پیاچے' کہندے نیں۔ → کسے شے دا چنگا لگنا؛ اطالوی وچ 'mi piace' کہندے نیں۔
+- v3_1.json#2 (piacere) — expl[3] — ਕਿਸੇ ਚੀਜ਼ ਦਾ ਚੰਗਾ ਲੱਗਣਾ; ਇਤਾਲਵੀ ਵਿੱਚ 'ਮੀ ਪਿਆਚੇ' ਕਹਿੰਦੇ ਹਨ। → ਕਿਸੇ ਚੀਜ਼ ਦਾ ਚੰਗਾ ਲੱਗਣਾ; ਇਤਾਲਵੀ ਵਿੱਚ 'mi piace' ਕਹਿੰਦੇ ਹਨ।
+- v3_1.json#2 (piacere) — expl[4] — কোনো কিছু ভালো লাগা; ইতালীয় ভাষায় বলে 'মি পিয়াচে'। → কোনো কিছু ভালো লাগা; ইতালীয় ভাষায় বলে 'mi piace'।
+- v3_1.json#2 (piacere) — expl[5] — යමකට කැමති වෙනවා; ඉතාලියෙන් 'මි පියාචේ' කියනවා. → යමකට කැමති වෙනවා; ඉතාලියෙන් 'mi piace' කියනවා.
+- v3_1.json#6 (pregare) — exTr[5] — සිකුරාදා මම පල්ලියට ගිහින් යාච්ඤා කරනවා. → සිකුරාදා මම මුස්ලිම් පල්ලියේ යාච්ඤා කරනවා.
+- v3_1.json#8 (promettere) — emoji — 🤞 → null
+- v3_1.json#8 (promettere) — expl[8] — Decir que harás algo seguro. → Decir que vas a hacer algo sin falta.
+- v3_1.json#8 (promettere) — expl[9] — Decir que vas a hacer algo seguro. → Decir que vas a hacer algo sin falta.
+- v3_1.json#10 (partecipare) — expl[8] — Estar en una actividad, un curso o una reunión. → Formar parte de una actividad, un curso o una reunión.
+- v3_1.json#10 (partecipare) — expl[9] — Estar en una actividad, un curso o una reunión. → Formar parte de una actividad, un curso o una reunión.
+- v3_1.json#11 (perdonare) — exTr[2] — معاف کریں، کی توں مینوں معاف کر دیویں گا؟ → معاف کرنا، کی توں مینوں معاف کر دیویں گا؟
+- v3_1.json#17 (restare) — emoji — 🏠 → null
+- v3_1.json#22 (ritornare) — emoji — 🔙 → null
+- v3_1.json#23 (rompere) — emoji — 💥 → null
+- v3_1.json#23 (rompere) — expl[7] — Abîmer quelque chose qui se met en morceaux. → Abîmer quelque chose au point qu'il soit en morceaux ou ne marche plus.
+- v3_1.json#23 (rompere) — exTr[5] — පරිස්සමින්, වීදුරුව කඩනවා! → පරිස්සමෙන්, වීදුරුව කැඩෙයි!
+- v3_1.json#26 (prendersi cura) — emoji — 🤲 → null
+- v3_1.json#30 (rubare) — emoji — 🦹 → null
+- v3_1.json#31 (rientrare) — emoji — 🏡 → null
+- v3_2.json#1 (rispettare) — expl[2] — لوکاں نال چنگا ورتاؤ کرنا؛ یا قانون تے اصول منننا۔ → لوکاں نال چنگا ورتاؤ کرنا؛ یا قانون تے اصول منّنا۔
+- v3_2.json#5 (riportare) — emoji — ↩️ → null
+- v3_2.json#8 (raggiungere) — emoji — 🎯 → null
+- v3_2.json#8 (raggiungere) — exTr[1] — میں دس منٹ میں تم لوگوں کے پاس بار پہنچتا ہوں۔ → میں دس منٹ میں تم لوگوں کے پاس کیفے پہنچتا ہوں۔
+- v3_2.json#8 (raggiungere) — exTr[2] — میں دس منٹاں وچ تہاڈے کول بار اپڑدا آں۔ → میں دس منٹاں وچ تہاڈے کول کیفے اپڑدا آں۔
+- v3_2.json#8 (raggiungere) — exTr[3] — ਮੈਂ ਦਸ ਮਿੰਟਾਂ ਵਿੱਚ ਤੁਹਾਡੇ ਕੋਲ ਬਾਰ ਪਹੁੰਚਦਾ ਹਾਂ। → ਮੈਂ ਦਸ ਮਿੰਟਾਂ ਵਿੱਚ ਤੁਹਾਡੇ ਕੋਲ ਕੈਫ਼ੇ ਪਹੁੰਚਦਾ ਹਾਂ।
+- v3_2.json#8 (raggiungere) — exTr[4] — আমি দশ মিনিটে তোমাদের কাছে বারে আসছি। → আমি দশ মিনিটে তোমাদের কাছে ক্যাফেতে আসছি।
+- v3_2.json#11 (rendere) — expl[7] — Redonner ce que quelqu'un vous a donné ou prêté. → Rendre à quelqu'un ce qu'il vous a donné ou prêté.
+- v3_2.json#11 (rendere) — expl[8] — Dar otra vez algo que alguien te dio o te prestó. → Devolver algo que alguien te dio o te prestó.
+- v3_2.json#12 (riattaccare) — emoji — 📵 → null
+- v3_2.json#13 (ritardare) — emoji — ⏰ → null
+- v3_2.json#14 (riordinare) — emoji — 🧹 → null
+- v3_2.json#17 (rovinare) — expl[7] — Abîmer quelque chose qui n'est plus beau ou bon. → Abîmer quelque chose pour qu'il ne soit plus beau ou bon.
+- v3_2.json#22 (scoprire) — emoji — 🔍 → null
+- v3_2.json#23 (sedersi) — expl[8] — Ponerse en una silla o en el suelo. → Apoyar el cuerpo en una silla o en el suelo.
+- v3_2.json#23 (sedersi) — expl[9] — Ponerse en una silla o en el piso. → Apoyar el cuerpo en una silla o en el piso.
+- v3_2.json#25 (sembrare) — tr[5] — පේනවා / වගේ → වගේ පේනවා / හිතෙනවා
+- v3_2.json#26 (seguire) — tr[2] — پچھے چلنا / منننا → پچھے چلنا / منّنا
+- v3_2.json#30 (sporcare) — expl[7] — Rendre quelque chose qui n'est plus propre. → Faire que quelque chose ne soit plus propre.
+- v3_2.json#33 (sprecare) — emoji — 🚮 → null
+- v3_2.json#34 (stare) — expl[1] — کسی جگہ یا حالت میں ہونا؛ 'کومے ستائی' حال پوچھنا ہے۔ → کسی جگہ یا حالت میں ہونا؛ 'come stai?' حال پوچھنا ہے۔
+- v3_2.json#34 (stare) — expl[2] — کسے تھاں یا حالت وچ ہونا؛ 'کومے ستائی' حال پچھنا اے۔ → کسے تھاں یا حالت وچ ہونا؛ 'come stai?' حال پچھنا اے۔
+- v3_2.json#34 (stare) — expl[3] — ਕਿਸੇ ਥਾਂ ਜਾਂ ਹਾਲਤ ਵਿੱਚ ਹੋਣਾ; 'ਕੋਮੇ ਸਤਾਈ' ਹਾਲ ਪੁੱਛਣਾ ਹੈ। → ਕਿਸੇ ਥਾਂ ਜਾਂ ਹਾਲਤ ਵਿੱਚ ਹੋਣਾ; 'come stai?' ਹਾਲ ਪੁੱਛਣਾ ਹੈ।
+- v3_2.json#34 (stare) — expl[4] — কোনো জায়গায় বা অবস্থায় থাকা; 'কোমে স্তাই' মানে কেমন আছ। → কোনো জায়গায় বা অবস্থায় থাকা; 'come stai?' মানে কেমন আছ।
+- v3_2.json#34 (stare) — expl[5] — තැනක හරි තත්වයක හරි ඉන්නවා; 'කොමේ ස්තායි' කියන්නේ කොහොමද කියලා. → තැනක හරි තත්වයක හරි ඉන්නවා; 'come stai?' කියන්නේ කොහොමද කියලා.
+- v3_3.json#1 (succedere) — emoji — ❓ → null
+- v3_3.json#1 (succedere) — expl[1] — جب کوئی واقعہ ہوتا ہے؛ 'کوزا ای سُچیسو' = کیا ہوا؟ → جب کوئی واقعہ ہوتا ہے؛ 'cosa è successo?' = کیا ہوا؟
+- v3_3.json#1 (succedere) — expl[2] — جدوں کوئی واقعہ ہوندا اے؛ 'کوزا ای سُچیسو' = کی ہویا؟ → جدوں کوئی واقعہ ہوندا اے؛ 'cosa è successo?' = کی ہویا؟
+- v3_3.json#1 (succedere) — expl[3] — ਜਦੋਂ ਕੋਈ ਘਟਨਾ ਵਾਪਰਦੀ ਹੈ; 'ਕੋਜ਼ਾ ਏ ਸੁਚੇਸੋ' = ਕੀ ਹੋਇਆ? → ਜਦੋਂ ਕੋਈ ਘਟਨਾ ਵਾਪਰਦੀ ਹੈ; 'cosa è successo?' = ਕੀ ਹੋਇਆ?
+- v3_3.json#1 (succedere) — expl[4] — যখন কোনো ঘটনা ঘটে; 'কোজা এ সুচেসো' = কী হয়েছে? → যখন কোনো ঘটনা ঘটে; 'cosa è successo?' = কী হয়েছে?
+- v3_3.json#1 (succedere) — expl[5] — යමක් සිද්ධ වෙනකොට; 'කෝසා ඒ සුචේසෝ' = මොකද වුණේ? → යමක් සිද්ධ වෙනකොට; 'cosa è successo?' = මොකද වුණේ?
+- v3_3.json#8 (separarsi) — tr[1] — الگ ہونا / علیحدگی → الگ ہونا / علیحدہ ہونا
+- v3_3.json#9 (smarrire) — exTr[2] — میرا پرمیسو گواچ گیا اے۔ → میرا رہائشی پرمٹ گواچ گیا اے۔
+- v3_3.json#10 (squillare) — emoji — 📳 → null
+- v3_3.json#11 (somigliare) — tr[5] — සමාන වෙනවා / වගේ → සමාන වෙනවා / වගේ ඉන්නවා
+- v3_3.json#12 (sopportare) — expl[1] — کسی ناپسندیدہ چیز کو سہنا؛ 'نون سوپورتو' = میں برداشت نہیں کر سکتا۔ → کسی ناپسندیدہ چیز کو سہنا؛ 'non sopporto' = میں برداشت نہیں کر سکتا۔
+- v3_3.json#12 (sopportare) — expl[2] — کسے بھیڑی شے نوں جھلنا؛ 'نون سوپورتو' = میں نئیں جھل سکدا۔ → کسے بھیڑی شے نوں جھلنا؛ 'non sopporto' = میں نئیں جھل سکدا۔
+- v3_3.json#12 (sopportare) — expl[3] — ਕਿਸੇ ਮਾੜੀ ਚੀਜ਼ ਨੂੰ ਝੱਲਣਾ; 'ਨੋਨ ਸੋਪੋਰਤੋ' = ਮੈਂ ਨਹੀਂ ਝੱਲ ਸਕਦਾ। → ਕਿਸੇ ਮਾੜੀ ਚੀਜ਼ ਨੂੰ ਝੱਲਣਾ; 'non sopporto' = ਮੈਂ ਨਹੀਂ ਝੱਲ ਸਕਦਾ।
+- v3_3.json#12 (sopportare) — expl[4] — অপ্রিয় কিছু মেনে নেওয়া; 'নোন সোপোর্তো' = আমি সহ্য করতে পারি না। → অপ্রিয় কিছু মেনে নেওয়া; 'non sopporto' = আমি সহ্য করতে পারি না।
+- v3_3.json#12 (sopportare) — expl[5] — අකමැති දෙයක් ඉවසනවා; 'නොන් සොප්පෝර්තෝ' = මට ඉවසන්න බෑ. → අකමැති දෙයක් ඉවසනවා; 'non sopporto' = මට ඉවසන්න බෑ.
+- v3_3.json#13 (suggerire) — emoji — 💬 → null
+- v3_3.json#14 (tenere) — emoji — ✋ → null
+- v3_3.json#16 (tornare) — emoji — 🔙 → null
+- v3_3.json#17 (trovare) — emoji — 🔎 → null
+- v3_3.json#18 (telefonare) — exTr[9] — Le llamo a mi mamá todas las noches. → Llamo a mi mamá todas las noches.
+- v3_3.json#20 (trovarsi) — expl[1] — کسی جگہ پر ہونا؛ 'می تروو بینے' = مجھے یہاں اچھا لگتا ہے۔ → کسی جگہ پر ہونا؛ 'mi trovo bene' = مجھے یہاں اچھا لگتا ہے۔
+- v3_3.json#20 (trovarsi) — expl[2] — کسے تھاں تے ہونا؛ 'می تروو بینے' = مینوں ایتھے چنگا لگدا اے۔ → کسے تھاں تے ہونا؛ 'mi trovo bene' = مینوں ایتھے چنگا لگدا اے۔
+- v3_3.json#20 (trovarsi) — expl[3] — ਕਿਸੇ ਥਾਂ 'ਤੇ ਹੋਣਾ; 'ਮੀ ਤਰੋਵੋ ਬੇਨੇ' = ਮੈਨੂੰ ਇੱਥੇ ਚੰਗਾ ਲੱਗਦਾ ਹੈ। → ਕਿਸੇ ਥਾਂ 'mi trovo bene'ਮੀ ਤਰੋਵੋ ਬੇਨੇ' = ਮੈਨੂੰ ਇੱਥੇ ਚੰਗਾ ਲੱਗਦਾ ਹੈ।
+- v3_3.json#20 (trovarsi) — expl[4] — কোনো জায়গায় থাকা; 'মি ত্রোভো বেনে' = এখানে আমার ভালো লাগে। → কোনো জায়গায় থাকা; 'mi trovo bene' = এখানে আমার ভালো লাগে।
+- v3_3.json#20 (trovarsi) — expl[5] — තැනක තියෙනවා; 'මි ත්‍රෝවෝ බේනේ' = මට මෙහෙ හොඳයි. → තැනක තියෙනවා; 'mi trovo bene' = මට මෙහෙ හොඳයි.
+- v3_3.json#24 (tuffarsi) — emoji — 🤿 → null
+- v3_3.json#32 (volere) — expl[1] — کوئی چیز لینے یا کرنے کی خواہش؛ 'وورّے' شائستہ طریقہ ہے۔ → کوئی چیز لینے یا کرنے کی خواہش؛ 'vorrei' شائستہ طریقہ ہے۔
+- v3_3.json#32 (volere) — expl[2] — کوئی شے لین یا کرن دی خواہش؛ 'وورّے' ادب والا طریقہ اے۔ → کوئی شے لین یا کرن دی خواہش؛ 'vorrei' ادب والا طریقہ اے۔
+- v3_3.json#32 (volere) — expl[3] — ਕੋਈ ਚੀਜ਼ ਲੈਣ ਜਾਂ ਕਰਨ ਦੀ ਇੱਛਾ; 'ਵੋਰੇ' ਨਿਮਰ ਤਰੀਕਾ ਹੈ। → ਕੋਈ ਚੀਜ਼ ਲੈਣ ਜਾਂ ਕਰਨ ਦੀ ਇੱਛਾ; 'vorrei' ਨਿਮਰ ਤਰੀਕਾ ਹੈ।
+- v3_3.json#32 (volere) — expl[4] — কিছু পেতে বা করতে ইচ্ছা করা; 'ভোর্রেই' হলো ভদ্র রূপ। → কিছু পেতে বা করতে ইচ্ছা করা; 'vorrei' হলো ভদ্র রূপ।
+- v3_3.json#32 (volere) — expl[5] — යමක් ගන්න හරි කරන්න හරි ආසයි; 'වොර්රේයි' කියන්නේ ආචාරශීලී විදිහ. → යමක් ගන්න හරි කරන්න හරි ආසයි; 'vorrei' කියන්නේ ආචාරශීලී විදිහ.
+- v3_3.json#33 (vietare) — expl[1] — یہ کہنا کہ کوئی کام منع ہے؛ بورڈ پر 'ویئتاتو' لکھا ہوتا ہے۔ → یہ کہنا کہ کوئی کام منع ہے؛ بورڈ پر 'vietato' لکھا ہوتا ہے۔
+- v3_3.json#33 (vietare) — expl[2] — ایہہ آکھنا پئی کوئی کم منع اے؛ بورڈ تے 'ویئتاتو' لکھیا ہوندا اے۔ → ایہہ آکھنا پئی کوئی کم منع اے؛ بورڈ تے 'vietato' لکھیا ہوندا اے۔
+- v3_3.json#33 (vietare) — expl[3] — ਇਹ ਕਹਿਣਾ ਕਿ ਕੋਈ ਕੰਮ ਮਨ੍ਹਾ ਹੈ; ਬੋਰਡ 'ਤੇ 'ਵੀਏਤਾਤੋ' ਲਿਖਿਆ ਹੁੰਦਾ ਹੈ। → ਇਹ ਕਹਿਣਾ ਕਿ ਕੋਈ ਕੰਮ ਮਨ੍ਹਾ ਹੈ; ਬੋਰਡ 'vietato'ਵੀਏਤਾਤੋ' ਲਿਖਿਆ ਹੁੰਦਾ ਹੈ।
+- v3_3.json#33 (vietare) — expl[4] — বলা যে কোনো কিছু করা যাবে না; সাইনবোর্ডে লেখা থাকে 'ভিয়েতাতো'। → বলা যে কোনো কিছু করা যাবে না; সাইনবোর্ডে লেখা থাকে 'vietato'।
+- v3_3.json#33 (vietare) — expl[5] — යමක් කරන්න බෑ කියලා කියනවා; පුවරුවල 'වියේතාතෝ' කියලා ලියලා තියෙනවා. → යමක් කරන්න බෑ කියලා කියනවා; පුවරුවල 'vietato' කියලා ලියලා තියෙනවා.
+- v3_4.json#1 (scambiare) — emoji — 🔁 → null
+- v3_4.json#3 (tacere) — expl[1] — کچھ نہ بولنا؛ 'تاچی!' سختی سے چپ کرانا ہے۔ → کچھ نہ بولنا؛ 'taci!' سختی سے چپ کرانا ہے۔
+- v3_4.json#3 (tacere) — expl[2] — کجھ نہ بولنا؛ 'تاچی!' سختی نال چپ کرانا اے۔ → کجھ نہ بولنا؛ 'taci!' سختی نال چپ کرانا اے۔
+- v3_4.json#3 (tacere) — expl[3] — ਕੁਝ ਨਾ ਬੋਲਣਾ; 'ਤਾਚੀ!' ਸਖ਼ਤੀ ਨਾਲ ਚੁੱਪ ਕਰਾਉਣਾ ਹੈ। → ਕੁਝ ਨਾ ਬੋਲਣਾ; 'taci!' ਸਖ਼ਤੀ ਨਾਲ ਚੁੱਪ ਕਰਾਉਣਾ ਹੈ।
+- v3_4.json#3 (tacere) — expl[4] — কিছু না বলা; 'তাচি!' মানে কড়াভাবে চুপ করো। → কিছু না বলা; 'taci!' মানে কড়াভাবে চুপ করো।
+- v3_4.json#3 (tacere) — expl[5] — කතා නොකර ඉන්නවා; 'තාචි!' කියන්නේ සැරෙන් කට වහන්න කියන එක. → කතා නොකර ඉන්නවා; 'taci!' කියන්නේ සැරෙන් කට වහන්න කියන එක.
+- v3_4.json#4 (ubbidire) — tr[2] — گل منننی → گل منّنی
+- v3_4.json#4 (ubbidire) — expl[2] — ماں پیو، استاد یا قانون دی گل منننی۔ → ماں پیو، استاد یا قانون دی گل منّنی۔
+- v3_4.json#6 (vedersi) — expl[1] — جب دو یا زیادہ لوگ ملتے ہیں؛ 'چی ویدیامو!' = پھر ملیں گے! → جب دو یا زیادہ لوگ ملتے ہیں؛ 'ci vediamo!' = پھر ملیں گے!
+- v3_4.json#6 (vedersi) — expl[2] — جدوں دو یا ودھ لوک ملدے نیں؛ 'چی ویدیامو!' = فیر ملاں گے! → جدوں دو یا ودھ لوک ملدے نیں؛ 'ci vediamo!' = فیر ملاں گے!
+- v3_4.json#6 (vedersi) — expl[3] — ਜਦੋਂ ਦੋ ਜਾਂ ਵੱਧ ਲੋਕ ਮਿਲਦੇ ਹਨ; 'ਚੀ ਵੇਦਿਆਮੋ!' = ਫਿਰ ਮਿਲਾਂਗੇ! → ਜਦੋਂ ਦੋ ਜਾਂ ਵੱਧ ਲੋਕ ਮਿਲਦੇ ਹਨ; 'ci vediamo!' = ਫਿਰ ਮਿਲਾਂਗੇ!
+- v3_4.json#6 (vedersi) — expl[4] — যখন দুই বা বেশি মানুষ দেখা করে; 'চি ভেদিয়ামো!' = আবার দেখা হবে! → যখন দুই বা বেশি মানুষ দেখা করে; 'ci vediamo!' = আবার দেখা হবে!
+- v3_4.json#6 (vedersi) — expl[5] — දෙන්නෙක් හරි කීප දෙනෙක් හරි හම්බ වෙනකොට; 'චි වේදියාමෝ!' = ආයෙත් හම්බවෙමු! → දෙන්නෙක් හරි කීප දෙනෙක් හරි හම්බ වෙනකොට; 'ci vediamo!' = ආයෙත් හම්බවෙමු!
+- v3_4.json#7 (stringere) — emoji — 🤝 → null
+- v3_4.json#9 (riaprire) — emoji — 🔓 → null
+- v3_4.json#13 (volere bene) — tr[5] — ආදරෙයි → ආදරය කරනවා / ආදරෙයි
+- v3_4.json#13 (volere bene) — expl[1] — گھر والوں اور دوستوں سے محبت کرنا؛ 'امارے' رومانوی پیار ہے۔ → گھر والوں اور دوستوں سے محبت کرنا؛ 'amare' رومانوی پیار ہے۔
+- v3_4.json#13 (volere bene) — expl[2] — ٹبر تے یاراں نال پیار کرنا؛ 'امارے' عاشقی والا پیار اے۔ → ٹبر تے یاراں نال پیار کرنا؛ 'amare' عاشقی والا پیار اے۔
+- v3_4.json#13 (volere bene) — expl[3] — ਪਰਿਵਾਰ ਤੇ ਦੋਸਤਾਂ ਨੂੰ ਪਿਆਰ ਕਰਨਾ; 'ਅਮਾਰੇ' ਰੋਮਾਂਟਿਕ ਪਿਆਰ ਹੈ। → ਪਰਿਵਾਰ ਤੇ ਦੋਸਤਾਂ ਨੂੰ ਪਿਆਰ ਕਰਨਾ; 'amare' ਰੋਮਾਂਟਿਕ ਪਿਆਰ ਹੈ।
+- v3_4.json#13 (volere bene) — expl[4] — পরিবার ও বন্ধুদের ভালোবাসা; 'আমারে' প্রেমের ভালোবাসা। → পরিবার ও বন্ধুদের ভালোবাসা; 'amare' প্রেমের ভালোবাসা।
+- v3_4.json#13 (volere bene) — expl[5] — පවුලේ අයට, යාළුවන්ට ආදරෙයි; 'අමාරේ' කියන්නේ පෙම්වතුන්ගේ ආදරය. → පවුලේ අයට, යාළුවන්ට ආදරෙයි; 'amare' කියන්නේ පෙම්වතුන්ගේ ආදරය.
+- v3_4.json#20 (valere la pena) — tr[1] — فائدہ مند ہونا / قابل ہونا → فائدہ مند ہونا / اس قابل ہونا
+- v3_4.json#22 (voler dire) — emoji — ❓ → null
+- v3_4.json#22 (voler dire) — tr[5] — තේරුම → අදහස් කරනවා / තේරුම වෙනවා
+- v3_4.json#22 (voler dire) — expl[1] — کسی بات کا مطلب ہونا؛ 'کوزا وول دیرے' = اس کا کیا مطلب ہے؟ → کسی بات کا مطلب ہونا؛ 'cosa vuol dire?' = اس کا کیا مطلب ہے؟
+- v3_4.json#22 (voler dire) — expl[2] — کسے گل دا مطلب ہونا؛ 'کوزا وول دیرے' = ایہدا کی مطلب اے؟ → کسے گل دا مطلب ہونا؛ 'cosa vuol dire?' = ایہدا کی مطلب اے؟
+- v3_4.json#22 (voler dire) — expl[3] — ਕਿਸੇ ਗੱਲ ਦਾ ਮਤਲਬ ਹੋਣਾ; 'ਕੋਜ਼ਾ ਵੁਲ ਦੀਰੇ' = ਇਸਦਾ ਕੀ ਮਤਲਬ ਹੈ? → ਕਿਸੇ ਗੱਲ ਦਾ ਮਤਲਬ ਹੋਣਾ; 'cosa vuol dire?' = ਇਸਦਾ ਕੀ ਮਤਲਬ ਹੈ?
+- v3_4.json#22 (voler dire) — expl[4] — কোনো কথার অর্থ থাকা; 'কোজা ভুল দিরে' = এর মানে কী? → কোনো কথার অর্থ থাকা; 'cosa vuol dire?' = এর মানে কী?
+- v3_4.json#22 (voler dire) — expl[5] — යමක තේරුම; 'කෝසා වුල් දීරේ' = ඒකේ තේරුම මොකක්ද? → යමක තේරුම; 'cosa vuol dire?' = ඒකේ තේරුම මොකක්ද?
+- v3_4.json#23 (sentirsi male) — exTr[9] — Me siento mal, le llamo al doctor. → Me siento mal, llamo al doctor.
+- v3_4.json#25 (rinnovare il permesso) — tr[1] — رہائشی اجازت نامہ تجدید کرانا → رہائشی اجازت نامے کی تجدید کرانا
+- v3_4.json#25 (rinnovare il permesso) — tr[2] — پرمیسو رینیو کرانا → رہائشی پرمٹ رینیو کرانا
+- v3_4.json#25 (rinnovare il permesso) — expl[2] — مُکن توں پہلاں پرمیسو مڑ چالو کرانا۔ → مُکن توں پہلاں رہائشی پرمٹ مڑ چالو کرانا۔
+- v3_4.json#25 (rinnovare il permesso) — exTr[1] — مجھے اگست سے پہلے رہائشی اجازت نامہ تجدید کرانا ہے۔ → مجھے اگست سے پہلے رہائشی اجازت نامے کی تجدید کرانی ہے۔
+- v3_4.json#25 (rinnovare il permesso) — exTr[2] — مینوں اگست توں پہلاں پرمیسو رینیو کرانا اے۔ → مینوں اگست توں پہلاں رہائشی پرمٹ رینیو کرانا اے۔

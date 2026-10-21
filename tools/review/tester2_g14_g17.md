@@ -1,0 +1,181 @@
+# Tester 2 review — g14 (clothes) + g17 (work in Italy)
+
+Files: tools/dict_src/g14_1..5.json, g17_1..6.json
+Entries checked: 370 (every field: it, type, topic, emoji, tr[10], expl[10], ex, exTr[10]).
+Entries removed: 0 (none wrong beyond repair).
+Corrections: 155 (format: file#index (headword) — field — wrong → right).
+
+Notes
+- Italian headwords, articles, accents and example sentences were all correct; no Italian changes needed.
+- Legal accuracy (work terms):
+  - l'infortunio sul lavoro: the worker does not report to INAIL; he tells the employer at once and the employer reports it. All 10 explanations rewritten.
+  - i contributi: they are paid to INPS by the employer, partly withheld from pay (not simply "paid from your salary"). All 10 explanations rewritten.
+  - "contributions" had been translated literally (Bengali অবদান, Gurmukhi ਯੋਗਦਾਨ, Urdu "کنٹری بیوشن") in contributi / trattenuta / lordo / lavoro in nero / regolare; replaced with the real terms (সামাজিক নিরাপত্তার চাঁদা, ਪੈਨਸ਼ਨ ਕਟੌਤੀ, سوشل سکیورٹی کی ادائیگی).
+  - il caporalato: French "passeurs" (= smugglers) was wrong; Fr/Es example translations had no subject.
+  - questura was translated as French "préfecture" (= prefettura, a different office) → "questure".
+- Pitfall fixed: Sinhala පල්ලිය (church) used for mosque in togliersi → මුස්ලිම් පල්ලිය.
+- Latin letters inside the Chinese slot (quanto costa) removed.
+- False friends: Fr "Bon travail !" / Es "¡Buen trabajo!" mean "well done", not "have a good day at work"; Es (Spain) "despedirse" ≠ resign; Fr "débaucher".
+- Bengali ordinals তেরোতম / চোদ্দতম → ত্রয়োদশ / চতুর্দশ; Bengali "প্লাস" (pliers) removed from wrench.
+- Punjabi دیہاڑی (daily wage) wrongly used for hourly pay.
+- Emoji: 73 "close-enough" pictures set to null (clocks/timers for shifts and hours, 🚜 tractor for forklift, 🏗️ crane for scaffolding, ⛑️ rescue helmet for hard hat, 🥾 hiking boot for safety shoes, 🏋️ weightlifter for lifting / hard work, 💵 dollar for euro pay, 🚪 for resign, 📤 for dismissal, ✅/🔁/🔄/📶/⚠️/🚫 symbols, etc.).
+- The edited files were rewritten in the compact one-field-per-line layout already used by g17 (content identical apart from the corrections).
+
+Final validator: `python -I tools/check_dict.py tools/dict_src/g14_*.json tools/dict_src/g17_*.json` → 370 entries in 11 files, 0 errors
+
+## Corrections
+- g14_1.json#9 (le mutande) — exTr[5] — මම පිරිසිදු යට ඇඳුම් බෑග් එකට දානවා. → මම පිරිසිදු යට ඇඳුම් සූට්කේස් එකට දානවා.
+- g14_1.json#28 (il costume da bagno) — expl[2] — سمندر یا تلاء وچ ترن لئی پائے جان والے کپڑے۔ → سمندر یا سوئمنگ پول وچ ترن لئی پائے جان والے کپڑے۔
+- g14_3.json#13 (togliersi) — exTr[5] — පල්ලියේදී අපි සපත්තු ගලවනවා. → මුස්ලිම් පල්ලියේදී අපි සපත්තු ගලවනවා.
+- g14_3.json#16 (cambiarsi) — exTr[5] — වැඩ ඉවර වුණාම මම ඇඳුම් මාරු කරන කාමරයේදී ඇඳුම් මාරු කරනවා. → වැඩ ඉවර වුණාම මම ලොකර් කාමරයේදී ඇඳුම් මාරු කරනවා.
+- g14_4.json#5 (Che numero di scarpe porti?) — exTr[6] — 工作鞋要定码：你穿多大码的鞋？ → 买工作鞋：你穿多大码的鞋？
+- g14_4.json#28 (Il camerino è occupato.) — expl[5] — කාමරේ කවුරුහරි ඉන්න නිසා ඉන්න වෙනවා. → ඇඳුම් මැනබලන කාමරේ කවුරුහරි ඉන්න නිසා බලාගෙන ඉන්න වෙනවා.
+- g14_4.json#31 (Quanto costano queste scarpe?) — expl[6] — 问几样东西的价格；问一样东西用 quanto costa。 → 问几样东西的价格；只问一样东西时用单数的问法。
+- g14_5.json#14 (l'orlo) — expl[2] — پتلون، سکرٹ یا باں دے تھلے موڑ کے سیتا کنارا۔ → پتلون، سکرٹ یا بانہہ دے تھلے موڑ کے سیتا کنارا۔
+- g17_1.json#0 (il datore di lavoro) — emoji — 👔 → null
+- g17_1.json#2 (il responsabile) — emoji — 📋 → null
+- g17_1.json#3 (il dipendente) — emoji — 👷 → null
+- g17_1.json#15 (l'armadietto) — emoji — 🔐 → null
+- g17_1.json#17 (il cliente) — emoji — 🤝 → null
+- g17_1.json#30 (l'agenzia interinale) — expl[2] — ایجنسی جیہڑی دوجیاں کمپنیاں وچ کچا کم دواندی اے۔ → ایجنسی جیہڑی دوجیاں کمپنیاں وچ عارضی کم دواندی اے۔
+- g17_1.json#34 (il lavoro stagionale) — emoji — 🍇 → null
+- g17_1.json#35 (il lavoro in nero) — emoji — ⚠️ → null
+- g17_1.json#35 (il lavoro in nero) — expl[1] — بغیر معاہدے اور کنٹری بیوشن کے کام؛ یہ غیر قانونی ہے اور کوئی تحفظ نہیں۔ → بغیر معاہدے اور سرکاری کٹوتیوں کے کام؛ یہ غیر قانونی ہے اور کوئی تحفظ نہیں۔
+- g17_1.json#35 (il lavoro in nero) — expl[3] — ਬਿਨਾਂ ਇਕਰਾਰ ਅਤੇ ਯੋਗਦਾਨ ਦੇ ਕੰਮ; ਇਹ ਗੈਰਕਾਨੂੰਨੀ ਹੈ ਅਤੇ ਕੋਈ ਸੁਰੱਖਿਆ ਨਹੀਂ। → ਬਿਨਾਂ ਇਕਰਾਰ ਅਤੇ ਸਰਕਾਰੀ ਕਟੌਤੀਆਂ ਦੇ ਕੰਮ; ਇਹ ਗੈਰਕਾਨੂੰਨੀ ਹੈ ਅਤੇ ਕੋਈ ਸੁਰੱਖਿਆ ਨਹੀਂ।
+- g17_1.json#35 (il lavoro in nero) — expl[4] — চুক্তি ও অবদান ছাড়া কাজ; এটা অবৈধ এবং কোনো সুরক্ষা নেই। → চুক্তি ও সরকারি চাঁদা (কন্ট্রিবিউশন) ছাড়া কাজ; এটা অবৈধ এবং কোনো সুরক্ষা নেই।
+- g17_1.json#35 (il lavoro in nero) — exTr[6] — 黑工不算在居留许可里。 → 打黑工不能用来办居留许可。
+- g17_1.json#36 (il caporalato) — emoji — 🚫 → null
+- g17_1.json#36 (il caporalato) — tr[7] — exploitation par des passeurs de main-d'œuvre → exploitation par un intermédiaire illégal
+- g17_1.json#36 (il caporalato) — exTr[7] — C'est un délit : tu peux le dénoncer. → L'exploitation par un intermédiaire illégal est un délit : tu peux la dénoncer.
+- g17_1.json#36 (il caporalato) — exTr[8] — Es un delito: puedes denunciarlo. → La explotación laboral ilegal es un delito: puedes denunciarla.
+- g17_1.json#36 (il caporalato) — exTr[9] — Es un delito: puedes denunciarlo. → La explotación laboral ilegal es un delito: puedes denunciarla.
+- g17_2.json#0 (il contratto a tempo determinato) — emoji — 📅 → null
+- g17_2.json#1 (il contratto a tempo indeterminato) — emoji — ✅ → null
+- g17_2.json#2 (il part-time) — emoji — 🕐 → null
+- g17_2.json#3 (il tempo pieno) — emoji — 🕗 → null
+- g17_2.json#4 (l'orario di lavoro) — emoji — ⏰ → null
+- g17_2.json#5 (gli straordinari) — emoji — ⏱️ → null
+- g17_2.json#9 (il permesso) — exTr[7] — Demain, je demande un congé pour aller à la préfecture. → Demain, je demande une autorisation d'absence pour aller à la questure.
+- g17_2.json#12 (l'infortunio sul lavoro) — expl[0] — An injury that happens while you are working; it must be reported to INAIL. → An injury at work; tell your employer at once, who reports it to INAIL.
+- g17_2.json#12 (l'infortunio sul lavoro) — expl[1] — کام کرتے ہوئے لگنے والی چوٹ؛ اس کی اطلاع اینائل کو دینی ضروری ہے۔ → کام کے دوران لگنے والی چوٹ؛ فوراً مالک کو بتائیں، وہ اینائل کو اطلاع دیتا ہے۔
+- g17_2.json#12 (l'infortunio sul lavoro) — expl[2] — کم کردیاں لگن والی سٹ؛ ایہدی خبر اینائل نوں دینی ضروری اے۔ → کم کردیاں لگن والی سٹ؛ فوراً مالک نوں دسو، اوہ اینائل نوں خبر دیندا اے۔
+- g17_2.json#12 (l'infortunio sul lavoro) — expl[3] — ਕੰਮ ਕਰਦਿਆਂ ਲੱਗਣ ਵਾਲੀ ਸੱਟ; ਇਸ ਦੀ ਖ਼ਬਰ ਇਨਾਇਲ ਨੂੰ ਦੇਣੀ ਜ਼ਰੂਰੀ ਹੈ। → ਕੰਮ ਕਰਦਿਆਂ ਲੱਗਣ ਵਾਲੀ ਸੱਟ; ਤੁਰੰਤ ਮਾਲਕ ਨੂੰ ਦੱਸੋ, ਉਹ ਇਨਾਇਲ ਨੂੰ ਖ਼ਬਰ ਦਿੰਦਾ ਹੈ।
+- g17_2.json#12 (l'infortunio sul lavoro) — expl[4] — কাজ করার সময় আঘাত; এটি ইনাইলকে জানাতে হয়। → কাজের সময় আঘাত; সাথে সাথে মালিককে জানান, তিনি ইনাইলকে জানান।
+- g17_2.json#12 (l'infortunio sul lavoro) — expl[5] — වැඩ කරන අතරතුර වෙන තුවාලයක්; එය ඉනායිල් වෙත දැනුම් දිය යුතුයි. → වැඩ කරන අතරතුර වෙන තුවාලයක්; වහාම සේවා යෝජකයාට කියන්න, ඔහු ඉනායිල් වෙත දැනුම් දෙනවා.
+- g17_2.json#12 (l'infortunio sul lavoro) — expl[6] — 工作时受的伤，必须向工伤保险局报告。 → 工作时受的伤；要马上告诉雇主，由雇主向工伤保险局报告。
+- g17_2.json#12 (l'infortunio sul lavoro) — expl[7] — Blessure pendant le travail, à déclarer à l'INAIL. → Blessure au travail ; prévenez tout de suite l'employeur, qui la déclare à l'INAIL.
+- g17_2.json#12 (l'infortunio sul lavoro) — expl[8] — Lesión durante el trabajo; hay que comunicarla al INAIL. → Lesión en el trabajo; avisa enseguida al empleador, que la comunica al INAIL.
+- g17_2.json#12 (l'infortunio sul lavoro) — expl[9] — Lesión durante el trabajo; hay que reportarla al INAIL. → Lesión en el trabajo; avisa de inmediato al empleador, que la reporta al INAIL.
+- g17_2.json#14 (il giorno libero) — emoji — 😌 → null
+- g17_2.json#15 (il giorno festivo) — emoji — 🎉 → null
+- g17_2.json#18 (la tredicesima) — emoji — 🎄 → null
+- g17_2.json#18 (la tredicesima) — tr[4] — তেরোতম মাসের বেতন (বড়দিনের বোনাস) → ত্রয়োদশ মাসের বেতন (বড়দিনের বোনাস)
+- g17_2.json#18 (la tredicesima) — exTr[4] — ডিসেম্বরে তেরোতম মাসের বেতন আসে। → ডিসেম্বরে ত্রয়োদশ মাসের বেতন আসে।
+- g17_2.json#19 (la quattordicesima) — emoji — ☀️ → null
+- g17_2.json#19 (la quattordicesima) — tr[4] — চোদ্দতম মাসের বেতন (গ্রীষ্মের বোনাস) → চতুর্দশ মাসের বেতন (গ্রীষ্মের বোনাস)
+- g17_2.json#19 (la quattordicesima) — exTr[4] — জুলাইয়ে আমি চোদ্দতম মাসের বেতন পাই। → জুলাইয়ে আমি চতুর্দশ মাসের বেতন পাই।
+- g17_2.json#20 (il TFR) — tr[7] — indemnité de fin de contrat → indemnité de départ (TFR)
+- g17_2.json#20 (il TFR) — exTr[7] — À la fin du contrat, on te verse l'indemnité. → À la fin du contrat, on te verse l'indemnité de départ.
+- g17_2.json#21 (i contributi) — tr[1] — سوشل سکیورٹی کنٹری بیوشن → سوشل سکیورٹی کی ادائیگی
+- g17_2.json#21 (i contributi) — tr[3] — ਪੈਨਸ਼ਨ ਯੋਗਦਾਨ → ਪੈਨਸ਼ਨ ਕਟੌਤੀ / ਸਰਕਾਰੀ ਕਟੌਤੀ
+- g17_2.json#21 (i contributi) — tr[4] — সামাজিক নিরাপত্তা অবদান → সামাজিক নিরাপত্তার চাঁদা
+- g17_2.json#21 (i contributi) — expl[0] — Money paid to INPS from your salary for pension and benefits. → Money paid to INPS by the employer, partly taken from your pay, for pension and benefits.
+- g17_2.json#21 (i contributi) — expl[1] — تنخواہ سے آئی این پی ایس کو دی جانے والی رقم، پنشن اور الاؤنس کے لیے۔ → آجر کی طرف سے آئی این پی ایس کو دی جانے والی رقم، کچھ تنخواہ سے کٹتی ہے، پنشن اور الاؤنس کے لیے۔
+- g17_2.json#21 (i contributi) — expl[2] — تنخواہ وچوں آئی این پی ایس نوں جان والی رقم، پنشن تے بھتیاں لئی۔ → مالک ولوں آئی این پی ایس نوں جان والی رقم، کجھ تنخواہ وچوں کٹدی اے، پنشن تے بھتیاں لئی۔
+- g17_2.json#21 (i contributi) — expl[3] — ਤਨਖਾਹ ਵਿੱਚੋਂ ਆਈਐਨਪੀਐਸ ਨੂੰ ਜਾਣ ਵਾਲੀ ਰਕਮ, ਪੈਨਸ਼ਨ ਅਤੇ ਭੱਤਿਆਂ ਲਈ। → ਮਾਲਕ ਵੱਲੋਂ ਆਈਐਨਪੀਐਸ ਨੂੰ ਜਾਣ ਵਾਲੀ ਰਕਮ, ਕੁਝ ਤਨਖਾਹ ਵਿੱਚੋਂ ਕੱਟਦੀ ਹੈ, ਪੈਨਸ਼ਨ ਅਤੇ ਭੱਤਿਆਂ ਲਈ।
+- g17_2.json#21 (i contributi) — expl[4] — বেতন থেকে আইএনপিএস-এ দেওয়া টাকা, পেনশন ও ভাতার জন্য। → নিয়োগকর্তা আইএনপিএস-এ যে টাকা দেন, কিছুটা বেতন থেকে কাটা হয়; পেনশন ও ভাতার জন্য।
+- g17_2.json#21 (i contributi) — expl[5] — විශ්‍රාම වැටුප සහ දීමනා සඳහා වැටුපෙන් අයි.එන්.පී.එස්. වෙත ගෙවන මුදල. → විශ්‍රාම වැටුප සහ දීමනා සඳහා සේවා යෝජකයා අයි.එන්.පී.එස්. වෙත ගෙවන මුදල; කොටසක් වැටුපෙන් කපනවා.
+- g17_2.json#21 (i contributi) — expl[6] — 从工资里交给社保局、用于养老金和补贴的钱。 → 雇主交给社保局的钱，一部分从工资里扣，用于养老金和补贴。
+- g17_2.json#21 (i contributi) — expl[7] — Argent versé à l'INPS sur le salaire pour la retraite. → Argent versé à l'INPS par l'employeur, en partie retenu sur le salaire, pour la retraite.
+- g17_2.json#21 (i contributi) — expl[8] — Dinero que se paga al INPS del sueldo para la jubilación. → Dinero que el empleador paga al INPS, en parte descontado del sueldo, para la jubilación.
+- g17_2.json#21 (i contributi) — expl[9] — Dinero que se paga al INPS del sueldo para la jubilación. → Dinero que el empleador paga al INPS, en parte descontado del sueldo, para la jubilación.
+- g17_2.json#21 (i contributi) — exTr[1] — آجر کو کنٹری بیوشن ادا کرنے چاہییں۔ → آجر کو سوشل سکیورٹی کی ادائیگیاں لازمی کرنی ہوتی ہیں۔
+- g17_2.json#21 (i contributi) — exTr[3] — ਮਾਲਕ ਨੂੰ ਯੋਗਦਾਨ ਜਮ੍ਹਾਂ ਕਰਵਾਉਣਾ ਪੈਂਦਾ ਹੈ। → ਮਾਲਕ ਨੂੰ ਪੈਨਸ਼ਨ ਦੀਆਂ ਕਟੌਤੀਆਂ ਜਮ੍ਹਾਂ ਕਰਵਾਉਣੀਆਂ ਪੈਂਦੀਆਂ ਹਨ।
+- g17_2.json#21 (i contributi) — exTr[4] — নিয়োগকর্তাকে অবদান পরিশোধ করতে হবে। → নিয়োগকর্তাকে সামাজিক নিরাপত্তার চাঁদা দিতে হবে।
+- g17_2.json#22 (la trattenuta) — emoji — ➖ → null
+- g17_2.json#22 (la trattenuta) — expl[1] — تنخواہ سے کاٹی گئی رقم، جیسے ٹیکس یا کنٹری بیوشن۔ → تنخواہ سے کاٹی گئی رقم، جیسے ٹیکس یا سوشل سکیورٹی۔
+- g17_2.json#22 (la trattenuta) — expl[3] — ਤਨਖਾਹ ਵਿੱਚੋਂ ਕੱਟੀ ਰਕਮ, ਜਿਵੇਂ ਟੈਕਸ ਜਾਂ ਯੋਗਦਾਨ। → ਤਨਖਾਹ ਵਿੱਚੋਂ ਕੱਟੀ ਰਕਮ, ਜਿਵੇਂ ਟੈਕਸ ਜਾਂ ਪੈਨਸ਼ਨ ਕਟੌਤੀ।
+- g17_2.json#22 (la trattenuta) — expl[4] — বেতন থেকে কাটা টাকা, যেমন কর বা অবদান। → বেতন থেকে কাটা টাকা, যেমন কর বা সামাজিক নিরাপত্তার চাঁদা।
+- g17_2.json#23 (lo stipendio netto) — emoji — 💵 → null
+- g17_2.json#24 (lo stipendio lordo) — expl[1] — ٹیکس اور کنٹری بیوشن کاٹنے سے پہلے کی تنخواہ۔ → ٹیکس اور دوسری کٹوتیوں سے پہلے کی تنخواہ۔
+- g17_2.json#24 (lo stipendio lordo) — expl[3] — ਟੈਕਸ ਅਤੇ ਯੋਗਦਾਨ ਕੱਟਣ ਤੋਂ ਪਹਿਲਾਂ ਦੀ ਤਨਖਾਹ। → ਟੈਕਸ ਅਤੇ ਹੋਰ ਕਟੌਤੀਆਂ ਤੋਂ ਪਹਿਲਾਂ ਦੀ ਤਨਖਾਹ।
+- g17_2.json#24 (lo stipendio lordo) — expl[4] — কর ও অবদান কাটার আগের বেতন। → কর ও অন্যান্য কর্তনের আগের বেতন।
+- g17_2.json#25 (la paga oraria) — emoji — 💰 → null
+- g17_2.json#25 (la paga oraria) — tr[2] — گھنٹے دی دیہاڑی → گھنٹے دی مزدوری
+- g17_2.json#28 (il sindacato) — expl[5] — සේවක අයිතිවාසිකම් ආරක්ෂා කරන සංවිධානය, උදා. සී.ජී.අයි.එල්.. → සේවක අයිතිවාසිකම් ආරක්ෂා කරන සංවිධානය, උදා. සී.ජී.අයි.එල්.
+- g17_2.json#30 (il licenziamento) — emoji — 📤 → null
+- g17_2.json#31 (le dimissioni) — emoji — 🚪 → null
+- g17_2.json#33 (la NASpI) — emoji — 🏦 → null
+- g17_1.json#20 (la catena di montaggio) — emoji — ⚙️ → null
+- g17_3.json#0 (il casco) — emoji — ⛑️ → null
+- g17_3.json#0 (il casco) — expl[7] — Chapeau dur qui protège la tête au travail. → Casque rigide qui protège la tête au travail.
+- g17_3.json#0 (il casco) — expl[8] — Gorro duro que protege la cabeza en el trabajo. → Casco rígido que protege la cabeza en el trabajo.
+- g17_3.json#0 (il casco) — expl[9] — Gorro duro que protege la cabeza en el trabajo. → Casco rígido que protege la cabeza en el trabajo.
+- g17_3.json#2 (le scarpe antinfortunistiche) — emoji — 🥾 → null
+- g17_3.json#7 (il corso sulla sicurezza) — emoji — 🎓 → null
+- g17_3.json#10 (il carrello elevatore) — emoji — 🚜 → null
+- g17_3.json#19 (l'ordine) — emoji — 📝 → null
+- g17_3.json#26 (la chiave inglese) — tr[4] — রেঞ্চ / প্লাস → রেঞ্চ
+- g17_3.json#29 (l'impalcatura) — emoji — 🏗️ → null
+- g17_3.json#34 (il macchinario) — emoji — ⚙️ → null
+- g17_4.json#0 (timbrare) — emoji — ⏲️ → null
+- g17_4.json#3 (licenziarsi) — emoji — 🚪 → null
+- g17_4.json#3 (licenziarsi) — tr[8] — dejar el trabajo / despedirse → dejar el trabajo / dimitir
+- g17_4.json#4 (cercare lavoro) — emoji — 🔎 → null
+- g17_4.json#5 (consegnare) — emoji — 📬 → null
+- g17_4.json#10 (sollevare) — emoji — 🏋️ → null
+- g17_4.json#10 (sollevare) — expl[8] — Subir algo desde el suelo. → Levantar algo del suelo.
+- g17_4.json#10 (sollevare) — expl[9] — Subir algo desde el piso. → Levantar algo del piso.
+- g17_4.json#16 (controllare) — emoji — ✔️ → null
+- g17_4.json#19 (sostituire) — emoji — 🔄 → null
+- g17_4.json#21 (raccogliere) — emoji — 🍅 → null
+- g17_4.json#28 (staccare) — emoji — 🏁 → null
+- g17_4.json#28 (staccare) — tr[7] — finir le travail / débaucher → finir le travail / sortir du boulot
+- g17_4.json#29 (fare gli straordinari) — emoji — ⏱️ → null
+- g17_4.json#32 (in ritardo) — emoji — 🐢 → null
+- g17_4.json#34 (assunto) — emoji — ✅ → null
+- g17_4.json#38 (regolare) — expl[1] — قانون کے مطابق: معاہدے اور کنٹری بیوشن کے ساتھ۔ → قانون کے مطابق: معاہدے اور سوشل سکیورٹی کی ادائیگی کے ساتھ۔
+- g17_4.json#38 (regolare) — expl[3] — ਕਾਨੂੰਨ ਮੁਤਾਬਕ: ਇਕਰਾਰ ਅਤੇ ਯੋਗਦਾਨ ਨਾਲ। → ਕਾਨੂੰਨ ਮੁਤਾਬਕ: ਇਕਰਾਰ ਅਤੇ ਪੈਨਸ਼ਨ ਕਟੌਤੀਆਂ ਨਾਲ।
+- g17_4.json#38 (regolare) — expl[4] — আইন অনুযায়ী: চুক্তি ও অবদানসহ। → আইন অনুযায়ী: চুক্তি ও সামাজিক নিরাপত্তার চাঁদাসহ।
+- g17_5.json#0 (Cerco lavoro.) — emoji — 🔎 → null
+- g17_5.json#1 (Ho esperienza come magazziniere.) — emoji — 📦 → null
+- g17_5.json#2 (Quante ore al giorno?) — emoji — 🕗 → null
+- g17_5.json#3 (Quando mi pagate?) — emoji — 💶 → null
+- g17_5.json#5 (Posso avere un giorno di ferie?) — tr[8] — ¿Puedo tener un día de vacaciones? → ¿Puedo pedir un día de vacaciones?
+- g17_5.json#5 (Posso avere un giorno di ferie?) — exTr[8] — El viernes tengo una cita. ¿Puedo tener un día de vacaciones? → El viernes tengo una cita. ¿Puedo pedir un día de vacaciones?
+- g17_5.json#6 (A che ora comincio?) — emoji — ⏰ → null
+- g17_5.json#7 (A che ora finisco?) — emoji — 🏁 → null
+- g17_5.json#8 (Qual è lo stipendio?) — emoji — 💰 → null
+- g17_5.json#9 (Il contratto è a tempo indeterminato?) — emoji — 📄 → null
+- g17_5.json#10 (Avete bisogno di personale?) — emoji — 👥 → null
+- g17_5.json#14 (Posso cominciare subito.) — emoji — 🚀 → null
+- g17_5.json#15 (Sono disponibile anche il sabato.) — emoji — 📅 → null
+- g17_5.json#16 (Lavoro in un magazzino.) — emoji — 📦 → null
+- g17_5.json#19 (Oggi non vengo, sto male.) — exTr[8] — ¿Diga, jefe? Hoy no voy, estoy malo. → ¿Hola, jefe? Hoy no voy, estoy malo.
+- g17_5.json#19 (Oggi non vengo, sto male.) — exTr[9] — ¿Bueno, jefe? Hoy no voy, me siento mal. → ¿Hola, jefe? Hoy no voy, me siento mal.
+- g17_5.json#22 (Dove devo timbrare?) — emoji — ⏲️ → null
+- g17_5.json#28 (Lo stipendio non è arrivato.) — exTr[9] — Ya es quince y no ha llegado el sueldo. → Ya es día quince y no ha llegado el sueldo.
+- g17_5.json#29 (Quanto pagate all'ora?) — expl[2] — اک گھنٹے کم دی دیہاڑی پچھن لئی۔ → اک گھنٹے کم دی مزدوری پچھن لئی۔
+- g17_6.json#1 (la qualifica) — expl[1] — کام پر آپ کا سرکاری عہدہ، تنخواہ کی پرچی پر لکھا ہوتا ہے۔ → کام پر آپ کا باقاعدہ عہدہ، تنخواہ کی پرچی پر لکھا ہوتا ہے۔
+- g17_6.json#1 (la qualifica) — expl[2] — کم تے تہاڈا سرکاری عہدہ، تنخواہ دی پرچی تے لکھیا ہوندا اے۔ → کم تے تہاڈا باقاعدہ عہدہ، تنخواہ دی پرچی تے لکھیا ہوندا اے۔
+- g17_6.json#1 (la qualifica) — expl[3] — ਕੰਮ 'ਤੇ ਤੁਹਾਡਾ ਸਰਕਾਰੀ ਅਹੁਦਾ, ਤਨਖਾਹ ਦੀ ਪਰਚੀ 'ਤੇ ਲਿਖਿਆ ਹੁੰਦਾ ਹੈ। → ਕੰਮ 'ਤੇ ਤੁਹਾਡਾ ਬਾਕਾਇਦਾ ਅਹੁਦਾ, ਤਨਖਾਹ ਦੀ ਪਰਚੀ 'ਤੇ ਲਿਖਿਆ ਹੁੰਦਾ ਹੈ।
+- g17_6.json#2 (il livello) — emoji — 📶 → null
+- g17_6.json#3 (la paga) — emoji — 💵 → null
+- g17_6.json#5 (la formazione) — emoji — 🎓 → null
+- g17_6.json#8 (la riunione) — emoji — 👥 → null
+- g17_6.json#11 (il rinnovo del contratto) — emoji — 🔁 → null
+- g17_6.json#12 (Mi pagate gli straordinari?) — emoji — ⏱️ → null
+- g17_6.json#13 (Non ho il contratto.) — emoji — ⚠️ → null
+- g17_6.json#19 (Il muletto è rotto.) — emoji — 🚜 → null
+- g17_6.json#21 (Mi hanno licenziato.) — emoji — 📤 → null
+- g17_6.json#22 (Voglio dare le dimissioni.) — emoji — 🚪 → null
+- g17_6.json#24 (Domani ho il giorno libero.) — emoji — 😌 → null
+- g17_6.json#25 (Posso cambiare turno?) — exTr[7] — Jeudi, j'ai rendez-vous à la préfecture. Je peux changer de poste ? → Jeudi, j'ai rendez-vous à la questure. Je peux changer de poste ?
+- g17_6.json#26 (Lavoro dal lunedì al venerdì.) — emoji — 📅 → null
+- g17_6.json#29 (È un lavoro pesante.) — emoji — 🏋️ → null
+- g17_6.json#31 (Faccio otto ore al giorno.) — emoji — 🕗 → null
+- g17_6.json#34 (Buon lavoro!) — tr[7] — Bon travail ! → Bon courage ! / Bonne journée !
+- g17_6.json#34 (Buon lavoro!) — tr[8] — ¡Buen trabajo! / ¡Que vaya bien! → ¡Que te vaya bien en el trabajo!
+- g17_6.json#34 (Buon lavoro!) — exTr[7] — Salut Ravi, bon travail ! À ce soir. → Salut Ravi, bonne journée de travail ! À ce soir.
+- g17_6.json#35 (Mi rinnovate il contratto?) — emoji — 🔁 → null
+- g17_6.json#37 (Sto cercando un lavoro part-time.) — emoji — 🕐 → null

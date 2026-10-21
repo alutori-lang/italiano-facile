@@ -130,12 +130,12 @@ class _SearchScreenState extends State<SearchScreen> {
                     child: HeaderPill(
                       key: const ValueKey<String>('search-language'),
                       label: translationLanguageLabel(t, scope.settings),
-                      icon: Icons.translate_rounded,
                       onTap: () => showTranslationLanguagePicker(context),
                     ),
                   ),
                   IconButton(
                     key: const ValueKey<String>('search-settings'),
+                    visualDensity: VisualDensity.compact,
                     tooltip: t.settingsTitle,
                     icon: const Icon(Icons.settings_rounded),
                     onPressed: () => Navigator.of(context).push(

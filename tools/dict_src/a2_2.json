@@ -52,8 +52,8 @@
    "مصروف / بھرا ہوا",
    "رجھیا ہویا / بھریا ہویا",
    "ਰੁੱਝਿਆ ਹੋਇਆ / ਭਰਿਆ ਹੋਇਆ",
-   "ব্যস্ত / দখল করা",
-   "කාර්යබහුල / අල්ලලා",
+   "ব্যস্ত / খালি নেই",
+   "කාර්යබහුල / භාවිතයේ",
    "忙的 / 有人的",
    "occupé",
    "ocupado",
@@ -396,7 +396,7 @@
    "ظاہر / صاف",
    "صاف / ظاہر",
    "ਸਾਫ਼ / ਜ਼ਾਹਰ",
-   "স্পষ্ট / স্বাভাবিক",
+   "স্পষ্ট / সুস্পষ্ট",
    "පැහැදිලි",
    "明显的",
    "évident",
@@ -476,7 +476,7 @@
   "it": "orribile",
   "type": "a",
   "topic": "adjectives",
-  "emoji": "🤢",
+  "emoji": null,
   "tr": [
    "horrible / awful",
    "بہت برا / خوفناک",
@@ -605,7 +605,7 @@
   "it": "peggio",
   "type": "a",
   "topic": "adjectives",
-  "emoji": "👎",
+  "emoji": null,
   "tr": [
    "worse",
    "بدتر / زیادہ برا",
@@ -834,7 +834,7 @@
    "pero"
   ],
   "expl": [
-   "Like 'ma': shows a contrast; often at the end of a sentence.",
+   "Like 'ma': shows a contrast between two ideas.",
    "'لیکن' کی طرح فرق دکھاتا ہے۔",
    "'پر' وانگوں فرق دسدا اے۔",
    "'ਪਰ' ਵਾਂਗ ਫ਼ਰਕ ਦੱਸਦਾ ਹੈ।",
@@ -968,7 +968,7 @@
    "تیز نئیں، یا ہولی آواز نال۔",
    "ਤੇਜ਼ ਨਹੀਂ, ਜਾਂ ਹੌਲੀ ਆਵਾਜ਼ ਨਾਲ।",
    "দ্রুত নয়, বা নিচু গলায়।",
-   "වේගයෙන් නෙවෙයි, නැත්නම් හෙමින් කටහඬින්.",
+   "වේගයෙන් නෙවෙයි, නැත්නම් අඩු හඬින්.",
    "不快，或者声音很小。",
    "Pas vite, ou à voix basse.",
    "No rápido, o en voz baja.",
@@ -1039,7 +1039,7 @@
   "tr": [
    "lazy",
    "سست / کاہل",
-   "سست / ویہلا",
+   "سست / آلسی",
    "ਆਲਸੀ / ਸੁਸਤ",
    "অলস",
    "කම්මැලි",
@@ -1136,8 +1136,8 @@
   ],
   "expl": [
    "Good; for a medical test it means something was found.",
-   "اچھا؛ میڈیکل ٹیسٹ میں مطلب بیماری ملی ہے۔",
-   "چنگا؛ میڈیکل ٹیسٹ وچ مطلب بیماری لبھی اے۔",
+   "اچھا؛ میڈیکل ٹیسٹ میں مطلب کچھ ملا ہے۔",
+   "چنگا؛ میڈیکل ٹیسٹ وچ مطلب کجھ لبھیا اے۔",
    "ਚੰਗਾ; ਮੈਡੀਕਲ ਟੈਸਟ ਵਿੱਚ ਮਤਲਬ ਕੁਝ ਮਿਲਿਆ ਹੈ।",
    "ভালো; মেডিকেল টেস্টে মানে কিছু পাওয়া গেছে।",
    "හොඳ; වෛද්‍ය පරීක්ෂණයක නම් යමක් හමු වුණා.",
@@ -1379,7 +1379,7 @@
   "it": "pronto",
   "type": "a",
   "topic": "adjectives",
-  "emoji": "✅",
+  "emoji": null,
   "tr": [
    "ready / hello (on the phone)",
    "تیار / ہیلو (فون پر)",
@@ -1457,8 +1457,8 @@
    "අද රෑ මට ඇත්තටම මහන්සියි.",
    "今晚我真的很累。",
    "Je suis vraiment fatigué ce soir.",
-   "Esta noche estoy muy cansado de verdad.",
-   "Esta noche estoy de verdad cansado."
+   "Esta noche estoy realmente cansado.",
+   "De verdad que estoy cansado esta noche."
   ]
  },
  {
@@ -1492,7 +1492,7 @@
   ],
   "ex": "Mio figlio va alla scuola pubblica.",
   "exTr": [
-   "My son goes to the public school.",
+   "My son goes to a state school.",
    "میرا بیٹا سرکاری اسکول جاتا ہے۔",
    "میرا پتر سرکاری اسکول جاندا اے۔",
    "ਮੇਰਾ ਪੁੱਤਰ ਸਰਕਾਰੀ ਸਕੂਲ ਜਾਂਦਾ ਹੈ।",

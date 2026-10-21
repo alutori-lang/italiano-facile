@@ -1,0 +1,297 @@
+# Tester 2 — a1 (adjectives and small words A–L)
+
+Files: tools/dict_src/a1_1..4.json
+Entries checked: 143 (every field: it, type, topic, emoji, tr, expl, ex, exTr in all 10 slots)
+Entries removed: 0
+Corrections: 278
+
+Final validator: `python -I tools/check_dict.py tools/dict_src/a1_*.json`
+→ `143 entries in 4 files, 0 errors`
+
+## Notes
+- Main problem (about 230 fixes): the explanations in Urdu, Shahmukhi, Gurmukhi, Bengali and sometimes Sinhala wrote the Italian forms in their own script, for example فا کالدو, ਸਤਾਈ ਆਤੇਂਤੋ!, কন্ত্রাত্তো আ তেম্পো দেতেরমিনাতো, චේර්තෝ!. SPEC "Known pitfalls" says not to transliterate Italian. All of these now quote the Italian in lower-case Latin letters (fa caldo, stai attento!, contratto a tempo determinato, certo!), the same way the Chinese, French and Spanish slots already did. Capital "Lei" is kept, because the capital letter is the point.
+- Example translations that still had Italian written in another script now use real words: پرمیسو دی سوجورنو and related forms became "residence permit" (finalmente), and کودیچے فیسکالے and related forms became "tax code" (eccetera).
+- Emoji set to null where the picture was wrong or only "close enough": 🆓 on libero (the entry itself says libero is NOT "free of charge"), ⏩ on avanti, 🔧 on guasto, 🌍 on dappertutto, 〰️ on circa, ⏪ on fa, 🔄 on invece, ⚡ on il prima possibile, 🙋 on chi, 🧑 on giovane, ❌ on falso, 🎉 on festivo.
+- Wrong meanings fixed: Sinhala තම්බපු නොකළ ("not boiled") for integrale; Sinhala ඒ කිව්වේ ("I mean") for a proposito; French "travail à domicile" (that means working from home) for lavoro domestico; LatAm "sin papeles" (undocumented) for in nero; Chinese 那个 for the conjunction che; Chinese "I take care of" for "lavoro con" (anziano).
+- Italian: one example rewritten to sound natural: "Mio cugino fa il lavoro autonomo." → "Mio cugino è un lavoratore autonomo." The headwords, accents (così, là, c'è, chissà, cioè) and the other examples were correct.
+- Bengali was already Bangladesh usage (পানি, নাশতা, বাসা). One grammar fix was needed: আমি দুর্বল লাগছে → আমার দুর্বল লাগছে.
+
+## Corrections (file#index — field — wrong → right)
+- a1_1.json#4 (caldo) — expl[UR] — فا کالدو → fa caldo
+- a1_1.json#4 (caldo) — expl[PS] — فا کالدو → fa caldo
+- a1_1.json#4 (caldo) — expl[PA] — ਫਾ ਕਾਲਦੋ → fa caldo
+- a1_1.json#4 (caldo) — expl[BN] — ফা কালদো → fa caldo
+- a1_1.json#5 (freddo) — expl[UR] — فا فریدو → fa freddo
+- a1_1.json#5 (freddo) — expl[PS] — فا فریدو → fa freddo
+- a1_1.json#5 (freddo) — expl[PA] — ਫਾ ਫ੍ਰੇਦੋ → fa freddo
+- a1_1.json#5 (freddo) — expl[BN] — ফা ফ্রেদ্দো → fa freddo
+- a1_1.json#6 (debole) — exTr[BN] — আমি দুর্বল লাগছে → আমার দুর্বল লাগছে
+- a1_1.json#8 (giovane) — emoji — 🧑 → null
+- a1_1.json#9 (anziano) — expl[UR] — گلی آنتسیانی → gli anziani
+- a1_1.json#9 (anziano) — expl[PS] — گلی آنتسیانی → gli anziani
+- a1_1.json#9 (anziano) — expl[PA] — ਗਲੀ ਆਂਤਸਿਆਨੀ → gli anziani
+- a1_1.json#9 (anziano) — expl[BN] — গ্লি আনৎসিয়ানি → gli anziani
+- a1_1.json#9 (anziano) — exTr[ZH] — 我照顾一位老太太。 → 我和一位老太太一起工作。
+- a1_1.json#10 (libero) — emoji — 🆓 → null
+- a1_1.json#10 (libero) — expl[EN] — Not = gratis (free of charge). → Free of charge = gratis.
+- a1_1.json#10 (libero) — expl[UR] — گراتیس → gratis
+- a1_1.json#10 (libero) — expl[PS] — گراتیس → gratis
+- a1_1.json#10 (libero) — expl[PA] — ਗ੍ਰਾਤਿਸ → gratis
+- a1_1.json#10 (libero) — expl[BN] — গ্রাতিস → gratis
+- a1_1.json#10 (libero) — expl[ES] — Gratis se dice gratis. → Gratuito se dice gratis.
+- a1_1.json#10 (libero) — expl[LA] — Gratis se dice gratis. → Gratuito se dice gratis.
+- a1_1.json#12 (ammalato) — expl[UR] — مالاتو → malato
+- a1_1.json#12 (ammalato) — expl[PS] — مالاتو → malato
+- a1_1.json#12 (ammalato) — expl[PA] — ਮਾਲਾਤੋ → malato
+- a1_1.json#12 (ammalato) — expl[BN] — মালাতো → malato
+- a1_1.json#13 (attento) — expl[UR] — ستائی آتینتو! → stai attento!
+- a1_1.json#13 (attento) — expl[PS] — ستائی آتینتو! → stai attento!
+- a1_1.json#13 (attento) — expl[PA] — ਸਤਾਈ ਆਤੇਂਤੋ! → stai attento!
+- a1_1.json#13 (attento) — expl[BN] — স্তাই আত্তেন্তো! → stai attento!
+- a1_1.json#16 (antipatico) — expl[UR] — سمپاتیکو → simpatico
+- a1_1.json#16 (antipatico) — expl[PS] — سمپاتیکو → simpatico
+- a1_1.json#16 (antipatico) — expl[PA] — ਸਿੰਪਾਤੀਕੋ → simpatico
+- a1_1.json#16 (antipatico) — expl[BN] — সিম্পাতিকোর → simpatico-র
+- a1_1.json#16 (antipatico) — expl[SI] — සිම්පාතිකෝ → simpatico
+- a1_1.json#18 (buio) — expl[UR] — اے بویو → è buio
+- a1_1.json#18 (buio) — expl[PS] — اے بویو → è buio
+- a1_1.json#18 (buio) — expl[PA] — ਏ ਬੂਯੋ → è buio
+- a1_1.json#18 (buio) — expl[BN] — এ বুইও → è buio
+- a1_1.json#20 (certo) — expl[UR] — چیرتو! → certo!
+- a1_1.json#20 (certo) — expl[PS] — چیرتو! → certo!
+- a1_1.json#20 (certo) — expl[PA] — ਚੇਰਤੋ! → certo!
+- a1_1.json#20 (certo) — expl[BN] — চের্তো! → certo!
+- a1_1.json#20 (certo) — expl[SI] — චේර්තෝ! → certo!
+- a1_1.json#23 (diverso) — expl[UR] — دیویرسی → diversi
+- a1_1.json#23 (diverso) — expl[PS] — دیویرسی → diversi
+- a1_1.json#23 (diverso) — expl[PA] — ਦਿਵੇਰਸੀ → diversi
+- a1_1.json#23 (diverso) — expl[BN] — দিভের্সি → diversi
+- a1_1.json#23 (diverso) — expl[SI] — දිවෙර්සි → diversi
+- a1_1.json#26 (esatto) — expl[UR] — ایزاتو! → esatto!
+- a1_1.json#26 (esatto) — expl[PS] — ایزاتو! → esatto!
+- a1_1.json#26 (esatto) — expl[PA] — ਏਜ਼ਾਤੋ! → esatto!
+- a1_1.json#26 (esatto) — expl[BN] — এজাত্তো! → esatto!
+- a1_1.json#26 (esatto) — expl[SI] — එසාත්තෝ! → esatto!
+- a1_1.json#27 (falso) — emoji — ❌ → null
+- a1_1.json#29 (fermo) — expl[UR] — ستائی فیرمو! → stai fermo!
+- a1_1.json#29 (fermo) — expl[PS] — ستائی فیرمو! → stai fermo!
+- a1_1.json#29 (fermo) — expl[PA] — ਸਤਾਈ ਫੇਰਮੋ! → stai fermo!
+- a1_1.json#29 (fermo) — expl[BN] — স্তাই ফের্মো! → stai fermo!
+- a1_1.json#30 (finito) — expl[UR] — اے فینیتو → è finito
+- a1_1.json#30 (finito) — expl[PS] — اے فینیتو → è finito
+- a1_1.json#30 (finito) — expl[PA] — ਏ ਫ਼ੀਨੀਤੋ → è finito
+- a1_1.json#30 (finito) — expl[BN] — এ ফিনিতো → è finito
+- a1_1.json#31 (fortunato) — exTr[LA] — luego luego → de inmediato
+- a1_1.json#33 (festivo) — emoji — 🎉 → null
+- a1_2.json#0 (feriale) — expl[UR] — فیستیوو → festivo
+- a1_2.json#0 (feriale) — expl[PS] — فیستیوو → festivo
+- a1_2.json#0 (feriale) — expl[PA] — ਫ਼ੇਸਤੀਵੋ → festivo
+- a1_2.json#0 (feriale) — expl[BN] — ফেস্তিভোর → festivo-র
+- a1_2.json#2 (grosso) — expl[UR] — گرانڈے → grande
+- a1_2.json#2 (grosso) — expl[PS] — گرانڈے → grande
+- a1_2.json#2 (grosso) — expl[PA] — ਗ੍ਰਾਂਦੇ → grande
+- a1_2.json#2 (grosso) — expl[BN] — গ্রান্দের → grande-র
+- a1_2.json#3 (guasto) — emoji — 🔧 → null
+- a1_2.json#3 (guasto) — exTr[PS] — پوڑیاں تو جا → پوڑیاں توں جا
+- a1_2.json#8 (inutile) — expl[UR] — اے انوتیلے → è inutile
+- a1_2.json#8 (inutile) — expl[PS] — اے انوتیلے → è inutile
+- a1_2.json#8 (inutile) — expl[PA] — ਏ ਇਨੂਤੀਲੇ → è inutile
+- a1_2.json#8 (inutile) — expl[BN] — এ ইনুতিলে → è inutile
+- a1_2.json#8 (inutile) — exTr[LA] — No sirve llamar → No sirve de nada llamar
+- a1_2.json#11 (lordo) — expl[UR] — نیتو → netto
+- a1_2.json#11 (lordo) — expl[PS] — نیتو → netto
+- a1_2.json#11 (lordo) — expl[PA] — ਨੇਤੋ → netto
+- a1_2.json#11 (lordo) — expl[BN] — নেত্তোর → netto-র
+- a1_2.json#14 (domestico) — expl[UR] — لاوورو دومیستیکو → lavoro domestico
+- a1_2.json#14 (domestico) — expl[PS] — لاوورو دومیستیکو → lavoro domestico
+- a1_2.json#14 (domestico) — expl[PA] — ਲਾਵੋਰੋ ਦੋਮੇਸਤੀਕੋ → lavoro domestico
+- a1_2.json#14 (domestico) — expl[BN] — লাভোরো দোমেস্তিকো → lavoro domestico
+- a1_2.json#14 (domestico) — expl[FR] — travail à domicile, ménage → ménage ou travail d'aide à domicile
+- a1_2.json#14 (domestico) — exTr[LA] — Mi esposa trabaja en el trabajo doméstico. → Mi esposa trabaja como empleada doméstica.
+- a1_2.json#16 (autonomo) — ex — Mio cugino fa il lavoro autonomo. → Mio cugino è un lavoratore autonomo.
+- a1_2.json#16 (autonomo) — expl[PS] — پارتیتا ایوا → partita IVA
+- a1_2.json#16 (autonomo) — expl[PA] — ਪਾਰਤੀਤਾ ਈਵਾ → partita IVA
+- a1_2.json#17 (determinato) — tr[ES] — temporal / determinado → temporal / de duración determinada
+- a1_2.json#17 (determinato) — expl[UR] — کونتراتو آ تیمپو دیتیرمیناتو → contratto a tempo determinato
+- a1_2.json#17 (determinato) — expl[PS] — کونتراتو آ تیمپو دیتیرمیناتو → contratto a tempo determinato
+- a1_2.json#17 (determinato) — expl[PA] — ਕੋਂਤਰਾਤੋ ਆ ਤੇਂਪੋ ਦੇਤੇਰਮੀਨਾਤੋ → contratto a tempo determinato
+- a1_2.json#17 (determinato) — expl[BN] — কন্ত্রাত্তো আ তেম্পো দেতেরমিনাতো → contratto a tempo determinato
+- a1_2.json#18 (indeterminato) — expl[UR] — کونتراتو آ تیمپو اندیتیرمیناتو → contratto a tempo indeterminato
+- a1_2.json#18 (indeterminato) — expl[PS] — کونتراتو آ تیمپو اندیتیرمیناتو → contratto a tempo indeterminato
+- a1_2.json#18 (indeterminato) — expl[PA] — ਕੋਂਤਰਾਤੋ ਆ ਤੇਂਪੋ ਇੰਦੇਤੇਰਮੀਨਾਤੋ → contratto a tempo indeterminato
+- a1_2.json#18 (indeterminato) — expl[BN] — কন্ত্রাত্তো আ তেম্পো ইন্দেতেরমিনাতো → contratto a tempo indeterminato
+- a1_2.json#18 (indeterminato) — exTr[LA] — contrato de planta → contrato por tiempo indeterminado
+- a1_2.json#20 (interno) — expl[UR] — انتیرنو 5 → interno 5
+- a1_2.json#20 (interno) — expl[PS] — انتیرنو 5 → interno 5
+- a1_2.json#20 (interno) — expl[PA] — ਇੰਤੇਰਨੋ 5 → interno 5
+- a1_2.json#20 (interno) — expl[BN] — ইন্তেরনো ৫ → interno ৫
+- a1_2.json#20 (interno) — expl[SI] — ඉන්තෙර්නෝ 5 → interno 5
+- a1_2.json#22 (liscio) — tr[SI] — සිනිඳු / කෙළින් (කොණ්ඩය) → සිනිඳු / කෙළින් (කොණ්ඩය) / ගෑස් නැති (වතුර)
+- a1_2.json#22 (liscio) — expl[UR] — آکوا لیشا → acqua liscia
+- a1_2.json#22 (liscio) — expl[PS] — آکوا لیشا → acqua liscia
+- a1_2.json#22 (liscio) — expl[PA] — ਆਕੂਆ ਲੀਸ਼ਾ → acqua liscia
+- a1_2.json#22 (liscio) — expl[BN] — আক্কুয়া লিশা → acqua liscia
+- a1_2.json#23 (frizzante) — expl[UR] — آکوا فریزانتے → acqua frizzante
+- a1_2.json#23 (frizzante) — expl[PS] — آکوا فریزانتے → acqua frizzante
+- a1_2.json#23 (frizzante) — expl[PA] — ਆਕੂਆ ਫ੍ਰਿਜ਼ਾਂਤੇ → acqua frizzante
+- a1_2.json#23 (frizzante) — expl[BN] — আক্কুয়া ফ্রিজান্তে → acqua frizzante
+- a1_2.json#24 (integrale) — tr[SI] — තම්බපු නොකළ / සම්පූර්ණ ධාන්‍ය → සම්පූර්ණ ධාන්‍ය / ආටා
+- a1_2.json#24 (integrale) — expl[UR] — پانے انتیگرالے → pane integrale
+- a1_2.json#28 (anche) — expl[UR] — انکیو → anch'io
+- a1_2.json#28 (anche) — expl[PS] — انکیو → anch'io
+- a1_2.json#28 (anche) — expl[PA] — ਆਂਕਿਓ → anch'io
+- a1_2.json#28 (anche) — expl[BN] — আঙ্কিও → anch'io
+- a1_2.json#30 (abbastanza) — expl[UR] — ابستانزا بینے → abbastanza bene
+- a1_2.json#30 (abbastanza) — expl[PS] — ابستانزا بینے → abbastanza bene
+- a1_2.json#30 (abbastanza) — expl[PA] — ਅਬਾਸਤਾਂਜ਼ਾ ਬੇਨੇ → abbastanza bene
+- a1_2.json#30 (abbastanza) — expl[BN] — আব্বাস্তান্জা বেনে → abbastanza bene
+- a1_2.json#33 (avanti) — emoji — ⏩ → null
+- a1_2.json#33 (avanti) — expl[UR] — اوانتی! → avanti!
+- a1_2.json#33 (avanti) — expl[PS] — اوانتی! → avanti!
+- a1_2.json#33 (avanti) — expl[PA] — ਅਵਾਂਤੀ! → avanti!
+- a1_2.json#33 (avanti) — expl[BN] — আভান্তি! → avanti!
+- a1_2.json#33 (avanti) — expl[SI] — අවාන්ති! → avanti!
+- a1_3.json#1 (altro) — expl[UR] — آلترو؟ → altro?
+- a1_3.json#1 (altro) — expl[PS] — آلترو؟ → altro?
+- a1_3.json#1 (altro) — expl[PA] — ਆਲਤਰੋ? → altro?
+- a1_3.json#1 (altro) — expl[BN] — আলত্রো? → altro?
+- a1_3.json#3 (basta) — expl[UR] — باستا! → basta!
+- a1_3.json#3 (basta) — expl[UR] — باستا کوزی → basta così
+- a1_3.json#3 (basta) — expl[PS] — باستا! → basta!
+- a1_3.json#3 (basta) — expl[PS] — باستا کوزی → basta così
+- a1_3.json#3 (basta) — expl[PA] — ਬਾਸਤਾ! → basta!
+- a1_3.json#3 (basta) — expl[PA] — ਬਾਸਤਾ ਕੋਜ਼ੀ → basta così
+- a1_3.json#3 (basta) — expl[BN] — বাস্তা! → basta!
+- a1_3.json#3 (basta) — expl[BN] — বাস্তা কোজি → basta così
+- a1_3.json#3 (basta) — expl[SI] — බාස්තා! → basta!
+- a1_3.json#4 (benissimo) — expl[UR] — بینے سے → bene سے
+- a1_3.json#4 (benissimo) — expl[UR] — ستو بینیسیمو → sto benissimo
+- a1_3.json#4 (benissimo) — expl[PS] — بینے توں → bene توں
+- a1_3.json#4 (benissimo) — expl[PS] — ستو بینیسیمو → sto benissimo
+- a1_3.json#4 (benissimo) — expl[PA] — ਬੇਨੇ ਤੋਂ → bene ਤੋਂ
+- a1_3.json#4 (benissimo) — expl[PA] — ਸਤੋ ਬੇਨੀਸੀਮੋ → sto benissimo
+- a1_3.json#4 (benissimo) — expl[BN] — বেনের → bene-র
+- a1_3.json#4 (benissimo) — expl[BN] — স্তো বেনিসিমো → sto benissimo
+- a1_3.json#4 (benissimo) — expl[SI] — බේනේ වලට → bene වලට
+- a1_3.json#5 (circa) — emoji — 〰️ → null
+- a1_3.json#6 (come) — expl[UR] — کومے ستائی؟ → come stai?
+- a1_3.json#6 (come) — expl[PS] — کومے ستائی؟ → come stai?
+- a1_3.json#6 (come) — expl[PA] — ਕੋਮੇ ਸਤਾਈ? → come stai?
+- a1_3.json#6 (come) — expl[BN] — কোমে স্তাই? → come stai?
+- a1_3.json#7 (così) — expl[UR] — کوزی بیلو → così bello
+- a1_3.json#7 (così) — expl[PS] — کوزی بیلو → così bello
+- a1_3.json#7 (così) — expl[PA] — ਕੋਜ਼ੀ ਬੇਲੋ → così bello
+- a1_3.json#7 (così) — expl[BN] — কোজি বেল্লো → così bello
+- a1_3.json#8 (cosa) — expl[UR] — کوزا ووئی؟ → cosa vuoi?
+- a1_3.json#8 (cosa) — expl[PS] — کوزا ووئی؟ → cosa vuoi?
+- a1_3.json#8 (cosa) — expl[PA] — ਕੋਜ਼ਾ ਵੁਈ? → cosa vuoi?
+- a1_3.json#8 (cosa) — expl[BN] — কোজা ভুওই? → cosa vuoi?
+- a1_3.json#9 (chi) — emoji — 🙋 → null
+- a1_3.json#9 (chi) — expl[UR] — کی اے؟ → chi è?
+- a1_3.json#9 (chi) — expl[PS] — کی اے؟ → chi è?
+- a1_3.json#9 (chi) — expl[PA] — ਕੀ ਏ? → chi è?
+- a1_3.json#9 (chi) — expl[BN] — কি এ? → chi è?
+- a1_3.json#10 (che) — tr[ZH] — 那个 / 什么 / 的 → 什么 / 哪个 / ……的
+- a1_3.json#10 (che) — exTr[FR] — Je pense qu'il pleut demain. → Je pense qu'il pleuvra demain.
+- a1_3.json#15 (c'è) — expl[UR] — چی سونو → ci sono
+- a1_3.json#15 (c'è) — expl[PS] — چی سونو → ci sono
+- a1_3.json#15 (c'è) — expl[PA] — ਚੀ ਸੋਨੋ → ci sono
+- a1_3.json#15 (c'è) — expl[BN] — চি সোনো → ci sono
+- a1_3.json#15 (c'è) — expl[SI] — චි සෝනෝ → ci sono
+- a1_3.json#16 (ci sono) — expl[UR] — واحد: چے۔ → واحد: c'è۔
+- a1_3.json#16 (ci sono) — expl[PS] — واحد: چے۔ → واحد: c'è۔
+- a1_3.json#16 (ci sono) — expl[PA] — ਇੱਕਵਚਨ: ਚੇ। → ਇੱਕਵਚਨ: c'è।
+- a1_3.json#16 (ci sono) — expl[BN] — একবচন: চে। → একবচন: c'è।
+- a1_3.json#16 (ci sono) — expl[SI] — ඒක වචනය: චේ. → ඒක වචනය: c'è.
+- a1_3.json#19 (davvero) — expl[UR] — داویرو؟ → davvero?
+- a1_3.json#19 (davvero) — expl[PS] — داویرو؟ → davvero?
+- a1_3.json#19 (davvero) — expl[PA] — ਦਾਵੇਰੋ? → davvero?
+- a1_3.json#19 (davvero) — expl[BN] — দাভেরো? → davvero?
+- a1_3.json#21 (dappertutto) — emoji — 🌍 → null
+- a1_3.json#24 (ecco) — expl[UR] — ایکو ایل پاسپورتو → ecco il passaporto
+- a1_3.json#24 (ecco) — expl[PS] — ایکو ایل پاسپورتو → ecco il passaporto
+- a1_3.json#24 (ecco) — expl[PA] — ਏਕੋ ਇਲ ਪਾਸਪੋਰਤੋ → ecco il passaporto
+- a1_3.json#24 (ecco) — expl[BN] — এক্কো ইল পাসাপোর্তো → ecco il passaporto
+- a1_3.json#25 (eccetera) — expl[UR] — ای سی سی → ecc.
+- a1_3.json#25 (eccetera) — expl[PS] — ای سی سی → ecc.
+- a1_3.json#25 (eccetera) — expl[PA] — ਏਚਚ → ecc.
+- a1_3.json#25 (eccetera) — exTr[UR] — کودیچے فیسکالے → ٹیکس کوڈ
+- a1_3.json#25 (eccetera) — exTr[PS] — کودیچے فیسکالے → ٹیکس کوڈ
+- a1_3.json#25 (eccetera) — exTr[PA] — ਕੋਦੀਚੇ ਫ਼ਿਸਕਾਲੇ → ਟੈਕਸ ਕੋਡ
+- a1_3.json#25 (eccetera) — exTr[BN] — কোদিচে ফিসকালে → ট্যাক্স কোড
+- a1_3.json#28 (fa) — emoji — ⏪ → null
+- a1_3.json#31 (finalmente) — exTr[UR] — پرمیسو دی سوجورنو → رہائشی پرمٹ
+- a1_3.json#31 (finalmente) — exTr[PS] — پرمیسو دی سوجورنو → رہائشی پرمٹ
+- a1_3.json#31 (finalmente) — exTr[PA] — ਪਰਮੇਸੋ ਦੀ ਸੋਜੋਰਨੋ → ਰਿਹਾਇਸ਼ੀ ਪਰਮਿਟ
+- a1_3.json#31 (finalmente) — exTr[BN] — পারমেসো দি সোজর্নো → রেসিডেন্স পারমিট
+- a1_3.json#33 (infatti) — expl[UR] — انفاتی! → infatti!
+- a1_3.json#33 (infatti) — expl[PS] — انفاتی! → infatti!
+- a1_3.json#33 (infatti) — expl[PA] — ਇਨਫ਼ਾਤੀ! → infatti!
+- a1_3.json#33 (infatti) — expl[BN] — ইনফাত্তি! → infatti!
+- a1_3.json#33 (infatti) — exTr[BN] — সে ক্লান্ত ছিল, তাই আসলে তাড়াতাড়ি ঘুমাতে গেছে। → সে ক্লান্ত ছিল, আর তাই তো তাড়াতাড়ি ঘুমাতে গেছে।
+- a1_4.json#0 (invece) — emoji — 🔄 → null
+- a1_4.json#0 (invece) — tr[FR] — au contraire / plutôt → par contre / à la place
+- a1_4.json#0 (invece) — exTr[EN] — He works during the day, I instead work at night. → He works during the day, while I work at night.
+- a1_4.json#3 (insomma) — expl[UR] — انسوما → insomma
+- a1_4.json#3 (insomma) — expl[PS] — انسوما → insomma
+- a1_4.json#3 (insomma) — expl[PA] — ਇਨਸੋਮਾ → insomma
+- a1_4.json#3 (insomma) — expl[BN] — ইনসোম্মা → insomma
+- a1_4.json#5 (là) — expl[UR] — لی جیسا۔ دی لا → lì جیسا۔ di là
+- a1_4.json#5 (là) — expl[PS] — لی ورگا۔ دی لا → lì ورگا۔ di là
+- a1_4.json#5 (là) — expl[PA] — ਲੀ ਵਰਗਾ। ਦੀ ਲਾ → lì ਵਰਗਾ। di là
+- a1_4.json#5 (là) — expl[BN] — লি-র মতো। দি লা → lì-র মতো। di là
+- a1_4.json#5 (là) — expl[SI] — ලී වගේ → lì වගේ
+- a1_4.json#6 (lei) — expl[UR] — لیئی → Lei
+- a1_4.json#6 (lei) — expl[PS] — لیئی → Lei
+- a1_4.json#6 (lei) — expl[PA] — ਲੇਈ → Lei
+- a1_4.json#8 (loro) — expl[UR] — ال لورو → il loro
+- a1_4.json#8 (loro) — expl[PS] — ال لورو → il loro
+- a1_4.json#8 (loro) — expl[PA] — ਇਲ ਲੋਰੋ → il loro
+- a1_4.json#8 (loro) — expl[BN] — ইল লোরো → il loro
+- a1_4.json#9 (lentamente) — expl[UR] — پیانو → piano
+- a1_4.json#9 (lentamente) — expl[PS] — پیانو → piano
+- a1_4.json#9 (lentamente) — expl[PA] — ਪਿਆਨੋ → piano
+- a1_4.json#9 (lentamente) — expl[BN] — পিয়ানো → piano
+- a1_4.json#9 (lentamente) — expl[SI] — පියානෝ → piano
+- a1_4.json#9 (lentamente) — exTr[UR] — کیا آپ تھوڑا آہستہ بول سکتے ہیں، پلیز؟ → براہ مہربانی، کیا آپ تھوڑا آہستہ بول سکتے ہیں؟
+- a1_4.json#9 (lentamente) — exTr[PS] — تسی تھوڑا ہولی بول سکدے او، مہربانی؟ → مہربانی کر کے، تسی تھوڑا ہولی بول سکدے او؟
+- a1_4.json#9 (lentamente) — exTr[PA] — ਕੀ ਤੁਸੀਂ ਥੋੜ੍ਹਾ ਹੌਲੀ ਬੋਲ ਸਕਦੇ ਹੋ, ਮਿਹਰਬਾਨੀ? → ਮਿਹਰਬਾਨੀ ਕਰਕੇ, ਕੀ ਤੁਸੀਂ ਥੋੜ੍ਹਾ ਹੌਲੀ ਬੋਲ ਸਕਦੇ ਹੋ?
+- a1_4.json#9 (lentamente) — exTr[BN] — আপনি কি একটু ধীরে বলতে পারেন, দয়া করে? → দয়া করে, আপনি কি একটু ধীরে বলতে পারেন?
+- a1_4.json#10 (assolutamente) — expl[UR] — اسولوتامینتے نو → assolutamente no
+- a1_4.json#10 (assolutamente) — expl[PS] — اسولوتامینتے نو → assolutamente no
+- a1_4.json#10 (assolutamente) — expl[PA] — ਅਸੋਲੂਤਾਮੇਂਤੇ ਨੋ → assolutamente no
+- a1_4.json#10 (assolutamente) — expl[BN] — আসোলুতামেন্তে নো → assolutamente no
+- a1_4.json#13 (ciascuno) — expl[UR] — اونیونو → ognuno
+- a1_4.json#13 (ciascuno) — expl[PS] — اونیونو → ognuno
+- a1_4.json#13 (ciascuno) — expl[PA] — ਓਨਿਊਨੋ → ognuno
+- a1_4.json#13 (ciascuno) — expl[BN] — অনিউনোর → ognuno-র
+- a1_4.json#13 (ciascuno) — exTr[UR] — ٹکٹیں دو یورو فی کس ہیں۔ → ہر ٹکٹ دو یورو کی ہے۔
+- a1_4.json#14 (a posto) — expl[UR] — توتو آ پوستو؟ → tutto a posto?
+- a1_4.json#14 (a posto) — expl[PS] — توتو آ پوستو؟ → tutto a posto?
+- a1_4.json#14 (a posto) — expl[PA] — ਤੁੱਤੋ ਆ ਪੋਸਤੋ? → tutto a posto?
+- a1_4.json#14 (a posto) — expl[BN] — তুত্তো আ পোস্তো? → tutto a posto?
+- a1_4.json#18 (da solo) — expl[UR] — دا سولا → da sola
+- a1_4.json#18 (da solo) — expl[PS] — دا سولا → da sola
+- a1_4.json#18 (da solo) — expl[PA] — ਦਾ ਸੋਲਾ → da sola
+- a1_4.json#18 (da solo) — expl[BN] — দা সোলা → da sola
+- a1_4.json#21 (in nero) — tr[LA] — en negro / sin papeles → en negro / informal
+- a1_4.json#23 (ad esempio) — expl[UR] — پیر ایزیمپیو → per esempio
+- a1_4.json#23 (ad esempio) — expl[PS] — پیر ایزیمپیو → per esempio
+- a1_4.json#23 (ad esempio) — expl[PA] — ਪੇਰ ਏਜ਼ੇਂਪਿਓ → per esempio
+- a1_4.json#23 (ad esempio) — expl[BN] — পের এজেম্পিও → per esempio
+- a1_4.json#23 (ad esempio) — expl[SI] — පේර් එසෙම්පියෝ → per esempio
+- a1_4.json#25 (a proposito) — tr[SI] — ඒ කිව්වේ / මතක් වුණා → ආ, ඒක නෙවෙයි / මතක් වුණා
+- a1_4.json#27 (con calma) — expl[UR] — کون کالما! → con calma!
+- a1_4.json#27 (con calma) — expl[PS] — کون کالما! → con calma!
+- a1_4.json#27 (con calma) — expl[PA] — ਕੋਨ ਕਾਲਮਾ! → con calma!
+- a1_4.json#27 (con calma) — expl[BN] — কন কালমা! → con calma!
+- a1_4.json#29 (Come mai?) — tr[ES] — ¿Cómo es que? / ¿Por qué? → ¿Y eso? / ¿Cómo es eso?
+- a1_4.json#29 (Come mai?) — tr[LA] — ¿Cómo que? / ¿Por qué? → ¿Cómo así? / ¿Por qué?
+- a1_4.json#31 (il prima possibile) — emoji — ⚡ → null
+- a1_4.json#32 (a domicilio) — exTr[EN] — Do you deliver to the home? → Do you do home delivery?
+- a1_4.json#36 (in fretta) — expl[UR] — او فریتا → ho fretta
+- a1_4.json#36 (in fretta) — expl[PS] — او فریتا → ho fretta
+- a1_4.json#36 (in fretta) — expl[PA] — ਓ ਫ੍ਰੇੱਤਾ → ho fretta
+- a1_4.json#36 (in fretta) — expl[BN] — ও ফ্রেত্তা → ho fretta
+- a1_4.json#39 (da quando) — exTr[PS] — میں چنگا آں۔ → میں پہلاں نالوں چنگا آں۔
+- a1_4.json#39 (da quando) — exTr[PA] — ਮੈਂ ਠੀਕ ਹਾਂ। → ਮੈਂ ਪਹਿਲਾਂ ਨਾਲੋਂ ਚੰਗਾ ਹਾਂ।

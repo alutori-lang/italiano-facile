@@ -7,7 +7,7 @@
   "tr": [
    "but",
    "لیکن / مگر",
-   "پر / پر ایہہ",
+   "پر",
    "ਪਰ",
    "কিন্তু",
    "නමුත් / ඒත්",
@@ -136,7 +136,7 @@
   "tr": [
    "less / fewer",
    "کم",
-   "گھٹ / گھٹ",
+   "گھٹ",
    "ਘੱਟ",
    "কম",
    "අඩුවෙන්",
@@ -178,10 +178,10 @@
   "emoji": null,
   "tr": [
    "while",
-   "جبکہ / جب تک",
-   "جدوں / جد تک",
-   "ਜਦੋਂ / ਜਦ ਤੱਕ",
-   "যখন / ততক্ষণ",
+   "جبکہ / کے دوران",
+   "جدوں / دے دوران",
+   "ਜਦੋਂ / ਦੇ ਦੌਰਾਨ",
+   "যখন / -এর সময়",
    "අතරතුර / ගමන්",
    "一边…一边 / 当…时",
    "pendant que",
@@ -283,8 +283,8 @@
    "මට අයිති දේ; ස්ත්‍රී ලිංග හා බහු වචන රූප වෙනස්.",
    "属于我的；阴性是mia，复数是miei、mie。",
    "Qui est à moi ; féminin « mia », pluriel « miei », « mie ».",
-   "Que es de mí; femenino «mia», plural «miei», «mie».",
-   "Que es de mí; femenino «mia», plural «miei», «mie»."
+   "Que me pertenece; femenino «mia», plural «miei», «mie».",
+   "Que me pertenece; femenino «mia», plural «miei», «mie»."
   ],
   "ex": "Questo è il mio telefono.",
   "exTr": [
@@ -397,7 +397,7 @@
    "نرم / پولا",
    "ਨਰਮ / ਪੋਲਾ",
    "নরম",
-   "මෘදු / සැහැල්ලු",
+   "මෘදු / මොළොක්",
    "软的 / 柔软",
    "doux / mou",
    "blando / suave",
@@ -505,7 +505,7 @@
   "exTr": [
    "Can you give me a medium size, please?",
    "مجھے میڈیم سائز دے دیں، پلیز؟",
-   "مینوں درمیانہ سائز دے دیو، مہربانی؟",
+   "مہربانی کر کے مینوں درمیانہ سائز دے دیو؟",
    "ਮੈਨੂੰ ਦਰਮਿਆਨਾ ਸਾਈਜ਼ ਦੇ ਦਿਓ, ਕਿਰਪਾ ਕਰਕੇ?",
    "আমাকে মাঝারি সাইজ দেবেন, প্লিজ?",
    "මට මීඩියම් සයිස් එක දෙන්න පුළුවන්ද?",
@@ -632,7 +632,7 @@
   ],
   "ex": "In città la velocità massima è cinquanta all'ora.",
   "exTr": [
-   "In town the maximum speed is fifty per hour.",
+   "In town the maximum speed is fifty kilometres an hour.",
    "شہر میں زیادہ سے زیادہ رفتار پچاس فی گھنٹہ ہے۔",
    "شہر وچ ودھ توں ودھ رفتار پنجاہ فی گھنٹہ اے۔",
    "ਸ਼ਹਿਰ ਵਿੱਚ ਵੱਧ ਤੋਂ ਵੱਧ ਰਫ਼ਤਾਰ ਪੰਜਾਹ ਪ੍ਰਤੀ ਘੰਟਾ ਹੈ।",
@@ -685,49 +685,6 @@
    "La commande minimum est de dix euros.",
    "El pedido mínimo es de diez euros.",
    "El pedido mínimo es de diez euros."
-  ]
- },
- {
-  "it": "naturale",
-  "type": "a",
-  "topic": "adjectives",
-  "emoji": "🌿",
-  "tr": [
-   "natural",
-   "قدرتی",
-   "قدرتی / اصلی",
-   "ਕੁਦਰਤੀ",
-   "প্রাকৃতিক",
-   "ස්වාභාවික",
-   "天然的 / 自然的",
-   "naturel",
-   "natural",
-   "natural"
-  ],
-  "expl": [
-   "Made by nature, without chemicals; also normal, obvious.",
-   "قدرت کا بنایا، کیمیکل کے بغیر؛ عام یا ظاہر بھی۔",
-   "قدرت دا بنایا، کیمیکل توں بغیر؛ عام گل وی۔",
-   "ਕੁਦਰਤ ਦਾ ਬਣਾਇਆ, ਕੈਮੀਕਲ ਤੋਂ ਬਿਨਾਂ; ਆਮ ਗੱਲ ਵੀ।",
-   "প্রকৃতির তৈরি, রাসায়নিক ছাড়া; স্বাভাবিকও।",
-   "රසායන නැති ස්වභාවධර්මයෙන් හැදුණු; සාමාන්‍ය කියන තේරුමත්.",
-   "大自然产生的，没有化学品；也指正常的。",
-   "Fait par la nature, sans produits chimiques ; aussi normal.",
-   "Hecho por la naturaleza, sin químicos; también normal.",
-   "Hecho por la naturaleza, sin químicos; también normal."
-  ],
-  "ex": "È un succo naturale, senza zucchero.",
-  "exTr": [
-   "It's a natural juice, without sugar.",
-   "یہ قدرتی جوس ہے، چینی کے بغیر۔",
-   "ایہہ قدرتی جوس اے، کھنڈ توں بغیر۔",
-   "ਇਹ ਕੁਦਰਤੀ ਜੂਸ ਹੈ, ਖੰਡ ਤੋਂ ਬਿਨਾਂ।",
-   "এটা প্রাকৃতিক জুস, চিনি ছাড়া।",
-   "මේක සීනි නැති ස්වාභාවික යුෂ එකක්.",
-   "这是天然果汁，不加糖。",
-   "C'est un jus naturel, sans sucre.",
-   "Es un zumo natural, sin azúcar.",
-   "Es un jugo natural, sin azúcar."
   ]
  },
  {
@@ -826,7 +783,7 @@
    "کوئی نہیں",
    "کوئی نئیں",
    "ਕੋਈ ਨਹੀਂ",
-   "কেউ না / কোনো",
+   "কেউ না / কোনোটাই না",
    "කවුරුවත් නැහැ",
    "没有人 / 没有",
    "personne / aucun",
@@ -884,9 +841,9 @@
    "'এটাও না'; না-বাচক কথায় একমত হতে।",
    "'ඒකත් නැහැ'; නැහැ කියන දෙයකට එකඟ වෙන්න.",
    "“也不”；用来同意否定的话。",
-   "« Aussi pas » ; pour être d'accord avec une phrase négative.",
-   "«También no»; para estar de acuerdo con una frase negativa.",
-   "«También no»; para estar de acuerdo con una frase negativa."
+   "« Pas non plus » ; pour être d'accord avec une phrase négative.",
+   "«Tampoco»; para estar de acuerdo con una frase negativa.",
+   "«Tampoco»; para estar de acuerdo con una frase negativa."
   ],
   "ex": "Io non fumo. — Neanche io.",
   "exTr": [
@@ -906,7 +863,7 @@
   "it": "niente",
   "type": "a",
   "topic": "adjectives",
-  "emoji": "🚫",
+  "emoji": null,
   "tr": [
    "nothing",
    "کچھ نہیں",
@@ -1078,7 +1035,7 @@
   "it": "non",
   "type": "a",
   "topic": "adjectives",
-  "emoji": "🚫",
+  "emoji": null,
   "tr": [
    "not / don't",
    "نہیں / نہ",
@@ -1290,49 +1247,6 @@
   ]
  },
  {
-  "it": "Non importa.",
-  "type": "p",
-  "topic": "adjectives",
-  "emoji": null,
-  "tr": [
-   "It doesn't matter.",
-   "کوئی بات نہیں۔ / فرق نہیں پڑتا۔",
-   "کوئی گل نئیں۔ / فرق نئیں پیندا۔",
-   "ਕੋਈ ਗੱਲ ਨਹੀਂ। / ਫ਼ਰਕ ਨਹੀਂ ਪੈਂਦਾ।",
-   "কোনো ব্যাপার না।",
-   "කමක් නැහැ.",
-   "没关系。",
-   "Ce n'est pas grave.",
-   "No importa.",
-   "No importa."
-  ],
-  "expl": [
-   "It's not important, don't worry about it.",
-   "یہ اہم نہیں، فکر نہ کریں۔",
-   "ایہہ اہم نئیں، فکر نہ کرو۔",
-   "ਇਹ ਅਹਿਮ ਨਹੀਂ, ਫ਼ਿਕਰ ਨਾ ਕਰੋ।",
-   "এটা জরুরি না, চিন্তা করবেন না।",
-   "ඒක වැදගත් නැහැ, හිතන්න එපා.",
-   "这不重要，别担心。",
-   "Ce n'est pas important, ne t'inquiète pas.",
-   "No es importante, no te preocupes.",
-   "No es importante, no te preocupes."
-  ],
-  "ex": "Non ho il resto. — Non importa.",
-  "exTr": [
-   "I don't have change. — It doesn't matter.",
-   "میرے پاس کھلے پیسے نہیں۔ — کوئی بات نہیں۔",
-   "میرے کول بھان نئیں۔ — کوئی گل نئیں۔",
-   "ਮੇਰੇ ਕੋਲ ਖੁੱਲ੍ਹੇ ਪੈਸੇ ਨਹੀਂ। — ਕੋਈ ਗੱਲ ਨਹੀਂ।",
-   "আমার কাছে খুচরা নেই। — কোনো ব্যাপার না।",
-   "මගේ ළඟ ඉතුරු සල්ලි නැහැ. — කමක් නැහැ.",
-   "我没有零钱找。——没关系。",
-   "Je n'ai pas la monnaie. — Ce n'est pas grave.",
-   "No tengo cambio. — No importa.",
-   "No tengo cambio. — No importa."
-  ]
- },
- {
   "it": "non ancora",
   "type": "p",
   "topic": "adjectives",
@@ -1376,49 +1290,6 @@
   ]
  },
  {
-  "it": "Non c'è problema.",
-  "type": "p",
-  "topic": "adjectives",
-  "emoji": "👌",
-  "tr": [
-   "No problem.",
-   "کوئی مسئلہ نہیں۔",
-   "کوئی مسئلہ نئیں۔",
-   "ਕੋਈ ਸਮੱਸਿਆ ਨਹੀਂ।",
-   "কোনো সমস্যা নেই।",
-   "ප්‍රශ්නයක් නැහැ.",
-   "没问题。",
-   "Pas de problème.",
-   "No hay problema.",
-   "No hay problema."
-  ],
-  "expl": [
-   "Everything is fine, it's easy, I agree.",
-   "سب ٹھیک ہے، آسان ہے، مجھے منظور ہے۔",
-   "سب ٹھیک اے، سوکھا اے، مینوں منظور اے۔",
-   "ਸਭ ਠੀਕ ਹੈ, ਸੌਖਾ ਹੈ, ਮੈਨੂੰ ਮਨਜ਼ੂਰ ਹੈ।",
-   "সব ঠিক আছে, সহজ, আমি রাজি।",
-   "ඔක්කොම හරි, ලේසියි, මම එකඟයි.",
-   "一切都好，很容易，我同意。",
-   "Tout va bien, c'est facile, je suis d'accord.",
-   "Todo bien, es fácil, estoy de acuerdo.",
-   "Todo bien, es fácil, estoy de acuerdo."
-  ],
-  "ex": "Posso venire alle dieci? — Non c'è problema.",
-  "exTr": [
-   "Can I come at ten? — No problem.",
-   "کیا میں دس بجے آ سکتا ہوں؟ — کوئی مسئلہ نہیں۔",
-   "میں دس وجے آ سکدا واں؟ — کوئی مسئلہ نئیں۔",
-   "ਕੀ ਮੈਂ ਦਸ ਵਜੇ ਆ ਸਕਦਾ ਹਾਂ? — ਕੋਈ ਸਮੱਸਿਆ ਨਹੀਂ।",
-   "আমি কি দশটায় আসতে পারি? — কোনো সমস্যা নেই।",
-   "මට දහයට එන්න පුළුවන්ද? — ප්‍රශ්නයක් නැහැ.",
-   "我可以十点来吗？——没问题。",
-   "Je peux venir à dix heures ? — Pas de problème.",
-   "¿Puedo venir a las diez? — No hay problema.",
-   "¿Puedo venir a las diez? — No hay problema."
-  ]
- },
- {
   "it": "Non fa niente.",
   "type": "p",
   "topic": "adjectives",
@@ -1459,49 +1330,6 @@
    "Pardon, j'ai oublié ! — Ce n'est rien.",
    "¡Perdona, se me olvidó! — No pasa nada.",
    "¡Perdón, se me olvidó! — No pasa nada."
-  ]
- },
- {
-  "it": "Non vedo l'ora!",
-  "type": "p",
-  "topic": "adjectives",
-  "emoji": "🤩",
-  "tr": [
-   "I can't wait!",
-   "مجھ سے انتظار نہیں ہوتا!",
-   "میتھوں انتظار نئیں ہوندا!",
-   "ਮੈਥੋਂ ਉਡੀਕ ਨਹੀਂ ਹੁੰਦੀ!",
-   "আর তর সইছে না!",
-   "මට ඉවසන්න බැහැ!",
-   "我等不及了！",
-   "J'ai hâte !",
-   "¡Estoy deseando!",
-   "¡No veo la hora!"
-  ],
-  "expl": [
-   "You really want something to happen soon.",
-   "آپ چاہتے ہیں کہ کوئی چیز جلدی ہو جائے۔",
-   "تسیں چاہندے او کہ کوئی گل چھیتی ہو جاوے۔",
-   "ਤੁਸੀਂ ਚਾਹੁੰਦੇ ਹੋ ਕਿ ਕੋਈ ਗੱਲ ਛੇਤੀ ਹੋ ਜਾਵੇ।",
-   "আপনি খুব চান কিছু তাড়াতাড়ি ঘটুক।",
-   "යමක් ඉක්මනට වෙනවා දකින්න හරිම ආසයි.",
-   "非常希望某事快点发生。",
-   "On a très envie que quelque chose arrive vite.",
-   "Tienes muchas ganas de que algo pase pronto.",
-   "Tienes muchas ganas de que algo pase pronto."
-  ],
-  "ex": "Domani arriva mia moglie. Non vedo l'ora!",
-  "exTr": [
-   "My wife arrives tomorrow. I can't wait!",
-   "کل میری بیوی آ رہی ہے۔ مجھ سے انتظار نہیں ہوتا!",
-   "کل میری ووہٹی آ رہی اے۔ میتھوں انتظار نئیں ہوندا!",
-   "ਕੱਲ੍ਹ ਮੇਰੀ ਪਤਨੀ ਆ ਰਹੀ ਹੈ। ਮੈਥੋਂ ਉਡੀਕ ਨਹੀਂ ਹੁੰਦੀ!",
-   "কাল আমার স্ত্রী আসছে। আর তর সইছে না!",
-   "හෙට මගේ නෝනා එනවා. මට ඉවසන්න බැහැ!",
-   "我妻子明天到。我等不及了！",
-   "Ma femme arrive demain. J'ai hâte !",
-   "Mañana llega mi mujer. ¡Estoy deseando!",
-   "Mañana llega mi esposa. ¡No veo la hora!"
   ]
  }
 ]

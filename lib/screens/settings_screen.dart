@@ -26,9 +26,26 @@ class _SettingsScreenState extends State<SettingsScreen> {
   /// that says progress has just been deleted.
   String? _status;
 
+  final ScrollController _scroll = ScrollController();
+
+  @override
+  void dispose() {
+    _scroll.dispose();
+    super.dispose();
+  }
+
   void _showStatus(String message) {
     if (!mounted) return;
     setState(() => _status = message);
+    // The strip sits at the top of the list; on a short phone the user has
+    // scrolled down to the button they tapped, so bring the message into view.
+    if (_scroll.hasClients) {
+      _scroll.animateTo(
+        0,
+        duration: const Duration(milliseconds: 250),
+        curve: Curves.easeOut,
+      );
+    }
   }
 
   @override
@@ -43,6 +60,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
         // Four compact cards that fit on one screen: every setting is one tap
         // away, with no hunting through a long scroll.
         child: ListView(
+          controller: _scroll,
           padding: const EdgeInsets.fromLTRB(
             AppSpace.l,
             AppSpace.s,
@@ -311,45 +329,50 @@ Future<void> showTranslationLanguagePicker(
     enableDrag: !firstLaunch,
     isScrollControlled: true,
     builder: (BuildContext sheetContext) {
-      return SafeArea(
-        child: ListView(
-          shrinkWrap: true,
-          children: <Widget>[
-            Padding(
-              padding: const EdgeInsets.fromLTRB(
-                AppSpace.xl,
-                AppSpace.l,
-                AppSpace.xl,
-                AppSpace.s,
+      // At first launch even the system back button must not skip the
+      // choice: the sheet closes only when a language is picked.
+      return PopScope(
+        canPop: !firstLaunch,
+        child: SafeArea(
+          child: ListView(
+            shrinkWrap: true,
+            children: <Widget>[
+              Padding(
+                padding: const EdgeInsets.fromLTRB(
+                  AppSpace.xl,
+                  AppSpace.l,
+                  AppSpace.xl,
+                  AppSpace.s,
+                ),
+                child: Text(
+                  t.interfaceLanguage,
+                  style: Theme.of(sheetContext).textTheme.titleLarge,
+                ),
               ),
-              child: Text(
-                t.interfaceLanguage,
-                style: Theme.of(sheetContext).textTheme.titleLarge,
+              Padding(
+                padding: const EdgeInsets.fromLTRB(
+                  AppSpace.xl,
+                  0,
+                  AppSpace.xl,
+                  AppSpace.m,
+                ),
+                child: Text(
+                  t.languageNoteWordTranslations,
+                  style: Theme.of(sheetContext).textTheme.bodySmall,
+                ),
               ),
-            ),
-            Padding(
-              padding: const EdgeInsets.fromLTRB(
-                AppSpace.xl,
-                0,
-                AppSpace.xl,
-                AppSpace.m,
-              ),
-              child: Text(
-                t.languageNoteWordTranslations,
-                style: Theme.of(sheetContext).textTheme.bodySmall,
-              ),
-            ),
-            for (final Locale locale in AppLocales.primary)
-              _LanguageOption(
-                locale: locale,
-                label: languageLabel(t, locale),
-                selected: !firstLaunch && AppLocales.tag(locale) == current,
-                onTap: () {
-                  settings.setLocale(locale);
-                  Navigator.of(sheetContext).pop();
-                },
-              ),
-          ],
+              for (final Locale locale in AppLocales.primary)
+                _LanguageOption(
+                  locale: locale,
+                  label: languageLabel(t, locale),
+                  selected: !firstLaunch && AppLocales.tag(locale) == current,
+                  onTap: () {
+                    settings.setLocale(locale);
+                    Navigator.of(sheetContext).pop();
+                  },
+                ),
+            ],
+          ),
         ),
       );
     },
