@@ -41,6 +41,7 @@ class ItalianWordsApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    purchases.linkAds(ads);
     return AppScope(
       settings: settings,
       progress: progress,

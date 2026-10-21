@@ -3,6 +3,8 @@ import 'dart:async';
 import 'package:flutter/foundation.dart';
 import 'package:in_app_purchase/in_app_purchase.dart';
 
+import 'ads_service.dart';
+
 import '../config/monetization.dart';
 import 'prefs_service.dart';
 
@@ -97,6 +99,21 @@ class PurchaseService extends ChangeNotifier {
       _state = PurchaseState.error;
       notifyListeners();
     }
+  }
+
+  AdsService? _linkedAds;
+
+  /// Keeps [ads] in step with the purchase: a purchase or restore confirmed
+  /// later by the store hides the ads at once, not only after a restart.
+  /// Safe to call more than once.
+  void linkAds(AdsService ads) {
+    if (identical(_linkedAds, ads)) return;
+    _linkedAds = ads;
+    void sync() {
+      if (adsRemoved && !ads.adsRemoved) ads.setAdsRemoved();
+    }
+    addListener(sync);
+    sync();
   }
 
   Future<void> restore() async {

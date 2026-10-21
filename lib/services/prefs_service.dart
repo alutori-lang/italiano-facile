@@ -65,7 +65,7 @@ class PrefsService {
     return fresh;
   }
 
-  /// Wipes progress but keeps the interface language, the dark-mode choice and
+  /// Wipes progress but keeps the translation language, the reminder, the dark-mode choice and
   /// the purchase, which must never be lost.
   Future<void> resetProgress() async {
     final Set<String> keep = <String>{
@@ -74,6 +74,11 @@ class PrefsService {
       kSlowAudio,
       kAdsRemoved,
       kPersonalId,
+      // The daily reminder is a setting, not progress: wiping it here would
+      // turn the switch off on disk while the notification keeps firing.
+      kReminderOn,
+      kReminderHour,
+      kReminderMinute,
     };
     for (final String key in _prefs.getKeys().toList()) {
       if (!keep.contains(key)) await _prefs.remove(key);

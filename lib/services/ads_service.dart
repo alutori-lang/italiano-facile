@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:app_tracking_transparency/app_tracking_transparency.dart';
 import 'package:flutter/foundation.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
@@ -33,6 +35,15 @@ class AdsService extends ChangeNotifier {
 
   bool get shouldShowAds => adsAllowed && !adsRemoved;
 
+  /// Called when the store confirms "remove ads": drops any loaded
+  /// interstitial and tells banners to disappear.
+  void setAdsRemoved() {
+    adsRemoved = true;
+    _interstitial?.dispose();
+    _interstitial = null;
+    notifyListeners();
+  }
+
   /// Called once at startup, before any ad is requested.
   Future<void> start({required bool adsRemoved}) async {
     this.adsRemoved = adsRemoved;
@@ -49,6 +60,8 @@ class AdsService extends ChangeNotifier {
       return;
     }
     await _gatherConsent();
+    // Google's rule: no ad is requested unless the consent SDK allows it.
+    if (!await _canRequestAds()) return;
     await _requestTrackingOnIos();
     await _initializeMobileAds();
   }
@@ -56,30 +69,47 @@ class AdsService extends ChangeNotifier {
   Future<void> _gatherConsent() async {
     try {
       final ConsentRequestParameters params = ConsentRequestParameters();
-      await _requestConsentInfoUpdate(params);
-      await _showFormIfRequired();
+      // Each step waits for the SDK's own answer, with a timeout so a
+      // consent service that never replies cannot freeze the start.
+      await _requestConsentInfoUpdate(params)
+          .timeout(const Duration(seconds: 10));
+      await _showFormIfRequired().timeout(const Duration(minutes: 5));
     } catch (_) {
-      // A consent failure must not break the app; it only means no
-      // personalised ads for now.
+      // A consent failure must not break the app; canRequestAds below
+      // decides whether ads may be requested at all.
     }
     _consentGathered = true;
     notifyListeners();
   }
 
   Future<void> _requestConsentInfoUpdate(ConsentRequestParameters params) {
-    return Future<void>(() {
-      ConsentInformation.instance.requestConsentInfoUpdate(
-        params,
-        () {},
-        (FormError error) {},
-      );
-    });
+    final Completer<void> done = Completer<void>();
+    ConsentInformation.instance.requestConsentInfoUpdate(
+      params,
+      () {
+        if (!done.isCompleted) done.complete();
+      },
+      (FormError error) {
+        if (!done.isCompleted) done.complete();
+      },
+    );
+    return done.future;
   }
 
   Future<void> _showFormIfRequired() {
-    return Future<void>(() {
-      ConsentForm.loadAndShowConsentFormIfRequired((FormError? error) {});
+    final Completer<void> done = Completer<void>();
+    ConsentForm.loadAndShowConsentFormIfRequired((FormError? error) {
+      if (!done.isCompleted) done.complete();
     });
+    return done.future;
+  }
+
+  Future<bool> _canRequestAds() async {
+    try {
+      return await ConsentInformation.instance.canRequestAds();
+    } catch (_) {
+      return false;
+    }
   }
 
   /// Lets the user change their mind later, from Settings.

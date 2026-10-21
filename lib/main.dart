@@ -50,6 +50,7 @@ Future<void> main() async {
   await tts.init();
   await purchases.init();
   ads.adsRemoved = purchases.adsRemoved;
+
   if (screenshot == null) {
     await ads.start(adsRemoved: purchases.adsRemoved);
     await ads.preloadInterstitial();
