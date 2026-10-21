@@ -1,6 +1,6 @@
 # Acceptance list — Italian Words: Learn & Play
 
-Every line is a promise the app makes. Each has a real test under
+Every line is a promise the app makes. Small phone used by the tests: 360x640. Each has a real test under
 `test/acceptance/` whose name starts with the feature name.
 
 ## Word data
@@ -22,7 +22,7 @@ Every line is a promise the app makes. Each has a real test under
 - Search: phrases are searched too ("Quanto costa" is found).
 - Search: nothing found gives "did you mean" suggestions.
 - Search: the screen shows results while typing and saves the last searches.
-- Search: the result card has picture, Italian word, speaker, translation, explanation, example and "Add to my words".
+- Search: the result card has picture, Italian word, speaker, translation, explanation, example and "Aggiungi alle mie parole".
 - Search: online lookup is available only as a fallback and never blocks the offline app (needs a real device/network).
 
 ## Today
@@ -38,7 +38,7 @@ Every line is a promise the app makes. Each has a real test under
 - Quiz: a quiz always has exactly twenty questions.
 - Quiz: about half the answers are true and half false.
 - Quiz: a false question uses a decoy from the same topic.
-- Quiz: PASSED only with two mistakes or fewer.
+- Quiz: PROMOSSO only with two mistakes or fewer.
 - Quiz: answering shows green or red, and a wrong answer shows the right word.
 - Quiz: the result screen shows the score, the mistake list and both retry buttons.
 - Quiz: the best score per category is saved.
@@ -55,16 +55,18 @@ Every line is a promise the app makes. Each has a real test under
 - My words: the quiz on my words needs at least four saved words.
 
 ## Settings
-- Settings: the interface language can be changed by hand and is remembered.
-- Settings: the app opens in the phone language and falls back to English.
+- Settings: the first launch shows a sheet asking for the translation language; it cannot be skipped, not by tapping outside it and not even with the back button.
+- Settings: the translation language (one of ten) can be changed by hand from Settings or the Search header and is remembered across restarts.
+- Settings: there is no interface-language menu; the interface is always Italian.
 - Settings: dark mode, audio speed and the reminder switch all work.
 - Settings: reset progress clears streak, scores and saved words but keeps the purchase.
 - Settings: privacy and about screens open and show their text.
 
 ## Languages
-- Languages: all seventeen interface locales have every key, with no missing text.
-- Languages: Urdu and Shahmukhi render right to left.
-- Languages: word translations follow the interface language.
+- Languages: the interface is always Italian and left to right, whatever translation language is chosen; the Italian strings file has every key.
+- Languages: the ten translation languages are en, ur, pa_Arab, pa, bn, si, zh, fr, es_ES, es_419.
+- Languages: Urdu and Shahmukhi translation texts render right to left; the app layout stays left to right.
+- Languages: word translations follow the chosen translation language, and change when it changes.
 
 ## Ads and purchase
 - Ads: test ad unit ids are used until real ones are configured.

@@ -138,7 +138,7 @@ void main() {
       findsOneWidget,
     );
     expect(
-      find.textContaining("the ads still use Google's test ids"),
+      find.textContaining('la pubblicità usa ancora gli id di test di Google'),
       findsOneWidget,
     );
   });
@@ -215,7 +215,7 @@ void main() {
     await tester.pumpAndSettle();
 
     expect(
-      find.text('The store is not available right now.'),
+      find.text('Lo store non è disponibile in questo momento.'),
       findsOneWidget,
     );
     expect(tester.takeException(), isNull);

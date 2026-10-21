@@ -39,7 +39,7 @@ void main() {
     WidgetTester tester,
   ) async {
     await pumpApp(tester, screenshot: ScreenshotScreen.today);
-    expect(find.text('Word 1 of 10'), findsOneWidget);
+    expect(find.text('Parola 1 di 10'), findsOneWidget);
     expect(find.text('il pomodoro'), findsOneWidget);
   });
 
@@ -47,7 +47,7 @@ void main() {
     WidgetTester tester,
   ) async {
     await pumpApp(tester, screenshot: ScreenshotScreen.quizQuestion);
-    expect(find.text('Question 1 of 20'), findsOneWidget);
+    expect(find.text('Domanda 1 di 20'), findsOneWidget);
     expect(find.byKey(const ValueKey<String>('answer-vero')), findsOneWidget);
   });
 
@@ -56,14 +56,14 @@ void main() {
   ) async {
     await pumpApp(tester, screenshot: ScreenshotScreen.quizResult);
     expect(find.text('19 / 20'), findsOneWidget);
-    expect(find.text('PASSED'), findsOneWidget);
+    expect(find.text('PROMOSSO'), findsOneWidget);
   });
 
   testWidgets('Screenshot mode: screen 4 shows the topics grid', (
     WidgetTester tester,
   ) async {
     await pumpApp(tester, screenshot: ScreenshotScreen.topics);
-    expect(find.text('Learn by category'), findsOneWidget);
+    expect(find.text('Impara per categoria'), findsOneWidget);
   });
 
   testWidgets('Screenshot mode: screen 5 shows settings', (

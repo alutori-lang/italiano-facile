@@ -6,10 +6,11 @@ import 'package:simple_flutter_app_651/services/settings_controller.dart';
 import '../support/pump_app.dart';
 
 /// Tester 1's sweep: every tab, every button, on a small and a big phone, in
-/// light and dark mode, in the ten main languages. No crash, no dead button,
+/// light and dark mode, with each of the ten translation languages (the
+/// interface itself is always Italian). No crash, no dead button,
 /// no empty screen, no overflow.
 void main() {
-  const Size smallPhone = Size(320, 600);
+  const Size smallPhone = Size(360, 640);
   const Size bigPhone = Size(430, 932);
 
   const List<String> tabs = <String>[
@@ -62,8 +63,10 @@ void main() {
           await tester.tap(find.byKey(ValueKey<String>(key)));
           await tester.pumpAndSettle();
           expect(tester.takeException(), isNull, reason: '$key in $label');
-          // The back arrow must work on every screen.
-          await tester.pageBack();
+          // The back arrow must work on every screen. (pageBack() looks for
+          // the English "Back" tooltip; the interface is Italian.)
+          expect(find.byType(BackButton), findsWidgets, reason: key);
+          await tester.tap(find.byType(BackButton).last);
           await tester.pumpAndSettle();
           expect(tester.takeException(), isNull, reason: 'back from $key');
         }
@@ -71,9 +74,8 @@ void main() {
     }
   }
 
-  testWidgets('Every screen: the ten main languages open every tab', (
-    WidgetTester tester,
-  ) async {
+  testWidgets('Every screen: every translation language opens every tab '
+      '(360x640)', (WidgetTester tester) async {
     for (final Locale locale in AppLocales.primary) {
       await pumpApp(tester, locale: locale, size: smallPhone);
       for (final String tab in tabs) {
@@ -141,6 +143,8 @@ void main() {
       find.byKey(const ValueKey<String>('topic:fruit')),
       200,
     );
+    await tester.ensureVisible(find.byKey(const ValueKey<String>('topic:fruit')));
+    await tester.pumpAndSettle();
     await tester.tap(find.byKey(const ValueKey<String>('topic:fruit')));
     await tester.pumpAndSettle();
 

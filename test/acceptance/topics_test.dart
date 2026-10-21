@@ -36,8 +36,8 @@ void main() {
     await tester.tap(find.byKey(const ValueKey<String>('tab-topics')));
     await tester.pumpAndSettle();
 
-    expect(find.text('Learn by category'), findsOneWidget);
-    expect(find.text('Greetings & basics'), findsOneWidget);
+    expect(find.text('Impara per categoria'), findsOneWidget);
+    expect(find.text('Saluti e basi'), findsOneWidget);
     expect(find.byKey(const ValueKey<String>('topic:greetings')),
         findsOneWidget);
   });
@@ -53,6 +53,8 @@ void main() {
       find.byKey(const ValueKey<String>('topic:fruit')),
       200,
     );
+    await tester.ensureVisible(find.byKey(const ValueKey<String>('topic:fruit')));
+    await tester.pumpAndSettle();
     await tester.tap(find.byKey(const ValueKey<String>('topic:fruit')));
     await tester.pumpAndSettle();
 
@@ -81,6 +83,8 @@ void main() {
       find.byKey(const ValueKey<String>('topic:fruit')),
       200,
     );
+    await tester.ensureVisible(find.byKey(const ValueKey<String>('topic:fruit')));
+    await tester.pumpAndSettle();
     await tester.tap(find.byKey(const ValueKey<String>('topic:fruit')));
     await tester.pumpAndSettle();
 
@@ -113,12 +117,14 @@ void main() {
       find.byKey(const ValueKey<String>('topic:fruit')),
       200,
     );
+    await tester.ensureVisible(find.byKey(const ValueKey<String>('topic:fruit')));
+    await tester.pumpAndSettle();
     await tester.tap(find.byKey(const ValueKey<String>('topic:fruit')));
     await tester.pumpAndSettle();
 
     await tester.tap(find.byKey(const ValueKey<String>('topic-quiz')));
     await tester.pumpAndSettle();
-    expect(find.text('Question 1 of 20'), findsOneWidget);
+    expect(find.text('Domanda 1 di 20'), findsOneWidget);
   });
 
   testWidgets('Topics: the learned counter follows two correct answers', (
@@ -159,7 +165,7 @@ void main() {
 
     await tester.tap(find.byKey(const ValueKey<String>('my-words-quiz')));
     await tester.pumpAndSettle();
-    expect(find.text('Question 1 of 4'), findsOneWidget);
+    expect(find.text('Domanda 1 di 4'), findsOneWidget);
   });
 
   testWidgets('My words: the quiz is unavailable with fewer than four words', (

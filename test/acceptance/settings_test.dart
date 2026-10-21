@@ -39,15 +39,30 @@ void main() {
     }
   });
 
-  testWidgets('Settings: the interface language can be changed by hand', (
-    WidgetTester tester,
-  ) async {
+  testWidgets('Settings: the translation language can be changed by hand '
+      'and is remembered', (WidgetTester tester) async {
     final TestHarness harness = await pumpApp(tester);
     await _openSettings(tester);
 
     await tester.tap(find.byKey(const ValueKey<String>('settings-language')));
     await tester.pumpAndSettle();
+    // The sheet offers exactly the ten translation languages.
+    for (final Locale locale in AppLocales.primary) {
+      expect(
+        find.byKey(ValueKey<String>('lang:${AppLocales.tag(locale)}')),
+        findsOneWidget,
+      );
+    }
+    expect(find.byKey(const ValueKey<String>('lang:it')), findsNothing);
+    expect(find.byKey(const ValueKey<String>('lang:de')), findsNothing);
 
+    await scrollWithinScreen(
+      tester,
+      BottomSheet,
+      find.byKey(const ValueKey<String>('lang:ur')),
+    );
+    await tester.ensureVisible(find.byKey(const ValueKey<String>('lang:ur')));
+    await tester.pumpAndSettle();
     await tester.tap(find.byKey(const ValueKey<String>('lang:ur')));
     await tester.pumpAndSettle();
 
@@ -56,9 +71,57 @@ void main() {
       harness.prefs.getString('ui_locale'),
       AppLocales.tag(const Locale('ur')),
     );
-    // The whole app is now right to left.
+    // The interface stays Italian and left to right.
+    expect(find.text('Impostazioni'), findsWidgets);
     final BuildContext context = tester.element(find.byType(Scaffold).first);
-    expect(Directionality.of(context), TextDirection.rtl);
+    expect(Directionality.of(context), TextDirection.ltr);
+    expect(Localizations.localeOf(context), const Locale('it'));
+
+    // A restart keeps the choice and shows no first-launch sheet.
+    await pumpApp(
+      tester,
+      initialPrefs: <String, Object>{'ui_locale': 'ur'},
+    );
+    expect(find.byType(BottomSheet), findsNothing);
+    expect(find.text('اردو'), findsOneWidget);
+  });
+
+  testWidgets('Settings: the first launch asks for the translation language '
+      'and it cannot be skipped', (WidgetTester tester) async {
+    final TestHarness harness = await pumpApp(
+      tester,
+      firstLaunch: true,
+      size: const Size(360, 640),
+    );
+    expect(harness.settings.hasChosenLanguage, isFalse);
+    expect(find.byType(BottomSheet), findsOneWidget);
+    expect(find.text('Lingua di traduzione'), findsOneWidget);
+
+    // Tapping outside the sheet does not close it.
+    await tester.tapAt(const Offset(180, 10));
+    await tester.pumpAndSettle();
+    expect(find.byType(BottomSheet), findsOneWidget);
+
+    // Neither does the system back button.
+    await tester.binding.handlePopRoute();
+    await tester.pumpAndSettle();
+    expect(find.byType(BottomSheet), findsOneWidget);
+    expect(harness.settings.hasChosenLanguage, isFalse);
+
+    // Picking a language closes it and saves the choice.
+    await scrollWithinScreen(
+      tester,
+      BottomSheet,
+      find.byKey(const ValueKey<String>('lang:fr')),
+    );
+    await tester.ensureVisible(find.byKey(const ValueKey<String>('lang:fr')));
+    await tester.pumpAndSettle();
+    await tester.tap(find.byKey(const ValueKey<String>('lang:fr')));
+    await tester.pumpAndSettle();
+    expect(find.byType(BottomSheet), findsNothing);
+    expect(harness.settings.locale, const Locale('fr'));
+    expect(harness.prefs.getString('ui_locale'), 'fr');
+    expect(tester.takeException(), isNull);
   });
 
   testWidgets('Settings: dark mode is applied and remembered', (
@@ -169,7 +232,7 @@ void main() {
     await tester.pumpAndSettle();
 
     expect(
-      find.textContaining('This app works offline and has no login'),
+      find.textContaining('Questa app funziona offline e non richiede login'),
       findsOneWidget,
     );
   });
@@ -189,7 +252,7 @@ void main() {
 
     expect(find.textContaining('CC BY-SA 4.0'), findsOneWidget);
     expect(find.textContaining('Noto Emoji'), findsOneWidget);
-    expect(find.textContaining('words ·'), findsWidgets);
+    expect(find.textContaining('parole ·'), findsWidgets);
   });
 
   testWidgets('Settings: the remove-ads screen opens with price and buttons', (
@@ -230,6 +293,6 @@ void main() {
     await tester.pumpAndSettle();
 
     expect(find.byKey(const ValueKey<String>('paywall-buy')), findsNothing);
-    expect(find.text('Ads removed. Thank you!'), findsWidgets);
+    expect(find.text('Pubblicità rimossa. Grazie!'), findsWidgets);
   });
 }

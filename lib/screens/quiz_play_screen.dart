@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'dart:math';
 
 import 'package:flutter/material.dart';
@@ -73,12 +75,14 @@ class _QuizPlayScreenState extends State<QuizPlayScreen> {
     _answers.add(answeredTrue);
     await scope.progress
         .recordAnswer(question.pictureWord.id, correct: correct);
-    if (!correct) {
-      // On a mistake the right word is read out loud straight away.
-      await scope.tts.speak(question.correction.it);
-    }
     if (!mounted) return;
     setState(() => _lastAnswerCorrect = correct);
+    if (!correct) {
+      // On a mistake the right word is read out loud straight away. The
+      // feedback is already on screen, so a slow speech engine never holds
+      // up the quiz.
+      unawaited(scope.tts.speak(question.correction.it));
+    }
   }
 
   void _next() {

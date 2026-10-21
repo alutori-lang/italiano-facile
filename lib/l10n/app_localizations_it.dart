@@ -75,7 +75,7 @@ class AppLocalizationsIt extends AppLocalizations {
   String get typePhrase => 'Frase';
 
   @override
-  String get searchHint => 'Italiano, inglese, اردو, বাংলা…';
+  String get searchHint => 'Scrivi in italiano o nella tua lingua…';
 
   @override
   String wordsAndPhrases(int words, int phrases) {
@@ -240,7 +240,7 @@ class AppLocalizationsIt extends AppLocalizations {
   String get flashcardTapToFlip => 'Tocca la carta per vedere la traduzione';
 
   @override
-  String get interfaceLanguage => 'Lingua dell\'app';
+  String get interfaceLanguage => 'Lingua di traduzione';
 
   @override
   String get audioSpeed => 'Velocità dell\'audio';
@@ -299,7 +299,8 @@ class AppLocalizationsIt extends AppLocalizations {
   String get purchaseError => 'L\'acquisto non è andato a buon fine.';
 
   @override
-  String get nothingToRestore => 'Nessun acquisto precedente trovato.';
+  String get nothingToRestore =>
+      'Richiesta inviata. Se avevi già comprato, la pubblicità sparisce tra pochi secondi.';
 
   @override
   String get webPurchaseNotice =>
@@ -499,5 +500,5 @@ class AppLocalizationsIt extends AppLocalizations {
 
   @override
   String get languageNoteWordTranslations =>
-      'Le traduzioni delle parole sono nelle dieci lingue principali; le altre lingue dell\'interfaccia usano l\'inglese.';
+      'Scegli la tua lingua: vedrai il significato delle parole italiane in questa lingua e potrai cercare scrivendo in questa lingua.';
 }

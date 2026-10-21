@@ -36,10 +36,18 @@ class TestHarness {
 
 /// Builds the real app with real services on top of in-memory preferences.
 /// No plugin is initialised, so nothing talks to a device.
+///
+/// The interface is always Italian. [locale] is the TRANSLATION language
+/// (stored under `ui_locale`). By default English is pre-selected so the
+/// non-dismissible first-launch language sheet does not cover the app.
+/// To test the first-launch flow pass `firstLaunch: true` (or an explicit
+/// `locale: null`): no translation language is chosen and the sheet opens.
+/// A `ui_locale` already present in [initialPrefs] is kept as it is.
 Future<TestHarness> pumpApp(
   WidgetTester tester, {
   Map<String, Object> initialPrefs = const <String, Object>{},
-  Locale? locale,
+  Locale? locale = const Locale('en'),
+  bool firstLaunch = false,
   Size size = const Size(390, 844),
   ScreenshotScreen? screenshot,
 }) async {
@@ -52,7 +60,12 @@ Future<TestHarness> pumpApp(
 
   final PrefsService prefs = await PrefsService.open();
   final SettingsController settings = SettingsController(prefs);
-  if (locale != null) await settings.setLocale(locale);
+  if (firstLaunch) {
+    await settings.setLocale(null);
+  } else if (locale != null &&
+      !initialPrefs.containsKey(PrefsService.kLocale)) {
+    await settings.setLocale(locale);
+  }
   final ProgressService progress = ProgressService(prefs);
   final TtsService tts = TtsService();
   final AdsService ads = AdsService();
@@ -110,12 +123,13 @@ Future<void> scrollWithinScreen(
 }
 
 /// Pumps a single screen inside the app's scope, for screens that are not the
-/// home shell.
+/// home shell. The interface is Italian, as in the real app; [translation]
+/// is the translation language pre-selected for the screen.
 Future<TestHarness> pumpScreen(
   WidgetTester tester,
   Widget Function(BuildContext context) builder, {
   Map<String, Object> initialPrefs = const <String, Object>{},
-  Locale locale = const Locale('en'),
+  Locale translation = const Locale('en'),
   Size size = const Size(390, 844),
 }) async {
   SharedPreferences.setMockInitialValues(
@@ -127,6 +141,9 @@ Future<TestHarness> pumpScreen(
 
   final PrefsService prefs = await PrefsService.open();
   final SettingsController settings = SettingsController(prefs);
+  if (!initialPrefs.containsKey(PrefsService.kLocale)) {
+    await settings.setLocale(translation);
+  }
   final ProgressService progress = ProgressService(prefs);
   final TtsService tts = TtsService();
   final AdsService ads = AdsService();
@@ -144,7 +161,7 @@ Future<TestHarness> pumpScreen(
       child: MaterialApp(
         theme: AppTheme.light(),
         darkTheme: AppTheme.dark(),
-        locale: locale,
+        locale: const Locale('it'),
         supportedLocales: AppLocales.all,
         localizationsDelegates: AppLocalizations.localizationsDelegates,
         home: Builder(builder: builder),

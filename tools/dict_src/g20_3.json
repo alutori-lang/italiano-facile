@@ -63,13 +63,13 @@
 "tr":["sentence","جملہ","جملہ","ਵਾਕ","বাক্য","වාක්‍යය","句子","phrase","frase","oración / frase"],
 "expl":["A group of words that says something complete.","الفاظ کا مجموعہ جو پوری بات کہے۔","لفظاں دا جوڑ جہڑا پوری گل کہوے۔","ਸ਼ਬਦਾਂ ਦਾ ਜੋੜ ਜੋ ਪੂਰੀ ਗੱਲ ਕਹੇ।","শব্দের সমষ্টি যা একটা সম্পূর্ণ কথা বলে।","සම්පූර්ණ අදහසක් කියන වචන සමූහයක්.","表达完整意思的一组词。","Groupe de mots qui dit quelque chose de complet.","Grupo de palabras que dice algo completo.","Grupo de palabras que dice algo completo."],
 "ex":"Scrivi una frase con la parola 'casa'.",
-"exTr":["Write a sentence with the word 'casa'.","لفظ 'کاسا' کے ساتھ ایک جملہ لکھو۔","لفظ 'کاسا' نال اک جملہ لکھ۔","ਸ਼ਬਦ 'ਕਾਸਾ' ਨਾਲ ਇੱਕ ਵਾਕ ਲਿਖ।","'কাসা' শব্দ দিয়ে একটা বাক্য লেখো।","'කාසා' වචනය යොදා වාක්‍යයක් ලියන්න.","用“casa”这个词写一个句子。","Écris une phrase avec le mot « casa ».","Escribe una frase con la palabra 'casa'.","Escribe una oración con la palabra 'casa'."]},
+"exTr":["Write a sentence with the word 'casa'.","لفظ \"casa\" کے ساتھ ایک جملہ لکھو۔","لفظ \"casa\" نال اک جملہ لکھ۔","ਸ਼ਬਦ \"casa\" ਨਾਲ ਇੱਕ ਵਾਕ ਲਿਖ।","\"casa\" শব্দ দিয়ে একটা বাক্য লেখো।","\"casa\" වචනය යොදා වාක්‍යයක් ලියන්න.","用“casa”这个词写一个句子。","Écris une phrase avec le mot « casa ».","Escribe una frase con la palabra 'casa'.","Escribe una oración con la palabra 'casa'."]},
 
 {"it":"la lettera","type":"n","topic":"school","emoji":"🔤",
 "tr":["letter (of the alphabet)","حرف","حرف / اکھر","ਅੱਖਰ","অক্ষর / বর্ণ","අකුර","字母","lettre","letra","letra"],
 "expl":["One sign of the alphabet, like A, B or C.","حروفِ تہجی کا ایک نشان، جیسے A، B یا C۔","حرفاں دا اک نشان، جیویں A، B یا C۔","ਵਰਣਮਾਲਾ ਦਾ ਇੱਕ ਚਿੰਨ੍ਹ, ਜਿਵੇਂ A, B ਜਾਂ C।","বর্ণমালার একটি চিহ্ন, যেমন A, B বা C।","A, B, C වැනි හෝඩියේ එක් සලකුණක්.","字母表里的一个符号，比如A、B、C。","Un signe de l'alphabet, comme A, B ou C.","Un signo del alfabeto, como A, B o C.","Un signo del alfabeto, como A, B o C."],
 "ex":"La parola 'ciao' ha quattro lettere.",
-"exTr":["The word 'ciao' has four letters.","لفظ 'چاؤ' میں چار حروف ہیں۔","لفظ 'چاؤ' وچ چار حرف نیں۔","ਸ਼ਬਦ 'ਚਾਓ' ਵਿੱਚ ਚਾਰ ਅੱਖਰ ਹਨ।","'চাও' শব্দে চারটা অক্ষর।","'චාඕ' වචනයේ අකුරු හතරක් තියෙනවා.","“ciao”这个词有四个字母。","Le mot « ciao » a quatre lettres.","La palabra 'ciao' tiene cuatro letras.","La palabra 'ciao' tiene cuatro letras."]},
+"exTr":["The word 'ciao' has four letters.","لفظ \"ciao\" میں چار حروف ہیں۔","لفظ \"ciao\" وچ چار حرف نیں۔","ਸ਼ਬਦ \"ciao\" ਵਿੱਚ ਚਾਰ ਅੱਖਰ ਹਨ।","\"ciao\" শব্দে চারটা অক্ষর।","\"ciao\" වචනයේ අකුරු හතරක් තියෙනවා.","“ciao”这个词有四个字母。","Le mot « ciao » a quatre lettres.","La palabra 'ciao' tiene cuatro letras.","La palabra 'ciao' tiene cuatro letras."]},
 
 {"it":"l'alfabeto","type":"n","topic":"school","emoji":"🔤",
 "tr":["alphabet","حروفِ تہجی","حرفاں دی لڑی / الف بے","ਵਰਣਮਾਲਾ","বর্ণমালা","හෝඩිය","字母表","alphabet","alfabeto / abecedario","alfabeto / abecedario"],
@@ -205,13 +205,13 @@
 
 {"it":"promosso","type":"a","topic":"school","emoji":"🎉",
 "tr":["passed / moved up","پاس","پاس","ਪਾਸ","পাস / উত্তীর্ণ","සමත්","升级 / 及格","admis / reçu","aprobado","aprobado / pasó de año"],
-"expl":["When a pupil can go to the next class; feminine 'promossa'.","جب شاگرد اگلی جماعت میں جا سکے؛ مؤنث 'پروموسا'۔","جدوں شاگرد اگلی جماعت وچ جا سکے؛ زنانہ 'پروموسا'۔","ਜਦੋਂ ਵਿਦਿਆਰਥੀ ਅਗਲੀ ਜਮਾਤ ਵਿੱਚ ਜਾ ਸਕੇ; ਇਸਤਰੀ ਲਿੰਗ 'ਪ੍ਰੋਮੋਸਾ'।","যখন ছাত্র পরের ক্লাসে উঠতে পারে; স্ত্রীলিঙ্গ 'প্রোমোসা'।","ශිෂ්‍යයාට ඊළඟ පන්තියට යා හැකි විට; ස්ත්‍රී ලිංග 'ප්‍රොමොස්සා'.","学生可以升到下一个年级；阴性是“promossa”。","Quand l'élève passe dans la classe supérieure ; féminin « promossa ».","Cuando el alumno pasa al curso siguiente; femenino 'promossa'.","Cuando el alumno pasa al siguiente grado; femenino 'promossa'."],
+"expl":["When a pupil can go to the next class; feminine 'promossa'.","جب شاگرد اگلی جماعت میں جا سکے؛ مؤنث 'promossa'۔","جدوں شاگرد اگلی جماعت وچ جا سکے؛ زنانہ 'promossa'۔","ਜਦੋਂ ਵਿਦਿਆਰਥੀ ਅਗਲੀ ਜਮਾਤ ਵਿੱਚ ਜਾ ਸਕੇ; ਇਸਤਰੀ ਲਿੰਗ 'promossa'।","যখন ছাত্র পরের ক্লাসে উঠতে পারে; স্ত্রীলিঙ্গ 'promossa'।","ශිෂ්‍යයාට ඊළඟ පන්තියට යා හැකි විට; ස්ත්‍රී ලිංග 'promossa'.","学生可以升到下一个年级；阴性是“promossa”。","Quand l'élève passe dans la classe supérieure ; féminin « promossa ».","Cuando el alumno pasa al curso siguiente; femenino 'promossa'.","Cuando el alumno pasa al siguiente grado; femenino 'promossa'."],
 "ex":"Evviva, mio figlio è promosso!",
 "exTr":["Hooray, my son has passed!","زبردست، میرا بیٹا پاس ہو گیا!","واہ، میرا پُتر پاس ہو گیا!","ਵਾਹ, ਮੇਰਾ ਪੁੱਤਰ ਪਾਸ ਹੋ ਗਿਆ!","দারুণ, আমার ছেলে পাস করেছে!","නියමයි, මගේ පුතා සමත් වුණා!","太好了，我儿子升级了！","Super, mon fils passe en classe supérieure !","¡Bien, mi hijo ha aprobado!","¡Qué bien, mi hijo pasó de año!"]},
 
 {"it":"bocciato","type":"a","topic":"school","emoji":"👎",
 "tr":["failed / held back","فیل","فیل","ਫੇਲ੍ਹ","ফেল / অকৃতকার্য","අසමත්","不及格 / 留级","recalé / redoublant","suspendido","reprobado"],
-"expl":["When a pupil fails and must repeat the year; feminine 'bocciata'.","جب شاگرد فیل ہو اور سال دوبارہ کرے؛ مؤنث 'بوچاتا'۔","جدوں شاگرد فیل ہووے تے سال فیر کرے؛ زنانہ 'بوچاتا'۔","ਜਦੋਂ ਵਿਦਿਆਰਥੀ ਫੇਲ੍ਹ ਹੋਵੇ ਅਤੇ ਸਾਲ ਦੁਬਾਰਾ ਕਰੇ; ਇਸਤਰੀ ਲਿੰਗ 'ਬੋਚਾਤਾ'।","যখন ছাত্র ফেল করে ও বছরটা আবার পড়তে হয়; স্ত্রীলিঙ্গ 'বোচাতা'।","ශිෂ්‍යයා අසමත් වී වසර නැවත කළ යුතු විට; ස්ත්‍රී ලිංග 'බොච්චාතා'.","学生没通过、要重读一年；阴性是“bocciata”。","Quand l'élève échoue et doit redoubler ; féminin « bocciata ».","Cuando el alumno suspende y repite curso; femenino 'bocciata'.","Cuando el alumno reprueba y repite el año; femenino 'bocciata'."],
+"expl":["When a pupil fails and must repeat the year; feminine 'bocciata'.","جب شاگرد فیل ہو اور سال دوبارہ کرے؛ مؤنث 'bocciata'۔","جدوں شاگرد فیل ہووے تے سال فیر کرے؛ زنانہ 'bocciata'۔","ਜਦੋਂ ਵਿਦਿਆਰਥੀ ਫੇਲ੍ਹ ਹੋਵੇ ਅਤੇ ਸਾਲ ਦੁਬਾਰਾ ਕਰੇ; ਇਸਤਰੀ ਲਿੰਗ 'bocciata'।","যখন ছাত্র ফেল করে ও বছরটা আবার পড়তে হয়; স্ত্রীলিঙ্গ 'bocciata'।","ශිෂ්‍යයා අසමත් වී වසර නැවත කළ යුතු විට; ස්ත්‍රී ලිංග 'bocciata'.","学生没通过、要重读一年；阴性是“bocciata”。","Quand l'élève échoue et doit redoubler ; féminin « bocciata ».","Cuando el alumno suspende y repite curso; femenino 'bocciata'.","Cuando el alumno reprueba y repite el año; femenino 'bocciata'."],
 "ex":"Se non studi, sarai bocciato.",
 "exTr":["If you don't study, you'll fail.","اگر نہیں پڑھو گے تو فیل ہو جاؤ گے۔","جے نئیں پڑھیں گا تے فیل ہو جائیں گا۔","ਜੇ ਨਹੀਂ ਪੜ੍ਹੇਂਗਾ ਤਾਂ ਫੇਲ੍ਹ ਹੋ ਜਾਏਂਗਾ।","না পড়লে ফেল করবে।","පාඩම් නොකළොත් ඔයා අසමත් වෙයි.","你不学习就会留级。","Si tu n'étudies pas, tu vas redoubler.","Si no estudias, te van a suspender.","Si no estudias, vas a reprobar."]},
 
@@ -223,7 +223,7 @@
 
 {"it":"presente","type":"a","topic":"school","emoji":"🙋",
 "tr":["present / here","حاضر","حاضر","ਹਾਜ਼ਰ","উপস্থিত","පැමිණ ඇති","在 / 出席","présent","presente","presente"],
-"expl":["Here, in class; children say 'presente!' when the teacher calls their name.","یہاں، کلاس میں؛ نام پکارنے پر بچے 'پریزینتے!' کہتے ہیں۔","ایتھے، کلاس وچ؛ ناں سدن تے بال 'پریزینتے!' کہندے نیں۔","ਇੱਥੇ, ਕਲਾਸ ਵਿੱਚ; ਨਾਂ ਬੋਲਣ ਤੇ ਬੱਚੇ 'ਪ੍ਰੇਜ਼ੈਂਤੇ!' ਕਹਿੰਦੇ ਹਨ।","এখানে, ক্লাসে; নাম ডাকলে বাচ্চারা 'প্রেজেন্তে!' বলে।","පන්තියේ ඉන්නවා; නම කියද්දී දරුවන් 'ප්‍රෙසෙන්තේ!' කියයි.","在班里；老师点名时孩子们说“presente!”。","Là, en classe ; les enfants disent « presente ! » à l'appel.","Aquí, en clase; los niños dicen '¡presente!' cuando pasan lista.","Aquí, en clase; los niños dicen '¡presente!' cuando pasan lista."],
+"expl":["Here, in class; children say 'presente!' when the teacher calls their name.","یہاں، کلاس میں؛ نام پکارنے پر بچے 'presente!' کہتے ہیں۔","ایتھے، کلاس وچ؛ ناں سدن تے بال 'presente!' کہندے نیں۔","ਇੱਥੇ, ਕਲਾਸ ਵਿੱਚ; ਨਾਂ ਬੋਲਣ ਤੇ ਬੱਚੇ 'presente!' ਕਹਿੰਦੇ ਹਨ।","এখানে, ক্লাসে; নাম ডাকলে বাচ্চারা 'presente!' বলে।","පන්තියේ ඉන්නවා; නම කියද්දී දරුවන් 'presente!' කියයි.","在班里；老师点名时孩子们说“presente!”。","Là, en classe ; les enfants disent « presente ! » à l'appel.","Aquí, en clase; los niños dicen '¡presente!' cuando pasan lista.","Aquí, en clase; los niños dicen '¡presente!' cuando pasan lista."],
 "ex":"Oggi tutti gli alunni sono presenti.",
 "exTr":["Today all the pupils are present.","آج سب شاگرد حاضر ہیں۔","اج سارے شاگرد حاضر نیں۔","ਅੱਜ ਸਾਰੇ ਵਿਦਿਆਰਥੀ ਹਾਜ਼ਰ ਹਨ।","আজ সব ছাত্রছাত্রী উপস্থিত।","අද හැම ශිෂ්‍යයෙක්ම පැමිණ ඉන්නවා.","今天所有学生都到了。","Aujourd'hui, tous les élèves sont présents.","Hoy están todos los alumnos.","Hoy vinieron todos los alumnos."]}
 ]

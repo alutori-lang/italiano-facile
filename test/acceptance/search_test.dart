@@ -184,8 +184,8 @@ void main() {
     );
     await tester.pumpAndSettle();
 
-    expect(find.text('No word found'), findsOneWidget);
-    expect(find.text('Did you mean…?'), findsOneWidget);
+    expect(find.text('Nessuna parola trovata'), findsOneWidget);
+    expect(find.text('Volevi dire…?'), findsOneWidget);
     expect(
       find.byKey(const ValueKey<String>('search-online')),
       findsOneWidget,

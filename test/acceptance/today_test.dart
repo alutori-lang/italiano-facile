@@ -127,8 +127,8 @@ void main() {
 
     expect(find.byKey(const ValueKey<String>('today-pager')), findsOneWidget);
     expect(find.byKey(const ValueKey<String>('streak-pill')), findsOneWidget);
-    expect(find.text("Today's words"), findsOneWidget);
-    expect(find.text('Word 1 of 10'), findsOneWidget);
+    expect(find.text('Le parole di oggi'), findsOneWidget);
+    expect(find.text('Parola 1 di 10'), findsOneWidget);
     // Before the last card the button moves on rather than starting the quiz.
     expect(find.byKey(const ValueKey<String>('today-next')), findsOneWidget);
   });
@@ -143,7 +143,7 @@ void main() {
       await tester.tap(find.byKey(const ValueKey<String>('today-next')));
       await tester.pumpAndSettle();
     }
-    expect(find.text('Word 10 of 10'), findsOneWidget);
+    expect(find.text('Parola 10 di 10'), findsOneWidget);
     expect(
       find.byKey(const ValueKey<String>('today-mini-quiz')),
       findsOneWidget,
@@ -151,7 +151,7 @@ void main() {
 
     await tester.tap(find.byKey(const ValueKey<String>('today-mini-quiz')));
     await tester.pumpAndSettle();
-    expect(find.text('Question 1 of 10'), findsOneWidget);
+    expect(find.text('Domanda 1 di 10'), findsOneWidget);
   });
 
   testWidgets('Today: the ten words survive a restart on the same day',

@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:simple_flutter_app_651/data/word_repository.dart';
 import 'package:simple_flutter_app_651/models/word.dart';
@@ -13,6 +14,18 @@ const QuizService _quiz = QuizService();
 
 void main() {
   final WordRepository repo = WordRepository.instance;
+
+  // A wrong answer reads the right word aloud; fake the phone's TTS engine so
+  // the call returns as it does on a device.
+  setUp(() {
+    TestWidgetsFlutterBinding.ensureInitialized()
+        .defaultBinaryMessenger
+        .setMockMethodCallHandler(
+          const MethodChannel('flutter_tts'),
+          (MethodCall call) async =>
+              call.method == 'isLanguageAvailable' ? true : 1,
+        );
+  });
 
   test('Quiz: a quiz always has exactly twenty questions', () {
     for (int seed = 0; seed < 25; seed++) {
@@ -104,15 +117,17 @@ void main() {
     await tester.tap(find.byKey(const ValueKey<String>('tab-quiz')));
     await tester.pumpAndSettle();
 
-    expect(find.text('Mix of all'), findsOneWidget);
+    expect(find.text('Mix di tutto'), findsOneWidget);
     await tester.scrollUntilVisible(
       find.byKey(const ValueKey<String>('quiz-category:fruit')),
       200,
     );
+    await tester.ensureVisible(find.byKey(const ValueKey<String>('quiz-category:fruit')));
+    await tester.pumpAndSettle();
     await tester.tap(find.byKey(const ValueKey<String>('quiz-category:fruit')));
     await tester.pumpAndSettle();
 
-    expect(find.text('Question 1 of 20'), findsOneWidget);
+    expect(find.text('Domanda 1 di 20'), findsOneWidget);
     expect(find.byKey(const ValueKey<String>('answer-vero')), findsOneWidget);
     expect(find.byKey(const ValueKey<String>('answer-falso')), findsOneWidget);
   });
@@ -126,6 +141,8 @@ void main() {
       find.byKey(const ValueKey<String>('quiz-category:fruit')),
       200,
     );
+    await tester.ensureVisible(find.byKey(const ValueKey<String>('quiz-category:fruit')));
+    await tester.pumpAndSettle();
     await tester.tap(find.byKey(const ValueKey<String>('quiz-category:fruit')));
     await tester.pumpAndSettle();
 
@@ -137,7 +154,7 @@ void main() {
 
     await tester.tap(find.byKey(const ValueKey<String>('quiz-next')));
     await tester.pumpAndSettle();
-    expect(find.text('Question 2 of 20'), findsOneWidget);
+    expect(find.text('Domanda 2 di 20'), findsOneWidget);
   });
 
   testWidgets('Quiz: the result screen shows score, mistakes and both buttons',
@@ -167,8 +184,8 @@ void main() {
     }
 
     expect(find.text('0 / 20'), findsOneWidget);
-    expect(find.text('NOT PASSED'), findsOneWidget);
-    expect(find.text('20 mistakes'), findsOneWidget);
+    expect(find.text('NON PROMOSSO'), findsOneWidget);
+    expect(find.text('20 errori'), findsOneWidget);
 
     await tester.scrollUntilVisible(
       find.byKey(const ValueKey<String>('repeat-mistakes')),
@@ -206,8 +223,8 @@ void main() {
     }
 
     expect(find.text('20 / 20'), findsOneWidget);
-    expect(find.text('PASSED'), findsOneWidget);
-    expect(find.text('No mistakes. Perfect!'), findsOneWidget);
+    expect(find.text('PROMOSSO'), findsOneWidget);
+    expect(find.text('Nessun errore. Perfetto!'), findsOneWidget);
     await tester.scrollUntilVisible(
       find.byKey(const ValueKey<String>('new-quiz')),
       300,
