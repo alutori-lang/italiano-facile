@@ -1,0 +1,113 @@
+# Local blocklist: insults and slurs that are never stored in the shared dictionary.
+# One word or phrase per line, matched as whole words after norm() (accents/case ignored).
+# Lines starting with # are comments. Avoid words that also have an innocent meaning
+# (e.g. "kutta" = dog, "negro" = black in Spanish, "finocchio" = fennel): Gemini's
+# own "offensive" flag covers the context-dependent cases.
+
+# --- Italiano ---
+cazzo
+cazzone
+stronzo
+stronza
+stronzi
+vaffanculo
+fanculo
+affanculo
+coglione
+cogliona
+coglioni
+puttana
+puttane
+puttaniere
+troia
+troie
+zoccola
+mignotta
+bastardo
+bastarda
+merda
+merdoso
+minchia
+frocio
+froci
+ricchione
+culattone
+pompino
+porco dio
+porcodio
+dio cane
+diocane
+dio porco
+terrone
+terroni
+ritardato di merda
+figlio di puttana
+testa di cazzo
+
+# --- English ---
+fuck
+fucking
+fucker
+motherfucker
+fuck you
+shit
+bullshit
+bitch
+cunt
+asshole
+whore
+slut
+nigger
+nigga
+faggot
+fag
+retard
+wanker
+twat
+son of a bitch
+
+# --- Urdu / Punjabi (Roman) ---
+chutiya
+chutia
+chootiya
+bhenchod
+behenchod
+bhanchod
+benchod
+madarchod
+maderchod
+madar chod
+gandu
+gaandu
+harami
+haramzada
+haramzadi
+haramkhor
+kanjar
+kanjri
+randi
+lund
+phudi
+phuddi
+bhosdi
+bhosdike
+bhosri
+teri maa ki
+gashti
+kamina
+kameena
+kamini
+
+# --- Urdu / Punjabi (script) ---
+حرامی
+حرامزادہ
+کنجر
+کنجری
+رنڈی
+گانڈو
+چوتیا
+بہنچود
+مادرچود
+گشتی
+ਹਰਾਮੀ
+ਕੰਜਰ
