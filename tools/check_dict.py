@@ -81,8 +81,18 @@ def check_entry(e, where, errors):
             if rx is not None:
                 if not rx.search(s):
                     err(f'{field}[{LANGS[i]}] not in the right script: {s!r}')
-                if LATIN_LETTER.search(s) and field == 'tr':
+                # Brand names and acronyms (WhatsApp, Wi-Fi, IBAN) may stay Latin.
+                if field == 'tr' and re.search(r'(?<![A-Za-z])[a-z]', s):
                     err(f'{field}[{LANGS[i]}] contains Latin letters: {s!r}')
+                # Lower-case Latin words (Italian leaking into another script).
+                # Upper-case acronyms such as IBAN, SPID, INPS are allowed.
+                # Explanations may quote Italian forms on purpose; translated
+                # examples may not (quoted or bracketed text is allowed).
+                bare = re.sub(r'"[^"]*"|“[^”]*”|«[^»]*»|\([^)]*\)', '', s)
+                if field == 'exTr' and i != 6 and re.search(r'\b[a-zà-ù]{3,}', bare):
+                    err(f'{field}[{LANGS[i]}] has a lower-case Latin word: {s!r}')
+            if i in (1, 2, 3, 4, 5) and re.search(r'[‎‏‪-‮]', s):
+                err(f'{field}[{LANGS[i]}] has a stray direction control character')
             if i in (1, 2) and re.search(r'[਀-੿ऀ-ॿ]', s):
                 err(f'{field}[{LANGS[i]}] has Indic letters in Arabic-script slot')
         if field != 'tr' and vals[0].strip() and sum(1 for s in vals[1:7] if s == vals[0]) > 0:

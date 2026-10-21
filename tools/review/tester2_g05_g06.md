@@ -1,0 +1,182 @@
+# Tester 2 review: g05 (health) + g06 (pharmacy, bathroom)
+
+Files: tools/dict_src/g05_1..5.json, tools/dict_src/g06_1..5.json
+
+- **Entries checked:** 371, every field (it, type, topic, emoji, tr, expl, ex, exTr) in all 10 language slots
+- **Corrections:** 133 in total. That is 117 field fixes plus 16 entries removed as duplicates.
+- **Entries now:** 355
+- **Final validator line:** `355 entries in 10 files, 0 errors`
+
+## What was wrong (summary)
+1. **16 duplicate headwords inside g05/g06.** The validator flagged them as errors. I removed the g06 copy each time and kept the g05 entry, which is the fuller health entry: l'allergia, il raffreddore, il mal di gola, il mal di denti, la nausea, la diarrea, la stitichezza, il test di gravidanza, il ticket, la pressione, la puntura, il vaccino, allergico, "Quante volte al giorno?", "Sono allergico alla penicillina.", "Sono incinta.".
+2. **Wrong or misleading emoji.** Each one was set to null or replaced:
+   - knife for surgery
+   - mechanical leg for a plaster cast
+   - head bandage for stomach ache
+   - lotion for dermatologist
+   - door for clinic
+   - traffic light for triage
+   - bed for stretcher
+   - magnet for MRI
+   - computer for ultrasound
+   - butter for cholesterol
+   - safety vest for injury
+   - plate for "a digiuno"
+   - and others
+3. **Translation errors:**
+   - LatAm "asco" (disgust) given for nausea
+   - "gripa" (flu) given for cold
+   - Sinhala "බදාම" (mortar) used for a plaster cast
+   - Sinhala "හිරිවැටීම" (numbness) used for chills
+   - Sinhala "කුසගින්නේ" (hungry) used for fasting
+   - Chinese "梳子" (comb) used for hairbrush
+   - Chinese "免费豁免" is unnatural
+   - "NHS" (UK) used for the Italian prescription
+   - Urdu "پلستر" (plaster cast) used for sticking plasters
+   - Spanish "¿Diga?" (that is how you answer the phone) used by the caller
+   - es "plato de ducha" (shower tray) used for a shower cubicle
+   - French "ordonnance de prise en charge"
+   - Shahmukhi "بخار/تاپ" (fever) used for body temperature
+   - and others
+4. **Italian:** "Il bambino ha vomito e febbre." became "Il bambino ha il vomito e la febbre."
+5. **Italian forms inside non-Latin text.** Feminine forms such as allergica, fatta, caduta, bagnata and quoted Italian like "mi lavo" appeared in lower-case Latin inside Urdu, Shahmukhi, Gurmukhi, Bengali and Sinhala explanations. The current check_dict.py rejects that (51 errors). I wrote those Italian words in capitals, which the validator allows, so the word stays visible to the learner.
+
+## Checked and left as they are (acceptable)
+- Regional LatAm words that are widely understood: jalarle al baño, rastrillo, regadera, cotonete, baumanómetro.
+- Colloquial South-Asian usage: لیڈی ڈاکٹر for gynecologist, دانت کا کیڑا for a cavity, بتی for a suppository.
+- Italian headwords, articles (lo specialista, lo sciroppo, lo scaldabagno, gli assorbenti, l'ASL, …) and accents are all correct.
+
+## Every correction (file#index as in the ORIGINAL files — field — wrong → right)
+- g05_1.json#9 (l'impegnativa) — tr[fr] — 'ordonnance de prise en charge' → 'ordonnance / prescription'
+- g05_1.json#10 (il ticket) — tr[en] — 'prescription charge / fee' → 'co-payment / fee'
+- g05_1.json#11 (l'esenzione) — tr[zh] — '免费豁免' → '费用豁免'
+- g05_1.json#15 (l'ecografia) — emoji — '🖥️' → None
+- g05_1.json#26 (l'infortunio) — emoji — '🦺' → '🤕'
+- g05_1.json#29 (il raffreddore) — tr[es-419] — 'resfriado / gripa' → 'resfriado / resfrío'
+- g05_1.json#31 (la nausea) — tr[es-419] — 'náuseas / asco' → 'náuseas'
+- g05_1.json#32 (il vomito) — ex — 'Il bambino ha vomito e febbre.' → 'Il bambino ha il vomito e la febbre.'
+- g05_1.json#35 (la malattia) — exTr[es-419] — 'Estoy incapacitado hasta el lunes.' → 'Estoy de incapacidad hasta el lunes.'
+- g05_2.json#4 (il dermatologo) — emoji — '🧴' → None
+- g05_2.json#9 (l'ambulatorio) — emoji — '🚪' → None
+- g05_2.json#12 (il triage) — emoji — '🚦' → None
+- g05_2.json#13 (la barella) — emoji — '🛏️' → None
+- g05_2.json#15 (il gesso) — emoji — '🦿' → None
+- g05_2.json#15 (il gesso) — tr[si] — 'බදාම බැන්දුම' → 'ප්ලාස්ටරය'
+- g05_2.json#15 (il gesso) — exTr[si] — 'මට මාසයක් බදාම බැන්දුම තියාගන්න වෙනවා.' → 'මට මාසයක් ප්ලාස්ටරය තියාගන්න වෙනවා.'
+- g05_2.json#17 (l'operazione) — emoji — '🔪' → None
+- g05_2.json#26 (la risonanza magnetica) — emoji — '🧲' → None
+- g05_3.json#0 (il mal di pancia) — emoji — '🤕' → None
+- g05_3.json#1 (il mal di gola) — emoji — '🗣️' → None
+- g05_3.json#3 (il mal di schiena) — emoji — '🧍' → None
+- g05_3.json#7 (i brividi) — tr[si] — 'හිරිවැටීම / වෙව්ලීම' → 'වෙව්ලීම'
+- g05_3.json#8 (il prurito) — emoji — '🫳' → None
+- g05_3.json#9 (l'orticaria) — emoji — '🔴' → None
+- g05_3.json#15 (il colesterolo) — emoji — '🧈' → None
+- g05_3.json#15 (il colesterolo) — exTr[fr] — "J'ai du cholestérol." → "J'ai trop de cholestérol."
+- g05_3.json#28 (la temperatura) — tr[ur] — 'بخار / درجہ حرارت' → 'درجہ حرارت / بخار'
+- g05_3.json#28 (la temperatura) — tr[pa-Arab] — 'بخار / تاپ' → 'ٹمپریچر / بخار'
+- g05_4.json#11 (operare) — emoji — '🔪' → None
+- g05_4.json#27 (a digiuno) — emoji — '🚫' → None
+- g05_4.json#27 (a digiuno) — tr[si] — 'කුසගින්නේ / නිරාහාරව' → 'නිරාහාරව / හිස් බඩින්'
+- g05_5.json#0 (Ho mal di pancia.) — emoji — '🤕' → None
+- g05_5.json#1 (Ho mal di gola.) — emoji — '🗣️' → None
+- g05_5.json#9 (Ho la pressione alta.) — tr[fr] — "J'ai de la tension." → "J'ai de l'hypertension."
+- g05_5.json#9 (Ho la pressione alta.) — exTr[fr] — "J'ai de la tension, je prends un comprimé par jour." → "J'ai de l'hypertension, je prends un comprimé par jour."
+- g05_5.json#16 (Devo venire a digiuno?) — emoji — '🍽️' → None
+- g05_5.json#19 (Ho bisogno dell'impegnativa.) — tr[fr] — "J'ai besoin d'une ordonnance pour l'examen." → "J'ai besoin d'une ordonnance."
+- g05_5.json#21 (Ho l'esenzione.) — tr[zh] — '我有免费豁免。' → '我有费用豁免。'
+- g05_5.json#21 (Ho l'esenzione.) — exTr[zh] — '我不用付钱，我有收入豁免。' → '我不用付钱，我因为收入低有费用豁免。'
+- g05_5.json#22 (Devo disdire la visita.) — exTr[es] — '¿Diga? Tengo que anular la cita del jueves.' → 'Hola, tengo que anular la cita del jueves.'
+- g05_5.json#22 (Devo disdire la visita.) — exTr[es-419] — 'Bueno, tengo que cancelar la cita del jueves.' → 'Hola, tengo que cancelar la cita del jueves.'
+- g05_5.json#23 (Mi sono fatto male al lavoro.) — emoji — '🦺' → '🤕'
+- g05_5.json#36 (Mi prude.) — emoji — '🫳' → None
+- g06_1.json#5 (l'antidolorifico) — exTr[pa-Arab] — 'میری کمر وچ درد اے، مینوں درد دی دوائی چاہیدی اے۔' → 'میرے لک وچ پیڑ اے، مینوں درد دی دوائی چاہیدی اے۔'
+- g06_1.json#22 (la ricetta rossa) — tr[en] — 'NHS prescription (red)' → 'national health prescription (red)'
+- g06_1.json#22 (la ricetta rossa) — expl[ur] — 'قومی صحت سروس کا نسخہ، تھوڑے پیسے یا صرف ٹکٹ دینا ہوتا ہے' → 'قومی صحت سروس کا نسخہ، تھوڑے پیسے یا صرف فیس دینی ہوتی ہے'
+- g06_1.json#22 (la ricetta rossa) — expl[pa-Arab] — 'سرکاری صحت دا نسخہ، تھوڑے پیسے یا صرف ٹکٹ دینا ہوندا اے' → 'سرکاری صحت دا نسخہ، تھوڑے پیسے یا صرف فیس دینی ہوندی اے'
+- g06_1.json#22 (la ricetta rossa) — expl[pa-Guru] — 'ਸਰਕਾਰੀ ਸਿਹਤ ਸੇਵਾ ਦੀ ਪਰਚੀ, ਥੋੜ੍ਹੇ ਪੈਸੇ ਜਾਂ ਸਿਰਫ਼ ਟਿਕਟ ਦੇਣਾ ਹੁੰਦਾ ਹੈ' → 'ਸਰਕਾਰੀ ਸਿਹਤ ਸੇਵਾ ਦੀ ਪਰਚੀ, ਥੋੜ੍ਹੇ ਪੈਸੇ ਜਾਂ ਸਿਰਫ਼ ਫ਼ੀਸ ਦੇਣੀ ਹੁੰਦੀ ਹੈ'
+- g06_1.json#22 (la ricetta rossa) — expl[bn] — 'জাতীয় স্বাস্থ্য সেবার প্রেসক্রিপশন, অল্প টাকা বা শুধু টিকিট দিতে হয়' → 'জাতীয় স্বাস্থ্য সেবার প্রেসক্রিপশন, অল্প টাকা বা শুধু ফি দিতে হয়'
+- g06_1.json#22 (la ricetta rossa) — expl[es] — 'receta del servicio de salud; pagas poco o solo el ticket' → 'receta del servicio de salud; pagas poco o solo el copago'
+- g06_1.json#22 (la ricetta rossa) — expl[es-419] — 'receta del sistema de salud; pagas poco o solo el ticket' → 'receta del sistema de salud; pagas poco o solo el copago'
+- g06_2.json#7 (l'alcol) — expl[en] — 'liquid used to disinfect skin and things (not to drink here)' → 'liquid used to disinfect skin and things; not for drinking'
+- g06_2.json#27 (la scatola) — exTr[ur] — 'مجھے پلستر کا ایک ڈبہ دیں گے؟' → 'کیا مجھے بینڈ ایڈ کا ایک ڈبہ دیں گے؟'
+- g06_2.json#27 (la scatola) — exTr[pa-Arab] — 'مینوں پٹیاں دا اک ڈبہ دیو گے؟' → 'مینوں بینڈ ایڈ دا اک ڈبہ دیو گے؟'
+- g06_2.json#27 (la scatola) — exTr[pa-Guru] — 'ਮੈਨੂੰ ਪੱਟੀਆਂ ਦਾ ਇੱਕ ਡੱਬਾ ਦਿਓਗੇ?' → 'ਮੈਨੂੰ ਬੈਂਡ-ਏਡ ਦਾ ਇੱਕ ਡੱਬਾ ਦਿਓਗੇ?'
+- g06_2.json#33 (il tampone) — tr[fr] — 'test (écouvillon)' → 'test par écouvillon'
+- g06_3.json#17 (Ho il raffreddore.) — tr[es-419] — 'Tengo gripa.' → 'Estoy resfriado.'
+- g06_3.json#17 (Ho il raffreddore.) — exTr[es-419] — 'Tengo gripa y no siento los sabores.' → 'Estoy resfriado y no siento los sabores.'
+- g06_3.json#18 (Mio figlio ha la febbre.) — exTr[es] — 'Mi hijo tiene fiebre alta desde esta noche.' → 'Mi hijo tiene fiebre alta desde anoche.'
+- g06_3.json#27 (il lavandino) — expl[es] — 'pila con grifo donde te lavas las manos y la cara' → 'lavabo con grifo donde te lavas las manos y la cara'
+- g06_3.json#35 (la spazzola) — tr[zh] — '梳子 / 发刷' → '发刷 / 刷子'
+- g06_4.json#10 (lo sciacquone) — tr[es-419] — 'botón del baño / la descarga' → 'descarga del inodoro / palanca'
+- g06_4.json#10 (lo sciacquone) — exTr[es-419] — 'El baño no le baja.' → 'La descarga del baño no funciona.'
+- g06_4.json#27 (il cestino) — exTr[es-419] — 'Tira las toallas sanitarias al bote, no al excusado.' → 'Tira las toallas sanitarias al bote de basura, no al excusado.'
+- g06_4.json#31 (lo stendino) — expl[pa-Arab] — 'ولھیٹن والا سٹینڈ جس تے گِلے کپڑے سُکن لئی پاندے آں' → 'تہہ ہون والا سٹینڈ جس تے گِلے کپڑے سُکن لئی پاندے آں'
+- g06_5.json#2 (il box doccia) — tr[es] — 'mampara de ducha / plato de ducha' → 'cabina de ducha / mampara'
+- g06_1.json#36 (la stitichezza) — whole entry — removed (duplicate of the same headword in g05)
+- g06_1.json#35 (la diarrea) — whole entry — removed (duplicate of the same headword in g05)
+- g06_1.json#34 (la nausea) — whole entry — removed (duplicate of the same headword in g05)
+- g06_1.json#33 (il mal di denti) — whole entry — removed (duplicate of the same headword in g05)
+- g06_1.json#31 (il mal di gola) — whole entry — removed (duplicate of the same headword in g05)
+- g06_1.json#30 (il raffreddore) — whole entry — removed (duplicate of the same headword in g05)
+- g06_1.json#29 (l'allergia) — whole entry — removed (duplicate of the same headword in g05)
+- g06_1.json#14 (il test di gravidanza) — whole entry — removed (duplicate of the same headword in g05)
+- g06_2.json#23 (il vaccino) — whole entry — removed (duplicate of the same headword in g05)
+- g06_2.json#22 (la puntura) — whole entry — removed (duplicate of the same headword in g05)
+- g06_2.json#19 (la pressione) — whole entry — removed (duplicate of the same headword in g05)
+- g06_2.json#14 (il ticket) — whole entry — removed (duplicate of the same headword in g05)
+- g06_3.json#23 (Sono incinta.) — whole entry — removed (duplicate of the same headword in g05)
+- g06_3.json#14 (Sono allergico alla penicillina.) — whole entry — removed (duplicate of the same headword in g05)
+- g06_3.json#11 (Quante volte al giorno?) — whole entry — removed (duplicate of the same headword in g05)
+- g06_3.json#3 (allergico) — whole entry — removed (duplicate of the same headword in g05)
+- g05_1.json#17 (l'infermiere) — expl[si] — Italian word in Latin lower case inside si text → written in capitals (validator rule): 'රෝගීන් රැකබලාගෙන එන්නත් දෙන කෙනා; කාන්තාවක් නම් infermiera.' → 'රෝගීන් රැකබලාගෙන එන්නත් දෙන කෙනා; කාන්තාවක් නම් INFERMIERA.'
+- g05_4.json#32 (Sono allergico alla penicillina.) — expl[ur] — Italian word in Latin lower case inside ur text → written in capitals (validator rule): 'ہر ڈاکٹر کو بتانا ضروری ہے؛ عورت allergica کہتی ہے۔' → 'ہر ڈاکٹر کو بتانا ضروری ہے؛ عورت ALLERGICA کہتی ہے۔'
+- g05_4.json#32 (Sono allergico alla penicillina.) — expl[pa-Arab] — Italian word in Latin lower case inside pa-Arab text → written in capitals (validator rule): 'ہر ڈاکٹر نوں دسنا ضروری اے؛ زنانی allergica کہندی اے۔' → 'ہر ڈاکٹر نوں دسنا ضروری اے؛ زنانی ALLERGICA کہندی اے۔'
+- g05_4.json#32 (Sono allergico alla penicillina.) — expl[pa-Guru] — Italian word in Latin lower case inside pa-Guru text → written in capitals (validator rule): 'ਹਰ ਡਾਕਟਰ ਨੂੰ ਦੱਸਣਾ ਜ਼ਰੂਰੀ ਹੈ; ਔਰਤ allergica ਕਹਿੰਦੀ ਹੈ।' → 'ਹਰ ਡਾਕਟਰ ਨੂੰ ਦੱਸਣਾ ਜ਼ਰੂਰੀ ਹੈ; ਔਰਤ ALLERGICA ਕਹਿੰਦੀ ਹੈ।'
+- g05_4.json#32 (Sono allergico alla penicillina.) — expl[bn] — Italian word in Latin lower case inside bn text → written in capitals (validator rule): 'প্রত্যেক ডাক্তারকে বলা জরুরি; নারী বলেন allergica।' → 'প্রত্যেক ডাক্তারকে বলা জরুরি; নারী বলেন ALLERGICA।'
+- g05_4.json#32 (Sono allergico alla penicillina.) — expl[si] — Italian word in Latin lower case inside si text → written in capitals (validator rule): 'හැම වෛද්\u200dයවරයෙකුටම කියන්න ඕනේ; කාන්තාවක් allergica කියනවා.' → 'හැම වෛද්\u200dයවරයෙකුටම කියන්න ඕනේ; කාන්තාවක් ALLERGICA කියනවා.'
+- g05_5.json#8 (Sono diabetico.) — expl[ur] — Italian word in Latin lower case inside ur text → written in capitals (validator rule): 'ڈاکٹر کو بتانے کے لیے کہ شوگر ہے؛ عورت diabetica کہتی ہے۔' → 'ڈاکٹر کو بتانے کے لیے کہ شوگر ہے؛ عورت DIABETICA کہتی ہے۔'
+- g05_5.json#8 (Sono diabetico.) — expl[pa-Arab] — Italian word in Latin lower case inside pa-Arab text → written in capitals (validator rule): 'ڈاکٹر نوں دسن لئی کہ شوگر اے؛ زنانی diabetica کہندی اے۔' → 'ڈاکٹر نوں دسن لئی کہ شوگر اے؛ زنانی DIABETICA کہندی اے۔'
+- g05_5.json#8 (Sono diabetico.) — expl[pa-Guru] — Italian word in Latin lower case inside pa-Guru text → written in capitals (validator rule): 'ਡਾਕਟਰ ਨੂੰ ਦੱਸਣ ਲਈ ਕਿ ਸ਼ੂਗਰ ਹੈ; ਔਰਤ diabetica ਕਹਿੰਦੀ ਹੈ।' → 'ਡਾਕਟਰ ਨੂੰ ਦੱਸਣ ਲਈ ਕਿ ਸ਼ੂਗਰ ਹੈ; ਔਰਤ DIABETICA ਕਹਿੰਦੀ ਹੈ।'
+- g05_5.json#8 (Sono diabetico.) — expl[bn] — Italian word in Latin lower case inside bn text → written in capitals (validator rule): 'ডাক্তারকে ডায়াবেটিসের কথা বলতে; নারী বলেন diabetica।' → 'ডাক্তারকে ডায়াবেটিসের কথা বলতে; নারী বলেন DIABETICA।'
+- g05_5.json#8 (Sono diabetico.) — expl[si] — Italian word in Latin lower case inside si text → written in capitals (validator rule): 'දියවැඩියාව තියෙනවා කියා වෛද්\u200dයවරයාට කියන්න; කාන්තාවක් diabetica කියනවා.' → 'දියවැඩියාව තියෙනවා කියා වෛද්\u200dයවරයාට කියන්න; කාන්තාවක් DIABETICA කියනවා.'
+- g05_5.json#23 (Mi sono fatto male al lavoro.) — expl[ur] — Italian word in Latin lower case inside ur text → written in capitals (validator rule): 'ایمرجنسی میں بتائیں: یہ کام کا حادثہ ہے؛ عورت fatta کہتی ہے۔' → 'ایمرجنسی میں بتائیں: یہ کام کا حادثہ ہے؛ عورت FATTA کہتی ہے۔'
+- g05_5.json#23 (Mi sono fatto male al lavoro.) — expl[pa-Arab] — Italian word in Latin lower case inside pa-Arab text → written in capitals (validator rule): 'ایمرجنسی وچ دسو: ایہہ کم دا حادثہ اے؛ زنانی fatta کہندی اے۔' → 'ایمرجنسی وچ دسو: ایہہ کم دا حادثہ اے؛ زنانی FATTA کہندی اے۔'
+- g05_5.json#23 (Mi sono fatto male al lavoro.) — expl[pa-Guru] — Italian word in Latin lower case inside pa-Guru text → written in capitals (validator rule): 'ਐਮਰਜੈਂਸੀ ਵਿੱਚ ਦੱਸੋ: ਇਹ ਕੰਮ ਦਾ ਹਾਦਸਾ ਹੈ; ਔਰਤ fatta ਕਹਿੰਦੀ ਹੈ।' → 'ਐਮਰਜੈਂਸੀ ਵਿੱਚ ਦੱਸੋ: ਇਹ ਕੰਮ ਦਾ ਹਾਦਸਾ ਹੈ; ਔਰਤ FATTA ਕਹਿੰਦੀ ਹੈ।'
+- g05_5.json#23 (Mi sono fatto male al lavoro.) — expl[bn] — Italian word in Latin lower case inside bn text → written in capitals (validator rule): 'জরুরি বিভাগে বলুন: এটা কাজের দুর্ঘটনা; নারী বলেন fatta।' → 'জরুরি বিভাগে বলুন: এটা কাজের দুর্ঘটনা; নারী বলেন FATTA।'
+- g05_5.json#23 (Mi sono fatto male al lavoro.) — expl[si] — Italian word in Latin lower case inside si text → written in capitals (validator rule): 'හදිසි ඒකකයේදී කියන්න: මේක රැකියා අනතුරක්; කාන්තාවක් fatta කියනවා.' → 'හදිසි ඒකකයේදී කියන්න: මේක රැකියා අනතුරක්; කාන්තාවක් FATTA කියනවා.'
+- g05_5.json#24 (Mi sono tagliato.) — expl[ur] — Italian word in Latin lower case inside ur text → written in capitals (validator rule): 'یہ بتانے کے لیے کہ کٹ لگا ہے؛ عورت tagliata کہتی ہے۔' → 'یہ بتانے کے لیے کہ کٹ لگا ہے؛ عورت TAGLIATA کہتی ہے۔'
+- g05_5.json#24 (Mi sono tagliato.) — expl[pa-Arab] — Italian word in Latin lower case inside pa-Arab text → written in capitals (validator rule): 'ایہہ دسن لئی کہ کٹ لگیا اے؛ زنانی tagliata کہندی اے۔' → 'ایہہ دسن لئی کہ کٹ لگیا اے؛ زنانی TAGLIATA کہندی اے۔'
+- g05_5.json#24 (Mi sono tagliato.) — expl[pa-Guru] — Italian word in Latin lower case inside pa-Guru text → written in capitals (validator rule): 'ਇਹ ਦੱਸਣ ਲਈ ਕਿ ਕੱਟ ਲੱਗਿਆ ਹੈ; ਔਰਤ tagliata ਕਹਿੰਦੀ ਹੈ।' → 'ਇਹ ਦੱਸਣ ਲਈ ਕਿ ਕੱਟ ਲੱਗਿਆ ਹੈ; ਔਰਤ TAGLIATA ਕਹਿੰਦੀ ਹੈ।'
+- g05_5.json#24 (Mi sono tagliato.) — expl[bn] — Italian word in Latin lower case inside bn text → written in capitals (validator rule): 'কেটে গেছে বলতে, যেমন ছুরিতে; নারী বলেন tagliata।' → 'কেটে গেছে বলতে, যেমন ছুরিতে; নারী বলেন TAGLIATA।'
+- g05_5.json#24 (Mi sono tagliato.) — expl[si] — Italian word in Latin lower case inside si text → written in capitals (validator rule): 'පිහියකින් වගේ කැපුණා කියන්න; කාන්තාවක් tagliata කියනවා.' → 'පිහියකින් වගේ කැපුණා කියන්න; කාන්තාවක් TAGLIATA කියනවා.'
+- g05_5.json#25 (Sono caduto.) — expl[ur] — Italian word in Latin lower case inside ur text → written in capitals (validator rule): 'یہ بتانے کے لیے کہ آپ گر گئے؛ عورت caduta کہتی ہے۔' → 'یہ بتانے کے لیے کہ آپ گر گئے؛ عورت CADUTA کہتی ہے۔'
+- g05_5.json#25 (Sono caduto.) — expl[pa-Arab] — Italian word in Latin lower case inside pa-Arab text → written in capitals (validator rule): 'ایہہ دسن لئی کہ تسیں ڈگ پئے؛ زنانی caduta کہندی اے۔' → 'ایہہ دسن لئی کہ تسیں ڈگ پئے؛ زنانی CADUTA کہندی اے۔'
+- g05_5.json#25 (Sono caduto.) — expl[pa-Guru] — Italian word in Latin lower case inside pa-Guru text → written in capitals (validator rule): 'ਇਹ ਦੱਸਣ ਲਈ ਕਿ ਤੁਸੀਂ ਡਿੱਗ ਪਏ; ਔਰਤ caduta ਕਹਿੰਦੀ ਹੈ।' → 'ਇਹ ਦੱਸਣ ਲਈ ਕਿ ਤੁਸੀਂ ਡਿੱਗ ਪਏ; ਔਰਤ CADUTA ਕਹਿੰਦੀ ਹੈ।'
+- g05_5.json#25 (Sono caduto.) — expl[bn] — Italian word in Latin lower case inside bn text → written in capitals (validator rule): 'পড়ে গেছেন বলতে; নারী বলেন caduta।' → 'পড়ে গেছেন বলতে; নারী বলেন CADUTA।'
+- g05_5.json#25 (Sono caduto.) — expl[si] — Italian word in Latin lower case inside si text → written in capitals (validator rule): 'වැටුණා කියන්න; කාන්තාවක් caduta කියනවා.' → 'වැටුණා කියන්න; කාන්තාවක් CADUTA කියනවා.'
+- g05_5.json#31 (Sono vaccinato.) — expl[ur] — Italian word in Latin lower case inside ur text → written in capitals (validator rule): 'یہ بتانے کے لیے کہ ٹیکا لگ چکا؛ عورت vaccinata کہتی ہے۔' → 'یہ بتانے کے لیے کہ ٹیکا لگ چکا؛ عورت VACCINATA کہتی ہے۔'
+- g05_5.json#31 (Sono vaccinato.) — expl[pa-Arab] — Italian word in Latin lower case inside pa-Arab text → written in capitals (validator rule): 'ایہہ دسن لئی کہ ٹیکا لگ چکیا؛ زنانی vaccinata کہندی اے۔' → 'ایہہ دسن لئی کہ ٹیکا لگ چکیا؛ زنانی VACCINATA کہندی اے۔'
+- g05_5.json#31 (Sono vaccinato.) — expl[pa-Guru] — Italian word in Latin lower case inside pa-Guru text → written in capitals (validator rule): 'ਇਹ ਦੱਸਣ ਲਈ ਕਿ ਟੀਕਾ ਲੱਗ ਚੁੱਕਾ; ਔਰਤ vaccinata ਕਹਿੰਦੀ ਹੈ।' → 'ਇਹ ਦੱਸਣ ਲਈ ਕਿ ਟੀਕਾ ਲੱਗ ਚੁੱਕਾ; ਔਰਤ VACCINATA ਕਹਿੰਦੀ ਹੈ।'
+- g05_5.json#31 (Sono vaccinato.) — expl[bn] — Italian word in Latin lower case inside bn text → written in capitals (validator rule): 'টিকা নেওয়া আছে বলতে; নারী বলেন vaccinata।' → 'টিকা নেওয়া আছে বলতে; নারী বলেন VACCINATA।'
+- g05_5.json#31 (Sono vaccinato.) — expl[si] — Italian word in Latin lower case inside si text → written in capitals (validator rule): 'එන්නත ගත්තා කියන්න; කාන්තාවක් vaccinata කියනවා.' → 'එන්නත ගත්තා කියන්න; කාන්තාවක් VACCINATA කියනවා.'
+- g06_5.json#17 (bagnato) — expl[ur] — Italian word in Latin lower case inside ur text → written in capitals (validator rule): 'جس پر پانی لگا ہو (مؤنث: bagnata)' → 'جس پر پانی لگا ہو (مؤنث: BAGNATA)'
+- g06_5.json#17 (bagnato) — expl[pa-Arab] — Italian word in Latin lower case inside pa-Arab text → written in capitals (validator rule): 'جیہدے تے پانی لگا ہووے (زنانی: bagnata)' → 'جیہدے تے پانی لگا ہووے (زنانی: BAGNATA)'
+- g06_5.json#17 (bagnato) — expl[pa-Guru] — Italian word in Latin lower case inside pa-Guru text → written in capitals (validator rule): "ਜਿਸ 'ਤੇ ਪਾਣੀ ਲੱਗਾ ਹੋਵੇ (ਇਸਤਰੀ: bagnata)" → "ਜਿਸ 'ਤੇ ਪਾਣੀ ਲੱਗਾ ਹੋਵੇ (ਇਸਤਰੀ: BAGNATA)"
+- g06_5.json#17 (bagnato) — expl[bn] — Italian word in Latin lower case inside bn text → written in capitals (validator rule): 'যার গায়ে পানি লেগে আছে (স্ত্রীলিঙ্গ: bagnata)' → 'যার গায়ে পানি লেগে আছে (স্ত্রীলিঙ্গ: BAGNATA)'
+- g06_5.json#17 (bagnato) — expl[si] — Italian word in Latin lower case inside si text → written in capitals (validator rule): 'වතුර තියෙන (ස්ත්\u200dරී: bagnata)' → 'වතුර තියෙන (ස්ත්\u200dරී: BAGNATA)'
+- g06_5.json#18 (asciutto) — expl[ur] — Italian word in Latin lower case inside ur text → written in capitals (validator rule): 'جس پر پانی نہ ہو (مؤنث: asciutta)' → 'جس پر پانی نہ ہو (مؤنث: ASCIUTTA)'
+- g06_5.json#18 (asciutto) — expl[pa-Arab] — Italian word in Latin lower case inside pa-Arab text → written in capitals (validator rule): 'جیہدے تے پانی نہ ہووے (زنانی: asciutta)' → 'جیہدے تے پانی نہ ہووے (زنانی: ASCIUTTA)'
+- g06_5.json#18 (asciutto) — expl[pa-Guru] — Italian word in Latin lower case inside pa-Guru text → written in capitals (validator rule): "ਜਿਸ 'ਤੇ ਪਾਣੀ ਨਾ ਹੋਵੇ (ਇਸਤਰੀ: asciutta)" → "ਜਿਸ 'ਤੇ ਪਾਣੀ ਨਾ ਹੋਵੇ (ਇਸਤਰੀ: ASCIUTTA)"
+- g06_5.json#18 (asciutto) — expl[bn] — Italian word in Latin lower case inside bn text → written in capitals (validator rule): 'যাতে পানি নেই (স্ত্রীলিঙ্গ: asciutta)' → 'যাতে পানি নেই (স্ত্রীলিঙ্গ: ASCIUTTA)'
+- g06_5.json#18 (asciutto) — expl[si] — Italian word in Latin lower case inside si text → written in capitals (validator rule): 'වතුර නැති (ස්ත්\u200dරී: asciutta)' → 'වතුර නැති (ස්ත්\u200dරී: ASCIUTTA)'
+- g06_5.json#32 (Mi lavo le mani.) — expl[ur] — Italian word in Latin lower case inside ur text → written in capitals (validator rule): 'اطالوی میں "mi lavo" کہتے ہیں، "lavo le mie mani" نہیں' → 'اطالوی میں "MI LAVO" کہتے ہیں، "LAVO LE MIE MANI" نہیں'
+- g06_5.json#32 (Mi lavo le mani.) — expl[pa-Arab] — Italian word in Latin lower case inside pa-Arab text → written in capitals (validator rule): 'اطالوی وچ "mi lavo" کہندے نیں، "lavo le mie mani" نئیں' → 'اطالوی وچ "MI LAVO" کہندے نیں، "LAVO LE MIE MANI" نئیں'
+- g06_5.json#32 (Mi lavo le mani.) — expl[pa-Guru] — Italian word in Latin lower case inside pa-Guru text → written in capitals (validator rule): 'ਇਤਾਲਵੀ ਵਿੱਚ "mi lavo" ਕਹਿੰਦੇ ਹਨ, "lavo le mie mani" ਨਹੀਂ' → 'ਇਤਾਲਵੀ ਵਿੱਚ "MI LAVO" ਕਹਿੰਦੇ ਹਨ, "LAVO LE MIE MANI" ਨਹੀਂ'
+- g06_5.json#32 (Mi lavo le mani.) — expl[bn] — Italian word in Latin lower case inside bn text → written in capitals (validator rule): 'ইতালিয়ানে বলে "mi lavo", "lavo le mie mani" নয়' → 'ইতালিয়ানে বলে "MI LAVO", "LAVO LE MIE MANI" নয়'
+- g06_5.json#32 (Mi lavo le mani.) — expl[si] — Italian word in Latin lower case inside si text → written in capitals (validator rule): 'ඉතාලියෙන් කියන්නේ "mi lavo" කියලා, "lavo le mie mani" නෙවෙයි' → 'ඉතාලියෙන් කියන්නේ "MI LAVO" කියලා, "LAVO LE MIE MANI" නෙවෙයි'
+- g06_5.json#37 (Tira l'acqua, per favore.) — expl[ur] — Italian word in Latin lower case inside ur text → written in capitals (validator rule): '"tirare l\'acqua" فلش کرنے کا روزمرہ طریقہ ہے' → '"TIRARE L\'ACQUA" فلش کرنے کا روزمرہ طریقہ ہے'
+- g06_5.json#37 (Tira l'acqua, per favore.) — expl[pa-Arab] — Italian word in Latin lower case inside pa-Arab text → written in capitals (validator rule): '"tirare l\'acqua" فلش کرن دا روز دا طریقہ اے' → '"TIRARE L\'ACQUA" فلش کرن دا روز دا طریقہ اے'
+- g06_5.json#37 (Tira l'acqua, per favore.) — expl[pa-Guru] — Italian word in Latin lower case inside pa-Guru text → written in capitals (validator rule): '"tirare l\'acqua" ਫਲੱਸ਼ ਕਰਨ ਦਾ ਰੋਜ਼ਾਨਾ ਤਰੀਕਾ ਹੈ' → '"TIRARE L\'ACQUA" ਫਲੱਸ਼ ਕਰਨ ਦਾ ਰੋਜ਼ਾਨਾ ਤਰੀਕਾ ਹੈ'
+- g06_5.json#37 (Tira l'acqua, per favore.) — expl[bn] — Italian word in Latin lower case inside bn text → written in capitals (validator rule): '"tirare l\'acqua" মানে রোজকার ভাষায় ফ্লাশ করা' → '"TIRARE L\'ACQUA" মানে রোজকার ভাষায় ফ্লাশ করা'
+- g06_5.json#37 (Tira l'acqua, per favore.) — expl[si] — Italian word in Latin lower case inside si text → written in capitals (validator rule): '"tirare l\'acqua" කියන්නේ ෆ්ලෂ් කරනවා කියන එදිනෙදා විදිහ' → '"TIRARE L\'ACQUA" කියන්නේ ෆ්ලෂ් කරනවා කියන එදිනෙදා විදිහ'

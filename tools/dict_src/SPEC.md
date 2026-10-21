@@ -49,6 +49,17 @@ carro, celular, computadora, jugo, durazno, frijoles, papa, departamento, maneja
 - `ex`: one short, simple, natural Italian example sentence (A1–A2 level), correct grammar and accents.
 - `exTr`: the example translated into the 10 languages.
 
+## Known pitfalls found by the testers (fix them everywhere)
+- Bengali is BANGLADESH usage: water = পানি (never জল; জলবায়ু for climate is fine), salt = লবণ,
+  egg = ডিম, bath = গোসল (not স্নান), invitation = দাওয়াত, prayer = নামাজ.
+- Urdu fractions: 1:30 = ڈیڑھ, 2:30 = ڈھائی (not ساڑھے ایک / ساڑھے دو).
+- Sinhala: mosque = පල්ලිය only means church — mosque is මුස්ලිම් පල්ලිය.
+- Emoji: no "close enough" pictures (🧊 for hail, 💦 for puddle, 🌪️ for storm are wrong → null or exact).
+
+- `expl` MAY quote Italian forms in normal lower case Latin letters (e.g. feminine "allergica",
+  "mi sento bene") — do NOT write them in CAPITALS and do NOT transliterate Italian into another script.
+  `exTr` (the translated example) must contain NO untranslated Italian words.
+
 ## Quality rules (testers will check EVERY entry)
 - Italian 100% correct: spelling, accents, article, gender, apostrophes ( l'acqua — use the straight ' ).
 - Urdu & Shahmukhi in Arabic script, Gurmukhi in Gurmukhi script, Bengali in Bengali script, Sinhala in

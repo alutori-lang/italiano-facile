@@ -1,0 +1,165 @@
+# Tester 2 review — g01 (greetings, family), g02 (numbers, colors), g10 (kitchen)
+
+Files: tools/dict_src/g01_1..4.json, g02_1..4.json, g10_1..4.json
+
+- Entries checked: 409 (every entry, every field, all 10 language slots)
+- Corrections: 144 field-level changes (incl. 2 entries removed, 6 emoji set to null)
+- Entries after review: 407
+- Validator: `python -I tools/check_dict.py tools/dict_src/g01_*.json tools/dict_src/g02_*.json tools/dict_src/g10_*.json` → `407 entries in 12 files, 0 errors`
+
+Indexes below are the entry positions in each file BEFORE the removals
+(in g02_2.json and g10_4.json, entries after the removed one move up by one).
+
+## Main kinds of problems found
+- Duplicates with other files in this set: "Quanti anni hai?" (g02_2, dup of g01_2) and "Buon appetito!" (g10_4, dup of g01_2) — removed.
+- Italian words written in Latin letters inside Urdu / Shahmukhi / Gurmukhi / Bengali / Sinhala explanations (spec: no Latin letters in those slots) — transliterated in the native script, as the other files already do (e.g. ‘میلا’, ‘ਮਾਰੋਨੀ’).
+- Shahmukhi "تی" for 30 is incomplete → "تیہہ" (Punjabi ਤੀਹ).
+- Number formatting in French/Spanish (10,000 → 10 000 / 10.000).
+- Misleading emoji (a can for the can opener, bread for the toaster, a moon for honeymoon, a tap for the sink, a bin for the bin bag) → null.
+- Wrong/unnatural translations: Chinese 开瓶螺旋钻, 水壶 for carafe; "the dishwasher is used up" (مشین ختم ہو گئی) instead of "has finished"; Sinhala "bought two shoes" for a pair; etc.
+
+## Every correction
+- g01_1.json#2 (benvenuto) — expl[6] — 欢迎来到的人时说；阴性为benvenuta。 → 迎接刚到的人时说；阴性为benvenuta。
+- g01_3.json#3 (la figlia) — expl[8] — La hija mujer de unos padres. → Niña o mujer, con respecto a su padre y su madre.
+- g01_3.json#3 (la figlia) — expl[9] — La hija mujer de unos padres. → Niña o mujer, con respecto a su padre y su madre.
+- g01_3.json#35 (la luna di miele) — emoji — 🌙 → null
+- g02_1.json#16 (trenta) — tr[2] — تی → تیہہ
+- g02_1.json#16 (trenta) — exTr[2] — نومبر وچ تی دن ہوندے نیں۔ → نومبر وچ تیہہ دن ہوندے نیں۔
+- g02_1.json#39 (mille) — expl[1] — عدد 1000؛ دو ہزار سے آگے mila بن جاتا ہے (duemila)۔ → عدد 1000؛ دو ہزار سے آگے ‘میلا’ بن جاتا ہے (‘دوئے میلا’)۔
+- g02_1.json#39 (mille) — expl[2] — ہندسہ 1000؛ دو ہزار توں اگے mila بن جاندا اے (duemila)۔ → ہندسہ 1000؛ دو ہزار توں اگے ‘میلا’ بن جاندا اے (‘دوئے میلا’)۔
+- g02_1.json#39 (mille) — expl[3] — ਅੰਕ 1000; ਦੋ ਹਜ਼ਾਰ ਤੋਂ ਅੱਗੇ mila ਬਣ ਜਾਂਦਾ ਹੈ (duemila)। → ਅੰਕ 1000; ਦੋ ਹਜ਼ਾਰ ਤੋਂ ਅੱਗੇ ‘ਮੀਲਾ’ ਬਣ ਜਾਂਦਾ ਹੈ (‘ਦੂਏ ਮੀਲਾ’)।
+- g02_1.json#39 (mille) — expl[4] — সংখ্যা 1000; দুই হাজার থেকে mila হয় (duemila)। → সংখ্যা 1000; দুই হাজার থেকে ‘মিলা’ হয় (‘দুয়েমিলা’)।
+- g02_1.json#39 (mille) — expl[5] — අංක 1000; දෙදහසේ ඉඳන් mila වෙනවා (duemila). → අංක 1000; දෙදහසේ ඉඳන් ‘මිලා’ වෙනවා (‘දුඑමිලා’).
+- g02_2.json#1 (diecimila) — expl[7] — Le nombre 10,000. → Le nombre 10 000.
+- g02_2.json#1 (diecimila) — exTr[7] — Ça coûte 10,000 euros. → Ça coûte 10 000 euros.
+- g02_2.json#1 (diecimila) — expl[8] — El número 10,000. → El número 10.000.
+- g02_2.json#1 (diecimila) — exTr[8] — Cuesta 10,000 euros. → Cuesta 10.000 euros.
+- g02_2.json#1 (diecimila) — expl[9] — El número 10,000. → El número 10.000.
+- g02_2.json#1 (diecimila) — exTr[9] — Cuesta 10,000 euros. → Cuesta 10.000 euros.
+- g02_2.json#2 (centomila) — expl[7] — Le nombre 100,000. → Le nombre 100 000.
+- g02_2.json#2 (centomila) — exTr[7] — Ça coûte 100,000 euros. → Ça coûte 100 000 euros.
+- g02_2.json#2 (centomila) — expl[8] — El número 100,000. → El número 100.000.
+- g02_2.json#2 (centomila) — exTr[8] — Cuesta 100,000 euros. → Cuesta 100.000 euros.
+- g02_2.json#2 (centomila) — expl[9] — El número 100,000. → El número 100.000.
+- g02_2.json#2 (centomila) — exTr[9] — Cuesta 100,000 euros. → Cuesta 100.000 euros.
+- g02_2.json#3 (un milione) — expl[1] — دس لاکھ (1,000,000)؛ بعد میں di آتا ہے۔ → دس لاکھ (1,000,000)؛ بعد میں ‘دی’ آتا ہے۔
+- g02_2.json#3 (un milione) — expl[2] — دس لکھ (1,000,000)؛ مگروں di آندا اے۔ → دس لکھ (1,000,000)؛ مگروں ‘دی’ آندا اے۔
+- g02_2.json#3 (un milione) — expl[3] — ਦਸ ਲੱਖ (1,000,000); ਬਾਅਦ ਵਿੱਚ di ਆਉਂਦਾ ਹੈ। → ਦਸ ਲੱਖ (1,000,000); ਬਾਅਦ ਵਿੱਚ ‘ਦੀ’ ਆਉਂਦਾ ਹੈ।
+- g02_2.json#3 (un milione) — expl[4] — দশ লাখ (1,000,000); পরে di বসে। → দশ লাখ (1,000,000); পরে ‘দি’ বসে।
+- g02_2.json#3 (un milione) — expl[5] — මිලියනය (1,000,000); පස්සේ di එනවා. → මිලියනය (1,000,000); පස්සේ ‘දි’ එනවා.
+- g02_2.json#18 (il paio) — expl[1] — دو چیزیں جو ساتھ ہوتی ہیں؛ جمع: le paia۔ → دو چیزیں جو ساتھ ہوتی ہیں؛ جمع: ‘لے پائیا’۔
+- g02_2.json#18 (il paio) — expl[2] — دو شیواں جیہڑیاں نال ہوندیاں نیں؛ جمع: le paia۔ → دو شیواں جیہڑیاں نال ہوندیاں نیں؛ جمع: ‘لے پائیا’۔
+- g02_2.json#18 (il paio) — expl[3] — ਦੋ ਚੀਜ਼ਾਂ ਜੋ ਇਕੱਠੀਆਂ ਹੁੰਦੀਆਂ ਹਨ; ਬਹੁਵਚਨ: le paia। → ਦੋ ਚੀਜ਼ਾਂ ਜੋ ਇਕੱਠੀਆਂ ਹੁੰਦੀਆਂ ਹਨ; ਬਹੁਵਚਨ: ‘ਲੇ ਪਾਇਆ’।
+- g02_2.json#18 (il paio) — expl[4] — দুটো জিনিস যা একসাথে থাকে; বহুবচন: le paia। → দুটো জিনিস যা একসাথে থাকে; বহুবচন: ‘লে পাইয়া’।
+- g02_2.json#18 (il paio) — expl[5] — එකට තියෙන දේවල් දෙකක්; බහුවචනය: le paia. → එකට තියෙන දේවල් දෙකක්; බහුවචනය: ‘ලේ පායියා’.
+- g02_2.json#18 (il paio) — exTr[5] — මම සපත්තු දෙකක් ගත්තා. → මම සපත්තු ජෝඩුවක් ගත්තා.
+- g02_2.json#22 (il centinaio) — expl[1] — تقریباً سو؛ جمع: le centinaia (سینکڑوں)۔ → تقریباً سو؛ جمع: ‘لے چنتینایا’ (سینکڑوں)۔
+- g02_2.json#22 (il centinaio) — expl[2] — کوئی سو؛ جمع: le centinaia (سینکڑے)۔ → کوئی سو؛ جمع: ‘لے چنتینایا’ (سینکڑے)۔
+- g02_2.json#22 (il centinaio) — expl[3] — ਲਗਭਗ ਸੌ; ਬਹੁਵਚਨ: le centinaia (ਸੈਂਕੜੇ)। → ਲਗਭਗ ਸੌ; ਬਹੁਵਚਨ: ‘ਲੇ ਚੇਂਤੀਨਾਇਆ’ (ਸੈਂਕੜੇ)।
+- g02_2.json#22 (il centinaio) — expl[4] — প্রায় একশো; বহুবচন: le centinaia (শত শত)। → প্রায় একশো; বহুবচন: ‘লে চেন্তিনাইয়া’ (শত শত)।
+- g02_2.json#22 (il centinaio) — expl[5] — සියයක් විතර; බහුවචනය: le centinaia (සිය ගණන්). → සියයක් විතර; බහුවචනය: ‘ලේ චෙන්තිනායියා’ (සිය ගණන්).
+- g02_2.json#28 (l'etto) — expl[1] — سو گرام؛ دکان کے کاؤنٹر پر بولا جاتا ہے (due etti = 200 گرام)۔ → سو گرام؛ دکان کے کاؤنٹر پر بولا جاتا ہے (‘دوئے ایتی’ = 200 گرام)۔
+- g02_2.json#28 (l'etto) — expl[2] — سو گرام؛ دکان دے کاؤنٹر تے بولیا جاندا اے (due etti = 200 گرام)۔ → سو گرام؛ دکان دے کاؤنٹر تے بولیا جاندا اے (‘دوئے ایتی’ = 200 گرام)۔
+- g02_2.json#28 (l'etto) — expl[3] — ਸੌ ਗ੍ਰਾਮ; ਦੁਕਾਨ ਦੇ ਕਾਊਂਟਰ 'ਤੇ ਵਰਤਿਆ ਜਾਂਦਾ ਹੈ (due etti = 200 ਗ੍ਰਾਮ)। → ਸੌ ਗ੍ਰਾਮ; ਦੁਕਾਨ ਦੇ ਕਾਊਂਟਰ 'ਤੇ ਵਰਤਿਆ ਜਾਂਦਾ ਹੈ (‘ਦੂਏ ਏੱਤੀ’ = 200 ਗ੍ਰਾਮ)।
+- g02_2.json#28 (l'etto) — expl[4] — একশো গ্রাম; দোকানের কাউন্টারে বলা হয় (due etti = 200 গ্রাম)। → একশো গ্রাম; দোকানের কাউন্টারে বলা হয় (‘দুয়ে এত্তি’ = 200 গ্রাম)।
+- g02_2.json#28 (l'etto) — expl[5] — ග්‍රෑම් සියය; කඩේ කවුන්ටරයේදී කියනවා (due etti = ග්‍රෑම් 200). → ග්‍රෑම් සියය; කඩේ කවුන්ටරයේදී කියනවා (‘දුඑ එත්ති’ = ග්‍රෑම් 200).
+- g02_2.json#39 (Ho trent'anni.) — tr[2] — میری عمر تی ورھے اے۔ → میری عمر تیہہ ورھے اے۔
+- g02_2.json#39 (Ho trent'anni.) — exTr[2] — میری عمر تی ورھے اے تے میں فیکٹری وچ کم کرنا آں۔ → میری عمر تیہہ ورھے اے تے میں فیکٹری وچ کم کرنا آں۔
+- g02_2.json#39 (Ho trent'anni.) — expl[1] — عمر بتانے کے لیے اطالوی avere (رکھنا) استعمال کرتے ہیں۔ → عمر بتانے کے لیے اطالوی ‘آویرے’ (رکھنا) استعمال کرتے ہیں۔
+- g02_2.json#39 (Ho trent'anni.) — expl[2] — عمر دسن لئی اطالوی avere (رکھنا) ورتدے نیں۔ → عمر دسن لئی اطالوی ‘آویرے’ (رکھنا) ورتدے نیں۔
+- g02_2.json#39 (Ho trent'anni.) — expl[3] — ਉਮਰ ਦੱਸਣ ਲਈ ਇਤਾਲਵੀ avere (ਰੱਖਣਾ) ਵਰਤਦੇ ਹਨ। → ਉਮਰ ਦੱਸਣ ਲਈ ਇਤਾਲਵੀ ‘ਆਵੇਰੇ’ (ਰੱਖਣਾ) ਵਰਤਦੇ ਹਨ।
+- g02_2.json#39 (Ho trent'anni.) — expl[4] — বয়স বলতে ইতালীয়রা avere (থাকা) ক্রিয়া ব্যবহার করে। → বয়স বলতে ইতালীয়রা ‘আভেরে’ (থাকা) ক্রিয়া ব্যবহার করে।
+- g02_2.json#39 (Ho trent'anni.) — expl[5] — වයස කියන්න ඉතාලියන් avere (තියෙනවා) පාවිච්චි කරනවා. → වයස කියන්න ඉතාලියන් ‘අවේරේ’ (තියෙනවා) පාවිච්චි කරනවා.
+- g02_2.json#38 (Quanti anni hai?) — whole entry — removed (duplicate of g01_2 "Quanti anni hai?")
+- g02_3.json#2 (Due più due fa quattro.) — expl[1] — حساب کیسے بولیں: più = جمع، meno = منفی، fa = برابر۔ → حساب کیسے بولیں: ‘پیُو’ = جمع، meno = منفی، fa = برابر۔
+- g02_3.json#2 (Due più due fa quattro.) — expl[1] — حساب کیسے بولیں: ‘پیُو’ = جمع، meno = منفی، fa = برابر۔ → حساب کیسے بولیں: ‘پیُو’ = جمع، ‘مینو’ = منفی، fa = برابر۔
+- g02_3.json#2 (Due più due fa quattro.) — expl[1] — حساب کیسے بولیں: ‘پیُو’ = جمع، ‘مینو’ = منفی، fa = برابر۔ → حساب کیسے بولیں: ‘پیُو’ = جمع، ‘مینو’ = منفی، ‘فا’ = برابر۔
+- g02_3.json#2 (Due più due fa quattro.) — expl[2] — حساب کیویں بولیے: più = جمع، meno = منفی، fa = برابر۔ → حساب کیویں بولیے: ‘پیُو’ = جمع، meno = منفی، fa = برابر۔
+- g02_3.json#2 (Due più due fa quattro.) — expl[2] — حساب کیویں بولیے: ‘پیُو’ = جمع، meno = منفی، fa = برابر۔ → حساب کیویں بولیے: ‘پیُو’ = جمع، ‘مینو’ = منفی، fa = برابر۔
+- g02_3.json#2 (Due più due fa quattro.) — expl[2] — حساب کیویں بولیے: ‘پیُو’ = جمع، ‘مینو’ = منفی، fa = برابر۔ → حساب کیویں بولیے: ‘پیُو’ = جمع، ‘مینو’ = منفی، ‘فا’ = برابر۔
+- g02_3.json#2 (Due più due fa quattro.) — expl[3] — ਹਿਸਾਬ ਕਿਵੇਂ ਬੋਲੀਏ: più = ਜਮ੍ਹਾਂ, meno = ਘਟਾਓ, fa = ਬਰਾਬਰ। → ਹਿਸਾਬ ਕਿਵੇਂ ਬੋਲੀਏ: ‘ਪਿਊ’ = ਜਮ੍ਹਾਂ, meno = ਘਟਾਓ, fa = ਬਰਾਬਰ।
+- g02_3.json#2 (Due più due fa quattro.) — expl[3] — ਹਿਸਾਬ ਕਿਵੇਂ ਬੋਲੀਏ: ‘ਪਿਊ’ = ਜਮ੍ਹਾਂ, meno = ਘਟਾਓ, fa = ਬਰਾਬਰ। → ਹਿਸਾਬ ਕਿਵੇਂ ਬੋਲੀਏ: ‘ਪਿਊ’ = ਜਮ੍ਹਾਂ, ‘ਮੇਨੋ’ = ਘਟਾਓ, fa = ਬਰਾਬਰ।
+- g02_3.json#2 (Due più due fa quattro.) — expl[3] — ਹਿਸਾਬ ਕਿਵੇਂ ਬੋਲੀਏ: ‘ਪਿਊ’ = ਜਮ੍ਹਾਂ, ‘ਮੇਨੋ’ = ਘਟਾਓ, fa = ਬਰਾਬਰ। → ਹਿਸਾਬ ਕਿਵੇਂ ਬੋਲੀਏ: ‘ਪਿਊ’ = ਜਮ੍ਹਾਂ, ‘ਮੇਨੋ’ = ਘਟਾਓ, ‘ਫ਼ਾ’ = ਬਰਾਬਰ।
+- g02_3.json#2 (Due più due fa quattro.) — expl[4] — অঙ্ক কীভাবে বলবেন: più = যোগ, meno = বিয়োগ, fa = সমান। → অঙ্ক কীভাবে বলবেন: ‘পিউ’ = যোগ, meno = বিয়োগ, fa = সমান।
+- g02_3.json#2 (Due più due fa quattro.) — expl[4] — অঙ্ক কীভাবে বলবেন: ‘পিউ’ = যোগ, meno = বিয়োগ, fa = সমান। → অঙ্ক কীভাবে বলবেন: ‘পিউ’ = যোগ, ‘মেনো’ = বিয়োগ, fa = সমান।
+- g02_3.json#2 (Due più due fa quattro.) — expl[4] — অঙ্ক কীভাবে বলবেন: ‘পিউ’ = যোগ, ‘মেনো’ = বিয়োগ, fa = সমান। → অঙ্ক কীভাবে বলবেন: ‘পিউ’ = যোগ, ‘মেনো’ = বিয়োগ, ‘ফা’ = সমান।
+- g02_3.json#2 (Due più due fa quattro.) — expl[5] — ගණන් කියන විදිහ: più = එකතු, meno = අඩු, fa = සමානයි. → ගණන් කියන විදිහ: ‘පියූ’ = එකතු, meno = අඩු, fa = සමානයි.
+- g02_3.json#2 (Due più due fa quattro.) — expl[5] — ගණන් කියන විදිහ: ‘පියූ’ = එකතු, meno = අඩු, fa = සමානයි. → ගණන් කියන විදිහ: ‘පියූ’ = එකතු, ‘මේනෝ’ = අඩු, fa = සමානයි.
+- g02_3.json#2 (Due più due fa quattro.) — expl[5] — ගණන් කියන විදිහ: ‘පියූ’ = එකතු, ‘මේනෝ’ = අඩු, fa = සමානයි. → ගණන් කියන විදිහ: ‘පියූ’ = එකතු, ‘මේනෝ’ = අඩු, ‘ෆා’ = සමානයි.
+- g02_3.json#4 (Siamo in quattro.) — expl[1] — اپنے گروپ کے لوگوں کی تعداد بتانے کے لیے: siamo in + عدد۔ → اپنے گروپ کے لوگوں کی تعداد بتانے کے لیے: ‘سیامو اِن’ + عدد۔
+- g02_3.json#4 (Siamo in quattro.) — expl[2] — اپنے گروپ دے بندیاں دی گنتی دسن لئی: siamo in + ہندسہ۔ → اپنے گروپ دے بندیاں دی گنتی دسن لئی: ‘سیامو اِن’ + ہندسہ۔
+- g02_3.json#4 (Siamo in quattro.) — expl[3] — ਆਪਣੇ ਗਰੁੱਪ ਦੇ ਲੋਕਾਂ ਦੀ ਗਿਣਤੀ ਦੱਸਣ ਲਈ: siamo in + ਅੰਕ। → ਆਪਣੇ ਗਰੁੱਪ ਦੇ ਲੋਕਾਂ ਦੀ ਗਿਣਤੀ ਦੱਸਣ ਲਈ: ‘ਸਿਆਮੋ ਇਨ’ + ਅੰਕ।
+- g02_3.json#4 (Siamo in quattro.) — expl[4] — আপনার দলে কতজন তা বলতে: siamo in + সংখ্যা। → আপনার দলে কতজন তা বলতে: ‘সিয়ামো ইন’ + সংখ্যা।
+- g02_3.json#4 (Siamo in quattro.) — expl[5] — ඔයාලගේ කණ්ඩායමේ කී දෙනෙක්ද කියන්න: siamo in + අංකය. → ඔයාලගේ කණ්ඩායමේ කී දෙනෙක්ද කියන්න: ‘සියාමෝ ඉන්’ + අංකය.
+- g02_3.json#5 (Abito al terzo piano.) — expl[1] — یہ بتانے کے لیے کہ آپ کس منزل پر رہتے ہیں؛ گراؤنڈ فلور = il piano terra۔ → یہ بتانے کے لیے کہ آپ کس منزل پر رہتے ہیں؛ گراؤنڈ فلور = ‘اِل پیانو تیرا’۔
+- g02_3.json#5 (Abito al terzo piano.) — expl[2] — ایہہ دسن لئی پئی تسیں کیہڑی منزل تے رہندے او؛ گراؤنڈ فلور = il piano terra۔ → ایہہ دسن لئی پئی تسیں کیہڑی منزل تے رہندے او؛ گراؤنڈ فلور = ‘اِل پیانو تیرا’۔
+- g02_3.json#5 (Abito al terzo piano.) — expl[3] — ਇਹ ਦੱਸਣ ਲਈ ਕਿ ਤੁਸੀਂ ਕਿਹੜੀ ਮੰਜ਼ਿਲ 'ਤੇ ਰਹਿੰਦੇ ਹੋ; ਹੇਠਲੀ ਮੰਜ਼ਿਲ = il piano terra। → ਇਹ ਦੱਸਣ ਲਈ ਕਿ ਤੁਸੀਂ ਕਿਹੜੀ ਮੰਜ਼ਿਲ 'ਤੇ ਰਹਿੰਦੇ ਹੋ; ਹੇਠਲੀ ਮੰਜ਼ਿਲ = ‘ਇਲ ਪਿਆਨੋ ਤੇਰਾ’।
+- g02_3.json#5 (Abito al terzo piano.) — expl[4] — আপনি কোন তলায় থাকেন তা বলতে; নিচতলা = il piano terra। → আপনি কোন তলায় থাকেন তা বলতে; নিচতলা = ‘ইল পিয়ানো তেররা’।
+- g02_3.json#5 (Abito al terzo piano.) — expl[5] — ඔයා ඉන්නේ කීවෙනි තට්ටුවේද කියන්න; බිම් මහල = il piano terra. → ඔයා ඉන්නේ කීවෙනි තට්ටුවේද කියන්න; බිම් මහල = ‘ඉල් පියානෝ තෙර්රා’.
+- g02_3.json#11 (due volte) — expl[1] — دو مرتبہ؛ tre volte = تین بار۔ → دو مرتبہ؛ ‘ترے وولتے’ = تین بار۔
+- g02_3.json#11 (due volte) — expl[2] — دو واری؛ tre volte = تن واری۔ → دو واری؛ ‘ترے وولتے’ = تن واری۔
+- g02_3.json#11 (due volte) — expl[3] — ਦੋ ਵਾਰ; tre volte = ਤਿੰਨ ਵਾਰ। → ਦੋ ਵਾਰ; ‘ਤ੍ਰੇ ਵੋਲਤੇ’ = ਤਿੰਨ ਵਾਰ।
+- g02_3.json#11 (due volte) — expl[4] — দুইবার; tre volte = তিনবার। → দুইবার; ‘ত্রে ভোল্তে’ = তিনবার।
+- g02_3.json#11 (due volte) — expl[5] — දෙපාරක්; tre volte = තුන් පාරක්. → දෙපාරක්; ‘ත්‍රේ වොල්තේ’ = තුන් පාරක්.
+- g02_4.json#3 (marrone) — expl[1] — چاکلیٹ یا لکڑی کا رنگ؛ جمع: marroni۔ → چاکلیٹ یا لکڑی کا رنگ؛ جمع: ‘مارونی’۔
+- g02_4.json#3 (marrone) — expl[2] — چاکلیٹ یا لکڑ دا رنگ؛ جمع: marroni۔ → چاکلیٹ یا لکڑ دا رنگ؛ جمع: ‘مارونی’۔
+- g02_4.json#3 (marrone) — expl[3] — ਚਾਕਲੇਟ ਜਾਂ ਲੱਕੜ ਦਾ ਰੰਗ; ਬਹੁਵਚਨ: marroni। → ਚਾਕਲੇਟ ਜਾਂ ਲੱਕੜ ਦਾ ਰੰਗ; ਬਹੁਵਚਨ: ‘ਮਾਰੋਨੀ’।
+- g02_4.json#3 (marrone) — expl[4] — চকলেট বা কাঠের রং; বহুবচন: marroni। → চকলেট বা কাঠের রং; বহুবচন: ‘মাররোনি’।
+- g02_4.json#3 (marrone) — expl[5] — චොකලට් හෝ ලී වල පාට; බහුවචනය: marroni. → චොකලට් හෝ ලී වල පාට; බහුවචනය: ‘මාරෝනි’.
+- g02_4.json#6 (celeste) — expl[1] — بہت ہلکا نیلا، azzurro سے بھی ہلکا۔ → بہت ہلکا نیلا، ‘ازورو’ سے بھی ہلکا۔
+- g02_4.json#6 (celeste) — expl[2] — بہت ہلکا نیلا، azzurro توں وی ہلکا۔ → بہت ہلکا نیلا، ‘ازورو’ توں وی ہلکا۔
+- g02_4.json#6 (celeste) — expl[3] — ਬਹੁਤ ਹਲਕਾ ਨੀਲਾ, azzurro ਤੋਂ ਵੀ ਹਲਕਾ। → ਬਹੁਤ ਹਲਕਾ ਨੀਲਾ, ‘ਅਜ਼ੂਰੋ’ ਤੋਂ ਵੀ ਹਲਕਾ।
+- g02_4.json#6 (celeste) — expl[4] — খুব হালকা নীল, azzurro-র চেয়েও হালকা। → খুব হালকা নীল, ‘আজ্জুরো’-র চেয়েও হালকা।
+- g02_4.json#6 (celeste) — expl[5] — ගොඩක් ලා නිල්, azzurro වලටත් වඩා ලා. → ගොඩක් ලා නිල්, ‘අස්සුරෝ’ වලටත් වඩා ලා.
+- g02_4.json#8 (l'oro) — expl[1] — قیمتی پیلی دھات؛ d'oro = سونے کا بنا۔ → قیمتی پیلی دھات؛ ‘دورو’ = سونے کا بنا۔
+- g02_4.json#8 (l'oro) — expl[2] — قیمتی پیلی دھات؛ d'oro = سونے دا بنیا۔ → قیمتی پیلی دھات؛ ‘دورو’ = سونے دا بنیا۔
+- g02_4.json#8 (l'oro) — expl[3] — ਕੀਮਤੀ ਪੀਲੀ ਧਾਤ; d'oro = ਸੋਨੇ ਦਾ ਬਣਿਆ। → ਕੀਮਤੀ ਪੀਲੀ ਧਾਤ; ‘ਦੋਰੋ’ = ਸੋਨੇ ਦਾ ਬਣਿਆ।
+- g02_4.json#8 (l'oro) — expl[4] — দামি হলুদ ধাতু; d'oro = সোনার তৈরি। → দামি হলুদ ধাতু; ‘দোরো’ = সোনার তৈরি।
+- g02_4.json#8 (l'oro) — expl[5] — වටිනා කහ පාට ලෝහය; d'oro = රනින් හදපු. → වටිනා කහ පාට ලෝහය; ‘දෝරෝ’ = රනින් හදපු.
+- g02_4.json#9 (l'argento) — expl[1] — قیمتی سفید سلیٹی دھات؛ d'argento = چاندی کا بنا۔ → قیمتی سفید سلیٹی دھات؛ ‘دارجینتو’ = چاندی کا بنا۔
+- g02_4.json#9 (l'argento) — expl[2] — قیمتی چِٹی سلیٹی دھات؛ d'argento = چاندی دا بنیا۔ → قیمتی چِٹی سلیٹی دھات؛ ‘دارجینتو’ = چاندی دا بنیا۔
+- g02_4.json#9 (l'argento) — expl[3] — ਕੀਮਤੀ ਚਿੱਟੀ-ਸਲੇਟੀ ਧਾਤ; d'argento = ਚਾਂਦੀ ਦਾ ਬਣਿਆ। → ਕੀਮਤੀ ਚਿੱਟੀ-ਸਲੇਟੀ ਧਾਤ; ‘ਦਾਰਜੈਂਤੋ’ = ਚਾਂਦੀ ਦਾ ਬਣਿਆ।
+- g02_4.json#9 (l'argento) — expl[4] — দামি সাদা-ধূসর ধাতু; d'argento = রুপার তৈরি। → দামি সাদা-ধূসর ধাতু; ‘দারজেন্তো’ = রুপার তৈরি।
+- g02_4.json#9 (l'argento) — expl[5] — වටිනා සුදු-අළු ලෝහය; d'argento = රිදීයෙන් හදපු. → වටිනා සුදු-අළු ලෝහය; ‘දාර්ජෙන්තෝ’ = රිදීයෙන් හදපු.
+- g02_4.json#23 (castano) — expl[1] — بالوں اور آنکھوں کا بھورا رنگ (چیزوں کے لیے marrone)۔ → بالوں اور آنکھوں کا بھورا رنگ (چیزوں کے لیے ‘مارونے’)۔
+- g02_4.json#23 (castano) — expl[2] — والاں تے اکھاں دا بھورا رنگ (شیواں لئی marrone)۔ → والاں تے اکھاں دا بھورا رنگ (شیواں لئی ‘مارونے’)۔
+- g02_4.json#23 (castano) — expl[3] — ਵਾਲਾਂ ਅਤੇ ਅੱਖਾਂ ਦਾ ਭੂਰਾ ਰੰਗ (ਚੀਜ਼ਾਂ ਲਈ marrone)। → ਵਾਲਾਂ ਅਤੇ ਅੱਖਾਂ ਦਾ ਭੂਰਾ ਰੰਗ (ਚੀਜ਼ਾਂ ਲਈ ‘ਮਾਰੋਨੇ’)।
+- g02_4.json#23 (castano) — expl[4] — চুল ও চোখের বাদামি রং (জিনিসের জন্য marrone)। → চুল ও চোখের বাদামি রং (জিনিসের জন্য ‘মাররোনে’)।
+- g02_4.json#23 (castano) — expl[5] — කොණ්ඩයට, ඇස්වලට කියන දුඹුරු (දේවල්වලට marrone). → කොණ්ඩයට, ඇස්වලට කියන දුඹුරු (දේවල්වලට ‘මාරෝනේ’).
+- g02_4.json#32 (verde chiaro) — expl[1] — ہلکا ہرا رنگ؛ رنگ + chiaro کی شکل نہیں بدلتی۔ → ہلکا ہرا رنگ؛ رنگ + ‘کیارو’ کی شکل نہیں بدلتی۔
+- g02_4.json#32 (verde chiaro) — expl[2] — ہلکا ہرا رنگ؛ رنگ + chiaro دی شکل نئیں بدلدی۔ → ہلکا ہرا رنگ؛ رنگ + ‘کیارو’ دی شکل نئیں بدلدی۔
+- g02_4.json#32 (verde chiaro) — expl[3] — ਹਲਕਾ ਹਰਾ ਰੰਗ; ਰੰਗ + chiaro ਦਾ ਰੂਪ ਨਹੀਂ ਬਦਲਦਾ। → ਹਲਕਾ ਹਰਾ ਰੰਗ; ਰੰਗ + ‘ਕਿਆਰੋ’ ਦਾ ਰੂਪ ਨਹੀਂ ਬਦਲਦਾ।
+- g02_4.json#32 (verde chiaro) — expl[4] — হালকা সবুজ; রং + chiaro-র রূপ বদলায় না। → হালকা সবুজ; রং + ‘কিয়ারো’-র রূপ বদলায় না।
+- g02_4.json#32 (verde chiaro) — expl[5] — ලා කොළ පාට; පාට + chiaro රූපය වෙනස් වෙන්නේ නෑ. → ලා කොළ පාට; පාට + ‘කියාරෝ’ රූපය වෙනස් වෙන්නේ නෑ.
+- g02_4.json#39 (Il semaforo è rosso.) — expl[1] — لال بتی کا مطلب رکو؛ ہری (verde) چلو؛ پیلی (giallo) آہستہ۔ → لال بتی کا مطلب رکو؛ ہری (‘وردے’) چلو؛ پیلی (giallo) آہستہ۔
+- g02_4.json#39 (Il semaforo è rosso.) — expl[2] — لال بتی دا مطلب رُکو؛ ہری (verde) چلو؛ پیلی (giallo) ہولی۔ → لال بتی دا مطلب رُکو؛ ہری (‘وردے’) چلو؛ پیلی (giallo) ہولی۔
+- g02_4.json#39 (Il semaforo è rosso.) — expl[3] — ਲਾਲ ਬੱਤੀ ਦਾ ਮਤਲਬ ਰੁਕੋ; ਹਰੀ (verde) ਚੱਲੋ; ਪੀਲੀ (giallo) ਹੌਲੀ। → ਲਾਲ ਬੱਤੀ ਦਾ ਮਤਲਬ ਰੁਕੋ; ਹਰੀ (‘ਵੇਰਦੇ’) ਚੱਲੋ; ਪੀਲੀ (giallo) ਹੌਲੀ।
+- g02_4.json#39 (Il semaforo è rosso.) — expl[4] — লাল মানে থামুন; সবুজ (verde) চলুন; হলুদ (giallo) ধীরে। → লাল মানে থামুন; সবুজ (‘ভেরদে’) চলুন; হলুদ (giallo) ধীরে।
+- g02_4.json#39 (Il semaforo è rosso.) — expl[5] — රතු නම් නවතින්න; කොළ (verde) යන්න; කහ (giallo) හෙමින්. → රතු නම් නවතින්න; කොළ (‘වෙර්දේ’) යන්න; කහ (giallo) හෙමින්.
+- g02_4.json#39 (Il semaforo è rosso.) — expl[1] — لال بتی کا مطلب رکو؛ ہری (‘وردے’) چلو؛ پیلی (giallo) آہستہ۔ → لال بتی کا مطلب رکو؛ ہری (‘وردے’) چلو؛ پیلی (‘جالو’) آہستہ۔
+- g02_4.json#39 (Il semaforo è rosso.) — expl[2] — لال بتی دا مطلب رُکو؛ ہری (‘وردے’) چلو؛ پیلی (giallo) ہولی۔ → لال بتی دا مطلب رُکو؛ ہری (‘وردے’) چلو؛ پیلی (‘جالو’) ہولی۔
+- g02_4.json#39 (Il semaforo è rosso.) — expl[3] — ਲਾਲ ਬੱਤੀ ਦਾ ਮਤਲਬ ਰੁਕੋ; ਹਰੀ (‘ਵੇਰਦੇ’) ਚੱਲੋ; ਪੀਲੀ (giallo) ਹੌਲੀ। → ਲਾਲ ਬੱਤੀ ਦਾ ਮਤਲਬ ਰੁਕੋ; ਹਰੀ (‘ਵੇਰਦੇ’) ਚੱਲੋ; ਪੀਲੀ (‘ਜਾਲੋ’) ਹੌਲੀ।
+- g02_4.json#39 (Il semaforo è rosso.) — expl[4] — লাল মানে থামুন; সবুজ (‘ভেরদে’) চলুন; হলুদ (giallo) ধীরে। → লাল মানে থামুন; সবুজ (‘ভেরদে’) চলুন; হলুদ (‘জাল্লো’) ধীরে।
+- g02_4.json#39 (Il semaforo è rosso.) — expl[5] — රතු නම් නවතින්න; කොළ (‘වෙර්දේ’) යන්න; කහ (giallo) හෙමින්. → රතු නම් නවතින්න; කොළ (‘වෙර්දේ’) යන්න; කහ (‘ජාල්ලෝ’) හෙමින්.
+- g10_1.json#19 (il cavatappi) — tr[6] — 开瓶螺旋钻 → 红酒开瓶器
+- g10_1.json#19 (il cavatappi) — exTr[6] — 我找不到开瓶器。 → 我找不到红酒开瓶器。
+- g10_1.json#22 (la frusta) — exTr[4] — আমি যন্ত্র দিয়ে ডিম ফেটাই। → আমি ডিম ফেটানোর যন্ত্র দিয়ে ডিম ফেটাই।
+- g10_1.json#30 (la lavastoviglie) — exTr[1] — برتن دھونے کی مشین ختم ہو گئی ہے۔ → برتن دھونے کی مشین نے کام ختم کر لیا ہے۔
+- g10_1.json#30 (la lavastoviglie) — exTr[2] — بھانڈے دھون والی مشین مُک گئی اے۔ → بھانڈے دھون والی مشین نے کم مکا لیا اے۔
+- g10_1.json#30 (la lavastoviglie) — exTr[3] — ਭਾਂਡੇ ਧੋਣ ਵਾਲੀ ਮਸ਼ੀਨ ਪੂਰੀ ਹੋ ਗਈ ਹੈ। → ਭਾਂਡੇ ਧੋਣ ਵਾਲੀ ਮਸ਼ੀਨ ਨੇ ਕੰਮ ਮੁਕਾ ਲਿਆ ਹੈ।
+- g10_1.json#30 (la lavastoviglie) — exTr[5] — පිඟන් සෝදන යන්ත්‍රය ඉවරයි. → පිඟන් සෝදන යන්ත්‍රය සේදීම ඉවර කළා.
+- g10_1.json#18 (l'apriscatole) — emoji — 🥫 → null
+- g10_2.json#20 (la caraffa) — tr[6] — 水壶 / 水瓶 → 水罐 / 凉水壶
+- g10_2.json#20 (la caraffa) — exTr[6] — 拿一瓶水到桌上来。 → 拿一壶水到桌上来。
+- g10_2.json#22 (il barattolo) — tr[5] — බෝතල් භාජනය → පියන ඇති භාජනය
+- g10_2.json#3 (il lavello) — emoji — 🚰 → null
+- g10_2.json#19 (il tostapane) — emoji — 🍞 → null
+- g10_3.json#2 (il sacco della spazzatura) — emoji — 🗑️ → null
+- g10_4.json#19 (Puoi svuotare la lavastoviglie?) — exTr[1] — مشین ختم ہو گئی ہے، کیا تم اسے خالی کر سکتے ہو؟ → مشین نے کام ختم کر لیا ہے، کیا تم اسے خالی کر سکتے ہو؟
+- g10_4.json#19 (Puoi svuotare la lavastoviglie?) — exTr[2] — مشین مُک گئی اے، توں ایہنوں خالی کر سکدا ایں؟ → مشین نے کم مکا لیا اے، توں ایہنوں خالی کر سکدا ایں؟
+- g10_4.json#19 (Puoi svuotare la lavastoviglie?) — exTr[3] — ਮਸ਼ੀਨ ਪੂਰੀ ਹੋ ਗਈ ਹੈ, ਕੀ ਤੂੰ ਇਸਨੂੰ ਖ਼ਾਲੀ ਕਰ ਸਕਦਾ ਹੈਂ? → ਮਸ਼ੀਨ ਨੇ ਕੰਮ ਮੁਕਾ ਲਿਆ ਹੈ, ਕੀ ਤੂੰ ਇਸਨੂੰ ਖ਼ਾਲੀ ਕਰ ਸਕਦਾ ਹੈਂ?
+- g10_4.json#19 (Puoi svuotare la lavastoviglie?) — exTr[5] — පිඟන් යන්ත්‍රය ඉවරයි, ඔයාට ඒක හිස් කරන්න පුළුවන්ද? → පිඟන් යන්ත්‍රය සේදීම ඉවරයි, ඔයාට ඒක හිස් කරන්න පුළුවන්ද?
+- g10_4.json#22 (Mettilo in frigo.) — expl[1] — روزمرہ کا جملہ؛ "فریگو" فریجوریفیرو کا چھوٹا عام لفظ ہے۔ → روزمرہ کا جملہ؛ "فریگو" فریگوریفیرو کا چھوٹا عام لفظ ہے۔
+- g10_4.json#22 (Mettilo in frigo.) — expl[2] — روز دا جملہ؛ "فریگو" فریجوریفیرو دا نکا عام لفظ اے۔ → روز دا جملہ؛ "فریگو" فریگوریفیرو دا نکا عام لفظ اے۔
+- g10_4.json#22 (Mettilo in frigo.) — expl[3] — ਰੋਜ਼ ਦਾ ਵਾਕ; "ਫ਼੍ਰੀਗੋ" ਫ਼੍ਰੀਜੋਰੀਫ਼ੇਰੋ ਦਾ ਛੋਟਾ ਆਮ ਸ਼ਬਦ ਹੈ। → ਰੋਜ਼ ਦਾ ਵਾਕ; "ਫ਼੍ਰੀਗੋ" ਫ਼੍ਰੀਗੋਰੀਫ਼ੇਰੋ ਦਾ ਛੋਟਾ ਆਮ ਸ਼ਬਦ ਹੈ।
+- g10_4.json#10 (Buon appetito!) — whole entry — removed (duplicate of g01_2 "Buon appetito!")
