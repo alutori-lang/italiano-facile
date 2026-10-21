@@ -2,7 +2,18 @@
 
 Date: 2026-10-21. App: Italian Words: Learn & Play. No app code under `lib/` was changed.
 
-## Result
+## Update (re-run after the full dictionary, ~4900 entries)
+- Fixed in my test harness: `scrollTo` in `test/tester1/t1_support.dart` now jumps the list back to the top before searching. Grids keep their scroll position, so it could not reach a topic above the current one, such as 'colors'.
+- `flutter test test/tester1`: **117 / 117 pass**.
+- Full `flutter test`: **301 pass, 6 skipped, 0 fail**.
+- Both real bugs listed below are now fixed in lib/ by the builder:
+  - `PopScope(canPop: !firstLaunch)` on the first-launch language sheet;
+  - the Settings status strip is now scrolled into view.
+
+  My tests for both now pass.
+- The Restore warning (no timeout) and the other observations still apply.
+
+## Result (first run, kept for history)
 
 | Suite | Tests | Pass | Fail |
 |---|---|---|---|

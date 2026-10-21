@@ -226,17 +226,20 @@ Future<void> playQuiz(
 Future<void> scrollTo(WidgetTester tester, Type screen, Finder finder,
     {double delta = 250}) async {
   if (finder.evaluate().isEmpty) {
-    await tester.scrollUntilVisible(
-      finder,
-      delta,
-      scrollable: find
-          .descendant(
-            of: find.byType(screen),
-            matching: find.byWidgetPredicate((Widget w) =>
-                w is Scrollable && w.axisDirection == AxisDirection.down),
-          )
-          .first,
-    );
+    final Finder scrollable = find
+        .descendant(
+          of: find.byType(screen),
+          matching: find.byWidgetPredicate((Widget w) =>
+              w is Scrollable && w.axisDirection == AxisDirection.down),
+        )
+        .first;
+    // Lists keep their scroll position, so start from the top.
+    final ScrollableState state = tester.state<ScrollableState>(scrollable);
+    state.position.jumpTo(state.position.minScrollExtent);
+    await tester.pumpAndSettle();
+    if (finder.evaluate().isEmpty) {
+      await tester.scrollUntilVisible(finder, delta, scrollable: scrollable);
+    }
   }
   await tester.ensureVisible(finder.first);
   await tester.pumpAndSettle();

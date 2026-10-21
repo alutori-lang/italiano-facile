@@ -12,6 +12,7 @@ import '../ui/widgets/screen_header.dart';
 import '../ui/widgets/word_card.dart';
 import 'quiz_play_screen.dart';
 import 'settings_screen.dart';
+import 'voice_help_screen.dart';
 
 /// Ten words a day, different for every user, swiped one card at a time.
 class TodayScreen extends StatefulWidget {
@@ -131,7 +132,25 @@ class _TodayScreenState extends State<TodayScreen> {
                       padding: const EdgeInsets.only(bottom: AppSpace.l),
                       child: SingleChildScrollView(
                         child: GestureDetector(
-                          onTap: () => AppScope.of(context).tts.speak(word.it),
+                          onTap: () async {
+                            // Same as the speaker buttons: with no Italian
+                            // voice on the phone, show the install guide.
+                            final AppScope scope = AppScope.of(context);
+                            final NavigatorState navigator =
+                                Navigator.of(context);
+                            await scope.tts.speak(
+                              word.it,
+                              slow: scope.settings.slowAudio,
+                            );
+                            if (!scope.tts.italianVoiceAvailable &&
+                                navigator.mounted) {
+                              navigator.push(
+                                MaterialPageRoute<void>(
+                                  builder: (_) => const VoiceHelpScreen(),
+                                ),
+                              );
+                            }
+                          },
                           child: WordCard(
                             word: word,
                             highlight: index == _index,
