@@ -131,9 +131,14 @@ class SettingsController extends ChangeNotifier {
 
   ThemeMode get themeMode => _dark ? ThemeMode.dark : ThemeMode.light;
 
-  /// The dictionary language that matches the active interface locale.
-  LearnerLanguage learnerLanguage(Locale active) =>
-      LearnerLanguage.forLocale(active);
+  /// True once the user has picked a translation language.
+  bool get hasChosenLanguage => _locale != null;
+
+  /// The language word translations are shown in: the user's choice, or
+  /// until they choose, the closest match to the phone's language.
+  LearnerLanguage get translationLanguage => LearnerLanguage.forLocale(
+        _locale ?? WidgetsBinding.instance.platformDispatcher.locale,
+      );
 
   Future<void> setLocale(Locale? locale) async {
     _locale = locale;

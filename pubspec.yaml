@@ -32,6 +32,9 @@ flutter:
   uses-material-design: true
   generate: true
 
+  assets:
+    - assets/dict/
+
   # Script fonts. Drop the .ttf files into assets/fonts/ and uncomment to bundle
   # them so Urdu / Shahmukhi / Gurmukhi / Bengali / Sinhala / Chinese never show
   # empty boxes on devices that lack the system Noto fonts.

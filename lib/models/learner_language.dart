@@ -1,4 +1,4 @@
-import 'dart:ui' show Locale;
+import 'dart:ui' show Locale, TextDirection;
 
 /// The ten languages the dictionary itself is translated into, in the fixed
 /// order used by every translation list in lib/data. Never reorder this: the
@@ -28,6 +28,10 @@ enum LearnerLanguage {
   /// Right-to-left scripts among the ten.
   bool get isRtl =>
       this == LearnerLanguage.urdu || this == LearnerLanguage.punjabiShahmukhi;
+
+  /// Direction of text written in this language (the app itself is LTR).
+  TextDirection get textDirection =>
+      isRtl ? TextDirection.rtl : TextDirection.ltr;
 
   /// Which dictionary language to use for a given interface locale.
   /// Interface languages outside the ten fall back to English, which is also

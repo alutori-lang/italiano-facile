@@ -1,0 +1,332 @@
+{
+"greetings": [
+"ciao",
+"buongiorno",
+"buonasera",
+"per favore",
+"grazie",
+"prego",
+"scusi",
+"arrivederci"
+],
+"numbers": [
+"uno",
+"due",
+"tre",
+"dieci",
+"venti",
+"ventitré",
+"cento",
+"il numero",
+"primo",
+"il chilo"
+],
+"colors": [
+"rosso",
+"verde",
+"bianco",
+"nero",
+"giallo",
+"blu",
+"il colore",
+"scuro"
+],
+"time": [
+"lunedì",
+"il giorno",
+"la settimana",
+"il mese",
+"oggi",
+"domani",
+"l\\'ora",
+"l\\'anno",
+"la mattina",
+"la sera",
+"tardi",
+"subito"
+],
+"family": [
+"la famiglia",
+"la madre",
+"il padre",
+"il figlio",
+"la moglie",
+"il fratello",
+"il bambino"
+],
+"body": [
+"la testa",
+"la mano",
+"il piede",
+"l\\'occhio",
+"la bocca",
+"la schiena",
+"il dente",
+"il sangue"
+],
+"health": [
+"il medico",
+"l\\'ospedale",
+"la febbre",
+"il dolore",
+"la tessera sanitaria",
+"l\\'appuntamento",
+"la ricetta",
+"stare male"
+],
+"pharmacy": [
+"la farmacia",
+"la medicina",
+"la pastiglia",
+"il cerotto",
+"il mal di testa",
+"la tosse"
+],
+"food": [
+"il pane",
+"il riso",
+"la carne",
+"il pesce",
+"l\\'uovo",
+"il formaggio",
+"lo zucchero",
+"il sale"
+],
+"fruit": [
+"la mela",
+"la banana",
+"l\\'arancia",
+"l\\'uva",
+"la pesca",
+"il limone",
+"la fragola",
+"la pera",
+"l\\'anguria"
+],
+"vegetables": [
+"il pomodoro",
+"la cipolla",
+"l\\'aglio",
+"la patata",
+"la carota",
+"l\\'insalata",
+"la zucchina",
+"il peperone"
+],
+"drinks": [
+"l\\'acqua",
+"il caffè",
+"il latte",
+"il tè",
+"il succo",
+"il vino",
+"la birra"
+],
+"cooking": [
+"cucinare",
+"tagliare",
+"bollire",
+"la pentola",
+"l\\'olio",
+"la ricetta di cucina"
+],
+"shopping": [
+"il supermercato",
+"la spesa",
+"il prezzo",
+"la cassa",
+"lo scontrino",
+"il sacchetto",
+"comprare",
+"il mercato"
+],
+"money": [
+"i soldi",
+"la banca",
+"il conto",
+"pagare",
+"il bonifico",
+"il contante",
+"costare"
+],
+"house": [
+"la casa",
+"l\\'affitto",
+"la camera",
+"la porta",
+"la finestra",
+"la luce",
+"il riscaldamento"
+],
+"kitchen": [
+"la cucina",
+"il piatto",
+"il bicchiere",
+"il frigorifero",
+"il forno",
+"il cucchiaio"
+],
+"bathroom": [
+"il bagno",
+"la doccia",
+"il sapone",
+"l\\'asciugamano",
+"lo spazzolino"
+],
+"clothes": [
+"le scarpe",
+"la camicia",
+"i pantaloni",
+"la giacca",
+"il cappotto",
+"il velo",
+"la taglia"
+],
+"weather": [
+"il tempo",
+"la pioggia",
+"il sole",
+"il freddo",
+"l\\'estate",
+"l\\'inverno",
+"la neve"
+],
+"city": [
+"la città",
+"la piazza",
+"la via",
+"la chiesa",
+"il parco",
+"il centro",
+"il negozio"
+],
+"transport": [
+"l\\'autobus",
+"la fermata dell\\'autobus",
+"il treno",
+"il biglietto",
+"la macchina",
+"la bicicletta",
+"la stazione",
+"a destra",
+"vicino"
+],
+"work": [
+"il lavoro",
+"il contratto",
+"lo stipendio",
+"il collega",
+"il turno",
+"il colloquio",
+"lavorare"
+],
+"jobs": [
+"il muratore",
+"il cuoco",
+"la badante",
+"l\\'autista",
+"l\\'operaio",
+"il commesso"
+],
+"offices": [
+"il comune",
+"la questura",
+"il permesso di soggiorno",
+"il codice fiscale",
+"la carta d\\'identità",
+"la residenza",
+"l\\'INPS",
+"lo sportello",
+"la marca da bollo"
+],
+"school": [
+"la scuola",
+"l\\'insegnante",
+"il libro",
+"il compito",
+"la classe",
+"imparare"
+],
+"animals": [
+"il cane",
+"il gatto",
+"il cavallo",
+"la mucca",
+"la pecora",
+"il pollo",
+"l\\'uccello",
+"il topo",
+"il pesce rosso"
+],
+"nature": [
+"l\\'albero",
+"il fiore",
+"il mare",
+"la montagna",
+"il fiume",
+"il cielo"
+],
+"sport": [
+"il calcio",
+"la palestra",
+"camminare",
+"nuotare",
+"il parco giochi",
+"la festa"
+],
+"feelings": [
+"contento",
+"triste",
+"stanco",
+"arrabbiato",
+"preoccupato",
+"tranquillo",
+"la paura",
+"l\\'amicizia"
+],
+"verbs": [
+"parlare",
+"andare",
+"venire",
+"fare",
+"mangiare",
+"bere",
+"dormire",
+"capire",
+"aiutare",
+"rinnovare",
+"aprire",
+"chiudere",
+"scrivere",
+"leggere",
+"prendere",
+"portare",
+"abitare",
+"cercare",
+"aspettare",
+"firmare"
+],
+"adjectives": [
+"grande",
+"piccolo",
+"buono",
+"cattivo",
+"nuovo",
+"vecchio",
+"facile",
+"difficile",
+"caro",
+"gentile",
+"più",
+"comunque"
+],
+"phrases": [
+"Quanto costa?",
+"Dov\\'è la fermata dell\\'autobus?",
+"Ho mal di testa.",
+"Non parlo bene italiano.",
+"Devo rinnovare il permesso di soggiorno.",
+"Vorrei un appuntamento.",
+"Può ripetere, per favore?"
+]
+}

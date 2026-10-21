@@ -69,7 +69,10 @@ class _Root extends StatelessWidget {
       theme: AppTheme.light(),
       darkTheme: AppTheme.dark(),
       themeMode: scope.settings.themeMode,
-      locale: scope.settings.locale,
+      // The whole interface is in Italian, always: the learner's own
+      // language is used only for word translations (see
+      // SettingsController.translationLanguage).
+      locale: const Locale('it'),
       supportedLocales: AppLocales.all,
       localizationsDelegates: const <LocalizationsDelegate<Object>>[
         AppLocalizations.delegate,
@@ -77,30 +80,6 @@ class _Root extends StatelessWidget {
         GlobalWidgetsLocalizations.delegate,
         GlobalCupertinoLocalizations.delegate,
       ],
-      localeListResolutionCallback: (
-        List<Locale>? devices,
-        Iterable<Locale> supported,
-      ) {
-        for (final Locale device in devices ?? const <Locale>[]) {
-          final Locale resolved = AppLocales.resolve(device, supported);
-          if (resolved.languageCode == device.languageCode) return resolved;
-        }
-        return const Locale('en');
-      },
-      // Flutter's own direction lookup only ever checks the language code
-      // (see AppLocales.isRtl), so it does not know that Punjabi written in
-      // the Shahmukhi script is right to left even though plain Punjabi is
-      // not. This builder sits just inside MaterialApp's own Directionality
-      // and replaces it with one driven by the full locale, script included,
-      // for every screen in the app.
-      builder: (BuildContext context, Widget? child) {
-        final Locale active = Localizations.localeOf(context);
-        return Directionality(
-          textDirection:
-              AppLocales.isRtl(active) ? TextDirection.rtl : TextDirection.ltr,
-          child: child!,
-        );
-      },
       home: screenshot != null
           ? ScreenshotHost(screen: screenshot!)
           : const HomeShell(),

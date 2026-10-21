@@ -88,6 +88,7 @@ class WordCard extends StatelessWidget {
                         // Level 2 — the translation, neutral ink.
                         Text(
                           word.translation(lang),
+                          textDirection: lang.textDirection,
                           style: context.texts.titleMedium,
                         ),
                         const SizedBox(height: AppSpace.xs),
@@ -110,6 +111,7 @@ class WordCard extends StatelessWidget {
               // good picture are still clear.
               Text(
                 word.explanation(lang),
+                textDirection: lang.textDirection,
                 style: context.texts.bodyMedium,
               ),
               const SizedBox(height: AppSpace.m),
@@ -184,6 +186,7 @@ class _ExampleBlock extends StatelessWidget {
           const SizedBox(height: AppSpace.xs),
           Text(
             word.exampleTranslation(lang),
+            textDirection: lang.textDirection,
             style: context.texts.bodySmall,
           ),
         ],
@@ -269,6 +272,7 @@ class WordRow extends StatelessWidget {
                     const SizedBox(height: 2),
                     Text(
                       word.translation(lang),
+                      textDirection: lang.textDirection,
                       maxLines: 2,
                       overflow: TextOverflow.ellipsis,
                       style: context.texts.bodySmall,

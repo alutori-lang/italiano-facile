@@ -242,6 +242,7 @@ class _MistakeRow extends StatelessWidget {
                 ),
                 Text(
                   right.translation(lang),
+                  textDirection: lang.textDirection,
                   maxLines: 2,
                   overflow: TextOverflow.ellipsis,
                   style: context.texts.bodySmall,

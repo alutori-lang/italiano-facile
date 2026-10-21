@@ -123,15 +123,28 @@ class _SearchScreenState extends State<SearchScreen> {
             ScreenHeader(
               title: t.tabSearch,
               subtitle: t.wordsAndPhrases(repo.wordCount, repo.phraseCount),
-              trailing: HeaderPill(
-                key: const ValueKey<String>('search-settings'),
-                label: t.settingsTitle,
-                icon: Icons.tune_rounded,
-                onTap: () => Navigator.of(context).push(
-                  MaterialPageRoute<void>(
-                    builder: (_) => const SettingsScreen(),
+              trailing: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: <Widget>[
+                  Flexible(
+                    child: HeaderPill(
+                      key: const ValueKey<String>('search-language'),
+                      label: translationLanguageLabel(t, scope.settings),
+                      icon: Icons.translate_rounded,
+                      onTap: () => showTranslationLanguagePicker(context),
+                    ),
                   ),
-                ),
+                  IconButton(
+                    key: const ValueKey<String>('search-settings'),
+                    tooltip: t.settingsTitle,
+                    icon: const Icon(Icons.settings_rounded),
+                    onPressed: () => Navigator.of(context).push(
+                      MaterialPageRoute<void>(
+                        builder: (_) => const SettingsScreen(),
+                      ),
+                    ),
+                  ),
+                ],
               ),
             ),
             TextField(

@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 
+import '../app_scope.dart';
 import '../l10n/app_localizations.dart';
 import '../ui/theme.dart';
 import 'quiz_category_screen.dart';
 import 'search_screen.dart';
+import 'settings_screen.dart';
 import 'today_screen.dart';
 import 'topics_screen.dart';
 
@@ -25,6 +27,19 @@ class _HomeShellState extends State<HomeShell> {
   // results survive leaving and returning to the Search tab even though only
   // the active tab's screen stays built — see the comment on `body` below.
   final TextEditingController _searchController = TextEditingController();
+
+  @override
+  void initState() {
+    super.initState();
+    // At first launch the user picks the one language translations are
+    // shown in; the interface itself is always Italian.
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (!mounted) return;
+      if (!AppScope.of(context).settings.hasChosenLanguage) {
+        showTranslationLanguagePicker(context, firstLaunch: true);
+      }
+    });
+  }
 
   @override
   void dispose() {

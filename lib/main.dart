@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 import 'app.dart';
 import 'config/screenshot_screens.dart';
+import 'data/word_repository.dart';
 import 'services/ads_service.dart';
 import 'services/notification_service.dart';
 import 'services/online_lookup_service.dart';
@@ -16,6 +17,7 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   final PrefsService prefs = await PrefsService.open();
+  await WordRepository.load();
   final SettingsController settings = SettingsController(prefs);
   final ProgressService progress = ProgressService(prefs);
   final TtsService tts = TtsService();

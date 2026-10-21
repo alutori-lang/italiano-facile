@@ -127,12 +127,14 @@ class _FlashcardsScreenState extends State<FlashcardsScreen> {
                                         children: <Widget>[
                                           Text(
                                             word.translation(lang),
+                                            textDirection: lang.textDirection,
                                             textAlign: TextAlign.center,
                                             style: context.texts.titleMedium,
                                           ),
                                           const SizedBox(height: AppSpace.s),
                                           Text(
                                             word.explanation(lang),
+                                            textDirection: lang.textDirection,
                                             textAlign: TextAlign.center,
                                             style: context.texts.bodyMedium,
                                           ),

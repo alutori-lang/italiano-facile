@@ -46,7 +46,7 @@ class AppScope extends InheritedNotifier<Listenable> {
     return scope!;
   }
 
-  /// The dictionary language for the locale currently in use.
+  /// The language the user picked for word translations.
   static LearnerLanguage languageOf(BuildContext context) =>
-      LearnerLanguage.forLocale(Localizations.localeOf(context));
+      of(context).settings.translationLanguage;
 }

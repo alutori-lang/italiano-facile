@@ -369,6 +369,7 @@ class _Feedback extends StatelessWidget {
             ),
             Text(
               question.correction.translation(lang),
+              textDirection: lang.textDirection,
               textAlign: TextAlign.center,
               style: context.texts.bodySmall,
             ),

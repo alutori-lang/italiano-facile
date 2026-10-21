@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../app_scope.dart';
 import '../config/ads_config.dart';
 import '../l10n/app_localizations.dart';
+import '../models/learner_language.dart';
 import '../services/settings_controller.dart';
 import '../ui/theme.dart';
 import '../ui/widgets/button_content.dart';
@@ -10,7 +11,7 @@ import 'about_screen.dart';
 import 'paywall_screen.dart';
 import 'privacy_screen.dart';
 
-/// Interface language, audio speed, reminder, dark mode, reset, remove ads,
+/// Translation language, audio speed, reminder, dark mode, reset, remove ads,
 /// restore purchases, privacy and about.
 class SettingsScreen extends StatefulWidget {
   const SettingsScreen({super.key});
@@ -61,9 +62,9 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   dense: true,
                   leading: const Icon(Icons.translate_rounded),
                   title: Text(t.interfaceLanguage),
-                  subtitle: Text(_languageName(t, settings.locale, context)),
+                  subtitle: Text(translationLanguageLabel(t, settings)),
                   trailing: const MirroredIcon(Icons.chevron_right_rounded),
-                  onTap: () => _pickLanguage(context),
+                  onTap: () => showTranslationLanguagePicker(context),
                 ),
                 SwitchListTile(
                   key: const ValueKey<String>('settings-slow-audio'),
@@ -196,82 +197,6 @@ class _SettingsScreenState extends State<SettingsScreen> {
     return '$hour:$minute';
   }
 
-  static String _languageName(
-    AppLocalizations t,
-    Locale? locale,
-    BuildContext context,
-  ) {
-    final Locale active = locale ?? Localizations.localeOf(context);
-    return languageLabel(t, active);
-  }
-
-  Future<void> _pickLanguage(BuildContext context) async {
-    final AppLocalizations t = AppLocalizations.of(context);
-    final SettingsController settings = AppScope.of(context).settings;
-    await showModalBottomSheet<void>(
-      context: context,
-      showDragHandle: true,
-      isScrollControlled: true,
-      builder: (BuildContext sheetContext) {
-        return SafeArea(
-          child: ListView(
-            shrinkWrap: true,
-            children: <Widget>[
-              Padding(
-                padding: const EdgeInsets.fromLTRB(
-                  AppSpace.xl,
-                  0,
-                  AppSpace.xl,
-                  AppSpace.m,
-                ),
-                child: Text(
-                  t.languageNoteWordTranslations,
-                  style: Theme.of(sheetContext).textTheme.bodySmall,
-                ),
-              ),
-              for (final Locale locale in AppLocales.primary)
-                _LanguageOption(
-                  locale: locale,
-                  label: languageLabel(t, locale),
-                  selected: settings.locale != null &&
-                      AppLocales.tag(settings.locale!) ==
-                          AppLocales.tag(locale),
-                  onTap: () {
-                    settings.setLocale(locale);
-                    Navigator.of(sheetContext).pop();
-                  },
-                ),
-              Padding(
-                padding: const EdgeInsets.fromLTRB(
-                  AppSpace.xl,
-                  AppSpace.l,
-                  AppSpace.xl,
-                  AppSpace.s,
-                ),
-                child: Text(
-                  t.moreLanguages.toUpperCase(),
-                  style: Theme.of(sheetContext).textTheme.labelSmall,
-                ),
-              ),
-              for (final Locale locale in AppLocales.secondary)
-                _LanguageOption(
-                  locale: locale,
-                  label: languageLabel(t, locale),
-                  selected: settings.locale != null &&
-                      AppLocales.tag(settings.locale!) ==
-                          AppLocales.tag(locale),
-                  onTap: () {
-                    settings.setLocale(locale);
-                    Navigator.of(sheetContext).pop();
-                  },
-                ),
-            ],
-          ),
-        );
-      },
-    );
-  }
-
   Future<void> _toggleReminder(BuildContext context, bool value) async {
     final AppScope scope = AppScope.of(context);
     final AppLocalizations t = AppLocalizations.of(context);
@@ -353,6 +278,82 @@ class _SettingsScreenState extends State<SettingsScreen> {
     await scope.progress.reset();
     _showStatus(t.resetDone);
   }
+}
+
+/// The interface locale that stands for [settings.translationLanguage].
+Locale _translationLocale(SettingsController settings) =>
+    AppLocales.primary.firstWhere(
+      (Locale l) =>
+          LearnerLanguage.forLocale(l) == settings.translationLanguage,
+      orElse: () => AppLocales.primary.first,
+    );
+
+/// The name of the chosen translation language, in that language itself.
+String translationLanguageLabel(
+  AppLocalizations t,
+  SettingsController settings,
+) =>
+    languageLabel(t, _translationLocale(settings));
+
+/// Lets the user pick the one language that word translations are shown in.
+/// At first launch it is not dismissible, so a choice is always made.
+Future<void> showTranslationLanguagePicker(
+  BuildContext context, {
+  bool firstLaunch = false,
+}) async {
+  final AppLocalizations t = AppLocalizations.of(context);
+  final SettingsController settings = AppScope.of(context).settings;
+  final String current = AppLocales.tag(_translationLocale(settings));
+  await showModalBottomSheet<void>(
+    context: context,
+    showDragHandle: !firstLaunch,
+    isDismissible: !firstLaunch,
+    enableDrag: !firstLaunch,
+    isScrollControlled: true,
+    builder: (BuildContext sheetContext) {
+      return SafeArea(
+        child: ListView(
+          shrinkWrap: true,
+          children: <Widget>[
+            Padding(
+              padding: const EdgeInsets.fromLTRB(
+                AppSpace.xl,
+                AppSpace.l,
+                AppSpace.xl,
+                AppSpace.s,
+              ),
+              child: Text(
+                t.interfaceLanguage,
+                style: Theme.of(sheetContext).textTheme.titleLarge,
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.fromLTRB(
+                AppSpace.xl,
+                0,
+                AppSpace.xl,
+                AppSpace.m,
+              ),
+              child: Text(
+                t.languageNoteWordTranslations,
+                style: Theme.of(sheetContext).textTheme.bodySmall,
+              ),
+            ),
+            for (final Locale locale in AppLocales.primary)
+              _LanguageOption(
+                locale: locale,
+                label: languageLabel(t, locale),
+                selected: !firstLaunch && AppLocales.tag(locale) == current,
+                onTap: () {
+                  settings.setLocale(locale);
+                  Navigator.of(sheetContext).pop();
+                },
+              ),
+          ],
+        ),
+      );
+    },
+  );
 }
 
 /// The name of each language, written in that language itself.
