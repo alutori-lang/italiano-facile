@@ -1,16 +1,23 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 
 import '../app_scope.dart';
+import '../data/big_dictionary.dart';
 import '../data/word_repository.dart';
 import '../l10n/app_localizations.dart';
+import '../models/big_entry.dart';
 import '../models/learner_language.dart';
 import '../models/word.dart';
 import '../services/online_lookup_service.dart';
 import '../services/search_service.dart';
+import '../services/text_norm.dart';
 import '../ui/theme.dart';
+import '../ui/widgets/big_entry_card.dart';
 import '../ui/widgets/button_content.dart';
 import '../ui/widgets/screen_header.dart';
 import '../ui/widgets/word_card.dart';
+import 'big_entry_screen.dart';
 import 'my_words_screen.dart';
 import 'settings_screen.dart';
 import 'word_detail_screen.dart';
@@ -44,6 +51,28 @@ class _SearchScreenState extends State<SearchScreen> {
   bool _onlineLoading = false;
   bool _onlineFailed = false;
 
+  // The big offline dictionary (see [BigDictionary]): its answers come after
+  // the curated words, which have pictures and explanations. A big answer
+  // whose headword is also a curated word is shown as that curated card.
+  BigDictionary? _big;
+  List<Word> _bigWords = const <Word>[];
+  List<BigEntry> _bigEntries = const <BigEntry>[];
+  bool _bigPending = false;
+  int _bigSeq = 0;
+  bool _bigIndexedSeen = false;
+  Timer? _serverTimer;
+
+  /// Curated words by their normalized headword without article.
+  static Map<String, Word>? _curatedByBare;
+  static Map<String, Word> get _curated => _curatedByBare ??= () {
+        final Map<String, Word> map = <String, Word>{};
+        for (final Word word in WordRepository.instance.all) {
+          if (word.isPhrase) continue;
+          map.putIfAbsent(TextNorm.norm(word.bare), () => word);
+        }
+        return map;
+      }();
+
   bool get _ownsController => widget.controller == null;
 
   @override
@@ -62,9 +91,98 @@ class _SearchScreenState extends State<SearchScreen> {
   }
 
   @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    final BigDictionary? big = AppScope.of(context).big;
+    if (!identical(big, _big)) {
+      _big?.removeListener(_onBigChanged);
+      _big = big;
+      _big?.addListener(_onBigChanged);
+    }
+  }
+
+  @override
   void dispose() {
+    _serverTimer?.cancel();
+    _big?.removeListener(_onBigChanged);
     if (_ownsController) _controller.dispose();
     super.dispose();
+  }
+
+  /// The big dictionary finished copying or indexing: refresh the answer for
+  /// what is already typed, and the "Preparazione…" notice.
+  void _onBigChanged() {
+    if (!mounted) return;
+    final BigDictionary? big = _big;
+    final LearnerLanguage lang = AppScope.languageOf(context);
+    final bool indexed = big != null && big.ready && big.isIndexed(lang);
+    final bool refresh = indexed != _bigIndexedSeen;
+    _bigIndexedSeen = indexed;
+    setState(() {});
+    if (refresh && _controller.text.trim().isNotEmpty) {
+      _runBig(_controller.text, lang, _hits);
+    }
+  }
+
+  Future<void> _runBig(
+    String query,
+    LearnerLanguage lang,
+    List<SearchHit> hits,
+  ) async {
+    final int seq = ++_bigSeq;
+    _serverTimer?.cancel();
+    final BigDictionary? big = _big;
+    if (big == null || !big.ready || query.trim().isEmpty) {
+      if (_bigWords.isNotEmpty || _bigEntries.isNotEmpty || _bigPending) {
+        setState(() {
+          _bigWords = const <Word>[];
+          _bigEntries = const <BigEntry>[];
+          _bigPending = false;
+        });
+      }
+      return;
+    }
+    setState(() => _bigPending = true);
+    final List<BigHit> found = await big.lookup(query, lang);
+    if (!mounted || seq != _bigSeq) return;
+    final Set<String> shown = <String>{
+      for (final SearchHit hit in hits) hit.word.id,
+    };
+    final List<Word> words = <Word>[];
+    final List<BigEntry> entries = <BigEntry>[];
+    for (final BigHit hit in found) {
+      final Word? curated = _curated[TextNorm.norm(hit.entry.it)];
+      if (curated != null) {
+        if (shown.add(curated.id)) words.add(curated);
+      } else {
+        entries.add(hit.entry);
+      }
+    }
+    setState(() {
+      _bigWords = words;
+      _bigEntries = entries;
+      _bigPending = false;
+    });
+    // Nothing anywhere on the phone: ask the word server once the user
+    // stops typing (only when it is configured — see ServerConfig).
+    if (hits.isEmpty &&
+        found.isEmpty &&
+        big.serverEnabled &&
+        query.trim().length >= 2) {
+      _serverTimer = Timer(const Duration(milliseconds: 700), () async {
+        final BigEntry? entry = await big.askServer(query, lang);
+        if (!mounted || seq != _bigSeq || entry == null) return;
+        setState(() => _bigEntries = <BigEntry>[entry]);
+      });
+    }
+  }
+
+  void _openBigEntry(BigEntry entry) {
+    Navigator.of(context).push(
+      MaterialPageRoute<void>(
+        builder: (_) => BigEntryScreen(entry: entry),
+      ),
+    );
   }
 
   void _runSearch(String query, {bool remember = true}) {
@@ -74,10 +192,10 @@ class _SearchScreenState extends State<SearchScreen> {
       _hits = hits;
       _onlineResult = null;
       _onlineFailed = false;
-      _suggestions = hits.isEmpty
-          ? _service.suggestions(query, lang)
-          : const <Word>[];
+      _suggestions =
+          hits.isEmpty ? _service.suggestions(query, lang) : const <Word>[];
     });
+    _runBig(query, lang, hits);
     if (remember && hits.isNotEmpty && query.trim().length >= 2) {
       AppScope.of(context).progress.addRecentSearch(query.trim());
     }
@@ -112,6 +230,9 @@ class _SearchScreenState extends State<SearchScreen> {
     final AppScope scope = AppScope.of(context);
     final WordRepository repo = WordRepository.instance;
     final String query = _controller.text.trim();
+    final BigDictionary? big = scope.big;
+    final bool anyResult =
+        _hits.isNotEmpty || _bigWords.isNotEmpty || _bigEntries.isNotEmpty;
 
     return SafeArea(
       bottom: false,
@@ -174,6 +295,27 @@ class _SearchScreenState extends State<SearchScreen> {
               child: ListView(
                 padding: const EdgeInsets.only(bottom: AppSpace.xxl),
                 children: <Widget>[
+                  if (big != null && big.showPreparing)
+                    Padding(
+                      key: const ValueKey<String>('big-preparing'),
+                      padding: const EdgeInsets.only(bottom: AppSpace.l),
+                      child: Row(
+                        children: <Widget>[
+                          const SizedBox(
+                            width: 18,
+                            height: 18,
+                            child: CircularProgressIndicator(strokeWidth: 2),
+                          ),
+                          const SizedBox(width: AppSpace.m),
+                          Expanded(
+                            child: Text(
+                              t.bigPreparing,
+                              style: context.texts.bodySmall,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
                   if (query.isEmpty) ..._idleContent(t, scope),
                   if (query.isNotEmpty && _hits.isNotEmpty)
                     ..._hits.map(
@@ -186,7 +328,30 @@ class _SearchScreenState extends State<SearchScreen> {
                         ),
                       ),
                     ),
-                  if (query.isNotEmpty && _hits.isEmpty)
+                  if (query.isNotEmpty)
+                    ..._bigWords.map(
+                      (Word word) => Padding(
+                        padding: const EdgeInsets.only(bottom: AppSpace.l),
+                        child: WordCard(
+                          word: word,
+                          heroTag: 'word-picture:${word.id}',
+                          onTap: () => _openWord(word),
+                        ),
+                      ),
+                    ),
+                  if (query.isNotEmpty)
+                    ..._bigEntries.map(
+                      (BigEntry entry) => Padding(
+                        padding: const EdgeInsets.only(bottom: AppSpace.m),
+                        child: BigEntryCard(
+                          entry: entry,
+                          onTap: () => _openBigEntry(entry),
+                        ),
+                      ),
+                    ),
+                  // While the big dictionary is still answering, do not
+                  // flash "nothing found".
+                  if (query.isNotEmpty && !anyResult && !_bigPending)
                     ..._emptyContent(t, query),
                 ],
               ),
@@ -199,8 +364,10 @@ class _SearchScreenState extends State<SearchScreen> {
 
   List<Widget> _idleContent(AppLocalizations t, AppScope scope) {
     final List<String> recents = scope.progress.recentSearches;
-    final List<Word> myWords =
-        WordRepository.instance.byIds(scope.progress.myWordIds).take(3).toList();
+    final List<Word> myWords = WordRepository.instance
+        .byIds(scope.progress.myWordIds)
+        .take(3)
+        .toList();
 
     return <Widget>[
       if (recents.isNotEmpty) ...<Widget>[

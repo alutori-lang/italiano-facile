@@ -497,4 +497,63 @@ class AppLocalizationsSi extends AppLocalizations {
   @override
   String get languageNoteWordTranslations =>
       'වචන පරිවර්තන ප්‍රධාන භාෂා දහයේ ඇත; අනෙක් අතුරුමුහුණත් භාෂා සඳහා ඉංග්‍රීසි පෙන්වයි.';
+
+  @override
+  String get bigPreparing => 'Preparing the dictionary…';
+
+  @override
+  String bigPlural(String plural) {
+    return 'Plural: $plural';
+  }
+
+  @override
+  String bigInEnglish(String gloss) {
+    return 'In English: $gloss';
+  }
+
+  @override
+  String get bigSource => 'From the big dictionary (Wiktionary)';
+
+  @override
+  String get bigLearnedSource => 'Learned from the online dictionary';
+
+  @override
+  String get bigSearching => 'Searching the big dictionary…';
+
+  @override
+  String get posAdverb => 'Adverb';
+
+  @override
+  String get posArticle => 'Article';
+
+  @override
+  String get posConjunction => 'Conjunction';
+
+  @override
+  String get posDeterminer => 'Determiner';
+
+  @override
+  String get posInterjection => 'Interjection';
+
+  @override
+  String get posNumeral => 'Number';
+
+  @override
+  String get posParticle => 'Particle';
+
+  @override
+  String get posPreposition => 'Preposition';
+
+  @override
+  String get posPronoun => 'Pronoun';
+
+  @override
+  String get posOther => 'Word';
+
+  @override
+  String get bigDictTitle => 'Big dictionary';
+
+  @override
+  String get bigDictCredits =>
+      'The big dictionary of Italian words (over 100,000 words when complete) comes from Wiktionary, through kaikki.org, under the CC BY-SA 4.0 licence. The meanings in the ten languages were prepared for this app from the Wiktionary definitions.';
 }

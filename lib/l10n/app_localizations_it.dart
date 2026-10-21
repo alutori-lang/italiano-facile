@@ -501,4 +501,63 @@ class AppLocalizationsIt extends AppLocalizations {
   @override
   String get languageNoteWordTranslations =>
       'Scegli la tua lingua: vedrai il significato delle parole italiane in questa lingua e potrai cercare scrivendo in questa lingua.';
+
+  @override
+  String get bigPreparing => 'Preparazione del dizionario…';
+
+  @override
+  String bigPlural(String plural) {
+    return 'Plurale: $plural';
+  }
+
+  @override
+  String bigInEnglish(String gloss) {
+    return 'In inglese: $gloss';
+  }
+
+  @override
+  String get bigSource => 'Dal grande dizionario (Wiktionary)';
+
+  @override
+  String get bigLearnedSource => 'Imparata dal dizionario online';
+
+  @override
+  String get bigSearching => 'Cerco nel grande dizionario…';
+
+  @override
+  String get posAdverb => 'Avverbio';
+
+  @override
+  String get posArticle => 'Articolo';
+
+  @override
+  String get posConjunction => 'Congiunzione';
+
+  @override
+  String get posDeterminer => 'Determinante';
+
+  @override
+  String get posInterjection => 'Interiezione';
+
+  @override
+  String get posNumeral => 'Numerale';
+
+  @override
+  String get posParticle => 'Particella';
+
+  @override
+  String get posPreposition => 'Preposizione';
+
+  @override
+  String get posPronoun => 'Pronome';
+
+  @override
+  String get posOther => 'Parola';
+
+  @override
+  String get bigDictTitle => 'Grande dizionario';
+
+  @override
+  String get bigDictCredits =>
+      'Il grande dizionario delle parole italiane (oltre 100.000 parole a lavoro finito) viene da Wiktionary, tramite kaikki.org, con licenza CC BY-SA 4.0. I significati nelle dieci lingue sono stati preparati per questa app a partire dalle definizioni di Wiktionary.';
 }

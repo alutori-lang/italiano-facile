@@ -676,5 +676,87 @@
   "languageNoteWordTranslations": "Word translations are shown in the ten main languages; other interface languages fall back to English.",
   "@languageNoteWordTranslations": {
     "description": "languageNoteWordTranslations"
+  },
+  "bigPreparing": "Preparing the dictionary…",
+  "@bigPreparing": {
+    "description": "bigPreparing"
+  },
+  "bigPlural": "Plural: {plural}",
+  "@bigPlural": {
+    "description": "bigPlural",
+    "placeholders": {
+      "plural": {
+        "type": "String"
+      }
+    }
+  },
+  "bigInEnglish": "In English: {gloss}",
+  "@bigInEnglish": {
+    "description": "bigInEnglish",
+    "placeholders": {
+      "gloss": {
+        "type": "String"
+      }
+    }
+  },
+  "bigSource": "From the big dictionary (Wiktionary)",
+  "@bigSource": {
+    "description": "bigSource"
+  },
+  "bigLearnedSource": "Learned from the online dictionary",
+  "@bigLearnedSource": {
+    "description": "bigLearnedSource"
+  },
+  "bigSearching": "Searching the big dictionary…",
+  "@bigSearching": {
+    "description": "bigSearching"
+  },
+  "posAdverb": "Adverb",
+  "@posAdverb": {
+    "description": "posAdverb"
+  },
+  "posArticle": "Article",
+  "@posArticle": {
+    "description": "posArticle"
+  },
+  "posConjunction": "Conjunction",
+  "@posConjunction": {
+    "description": "posConjunction"
+  },
+  "posDeterminer": "Determiner",
+  "@posDeterminer": {
+    "description": "posDeterminer"
+  },
+  "posInterjection": "Interjection",
+  "@posInterjection": {
+    "description": "posInterjection"
+  },
+  "posNumeral": "Number",
+  "@posNumeral": {
+    "description": "posNumeral"
+  },
+  "posParticle": "Particle",
+  "@posParticle": {
+    "description": "posParticle"
+  },
+  "posPreposition": "Preposition",
+  "@posPreposition": {
+    "description": "posPreposition"
+  },
+  "posPronoun": "Pronoun",
+  "@posPronoun": {
+    "description": "posPronoun"
+  },
+  "posOther": "Word",
+  "@posOther": {
+    "description": "posOther"
+  },
+  "bigDictTitle": "Big dictionary",
+  "@bigDictTitle": {
+    "description": "bigDictTitle"
+  },
+  "bigDictCredits": "The big dictionary of Italian words (over 100,000 words when complete) comes from Wiktionary, through kaikki.org, under the CC BY-SA 4.0 licence. The meanings in the ten languages were prepared for this app from the Wiktionary definitions.",
+  "@bigDictCredits": {
+    "description": "bigDictCredits"
   }
 }

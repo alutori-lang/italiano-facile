@@ -49,6 +49,17 @@ class AboutScreen extends StatelessWidget {
             Text(t.about.toUpperCase(), style: context.texts.labelSmall),
             const SizedBox(height: AppSpace.xs),
             Text(t.creditsBody, style: context.texts.bodyMedium),
+            const SizedBox(height: AppSpace.xl),
+            Text(
+              t.bigDictTitle.toUpperCase(),
+              style: context.texts.labelSmall,
+            ),
+            const SizedBox(height: AppSpace.xs),
+            Text(
+              t.bigDictCredits,
+              key: const ValueKey<String>('about-big-dictionary'),
+              style: context.texts.bodyMedium,
+            ),
           ],
         ),
       ),

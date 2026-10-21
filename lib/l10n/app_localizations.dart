@@ -1049,6 +1049,114 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Word translations are shown in the ten main languages; other interface languages fall back to English.'**
   String get languageNoteWordTranslations;
+
+  /// bigPreparing
+  ///
+  /// In en, this message translates to:
+  /// **'Preparing the dictionary…'**
+  String get bigPreparing;
+
+  /// bigPlural
+  ///
+  /// In en, this message translates to:
+  /// **'Plural: {plural}'**
+  String bigPlural(String plural);
+
+  /// bigInEnglish
+  ///
+  /// In en, this message translates to:
+  /// **'In English: {gloss}'**
+  String bigInEnglish(String gloss);
+
+  /// bigSource
+  ///
+  /// In en, this message translates to:
+  /// **'From the big dictionary (Wiktionary)'**
+  String get bigSource;
+
+  /// bigLearnedSource
+  ///
+  /// In en, this message translates to:
+  /// **'Learned from the online dictionary'**
+  String get bigLearnedSource;
+
+  /// bigSearching
+  ///
+  /// In en, this message translates to:
+  /// **'Searching the big dictionary…'**
+  String get bigSearching;
+
+  /// posAdverb
+  ///
+  /// In en, this message translates to:
+  /// **'Adverb'**
+  String get posAdverb;
+
+  /// posArticle
+  ///
+  /// In en, this message translates to:
+  /// **'Article'**
+  String get posArticle;
+
+  /// posConjunction
+  ///
+  /// In en, this message translates to:
+  /// **'Conjunction'**
+  String get posConjunction;
+
+  /// posDeterminer
+  ///
+  /// In en, this message translates to:
+  /// **'Determiner'**
+  String get posDeterminer;
+
+  /// posInterjection
+  ///
+  /// In en, this message translates to:
+  /// **'Interjection'**
+  String get posInterjection;
+
+  /// posNumeral
+  ///
+  /// In en, this message translates to:
+  /// **'Number'**
+  String get posNumeral;
+
+  /// posParticle
+  ///
+  /// In en, this message translates to:
+  /// **'Particle'**
+  String get posParticle;
+
+  /// posPreposition
+  ///
+  /// In en, this message translates to:
+  /// **'Preposition'**
+  String get posPreposition;
+
+  /// posPronoun
+  ///
+  /// In en, this message translates to:
+  /// **'Pronoun'**
+  String get posPronoun;
+
+  /// posOther
+  ///
+  /// In en, this message translates to:
+  /// **'Word'**
+  String get posOther;
+
+  /// bigDictTitle
+  ///
+  /// In en, this message translates to:
+  /// **'Big dictionary'**
+  String get bigDictTitle;
+
+  /// bigDictCredits
+  ///
+  /// In en, this message translates to:
+  /// **'The big dictionary of Italian words (over 100,000 words when complete) comes from Wiktionary, through kaikki.org, under the CC BY-SA 4.0 licence. The meanings in the ten languages were prepared for this app from the Wiktionary definitions.'**
+  String get bigDictCredits;
 }
 
 class _AppLocalizationsDelegate

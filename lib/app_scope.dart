@@ -1,5 +1,6 @@
 import 'package:flutter/widgets.dart';
 
+import 'data/big_dictionary.dart';
 import 'models/learner_language.dart';
 import 'services/ads_service.dart';
 import 'services/notification_service.dart';
@@ -20,6 +21,7 @@ class AppScope extends InheritedNotifier<Listenable> {
     required this.purchases,
     required this.notifications,
     required this.online,
+    this.big,
     required super.child,
   }) : super(
           notifier: Listenable.merge(<Listenable>[
@@ -38,6 +40,11 @@ class AppScope extends InheritedNotifier<Listenable> {
   final PurchaseService purchases;
   final NotificationService notifications;
   final OnlineLookupService online;
+
+  /// The big offline dictionary; null when it is not available (web,
+  /// screenshot mode, most widget tests). Search then uses the curated words
+  /// alone.
+  final BigDictionary? big;
 
   static AppScope of(BuildContext context) {
     final AppScope? scope =

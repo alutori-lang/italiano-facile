@@ -1,0 +1,87 @@
+{
+ "norm": {
+  "Città": "citta",
+  "perché": "perche",
+  "PIÙ": "piu",
+  "ventitré": "ventitre",
+  "l'acqua": "l acqua",
+  "pomodoro!": "pomodoro",
+  "andavamo": "andavamo",
+  "پیار": "پیار",
+  "پیار!": "پیار",
+  "كتاب": "کتاب",
+  "سُوَال": "سوال",
+  "ہفتہ": "ہفتہ",
+  "آدمی": "ادمی",
+  "ਪਿਆਰ": "ਪਿਆਰ",
+  "ভালোবাসা": "ভালোবাসা",
+  "পানি।": "পানি",
+  "ආදරය": "ආදරය",
+  "番茄，": "番茄",
+  "Très bien": "tres bien",
+  "niño": "nino",
+  "¿Dónde?": "donde"
+ },
+ "romkey": {
+  "pyaar": "piar",
+  "piyar": "piar",
+  "pyar": "piar",
+  "Khana": "kana",
+  "khaana": "kana",
+  "kana": "kana",
+  "mohabbat": "muhabat",
+  "muhabat": "muhabat",
+  "bhai": "bai",
+  "Bhaai": "bai",
+  "dawai": "davai",
+  "dawaee": "davai",
+  "shukriya": "sukria",
+  "shukria": "sukria",
+  "ghar": "gar",
+  "gar": "gar",
+  "bhalobasha": "balubasa",
+  "bhalobasa": "balubasa",
+  "xihongshi": "xihungsi",
+  "fan qie": "fankie",
+  "kaam": "kam",
+  "kam": "kam",
+  "paani": "pani",
+  "pani": "pani"
+ },
+ "variants": {
+  "nice / likable / funny": [
+   "nice",
+   "likable",
+   "funny"
+  ],
+  "to go": [
+   "to go",
+   "go"
+  ],
+  "house; home, family": [
+   "house",
+   "home",
+   "family"
+  ],
+  "casa (edificio) / hogar": [
+   "casa",
+   "hogar"
+  ],
+  "خوش اخلاق / پیارا": [
+   "خوش اخلاق",
+   "پیارا"
+  ],
+  "去 / 走": [
+   "去",
+   "走"
+  ],
+  "to be (located)": [
+   "to be",
+   "be"
+  ],
+  " / ": [],
+  "talib e ilm | student": [
+   "talib e ilm | student"
+  ]
+ }
+}

@@ -3,6 +3,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 
 import 'app_scope.dart';
 import 'config/screenshot_screens.dart';
+import 'data/big_dictionary.dart';
 import 'l10n/app_localizations.dart';
 import 'screens/home_shell.dart';
 import 'screens/screenshot_host.dart';
@@ -25,6 +26,7 @@ class ItalianWordsApp extends StatelessWidget {
     required this.purchases,
     required this.notifications,
     required this.online,
+    this.big,
     this.screenshot,
   });
 
@@ -35,6 +37,7 @@ class ItalianWordsApp extends StatelessWidget {
   final PurchaseService purchases;
   final NotificationService notifications;
   final OnlineLookupService online;
+  final BigDictionary? big;
 
   /// Non-null only for the web screenshot mode.
   final ScreenshotScreen? screenshot;
@@ -50,6 +53,7 @@ class ItalianWordsApp extends StatelessWidget {
       purchases: purchases,
       notifications: notifications,
       online: online,
+      big: big,
       child: _Root(screenshot: screenshot),
     );
   }
