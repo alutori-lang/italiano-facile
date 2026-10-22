@@ -79,7 +79,14 @@ class AppLocalizationsPa extends AppLocalizations {
 
   @override
   String wordsAndPhrases(int words, int phrases) {
-    return '$words ਸ਼ਬਦ · $phrases ਵਾਕ';
+    final intl.NumberFormat wordsNumberFormat =
+        intl.NumberFormat.decimalPattern(localeName);
+    final String wordsString = wordsNumberFormat.format(words);
+    final intl.NumberFormat phrasesNumberFormat =
+        intl.NumberFormat.decimalPattern(localeName);
+    final String phrasesString = phrasesNumberFormat.format(phrases);
+
+    return '$wordsString ਸ਼ਬਦ · $phrasesString ਵਾਕ';
   }
 
   @override
@@ -643,7 +650,14 @@ class AppLocalizationsPaArab extends AppLocalizationsPa {
 
   @override
   String wordsAndPhrases(int words, int phrases) {
-    return '$words لفظ · $phrases جملے';
+    final intl.NumberFormat wordsNumberFormat =
+        intl.NumberFormat.decimalPattern(localeName);
+    final String wordsString = wordsNumberFormat.format(words);
+    final intl.NumberFormat phrasesNumberFormat =
+        intl.NumberFormat.decimalPattern(localeName);
+    final String phrasesString = phrasesNumberFormat.format(phrases);
+
+    return '$wordsString لفظ · $phrasesString جملے';
   }
 
   @override

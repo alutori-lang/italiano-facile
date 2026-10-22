@@ -79,7 +79,14 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String wordsAndPhrases(int words, int phrases) {
-    return '$words 个单词 · $phrases 个短语';
+    final intl.NumberFormat wordsNumberFormat =
+        intl.NumberFormat.decimalPattern(localeName);
+    final String wordsString = wordsNumberFormat.format(words);
+    final intl.NumberFormat phrasesNumberFormat =
+        intl.NumberFormat.decimalPattern(localeName);
+    final String phrasesString = phrasesNumberFormat.format(phrases);
+
+    return '$wordsString 个单词 · $phrasesString 个短语';
   }
 
   @override

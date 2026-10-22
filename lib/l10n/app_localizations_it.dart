@@ -79,7 +79,14 @@ class AppLocalizationsIt extends AppLocalizations {
 
   @override
   String wordsAndPhrases(int words, int phrases) {
-    return '$words parole · $phrases frasi';
+    final intl.NumberFormat wordsNumberFormat =
+        intl.NumberFormat.decimalPattern(localeName);
+    final String wordsString = wordsNumberFormat.format(words);
+    final intl.NumberFormat phrasesNumberFormat =
+        intl.NumberFormat.decimalPattern(localeName);
+    final String phrasesString = phrasesNumberFormat.format(phrases);
+
+    return '$wordsString parole · $phrasesString frasi';
   }
 
   @override

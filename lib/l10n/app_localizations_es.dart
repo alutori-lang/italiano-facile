@@ -79,7 +79,14 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String wordsAndPhrases(int words, int phrases) {
-    return '$words palabras · $phrases frases';
+    final intl.NumberFormat wordsNumberFormat =
+        intl.NumberFormat.decimalPattern(localeName);
+    final String wordsString = wordsNumberFormat.format(words);
+    final intl.NumberFormat phrasesNumberFormat =
+        intl.NumberFormat.decimalPattern(localeName);
+    final String phrasesString = phrasesNumberFormat.format(phrases);
+
+    return '$wordsString palabras · $phrasesString frases';
   }
 
   @override
@@ -645,7 +652,14 @@ class AppLocalizationsEs419 extends AppLocalizationsEs {
 
   @override
   String wordsAndPhrases(int words, int phrases) {
-    return '$words palabras · $phrases frases';
+    final intl.NumberFormat wordsNumberFormat =
+        intl.NumberFormat.decimalPattern(localeName);
+    final String wordsString = wordsNumberFormat.format(words);
+    final intl.NumberFormat phrasesNumberFormat =
+        intl.NumberFormat.decimalPattern(localeName);
+    final String phrasesString = phrasesNumberFormat.format(phrases);
+
+    return '$wordsString palabras · $phrasesString frases';
   }
 
   @override

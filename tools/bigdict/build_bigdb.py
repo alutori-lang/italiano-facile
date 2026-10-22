@@ -155,6 +155,24 @@ def main(data_dir, app_dir):
                     if k:
                         rows.add((k, slot))
             n_keys += len(rows)
+    # Everyday phrases by situation (gen_phrases.py): shipped as pos "phrase";
+    # their English translation doubles as the gloss.
+    seen_ph = set()
+    for path in sorted(glob.glob(os.path.join(data_dir, 'out', 'ph', '*.json'))):
+        for it in json.load(open(path, encoding='utf-8')):
+            w = it['w'].strip()
+            k = norm(w)
+            if not k or k in seen_ph:
+                continue
+            seen_ph.add(k)
+            tr = [t.strip() for t in it['tr']]
+            rom = it.get('rom') or {}
+            con.execute(
+                'INSERT INTO entries(it,it_norm,pos,g,pl,gloss,ex_it,ex_en,tr,rom,rank)'
+                ' VALUES(?,?,?,?,?,?,?,?,?,?,?)',
+                (w, k, 'phrase', None, None, tr[0], None, None,
+                 SEP.join(tr), json.dumps(rom, ensure_ascii=False), 500000))
+            n_entries += 1
     n_forms = 0
     seen = set()
     for fname in ('forms.tsv', 'forms_extra.tsv'):

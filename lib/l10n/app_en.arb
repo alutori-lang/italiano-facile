@@ -98,10 +98,12 @@
     "description": "wordsAndPhrases",
     "placeholders": {
       "words": {
-        "type": "int"
+        "type": "int",
+        "format": "decimalPattern"
       },
       "phrases": {
-        "type": "int"
+        "type": "int",
+        "format": "decimalPattern"
       }
     }
   },
