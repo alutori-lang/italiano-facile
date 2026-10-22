@@ -101,7 +101,8 @@ class AppLocalizationsAr extends AppLocalizations {
   String get searchingOnline => 'جارٍ البحث…';
 
   @override
-  String get offlineNotice => 'أنت غير متصل بالإنترنت. كل كلمات التطبيق تعمل كما هي.';
+  String get offlineNotice =>
+      'أنت غير متصل بالإنترنت. كل كلمات التطبيق تعمل كما هي.';
 
   @override
   String get onlineResultTitle => 'من ويكاموس';
@@ -113,7 +114,8 @@ class AppLocalizationsAr extends AppLocalizations {
   String get removeFromMyWords => 'إزالة من كلماتي';
 
   @override
-  String get myWordsEmpty => 'لا توجد كلمات محفوظة بعد. استخدم «أضف إلى كلماتي» في البحث.';
+  String get myWordsEmpty =>
+      'لا توجد كلمات محفوظة بعد. استخدم «أضف إلى كلماتي» في البحث.';
 
   @override
   String get quizOnMyWords => 'اختبار كلماتي';
@@ -276,7 +278,8 @@ class AppLocalizationsAr extends AppLocalizations {
   String get removeAds => 'إزالة الإعلانات';
 
   @override
-  String get removeAdsBody => 'دفعة واحدة وبلا إعلانات للأبد. كل الكلمات والمواضيع والاختبارات تبقى مجانية.';
+  String get removeAdsBody =>
+      'دفعة واحدة وبلا إعلانات للأبد. كل الكلمات والمواضيع والاختبارات تبقى مجانية.';
 
   @override
   String get buy => 'شراء';
@@ -306,16 +309,20 @@ class AppLocalizationsAr extends AppLocalizations {
   String get voiceHelpTitle => 'تثبيت الصوت الإيطالي';
 
   @override
-  String get voiceHelpBody => 'لا يوجد صوت إيطالي على هاتفك. افتح الإعدادات › النظام › اللغات › تحويل النص إلى كلام، اختر محرّك Google وثبّت الإيطالية. قراءة الكلمات تعمل على أي حال.';
+  String get voiceHelpBody =>
+      'لا يوجد صوت إيطالي على هاتفك. افتح الإعدادات › النظام › اللغات › تحويل النص إلى كلام، اختر محرّك Google وثبّت الإيطالية. قراءة الكلمات تعمل على أي حال.';
 
   @override
-  String get privacyBody => 'يعمل هذا التطبيق دون إنترنت ولا يطلب تسجيل الدخول. يبقى تقدّمك وكلماتك المحفوظة وإعداداتك على هاتفك فقط. لا نجمع اسمك أو بريدك أو موقعك أبداً. تأتي الإعلانات من Google AdMob ولا تظهر إلا بعد موافقتك في نموذج الموافقة؛ ويمكنك تغيير اختيارك في الإعدادات. «البحث عبر الإنترنت» يرسل الكلمة المكتوبة فقط إلى ويكاموس. للأعمار 13 وما فوق.';
+  String get privacyBody =>
+      'يعمل هذا التطبيق دون إنترنت ولا يطلب تسجيل الدخول. يبقى تقدّمك وكلماتك المحفوظة وإعداداتك على هاتفك فقط. لا نجمع اسمك أو بريدك أو موقعك أبداً. تأتي الإعلانات من Google AdMob ولا تظهر إلا بعد موافقتك في نموذج الموافقة؛ ويمكنك تغيير اختيارك في الإعدادات. «البحث عبر الإنترنت» يرسل الكلمة المكتوبة فقط إلى ويكاموس. للأعمار 13 وما فوق.';
 
   @override
-  String get aboutBody => 'تطبيق صغير وصادق لمن يعيش في إيطاليا: ابحث عن كلمة، تعلّم عشر كلمات جديدة كل يوم، واختبر نفسك كما في اختبار رخصة القيادة. كل شيء يعمل دون إنترنت وبلا حساب.';
+  String get aboutBody =>
+      'تطبيق صغير وصادق لمن يعيش في إيطاليا: ابحث عن كلمة، تعلّم عشر كلمات جديدة كل يوم، واختبر نفسك كما في اختبار رخصة القيادة. كل شيء يعمل دون إنترنت وبلا حساب.';
 
   @override
-  String get creditsBody => 'تُكتب الترجمات وأمثلة الجمل وتُراجع يدوياً لهذا التطبيق. وقد قوبلت قوائم الكلمات بمصادر مفتوحة: ويكاموس وWikizionario (CC BY-SA 4.0)، وجمل Tatoeba (CC BY 2.0 FR)، وOpen Multilingual Wordnet. الصور من Google Noto Emoji (Apache 2.0). النطق الإيطالي يعتمد على تحويل النص إلى كلام في هاتفك.';
+  String get creditsBody =>
+      'تُكتب الترجمات وأمثلة الجمل وتُراجع يدوياً لهذا التطبيق. وقد قوبلت قوائم الكلمات بمصادر مفتوحة: ويكاموس وWikizionario (CC BY-SA 4.0)، وجمل Tatoeba (CC BY 2.0 FR)، وOpen Multilingual Wordnet. الصور من Google Noto Emoji (Apache 2.0). النطق الإيطالي يعتمد على تحويل النص إلى كلام في هاتفك.';
 
   @override
   String get dataCoverage => 'قائمة الكلمات في هذه النسخة';
@@ -327,7 +334,8 @@ class AppLocalizationsAr extends AppLocalizations {
   String get mascotTryAgain => 'واصل!';
 
   @override
-  String get adsTestIdsNotice => 'الإعداد مطلوب: لا تزال الإعلانات تستخدم معرّفات Google التجريبية. ألصق معرّفات AdMob الحقيقية لتحقيق الأرباح.';
+  String get adsTestIdsNotice =>
+      'الإعداد مطلوب: لا تزال الإعلانات تستخدم معرّفات Google التجريبية. ألصق معرّفات AdMob الحقيقية لتحقيق الأرباح.';
 
   @override
   String get demoBadge => 'محتوى تجريبي';
@@ -486,7 +494,8 @@ class AppLocalizationsAr extends AppLocalizations {
   String get moreLanguages => 'لغات أخرى';
 
   @override
-  String get languageNoteWordTranslations => 'ترجمات الكلمات متوفّرة بعشر لغات رئيسية؛ أما لغات الواجهة الأخرى فتعود إلى الإنجليزية.';
+  String get languageNoteWordTranslations =>
+      'ترجمات الكلمات متوفّرة بعشر لغات رئيسية؛ أما لغات الواجهة الأخرى فتعود إلى الإنجليزية.';
 
   @override
   String get bigPreparing => 'Preparing the dictionary…';
@@ -544,7 +553,8 @@ class AppLocalizationsAr extends AppLocalizations {
   String get bigDictTitle => 'Big dictionary';
 
   @override
-  String get bigDictCredits => 'The big dictionary of Italian words (over 100,000 words when complete) comes from Wiktionary, through kaikki.org, under the CC BY-SA 4.0 licence. The meanings in the ten languages were prepared for this app from the Wiktionary definitions.';
+  String get bigDictCredits =>
+      'The big dictionary of Italian words (over 100,000 words when complete) comes from Wiktionary, through kaikki.org, under the CC BY-SA 4.0 licence. The meanings in the ten languages were prepared for this app from the Wiktionary definitions.';
 
   @override
   String get bigSearchingOnline => 'Searching online…';
@@ -553,5 +563,6 @@ class AppLocalizationsAr extends AppLocalizations {
   String get bigNotAllowed => 'This word cannot be added to the dictionary.';
 
   @override
-  String get bigNotFoundOnline => 'Not found online either: check how you wrote it.';
+  String get bigNotFoundOnline =>
+      'Not found online either: check how you wrote it.';
 }

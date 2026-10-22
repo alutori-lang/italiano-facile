@@ -101,7 +101,7 @@ def call(key, model, text):
     }).encode()
     req = urllib.request.Request(url, data=body, method='POST', headers={
         'Content-Type': 'application/json', 'x-goog-api-key': key})
-    with urllib.request.urlopen(req, timeout=240) as r:
+    with urllib.request.urlopen(req, timeout=90) as r:
         data = json.loads(r.read())
     return data['candidates'][0]['content']['parts'][0]['text']
 
@@ -180,14 +180,17 @@ def main():
                     return
                 bi = todo.pop(0)
             batch = batches[bi]
-            items = ask(batch, FAST, bi) or ask(batch, STRONG, bi)
+            items = ask(batch, FAST, bi) or (None if os.environ.get('NO_STRONG') else ask(batch, STRONG, bi))
             nbad = 0
             if items is not None:
                 for round_ in range(3):
                     bad = [i for i, it in enumerate(items) if not entry_ok(it)]
                     if not bad:
                         break
-                    fixed = ask([batch[i] for i in bad], STRONG, bi + round_)
+                    # Redo only the broken entries: the fast model first (its
+                    # quota is large), the strong one only on the last round.
+                    fixed = ask([batch[i] for i in bad], FAST if (round_ < 2 or os.environ.get('NO_STRONG')) else STRONG,
+                                bi + round_ + 1)
                     if fixed:
                         for i, it in zip(bad, fixed):
                             if entry_ok(it):

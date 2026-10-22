@@ -101,7 +101,8 @@ class AppLocalizationsSi extends AppLocalizations {
   String get searchingOnline => 'අන්තර්ජාලයේ සොයමින්…';
 
   @override
-  String get offlineNotice => 'ඔබ ඔෆ්ලයින්. යෙදුමේ සියලු වචන තවමත් ක්‍රියා කරයි.';
+  String get offlineNotice =>
+      'ඔබ ඔෆ්ලයින්. යෙදුමේ සියලු වචන තවමත් ක්‍රියා කරයි.';
 
   @override
   String get onlineResultTitle => 'විකිශබ්දකෝෂයෙන්';
@@ -113,7 +114,8 @@ class AppLocalizationsSi extends AppLocalizations {
   String get removeFromMyWords => 'මගේ වචනවලින් ඉවත් කරන්න';
 
   @override
-  String get myWordsEmpty => 'තවම වචන සුරැකී නැත. සෙවීමේ “මගේ වචනවලට එක් කරන්න” භාවිතා කරන්න.';
+  String get myWordsEmpty =>
+      'තවම වචන සුරැකී නැත. සෙවීමේ “මගේ වචනවලට එක් කරන්න” භාවිතා කරන්න.';
 
   @override
   String get quizOnMyWords => 'මගේ වචන ප්‍රශ්නාවලිය';
@@ -212,7 +214,8 @@ class AppLocalizationsSi extends AppLocalizations {
   }
 
   @override
-  String get quizNotEnoughWords => 'මෙම ප්‍රවර්ගයට ප්‍රශ්නාවලියක් සඳහා තවත් වචන අවශ්‍යයි.';
+  String get quizNotEnoughWords =>
+      'මෙම ප්‍රවර්ගයට ප්‍රශ්නාවලියක් සඳහා තවත් වචන අවශ්‍යයි.';
 
   @override
   String get topicsSubtitle => 'ප්‍රවර්ග අනුව ඉගෙන ගන්න';
@@ -276,7 +279,8 @@ class AppLocalizationsSi extends AppLocalizations {
   String get removeAds => 'දැන්වීම් ඉවත් කරන්න';
 
   @override
-  String get removeAdsBody => 'එක් ගෙවීමක්, නැවත දැන්වීම් නැත. සියලු වචන, මාතෘකා සහ ප්‍රශ්නාවලි නොමිලේ.';
+  String get removeAdsBody =>
+      'එක් ගෙවීමක්, නැවත දැන්වීම් නැත. සියලු වචන, මාතෘකා සහ ප්‍රශ්නාවලි නොමිලේ.';
 
   @override
   String get buy => 'මිලදී ගන්න';
@@ -306,16 +310,20 @@ class AppLocalizationsSi extends AppLocalizations {
   String get voiceHelpTitle => 'ඉතාලි හඬ ස්ථාපනය කරන්න';
 
   @override
-  String get voiceHelpBody => 'ඔබේ දුරකථනයේ තවම ඉතාලි හඬක් නැත. සැකසීම් › පද්ධතිය › භාෂා › පෙළ-සිට-කථනය විවෘත කර, Google එන්ජිම තෝරා ඉතාලි ස්ථාපනය කරන්න. වචන කියවීම කෙසේ වෙතත් ක්‍රියා කරයි.';
+  String get voiceHelpBody =>
+      'ඔබේ දුරකථනයේ තවම ඉතාලි හඬක් නැත. සැකසීම් › පද්ධතිය › භාෂා › පෙළ-සිට-කථනය විවෘත කර, Google එන්ජිම තෝරා ඉතාලි ස්ථාපනය කරන්න. වචන කියවීම කෙසේ වෙතත් ක්‍රියා කරයි.';
 
   @override
-  String get privacyBody => 'මෙම යෙදුම ඔෆ්ලයින් ක්‍රියා කරයි, පිවිසුමක් අවශ්‍ය නැත. ඔබේ ප්‍රගතිය, සුරැකි වචන සහ සැකසීම් ඔබේ දුරකථනයේ පමණක් රැඳේ. ඔබේ නම, ඊමේල් හෝ ස්ථානය කිසිවිටෙක එකතු නොකරමු. දැන්වීම් Google AdMob වෙතින් පැමිණේ; අනුමැතිය ලබාදීමෙන් පසුව පමණක් පෙන්වයි, සැකසීම්වලින් ඔබේ තේරීම වෙනස් කළ හැක. “අන්තර්ජාලයේ සොයන්න” ඔබ ලියූ වචනය පමණක් විකිශබ්දකෝෂයට යවයි. වයස 13+.';
+  String get privacyBody =>
+      'මෙම යෙදුම ඔෆ්ලයින් ක්‍රියා කරයි, පිවිසුමක් අවශ්‍ය නැත. ඔබේ ප්‍රගතිය, සුරැකි වචන සහ සැකසීම් ඔබේ දුරකථනයේ පමණක් රැඳේ. ඔබේ නම, ඊමේල් හෝ ස්ථානය කිසිවිටෙක එකතු නොකරමු. දැන්වීම් Google AdMob වෙතින් පැමිණේ; අනුමැතිය ලබාදීමෙන් පසුව පමණක් පෙන්වයි, සැකසීම්වලින් ඔබේ තේරීම වෙනස් කළ හැක. “අන්තර්ජාලයේ සොයන්න” ඔබ ලියූ වචනය පමණක් විකිශබ්දකෝෂයට යවයි. වයස 13+.';
 
   @override
-  String get aboutBody => 'ඉතාලියේ ජීවත් වන අයට කුඩා, අවංක යෙදුමක්: වචනයක් සොයන්න, දිනකට නව වචන දහයක් ඉගෙන ගන්න, රියදුරු බලපත්‍ර විභාගය වගේ ඔබම පරීක්ෂා කරගන්න. සියල්ල ඔෆ්ලයින්, ගිණුමක් නැතිව.';
+  String get aboutBody =>
+      'ඉතාලියේ ජීවත් වන අයට කුඩා, අවංක යෙදුමක්: වචනයක් සොයන්න, දිනකට නව වචන දහයක් ඉගෙන ගන්න, රියදුරු බලපත්‍ර විභාගය වගේ ඔබම පරීක්ෂා කරගන්න. සියල්ල ඔෆ්ලයින්, ගිණුමක් නැතිව.';
 
   @override
-  String get creditsBody => 'මෙම යෙදුම සඳහා පරිවර්තන සහ උදාහරණ වාක්‍ය අතින් ලියා පරීක්ෂා කර ඇත. වචන ලැයිස්තු විවෘත මූලාශ්‍ර සමඟ සසඳා බලා ඇත: Wiktionary සහ Wikizionario (CC BY-SA 4.0), Tatoeba වාක්‍ය (CC BY 2.0 FR) සහ Open Multilingual Wordnet. පින්තූර සඳහා Google Noto Emoji (Apache 2.0). ඉතාලි උච්චාරණය ඔබේ දුරකථනයේ පෙළ-සිට-කථනය භාවිතා කරයි.';
+  String get creditsBody =>
+      'මෙම යෙදුම සඳහා පරිවර්තන සහ උදාහරණ වාක්‍ය අතින් ලියා පරීක්ෂා කර ඇත. වචන ලැයිස්තු විවෘත මූලාශ්‍ර සමඟ සසඳා බලා ඇත: Wiktionary සහ Wikizionario (CC BY-SA 4.0), Tatoeba වාක්‍ය (CC BY 2.0 FR) සහ Open Multilingual Wordnet. පින්තූර සඳහා Google Noto Emoji (Apache 2.0). ඉතාලි උච්චාරණය ඔබේ දුරකථනයේ පෙළ-සිට-කථනය භාවිතා කරයි.';
 
   @override
   String get dataCoverage => 'මෙම අනුවාදයේ වචන ලැයිස්තුව';
@@ -327,7 +335,8 @@ class AppLocalizationsSi extends AppLocalizations {
   String get mascotTryAgain => 'දිගටම කරගෙන යන්න!';
 
   @override
-  String get adsTestIdsNotice => 'සැකසීම අවශ්‍යයි: දැන්වීම් තවමත් Google හි පරීක්ෂණ හැඳුනුම් භාවිතා කරයි. ආදායම සඳහා සැබෑ AdMob හැඳුනුම් යොදන්න.';
+  String get adsTestIdsNotice =>
+      'සැකසීම අවශ්‍යයි: දැන්වීම් තවමත් Google හි පරීක්ෂණ හැඳුනුම් භාවිතා කරයි. ආදායම සඳහා සැබෑ AdMob හැඳුනුම් යොදන්න.';
 
   @override
   String get demoBadge => 'ආදර්ශන අන්තර්ගතය';
@@ -486,7 +495,8 @@ class AppLocalizationsSi extends AppLocalizations {
   String get moreLanguages => 'තවත් භාෂා';
 
   @override
-  String get languageNoteWordTranslations => 'වචන පරිවර්තන ප්‍රධාන භාෂා දහයේ ඇත; අනෙක් අතුරුමුහුණත් භාෂා සඳහා ඉංග්‍රීසි පෙන්වයි.';
+  String get languageNoteWordTranslations =>
+      'වචන පරිවර්තන ප්‍රධාන භාෂා දහයේ ඇත; අනෙක් අතුරුමුහුණත් භාෂා සඳහා ඉංග්‍රීසි පෙන්වයි.';
 
   @override
   String get bigPreparing => 'Preparing the dictionary…';
@@ -544,7 +554,8 @@ class AppLocalizationsSi extends AppLocalizations {
   String get bigDictTitle => 'Big dictionary';
 
   @override
-  String get bigDictCredits => 'The big dictionary of Italian words (over 100,000 words when complete) comes from Wiktionary, through kaikki.org, under the CC BY-SA 4.0 licence. The meanings in the ten languages were prepared for this app from the Wiktionary definitions.';
+  String get bigDictCredits =>
+      'The big dictionary of Italian words (over 100,000 words when complete) comes from Wiktionary, through kaikki.org, under the CC BY-SA 4.0 licence. The meanings in the ten languages were prepared for this app from the Wiktionary definitions.';
 
   @override
   String get bigSearchingOnline => 'Searching online…';
@@ -553,5 +564,6 @@ class AppLocalizationsSi extends AppLocalizations {
   String get bigNotAllowed => 'This word cannot be added to the dictionary.';
 
   @override
-  String get bigNotFoundOnline => 'Not found online either: check how you wrote it.';
+  String get bigNotFoundOnline =>
+      'Not found online either: check how you wrote it.';
 }

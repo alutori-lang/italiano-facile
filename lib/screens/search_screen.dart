@@ -56,8 +56,8 @@ class _SearchScreenState extends State<SearchScreen> {
   // the curated words, which have pictures and explanations. A big answer
   // whose headword is also a curated word is shown as that curated card.
   BigDictionary? _big;
-  List<Word> _bigWords = const <Word>[];
-  List<BigEntry> _bigEntries = const <BigEntry>[];
+  List<SearchHit> _bigWords = const <SearchHit>[];
+  List<BigHit> _bigEntries = const <BigHit>[];
   bool _bigPending = false;
   int _bigSeq = 0;
   bool _bigIndexedSeen = false;
@@ -142,8 +142,8 @@ class _SearchScreenState extends State<SearchScreen> {
           _serverSearching ||
           _server != ServerLookupStatus.off) {
         setState(() {
-          _bigWords = const <Word>[];
-          _bigEntries = const <BigEntry>[];
+          _bigWords = const <SearchHit>[];
+          _bigEntries = const <BigHit>[];
           _bigPending = false;
           _serverSearching = false;
           _server = ServerLookupStatus.off;
@@ -157,14 +157,14 @@ class _SearchScreenState extends State<SearchScreen> {
     final Set<String> shown = <String>{
       for (final SearchHit hit in hits) hit.word.id,
     };
-    final List<Word> words = <Word>[];
-    final List<BigEntry> entries = <BigEntry>[];
+    final List<SearchHit> words = <SearchHit>[];
+    final List<BigHit> entries = <BigHit>[];
     for (final BigHit hit in found) {
       final Word? curated = _curated[TextNorm.norm(hit.entry.it)];
       if (curated != null) {
-        if (shown.add(curated.id)) words.add(curated);
+        if (shown.add(curated.id)) words.add(SearchHit(curated, hit.score));
       } else {
-        entries.add(hit.entry);
+        entries.add(hit);
       }
     }
     setState(() {
@@ -190,10 +190,50 @@ class _SearchScreenState extends State<SearchScreen> {
         setState(() {
           _serverSearching = false;
           _server = answer.status;
-          if (entry != null) _bigEntries = <BigEntry>[entry];
+          if (entry != null) _bigEntries = <BigHit>[BigHit(entry, 1000)];
         });
       });
     }
+  }
+
+  /// Curated and big-dictionary answers in ONE list, best match first: a
+  /// big-dictionary word that matches exactly (e.g. "piyar" → l'amore) comes
+  /// before a curated word that only matched loosely. On equal scores the
+  /// curated card (picture, explanation) wins.
+  List<Widget> _mergedResults() {
+    final List<(int, int, Widget)> items = <(int, int, Widget)>[];
+    for (final SearchHit hit in <SearchHit>[..._hits, ..._bigWords]) {
+      items.add((
+        hit.score,
+        1,
+        Padding(
+          padding: const EdgeInsets.only(bottom: AppSpace.l),
+          child: WordCard(
+            word: hit.word,
+            heroTag: 'word-picture:${hit.word.id}',
+            onTap: () => _openWord(hit.word),
+          ),
+        ),
+      ));
+    }
+    for (final BigHit hit in _bigEntries) {
+      items.add((
+        hit.score,
+        0,
+        Padding(
+          padding: const EdgeInsets.only(bottom: AppSpace.m),
+          child: BigEntryCard(
+            entry: hit.entry,
+            onTap: () => _openBigEntry(hit.entry),
+          ),
+        ),
+      ));
+    }
+    items.sort(((int, int, Widget) a, (int, int, Widget) b) {
+      final int byScore = b.$1.compareTo(a.$1);
+      return byScore != 0 ? byScore : b.$2.compareTo(a.$2);
+    });
+    return <Widget>[for (final (int, int, Widget) item in items) item.$3];
   }
 
   void _openBigEntry(BigEntry entry) {
@@ -262,7 +302,10 @@ class _SearchScreenState extends State<SearchScreen> {
           children: <Widget>[
             ScreenHeader(
               title: t.tabSearch,
-              subtitle: t.wordsAndPhrases(repo.wordCount, repo.phraseCount),
+              subtitle: t.wordsAndPhrases(
+                repo.wordCount + (big?.entryCount ?? 0),
+                repo.phraseCount,
+              ),
               trailing: Row(
                 mainAxisSize: MainAxisSize.min,
                 children: <Widget>[
@@ -344,38 +387,7 @@ class _SearchScreenState extends State<SearchScreen> {
                       ),
                     ),
                   if (query.isEmpty) ..._idleContent(t, scope),
-                  if (query.isNotEmpty && _hits.isNotEmpty)
-                    ..._hits.map(
-                      (SearchHit hit) => Padding(
-                        padding: const EdgeInsets.only(bottom: AppSpace.l),
-                        child: WordCard(
-                          word: hit.word,
-                          heroTag: 'word-picture:${hit.word.id}',
-                          onTap: () => _openWord(hit.word),
-                        ),
-                      ),
-                    ),
-                  if (query.isNotEmpty)
-                    ..._bigWords.map(
-                      (Word word) => Padding(
-                        padding: const EdgeInsets.only(bottom: AppSpace.l),
-                        child: WordCard(
-                          word: word,
-                          heroTag: 'word-picture:${word.id}',
-                          onTap: () => _openWord(word),
-                        ),
-                      ),
-                    ),
-                  if (query.isNotEmpty)
-                    ..._bigEntries.map(
-                      (BigEntry entry) => Padding(
-                        padding: const EdgeInsets.only(bottom: AppSpace.m),
-                        child: BigEntryCard(
-                          entry: entry,
-                          onTap: () => _openBigEntry(entry),
-                        ),
-                      ),
-                    ),
+                  if (query.isNotEmpty) ..._mergedResults(),
                   // While the big dictionary is still answering, do not
                   // flash "nothing found".
                   if (query.isNotEmpty && !anyResult && _serverSearching)

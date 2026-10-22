@@ -101,7 +101,8 @@ class AppLocalizationsPa extends AppLocalizations {
   String get searchingOnline => 'ਆਨਲਾਈਨ ਖੋਜ ਹੋ ਰਹੀ ਹੈ…';
 
   @override
-  String get offlineNotice => 'ਤੁਸੀਂ ਆਫ਼ਲਾਈਨ ਹੋ। ਐਪ ਦੇ ਸਾਰੇ ਸ਼ਬਦ ਫਿਰ ਵੀ ਕੰਮ ਕਰਦੇ ਹਨ।';
+  String get offlineNotice =>
+      'ਤੁਸੀਂ ਆਫ਼ਲਾਈਨ ਹੋ। ਐਪ ਦੇ ਸਾਰੇ ਸ਼ਬਦ ਫਿਰ ਵੀ ਕੰਮ ਕਰਦੇ ਹਨ।';
 
   @override
   String get onlineResultTitle => 'ਵਿਕਸ਼ਨਰੀ ਤੋਂ';
@@ -113,7 +114,8 @@ class AppLocalizationsPa extends AppLocalizations {
   String get removeFromMyWords => 'ਮੇਰੇ ਸ਼ਬਦਾਂ ਵਿੱਚੋਂ ਹਟਾਓ';
 
   @override
-  String get myWordsEmpty => 'ਹਾਲੇ ਕੋਈ ਸ਼ਬਦ ਸੰਭਾਲਿਆ ਨਹੀਂ। ਖੋਜ ਵਿੱਚ “ਮੇਰੇ ਸ਼ਬਦਾਂ ਵਿੱਚ ਜੋੜੋ” ਦਬਾਓ।';
+  String get myWordsEmpty =>
+      'ਹਾਲੇ ਕੋਈ ਸ਼ਬਦ ਸੰਭਾਲਿਆ ਨਹੀਂ। ਖੋਜ ਵਿੱਚ “ਮੇਰੇ ਸ਼ਬਦਾਂ ਵਿੱਚ ਜੋੜੋ” ਦਬਾਓ।';
 
   @override
   String get quizOnMyWords => 'ਮੇਰੇ ਸ਼ਬਦਾਂ ਦਾ ਕੁਇਜ਼';
@@ -212,7 +214,8 @@ class AppLocalizationsPa extends AppLocalizations {
   }
 
   @override
-  String get quizNotEnoughWords => 'ਇਸ ਸ਼੍ਰੇਣੀ ਵਿੱਚ ਕੁਇਜ਼ ਲਈ ਹੋਰ ਸ਼ਬਦ ਚਾਹੀਦੇ ਹਨ।';
+  String get quizNotEnoughWords =>
+      'ਇਸ ਸ਼੍ਰੇਣੀ ਵਿੱਚ ਕੁਇਜ਼ ਲਈ ਹੋਰ ਸ਼ਬਦ ਚਾਹੀਦੇ ਹਨ।';
 
   @override
   String get topicsSubtitle => 'ਸ਼੍ਰੇਣੀ ਅਨੁਸਾਰ ਸਿੱਖੋ';
@@ -276,7 +279,8 @@ class AppLocalizationsPa extends AppLocalizations {
   String get removeAds => 'ਵਿਗਿਆਪਨ ਹਟਾਓ';
 
   @override
-  String get removeAdsBody => 'ਇੱਕ ਵਾਰ ਭੁਗਤਾਨ, ਫਿਰ ਕੋਈ ਵਿਗਿਆਪਨ ਨਹੀਂ। ਸਾਰੇ ਸ਼ਬਦ, ਵਿਸ਼ੇ ਅਤੇ ਕੁਇਜ਼ ਮੁਫ਼ਤ ਰਹਿੰਦੇ ਹਨ।';
+  String get removeAdsBody =>
+      'ਇੱਕ ਵਾਰ ਭੁਗਤਾਨ, ਫਿਰ ਕੋਈ ਵਿਗਿਆਪਨ ਨਹੀਂ। ਸਾਰੇ ਸ਼ਬਦ, ਵਿਸ਼ੇ ਅਤੇ ਕੁਇਜ਼ ਮੁਫ਼ਤ ਰਹਿੰਦੇ ਹਨ।';
 
   @override
   String get buy => 'ਖਰੀਦੋ';
@@ -306,16 +310,20 @@ class AppLocalizationsPa extends AppLocalizations {
   String get voiceHelpTitle => 'ਇਤਾਲਵੀ ਆਵਾਜ਼ ਇੰਸਟਾਲ ਕਰੋ';
 
   @override
-  String get voiceHelpBody => 'ਤੁਹਾਡੇ ਫ਼ੋਨ ਵਿੱਚ ਹਾਲੇ ਇਤਾਲਵੀ ਆਵਾਜ਼ ਨਹੀਂ ਹੈ। ਸੈਟਿੰਗਾਂ › ਸਿਸਟਮ › ਭਾਸ਼ਾਵਾਂ › ਟੈਕਸਟ-ਟੂ-ਸਪੀਚ ਖੋਲ੍ਹੋ, Google ਇੰਜਨ ਚੁਣੋ ਅਤੇ ਇਤਾਲਵੀ ਇੰਸਟਾਲ ਕਰੋ। ਸ਼ਬਦ ਪੜ੍ਹਨਾ ਫਿਰ ਵੀ ਕੰਮ ਕਰਦਾ ਹੈ।';
+  String get voiceHelpBody =>
+      'ਤੁਹਾਡੇ ਫ਼ੋਨ ਵਿੱਚ ਹਾਲੇ ਇਤਾਲਵੀ ਆਵਾਜ਼ ਨਹੀਂ ਹੈ। ਸੈਟਿੰਗਾਂ › ਸਿਸਟਮ › ਭਾਸ਼ਾਵਾਂ › ਟੈਕਸਟ-ਟੂ-ਸਪੀਚ ਖੋਲ੍ਹੋ, Google ਇੰਜਨ ਚੁਣੋ ਅਤੇ ਇਤਾਲਵੀ ਇੰਸਟਾਲ ਕਰੋ। ਸ਼ਬਦ ਪੜ੍ਹਨਾ ਫਿਰ ਵੀ ਕੰਮ ਕਰਦਾ ਹੈ।';
 
   @override
-  String get privacyBody => 'ਇਹ ਐਪ ਆਫ਼ਲਾਈਨ ਚੱਲਦੀ ਹੈ ਅਤੇ ਲਾਗ-ਇਨ ਨਹੀਂ ਮੰਗਦੀ। ਤੁਹਾਡੀ ਪ੍ਰਗਤੀ, ਸੰਭਾਲੇ ਸ਼ਬਦ ਅਤੇ ਸੈਟਿੰਗਾਂ ਸਿਰਫ਼ ਤੁਹਾਡੇ ਫ਼ੋਨ ਉੱਤੇ ਰਹਿੰਦੀਆਂ ਹਨ। ਅਸੀਂ ਤੁਹਾਡਾ ਨਾਮ, ਈ-ਮੇਲ ਜਾਂ ਸਥਾਨ ਕਦੇ ਇਕੱਠਾ ਨਹੀਂ ਕਰਦੇ। ਵਿਗਿਆਪਨ Google AdMob ਤੋਂ ਆਉਂਦੇ ਹਨ ਅਤੇ ਸਹਿਮਤੀ ਫਾਰਮ ਵਿੱਚ ਮਨਜ਼ੂਰੀ ਤੋਂ ਬਾਅਦ ਹੀ ਦਿਖਦੇ ਹਨ; ਤੁਸੀਂ ਸੈਟਿੰਗਾਂ ਵਿੱਚ ਕਦੇ ਵੀ ਬਦਲ ਸਕਦੇ ਹੋ। “ਆਨਲਾਈਨ ਖੋਜੋ” ਸਿਰਫ਼ ਲਿਖਿਆ ਸ਼ਬਦ ਵਿਕਸ਼ਨਰੀ ਨੂੰ ਭੇਜਦੀ ਹੈ। 13+ ਲਈ।';
+  String get privacyBody =>
+      'ਇਹ ਐਪ ਆਫ਼ਲਾਈਨ ਚੱਲਦੀ ਹੈ ਅਤੇ ਲਾਗ-ਇਨ ਨਹੀਂ ਮੰਗਦੀ। ਤੁਹਾਡੀ ਪ੍ਰਗਤੀ, ਸੰਭਾਲੇ ਸ਼ਬਦ ਅਤੇ ਸੈਟਿੰਗਾਂ ਸਿਰਫ਼ ਤੁਹਾਡੇ ਫ਼ੋਨ ਉੱਤੇ ਰਹਿੰਦੀਆਂ ਹਨ। ਅਸੀਂ ਤੁਹਾਡਾ ਨਾਮ, ਈ-ਮੇਲ ਜਾਂ ਸਥਾਨ ਕਦੇ ਇਕੱਠਾ ਨਹੀਂ ਕਰਦੇ। ਵਿਗਿਆਪਨ Google AdMob ਤੋਂ ਆਉਂਦੇ ਹਨ ਅਤੇ ਸਹਿਮਤੀ ਫਾਰਮ ਵਿੱਚ ਮਨਜ਼ੂਰੀ ਤੋਂ ਬਾਅਦ ਹੀ ਦਿਖਦੇ ਹਨ; ਤੁਸੀਂ ਸੈਟਿੰਗਾਂ ਵਿੱਚ ਕਦੇ ਵੀ ਬਦਲ ਸਕਦੇ ਹੋ। “ਆਨਲਾਈਨ ਖੋਜੋ” ਸਿਰਫ਼ ਲਿਖਿਆ ਸ਼ਬਦ ਵਿਕਸ਼ਨਰੀ ਨੂੰ ਭੇਜਦੀ ਹੈ। 13+ ਲਈ।';
 
   @override
-  String get aboutBody => 'ਇਟਲੀ ਵਿੱਚ ਰਹਿਣ ਵਾਲਿਆਂ ਲਈ ਇੱਕ ਛੋਟੀ, ਇਮਾਨਦਾਰ ਐਪ: ਸ਼ਬਦ ਖੋਜੋ, ਰੋਜ਼ ਦਸ ਨਵੇਂ ਸ਼ਬਦ ਸਿੱਖੋ ਅਤੇ ਡਰਾਈਵਿੰਗ ਟੈਸਟ ਵਾਂਗ ਆਪਣੇ ਆਪ ਨੂੰ ਪਰਖੋ। ਸਭ ਕੁਝ ਆਫ਼ਲਾਈਨ ਚੱਲਦਾ ਹੈ, ਬਿਨਾਂ ਖਾਤੇ।';
+  String get aboutBody =>
+      'ਇਟਲੀ ਵਿੱਚ ਰਹਿਣ ਵਾਲਿਆਂ ਲਈ ਇੱਕ ਛੋਟੀ, ਇਮਾਨਦਾਰ ਐਪ: ਸ਼ਬਦ ਖੋਜੋ, ਰੋਜ਼ ਦਸ ਨਵੇਂ ਸ਼ਬਦ ਸਿੱਖੋ ਅਤੇ ਡਰਾਈਵਿੰਗ ਟੈਸਟ ਵਾਂਗ ਆਪਣੇ ਆਪ ਨੂੰ ਪਰਖੋ। ਸਭ ਕੁਝ ਆਫ਼ਲਾਈਨ ਚੱਲਦਾ ਹੈ, ਬਿਨਾਂ ਖਾਤੇ।';
 
   @override
-  String get creditsBody => 'ਇਸ ਐਪ ਦੇ ਅਨੁਵਾਦ ਅਤੇ ਉਦਾਹਰਨ ਵਾਕ ਹੱਥ ਨਾਲ ਲਿਖੇ ਅਤੇ ਜਾਂਚੇ ਗਏ ਹਨ। ਸ਼ਬਦ ਸੂਚੀਆਂ ਖੁੱਲ੍ਹੇ ਸਰੋਤਾਂ ਨਾਲ ਮਿਲਾਈਆਂ ਗਈਆਂ: Wiktionary ਅਤੇ Wikizionario (CC BY-SA 4.0), Tatoeba ਦੇ ਵਾਕ (CC BY 2.0 FR) ਅਤੇ Open Multilingual Wordnet। ਤਸਵੀਰਾਂ Google Noto Emoji (Apache 2.0) ਤੋਂ ਹਨ। ਇਤਾਲਵੀ ਉਚਾਰਨ ਤੁਹਾਡੇ ਫ਼ੋਨ ਦੀ ਟੈਕਸਟ-ਟੂ-ਸਪੀਚ ਵਰਤਦਾ ਹੈ।';
+  String get creditsBody =>
+      'ਇਸ ਐਪ ਦੇ ਅਨੁਵਾਦ ਅਤੇ ਉਦਾਹਰਨ ਵਾਕ ਹੱਥ ਨਾਲ ਲਿਖੇ ਅਤੇ ਜਾਂਚੇ ਗਏ ਹਨ। ਸ਼ਬਦ ਸੂਚੀਆਂ ਖੁੱਲ੍ਹੇ ਸਰੋਤਾਂ ਨਾਲ ਮਿਲਾਈਆਂ ਗਈਆਂ: Wiktionary ਅਤੇ Wikizionario (CC BY-SA 4.0), Tatoeba ਦੇ ਵਾਕ (CC BY 2.0 FR) ਅਤੇ Open Multilingual Wordnet। ਤਸਵੀਰਾਂ Google Noto Emoji (Apache 2.0) ਤੋਂ ਹਨ। ਇਤਾਲਵੀ ਉਚਾਰਨ ਤੁਹਾਡੇ ਫ਼ੋਨ ਦੀ ਟੈਕਸਟ-ਟੂ-ਸਪੀਚ ਵਰਤਦਾ ਹੈ।';
 
   @override
   String get dataCoverage => 'ਇਸ ਵਰਜਨ ਦੀ ਸ਼ਬਦ ਸੂਚੀ';
@@ -327,7 +335,8 @@ class AppLocalizationsPa extends AppLocalizations {
   String get mascotTryAgain => 'ਅੱਗੇ ਵਧੋ!';
 
   @override
-  String get adsTestIdsNotice => 'ਸੈਟਅਪ ਲੋੜੀਂਦਾ: ਵਿਗਿਆਪਨ ਹਾਲੇ Google ਦੀਆਂ ਟੈਸਟ ਆਈਡੀ ਵਰਤਦੇ ਹਨ। ਕਮਾਈ ਲਈ ਅਸਲੀ AdMob ਆਈਡੀ ਪਾਓ।';
+  String get adsTestIdsNotice =>
+      'ਸੈਟਅਪ ਲੋੜੀਂਦਾ: ਵਿਗਿਆਪਨ ਹਾਲੇ Google ਦੀਆਂ ਟੈਸਟ ਆਈਡੀ ਵਰਤਦੇ ਹਨ। ਕਮਾਈ ਲਈ ਅਸਲੀ AdMob ਆਈਡੀ ਪਾਓ।';
 
   @override
   String get demoBadge => 'ਡੈਮੋ ਸਮੱਗਰੀ';
@@ -486,7 +495,8 @@ class AppLocalizationsPa extends AppLocalizations {
   String get moreLanguages => 'ਹੋਰ ਭਾਸ਼ਾਵਾਂ';
 
   @override
-  String get languageNoteWordTranslations => 'ਸ਼ਬਦਾਂ ਦੇ ਅਨੁਵਾਦ ਦਸ ਮੁੱਖ ਭਾਸ਼ਾਵਾਂ ਵਿੱਚ ਹਨ; ਬਾਕੀ ਇੰਟਰਫੇਸ ਭਾਸ਼ਾਵਾਂ ਵਿੱਚ ਅੰਗਰੇਜ਼ੀ ਦਿਖਦੀ ਹੈ।';
+  String get languageNoteWordTranslations =>
+      'ਸ਼ਬਦਾਂ ਦੇ ਅਨੁਵਾਦ ਦਸ ਮੁੱਖ ਭਾਸ਼ਾਵਾਂ ਵਿੱਚ ਹਨ; ਬਾਕੀ ਇੰਟਰਫੇਸ ਭਾਸ਼ਾਵਾਂ ਵਿੱਚ ਅੰਗਰੇਜ਼ੀ ਦਿਖਦੀ ਹੈ।';
 
   @override
   String get bigPreparing => 'Preparing the dictionary…';
@@ -544,7 +554,8 @@ class AppLocalizationsPa extends AppLocalizations {
   String get bigDictTitle => 'Big dictionary';
 
   @override
-  String get bigDictCredits => 'The big dictionary of Italian words (over 100,000 words when complete) comes from Wiktionary, through kaikki.org, under the CC BY-SA 4.0 licence. The meanings in the ten languages were prepared for this app from the Wiktionary definitions.';
+  String get bigDictCredits =>
+      'The big dictionary of Italian words (over 100,000 words when complete) comes from Wiktionary, through kaikki.org, under the CC BY-SA 4.0 licence. The meanings in the ten languages were prepared for this app from the Wiktionary definitions.';
 
   @override
   String get bigSearchingOnline => 'Searching online…';
@@ -553,12 +564,13 @@ class AppLocalizationsPa extends AppLocalizations {
   String get bigNotAllowed => 'This word cannot be added to the dictionary.';
 
   @override
-  String get bigNotFoundOnline => 'Not found online either: check how you wrote it.';
+  String get bigNotFoundOnline =>
+      'Not found online either: check how you wrote it.';
 }
 
 /// The translations for Panjabi Punjabi, using the Arabic script (`pa_Arab`).
 class AppLocalizationsPaArab extends AppLocalizationsPa {
-  AppLocalizationsPaArab(): super('pa_Arab');
+  AppLocalizationsPaArab() : super('pa_Arab');
 
   @override
   String get appTitle => 'Italiano Facile per Stranieri';
@@ -653,7 +665,8 @@ class AppLocalizationsPaArab extends AppLocalizationsPa {
   String get searchingOnline => 'آن لائن تلاش ہو رہی اے…';
 
   @override
-  String get offlineNotice => 'تسیں آف لائن او۔ ایپ دے سارے لفظ فیر وی کم کردے نیں۔';
+  String get offlineNotice =>
+      'تسیں آف لائن او۔ ایپ دے سارے لفظ فیر وی کم کردے نیں۔';
 
   @override
   String get onlineResultTitle => 'ویکشنری توں';
@@ -665,7 +678,8 @@ class AppLocalizationsPaArab extends AppLocalizationsPa {
   String get removeFromMyWords => 'میرے لفظاں توں ہٹاؤ';
 
   @override
-  String get myWordsEmpty => 'ہالے کوئی لفظ محفوظ نہیں۔ تلاش وچ ”میرے لفظاں وچ شامل کرو“ دباؤ۔';
+  String get myWordsEmpty =>
+      'ہالے کوئی لفظ محفوظ نہیں۔ تلاش وچ ”میرے لفظاں وچ شامل کرو“ دباؤ۔';
 
   @override
   String get quizOnMyWords => 'میرے لفظاں دا کوئز';
@@ -828,7 +842,8 @@ class AppLocalizationsPaArab extends AppLocalizationsPa {
   String get removeAds => 'اشتہار ہٹاؤ';
 
   @override
-  String get removeAdsBody => 'اک واری ادائیگی، فیر کدے اشتہار نہیں۔ سارے لفظ، موضوع تے کوئز مفت رہندے نیں۔';
+  String get removeAdsBody =>
+      'اک واری ادائیگی، فیر کدے اشتہار نہیں۔ سارے لفظ، موضوع تے کوئز مفت رہندے نیں۔';
 
   @override
   String get buy => 'خریدو';
@@ -858,16 +873,20 @@ class AppLocalizationsPaArab extends AppLocalizationsPa {
   String get voiceHelpTitle => 'اطالوی آواز انسٹال کرو';
 
   @override
-  String get voiceHelpBody => 'تہاڈے فون وچ ہالے اطالوی آواز نہیں۔ سیٹنگاں › سسٹم › زباناں › ٹیکسٹ ٹو اسپیچ کھولو، Google انجن چنو تے اطالوی انسٹال کرو۔ لفظ پڑھنا فیر وی کم کردا اے۔';
+  String get voiceHelpBody =>
+      'تہاڈے فون وچ ہالے اطالوی آواز نہیں۔ سیٹنگاں › سسٹم › زباناں › ٹیکسٹ ٹو اسپیچ کھولو، Google انجن چنو تے اطالوی انسٹال کرو۔ لفظ پڑھنا فیر وی کم کردا اے۔';
 
   @override
-  String get privacyBody => 'ایہ ایپ آف لائن چلدی اے تے لاگ اِن نہیں منگدی۔ تہاڈی ترقی، محفوظ لفظ تے سیٹنگاں صرف تہاڈے فون تے رہندیاں نیں۔ اسیں تہاڈا ناں، ای میل یا مقام کدے جمع نہیں کردے۔ اشتہار Google AdMob توں آؤندے نیں تے رضامندی فارم وچ قبول کرن توں بعد ای دکھائے جاندے نیں؛ تسیں سیٹنگاں وچ کدے وی بدل سکدے او۔ ”آن لائن تلاش“ صرف لکھیا لفظ ویکشنری نوں بھیجدی اے۔ 13 سال تے اوپر لئی۔';
+  String get privacyBody =>
+      'ایہ ایپ آف لائن چلدی اے تے لاگ اِن نہیں منگدی۔ تہاڈی ترقی، محفوظ لفظ تے سیٹنگاں صرف تہاڈے فون تے رہندیاں نیں۔ اسیں تہاڈا ناں، ای میل یا مقام کدے جمع نہیں کردے۔ اشتہار Google AdMob توں آؤندے نیں تے رضامندی فارم وچ قبول کرن توں بعد ای دکھائے جاندے نیں؛ تسیں سیٹنگاں وچ کدے وی بدل سکدے او۔ ”آن لائن تلاش“ صرف لکھیا لفظ ویکشنری نوں بھیجدی اے۔ 13 سال تے اوپر لئی۔';
 
   @override
-  String get aboutBody => 'اطالیہ وچ رہݨ والیاں لئی اک نکی، ایماندار ایپ: لفظ تلاش کرو، روز دس نویں لفظ سکھو تے ڈرائیونگ ٹیسٹ وانگ اپنے آپ نوں پرکھو۔ سب کجھ آف لائن چلدا اے، بغیر اکاؤنٹ۔';
+  String get aboutBody =>
+      'اطالیہ وچ رہݨ والیاں لئی اک نکی، ایماندار ایپ: لفظ تلاش کرو، روز دس نویں لفظ سکھو تے ڈرائیونگ ٹیسٹ وانگ اپنے آپ نوں پرکھو۔ سب کجھ آف لائن چلدا اے، بغیر اکاؤنٹ۔';
 
   @override
-  String get creditsBody => 'ایس ایپ دے ترجمے تے مثالی جملے ہتھ نال لکھے تے جانچے گئے نیں۔ لفظاں دیاں فہرستاں کھلے ذریعیاں نال ملائیاں گئیاں: Wiktionary تے Wikizionario (CC BY-SA 4.0)، Tatoeba دے جملے (CC BY 2.0 FR) تے Open Multilingual Wordnet۔ تصویراں Google Noto Emoji (Apache 2.0) توں نیں۔ اطالوی تلفظ تہاڈے فون دی ٹیکسٹ ٹو اسپیچ توں آؤندا اے۔';
+  String get creditsBody =>
+      'ایس ایپ دے ترجمے تے مثالی جملے ہتھ نال لکھے تے جانچے گئے نیں۔ لفظاں دیاں فہرستاں کھلے ذریعیاں نال ملائیاں گئیاں: Wiktionary تے Wikizionario (CC BY-SA 4.0)، Tatoeba دے جملے (CC BY 2.0 FR) تے Open Multilingual Wordnet۔ تصویراں Google Noto Emoji (Apache 2.0) توں نیں۔ اطالوی تلفظ تہاڈے فون دی ٹیکسٹ ٹو اسپیچ توں آؤندا اے۔';
 
   @override
   String get dataCoverage => 'ایس ورژن وچ لفظاں دی فہرست';
@@ -879,7 +898,8 @@ class AppLocalizationsPaArab extends AppLocalizationsPa {
   String get mascotTryAgain => 'اگے ودھو!';
 
   @override
-  String get adsTestIdsNotice => 'سیٹ اپ ضروری: اشتہار ہالے Google دیاں ٹیسٹ آئی ڈی ورتدے نیں۔ کمائی لئی اصل AdMob آئی ڈی لاؤ۔';
+  String get adsTestIdsNotice =>
+      'سیٹ اپ ضروری: اشتہار ہالے Google دیاں ٹیسٹ آئی ڈی ورتدے نیں۔ کمائی لئی اصل AdMob آئی ڈی لاؤ۔';
 
   @override
   String get demoBadge => 'ڈیمو مواد';
@@ -1038,5 +1058,6 @@ class AppLocalizationsPaArab extends AppLocalizationsPa {
   String get moreLanguages => 'ہور زباناں';
 
   @override
-  String get languageNoteWordTranslations => 'لفظاں دے ترجمے دس بنیادی زباناں وچ نیں؛ باقی انٹرفیس زباناں وچ انگریزی دکھائی جاندی اے۔';
+  String get languageNoteWordTranslations =>
+      'لفظاں دے ترجمے دس بنیادی زباناں وچ نیں؛ باقی انٹرفیس زباناں وچ انگریزی دکھائی جاندی اے۔';
 }

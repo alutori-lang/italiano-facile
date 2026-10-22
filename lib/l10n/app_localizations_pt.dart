@@ -101,7 +101,8 @@ class AppLocalizationsPt extends AppLocalizations {
   String get searchingOnline => 'Pesquisando online…';
 
   @override
-  String get offlineNotice => 'Você está offline. Todas as palavras do app continuam funcionando.';
+  String get offlineNotice =>
+      'Você está offline. Todas as palavras do app continuam funcionando.';
 
   @override
   String get onlineResultTitle => 'Do Wikcionário';
@@ -113,7 +114,8 @@ class AppLocalizationsPt extends AppLocalizations {
   String get removeFromMyWords => 'Remover das minhas palavras';
 
   @override
-  String get myWordsEmpty => 'Ainda não há palavras salvas. Use “Adicionar às minhas palavras” na Busca.';
+  String get myWordsEmpty =>
+      'Ainda não há palavras salvas. Use “Adicionar às minhas palavras” na Busca.';
 
   @override
   String get quizOnMyWords => 'Quiz das minhas palavras';
@@ -212,7 +214,8 @@ class AppLocalizationsPt extends AppLocalizations {
   }
 
   @override
-  String get quizNotEnoughWords => 'Esta categoria precisa de mais palavras para o quiz.';
+  String get quizNotEnoughWords =>
+      'Esta categoria precisa de mais palavras para o quiz.';
 
   @override
   String get topicsSubtitle => 'Aprenda por categoria';
@@ -258,7 +261,8 @@ class AppLocalizationsPt extends AppLocalizations {
   String get resetProgress => 'Apagar progresso';
 
   @override
-  String get resetProgressConfirm => 'Apagar sequência, pontuações e palavras salvas?';
+  String get resetProgressConfirm =>
+      'Apagar sequência, pontuações e palavras salvas?';
 
   @override
   String get resetDone => 'Progresso apagado';
@@ -276,7 +280,8 @@ class AppLocalizationsPt extends AppLocalizations {
   String get removeAds => 'Remover anúncios';
 
   @override
-  String get removeAdsBody => 'Um único pagamento, nunca mais anúncios. Palavras, temas e quizzes continuam grátis.';
+  String get removeAdsBody =>
+      'Um único pagamento, nunca mais anúncios. Palavras, temas e quizzes continuam grátis.';
 
   @override
   String get buy => 'Comprar';
@@ -297,7 +302,8 @@ class AppLocalizationsPt extends AppLocalizations {
   String get nothingToRestore => 'Nenhuma compra anterior encontrada.';
 
   @override
-  String get webPurchaseNotice => 'As compras estão disponíveis no app Android e iPhone.';
+  String get webPurchaseNotice =>
+      'As compras estão disponíveis no app Android e iPhone.';
 
   @override
   String get storeUnavailable => 'A loja não está disponível agora.';
@@ -306,16 +312,20 @@ class AppLocalizationsPt extends AppLocalizations {
   String get voiceHelpTitle => 'Instale a voz italiana';
 
   @override
-  String get voiceHelpBody => 'Seu telefone ainda não tem voz italiana. Abra Configurações › Sistema › Idiomas › Conversão de texto em voz, escolha o mecanismo do Google e instale o italiano. Ler as palavras funciona do mesmo jeito.';
+  String get voiceHelpBody =>
+      'Seu telefone ainda não tem voz italiana. Abra Configurações › Sistema › Idiomas › Conversão de texto em voz, escolha o mecanismo do Google e instale o italiano. Ler as palavras funciona do mesmo jeito.';
 
   @override
-  String get privacyBody => 'Este app funciona offline e não pede login. Seu progresso, palavras salvas e configurações ficam apenas no seu telefone. Nunca coletamos seu nome, e-mail ou localização. Os anúncios vêm do Google AdMob e só aparecem depois de você aceitar no formulário de consentimento; pode mudar a escolha nas Configurações. “Pesquisar online” envia ao Wikcionário apenas a palavra digitada. Para 13+.';
+  String get privacyBody =>
+      'Este app funciona offline e não pede login. Seu progresso, palavras salvas e configurações ficam apenas no seu telefone. Nunca coletamos seu nome, e-mail ou localização. Os anúncios vêm do Google AdMob e só aparecem depois de você aceitar no formulário de consentimento; pode mudar a escolha nas Configurações. “Pesquisar online” envia ao Wikcionário apenas a palavra digitada. Para 13+.';
 
   @override
-  String get aboutBody => 'Um app pequeno e honesto para quem vive na Itália: busque uma palavra, aprenda dez novas por dia e teste-se como na prova de direção. Tudo funciona offline, sem conta.';
+  String get aboutBody =>
+      'Um app pequeno e honesto para quem vive na Itália: busque uma palavra, aprenda dez novas por dia e teste-se como na prova de direção. Tudo funciona offline, sem conta.';
 
   @override
-  String get creditsBody => 'As traduções e as frases de exemplo são escritas e revisadas à mão para este app. As listas de palavras foram comparadas com fontes abertas: Wiktionary e Wikizionario (CC BY-SA 4.0), frases do Tatoeba (CC BY 2.0 FR) e Open Multilingual Wordnet. As imagens usam Google Noto Emoji (Apache 2.0). A pronúncia italiana usa a conversão de texto em voz do telefone.';
+  String get creditsBody =>
+      'As traduções e as frases de exemplo são escritas e revisadas à mão para este app. As listas de palavras foram comparadas com fontes abertas: Wiktionary e Wikizionario (CC BY-SA 4.0), frases do Tatoeba (CC BY 2.0 FR) e Open Multilingual Wordnet. As imagens usam Google Noto Emoji (Apache 2.0). A pronúncia italiana usa a conversão de texto em voz do telefone.';
 
   @override
   String get dataCoverage => 'Lista de palavras desta versão';
@@ -327,7 +337,8 @@ class AppLocalizationsPt extends AppLocalizations {
   String get mascotTryAgain => 'Continue!';
 
   @override
-  String get adsTestIdsNotice => 'Configuração necessária: os anúncios ainda usam os ids de teste do Google. Cole os ids reais do AdMob para ganhar.';
+  String get adsTestIdsNotice =>
+      'Configuração necessária: os anúncios ainda usam os ids de teste do Google. Cole os ids reais do AdMob para ganhar.';
 
   @override
   String get demoBadge => 'Conteúdo de demonstração';
@@ -486,7 +497,8 @@ class AppLocalizationsPt extends AppLocalizations {
   String get moreLanguages => 'Mais idiomas';
 
   @override
-  String get languageNoteWordTranslations => 'As traduções das palavras estão nos dez idiomas principais; os outros idiomas da interface usam inglês.';
+  String get languageNoteWordTranslations =>
+      'As traduções das palavras estão nos dez idiomas principais; os outros idiomas da interface usam inglês.';
 
   @override
   String get bigPreparing => 'Preparing the dictionary…';
@@ -544,7 +556,8 @@ class AppLocalizationsPt extends AppLocalizations {
   String get bigDictTitle => 'Big dictionary';
 
   @override
-  String get bigDictCredits => 'The big dictionary of Italian words (over 100,000 words when complete) comes from Wiktionary, through kaikki.org, under the CC BY-SA 4.0 licence. The meanings in the ten languages were prepared for this app from the Wiktionary definitions.';
+  String get bigDictCredits =>
+      'The big dictionary of Italian words (over 100,000 words when complete) comes from Wiktionary, through kaikki.org, under the CC BY-SA 4.0 licence. The meanings in the ten languages were prepared for this app from the Wiktionary definitions.';
 
   @override
   String get bigSearchingOnline => 'Searching online…';
@@ -553,5 +566,6 @@ class AppLocalizationsPt extends AppLocalizations {
   String get bigNotAllowed => 'This word cannot be added to the dictionary.';
 
   @override
-  String get bigNotFoundOnline => 'Not found online either: check how you wrote it.';
+  String get bigNotFoundOnline =>
+      'Not found online either: check how you wrote it.';
 }

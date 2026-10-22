@@ -101,7 +101,8 @@ class AppLocalizationsRu extends AppLocalizations {
   String get searchingOnline => 'Поиск в интернете…';
 
   @override
-  String get offlineNotice => 'Вы не в сети. Все слова в приложении по-прежнему работают.';
+  String get offlineNotice =>
+      'Вы не в сети. Все слова в приложении по-прежнему работают.';
 
   @override
   String get onlineResultTitle => 'Из Викисловаря';
@@ -113,7 +114,8 @@ class AppLocalizationsRu extends AppLocalizations {
   String get removeFromMyWords => 'Убрать из моих слов';
 
   @override
-  String get myWordsEmpty => 'Пока нет сохранённых слов. Нажмите «Добавить в мои слова» в поиске.';
+  String get myWordsEmpty =>
+      'Пока нет сохранённых слов. Нажмите «Добавить в мои слова» в поиске.';
 
   @override
   String get quizOnMyWords => 'Тест по моим словам';
@@ -212,7 +214,8 @@ class AppLocalizationsRu extends AppLocalizations {
   }
 
   @override
-  String get quizNotEnoughWords => 'Для теста в этой категории нужно больше слов.';
+  String get quizNotEnoughWords =>
+      'Для теста в этой категории нужно больше слов.';
 
   @override
   String get topicsSubtitle => 'Учитесь по категориям';
@@ -258,7 +261,8 @@ class AppLocalizationsRu extends AppLocalizations {
   String get resetProgress => 'Сбросить прогресс';
 
   @override
-  String get resetProgressConfirm => 'Удалить серию, результаты и сохранённые слова?';
+  String get resetProgressConfirm =>
+      'Удалить серию, результаты и сохранённые слова?';
 
   @override
   String get resetDone => 'Прогресс сброшен';
@@ -276,7 +280,8 @@ class AppLocalizationsRu extends AppLocalizations {
   String get removeAds => 'Убрать рекламу';
 
   @override
-  String get removeAdsBody => 'Один платёж — и больше никакой рекламы. Все слова, темы и тесты остаются бесплатными.';
+  String get removeAdsBody =>
+      'Один платёж — и больше никакой рекламы. Все слова, темы и тесты остаются бесплатными.';
 
   @override
   String get buy => 'Купить';
@@ -297,7 +302,8 @@ class AppLocalizationsRu extends AppLocalizations {
   String get nothingToRestore => 'Прежних покупок не найдено.';
 
   @override
-  String get webPurchaseNotice => 'Покупки доступны в приложении для Android и iPhone.';
+  String get webPurchaseNotice =>
+      'Покупки доступны в приложении для Android и iPhone.';
 
   @override
   String get storeUnavailable => 'Магазин сейчас недоступен.';
@@ -306,16 +312,20 @@ class AppLocalizationsRu extends AppLocalizations {
   String get voiceHelpTitle => 'Установите итальянский голос';
 
   @override
-  String get voiceHelpBody => 'На телефоне ещё нет итальянского голоса. Откройте Настройки › Система › Языки › Синтез речи, выберите движок Google и установите итальянский. Читать слова можно и так.';
+  String get voiceHelpBody =>
+      'На телефоне ещё нет итальянского голоса. Откройте Настройки › Система › Языки › Синтез речи, выберите движок Google и установите итальянский. Читать слова можно и так.';
 
   @override
-  String get privacyBody => 'Приложение работает без интернета и без входа в аккаунт. Прогресс, сохранённые слова и настройки остаются только на вашем телефоне. Мы никогда не собираем имя, e-mail или местоположение. Реклама — от Google AdMob и показывается только после вашего согласия в форме; изменить выбор можно в настройках. «Искать в интернете» отправляет в Викисловарь только введённое слово. Для 13+.';
+  String get privacyBody =>
+      'Приложение работает без интернета и без входа в аккаунт. Прогресс, сохранённые слова и настройки остаются только на вашем телефоне. Мы никогда не собираем имя, e-mail или местоположение. Реклама — от Google AdMob и показывается только после вашего согласия в форме; изменить выбор можно в настройках. «Искать в интернете» отправляет в Викисловарь только введённое слово. Для 13+.';
 
   @override
-  String get aboutBody => 'Небольшое честное приложение для тех, кто живёт в Италии: найдите слово, выучите десять новых каждый день и проверьте себя, как на экзамене по вождению. Всё работает без интернета и без аккаунта.';
+  String get aboutBody =>
+      'Небольшое честное приложение для тех, кто живёт в Италии: найдите слово, выучите десять новых каждый день и проверьте себя, как на экзамене по вождению. Всё работает без интернета и без аккаунта.';
 
   @override
-  String get creditsBody => 'Переводы и примеры предложений написаны и проверены вручную для этого приложения. Списки слов сверялись с открытыми источниками: Wiktionary и Wikizionario (CC BY-SA 4.0), предложения Tatoeba (CC BY 2.0 FR) и Open Multilingual Wordnet. Картинки — Google Noto Emoji (Apache 2.0). Итальянское произношение использует синтез речи телефона.';
+  String get creditsBody =>
+      'Переводы и примеры предложений написаны и проверены вручную для этого приложения. Списки слов сверялись с открытыми источниками: Wiktionary и Wikizionario (CC BY-SA 4.0), предложения Tatoeba (CC BY 2.0 FR) и Open Multilingual Wordnet. Картинки — Google Noto Emoji (Apache 2.0). Итальянское произношение использует синтез речи телефона.';
 
   @override
   String get dataCoverage => 'Список слов в этой версии';
@@ -327,7 +337,8 @@ class AppLocalizationsRu extends AppLocalizations {
   String get mascotTryAgain => 'Продолжайте!';
 
   @override
-  String get adsTestIdsNotice => 'Нужна настройка: реклама пока использует тестовые id Google. Вставьте настоящие id AdMob, чтобы получать доход.';
+  String get adsTestIdsNotice =>
+      'Нужна настройка: реклама пока использует тестовые id Google. Вставьте настоящие id AdMob, чтобы получать доход.';
 
   @override
   String get demoBadge => 'Демо-содержимое';
@@ -486,7 +497,8 @@ class AppLocalizationsRu extends AppLocalizations {
   String get moreLanguages => 'Другие языки';
 
   @override
-  String get languageNoteWordTranslations => 'Переводы слов доступны на десяти основных языках; остальные языки интерфейса используют английский.';
+  String get languageNoteWordTranslations =>
+      'Переводы слов доступны на десяти основных языках; остальные языки интерфейса используют английский.';
 
   @override
   String get bigPreparing => 'Preparing the dictionary…';
@@ -544,7 +556,8 @@ class AppLocalizationsRu extends AppLocalizations {
   String get bigDictTitle => 'Big dictionary';
 
   @override
-  String get bigDictCredits => 'The big dictionary of Italian words (over 100,000 words when complete) comes from Wiktionary, through kaikki.org, under the CC BY-SA 4.0 licence. The meanings in the ten languages were prepared for this app from the Wiktionary definitions.';
+  String get bigDictCredits =>
+      'The big dictionary of Italian words (over 100,000 words when complete) comes from Wiktionary, through kaikki.org, under the CC BY-SA 4.0 licence. The meanings in the ten languages were prepared for this app from the Wiktionary definitions.';
 
   @override
   String get bigSearchingOnline => 'Searching online…';
@@ -553,5 +566,6 @@ class AppLocalizationsRu extends AppLocalizations {
   String get bigNotAllowed => 'This word cannot be added to the dictionary.';
 
   @override
-  String get bigNotFoundOnline => 'Not found online either: check how you wrote it.';
+  String get bigNotFoundOnline =>
+      'Not found online either: check how you wrote it.';
 }

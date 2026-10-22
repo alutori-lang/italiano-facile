@@ -60,7 +60,14 @@ class ScreenHeader extends StatelessWidget {
           ),
           if (trailing != null) ...<Widget>[
             const SizedBox(width: AppSpace.m),
-            Flexible(flex: 2, child: trailing!),
+            // The trailing control keeps its natural width (up to 45% of the
+            // row) so a language name is never squeezed to nothing.
+            ConstrainedBox(
+              constraints: BoxConstraints(
+                maxWidth: MediaQuery.sizeOf(context).width * 0.45,
+              ),
+              child: trailing!,
+            ),
           ],
         ],
       ),

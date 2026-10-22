@@ -101,7 +101,8 @@ class AppLocalizationsBn extends AppLocalizations {
   String get searchingOnline => 'অনলাইনে খোঁজা হচ্ছে…';
 
   @override
-  String get offlineNotice => 'আপনি অফলাইনে আছেন। অ্যাপের সব শব্দ তবুও কাজ করে।';
+  String get offlineNotice =>
+      'আপনি অফলাইনে আছেন। অ্যাপের সব শব্দ তবুও কাজ করে।';
 
   @override
   String get onlineResultTitle => 'উইকিশনারি থেকে';
@@ -113,7 +114,8 @@ class AppLocalizationsBn extends AppLocalizations {
   String get removeFromMyWords => 'আমার শব্দ থেকে সরান';
 
   @override
-  String get myWordsEmpty => 'এখনো কোনো শব্দ সংরক্ষিত নয়। খোঁজে “আমার শব্দে যোগ করুন” চাপুন।';
+  String get myWordsEmpty =>
+      'এখনো কোনো শব্দ সংরক্ষিত নয়। খোঁজে “আমার শব্দে যোগ করুন” চাপুন।';
 
   @override
   String get quizOnMyWords => 'আমার শব্দের কুইজ';
@@ -276,7 +278,8 @@ class AppLocalizationsBn extends AppLocalizations {
   String get removeAds => 'বিজ্ঞাপন সরান';
 
   @override
-  String get removeAdsBody => 'একবার পেমেন্ট, আর কখনো বিজ্ঞাপন নয়। সব শব্দ, বিষয় ও কুইজ বিনামূল্যেই থাকে।';
+  String get removeAdsBody =>
+      'একবার পেমেন্ট, আর কখনো বিজ্ঞাপন নয়। সব শব্দ, বিষয় ও কুইজ বিনামূল্যেই থাকে।';
 
   @override
   String get buy => 'কিনুন';
@@ -297,7 +300,8 @@ class AppLocalizationsBn extends AppLocalizations {
   String get nothingToRestore => 'আগের কোনো কেনাকাটা পাওয়া যায়নি।';
 
   @override
-  String get webPurchaseNotice => 'কেনাকাটা Android ও iPhone অ্যাপে পাওয়া যায়।';
+  String get webPurchaseNotice =>
+      'কেনাকাটা Android ও iPhone অ্যাপে পাওয়া যায়।';
 
   @override
   String get storeUnavailable => 'স্টোর এখন পাওয়া যাচ্ছে না।';
@@ -306,16 +310,20 @@ class AppLocalizationsBn extends AppLocalizations {
   String get voiceHelpTitle => 'ইতালীয় ভয়েস ইনস্টল করুন';
 
   @override
-  String get voiceHelpBody => 'আপনার ফোনে এখনো ইতালীয় ভয়েস নেই। সেটিংস › সিস্টেম › ভাষা › টেক্সট-টু-স্পিচ খুলুন, Google ইঞ্জিন বাছুন এবং ইতালীয় ইনস্টল করুন। শব্দ পড়া তবুও কাজ করে।';
+  String get voiceHelpBody =>
+      'আপনার ফোনে এখনো ইতালীয় ভয়েস নেই। সেটিংস › সিস্টেম › ভাষা › টেক্সট-টু-স্পিচ খুলুন, Google ইঞ্জিন বাছুন এবং ইতালীয় ইনস্টল করুন। শব্দ পড়া তবুও কাজ করে।';
 
   @override
-  String get privacyBody => 'এই অ্যাপ অফলাইনে চলে এবং লগইন লাগে না। আপনার অগ্রগতি, সংরক্ষিত শব্দ ও সেটিংস কেবল আপনার ফোনেই থাকে। আমরা আপনার নাম, ই-মেইল বা লোকেশন কখনো সংগ্রহ করি না। বিজ্ঞাপন Google AdMob থেকে আসে এবং সম্মতি ফর্মে রাজি হওয়ার পরেই দেখানো হয়; সেটিংসে যেকোনো সময় বদলাতে পারেন। “অনলাইনে খুঁজুন” কেবল লেখা শব্দটি উইকিশনারিতে পাঠায়। ১৩+ বছরের জন্য।';
+  String get privacyBody =>
+      'এই অ্যাপ অফলাইনে চলে এবং লগইন লাগে না। আপনার অগ্রগতি, সংরক্ষিত শব্দ ও সেটিংস কেবল আপনার ফোনেই থাকে। আমরা আপনার নাম, ই-মেইল বা লোকেশন কখনো সংগ্রহ করি না। বিজ্ঞাপন Google AdMob থেকে আসে এবং সম্মতি ফর্মে রাজি হওয়ার পরেই দেখানো হয়; সেটিংসে যেকোনো সময় বদলাতে পারেন। “অনলাইনে খুঁজুন” কেবল লেখা শব্দটি উইকিশনারিতে পাঠায়। ১৩+ বছরের জন্য।';
 
   @override
-  String get aboutBody => 'ইতালিতে বাস করা মানুষের জন্য ছোট, সৎ একটি অ্যাপ: শব্দ খুঁজুন, প্রতিদিন দশটি নতুন শব্দ শিখুন এবং ড্রাইভিং পরীক্ষার মতো নিজেকে যাচাই করুন। সবকিছু অফলাইনে চলে, অ্যাকাউন্ট ছাড়াই।';
+  String get aboutBody =>
+      'ইতালিতে বাস করা মানুষের জন্য ছোট, সৎ একটি অ্যাপ: শব্দ খুঁজুন, প্রতিদিন দশটি নতুন শব্দ শিখুন এবং ড্রাইভিং পরীক্ষার মতো নিজেকে যাচাই করুন। সবকিছু অফলাইনে চলে, অ্যাকাউন্ট ছাড়াই।';
 
   @override
-  String get creditsBody => 'এই অ্যাপের অনুবাদ ও উদাহরণ বাক্য হাতে লেখা ও যাচাই করা। শব্দতালিকা মুক্ত সূত্রের সঙ্গে মিলিয়ে দেখা হয়েছে: Wiktionary ও Wikizionario (CC BY-SA 4.0), Tatoeba-র বাক্য (CC BY 2.0 FR) এবং Open Multilingual Wordnet। ছবিতে Google Noto Emoji (Apache 2.0) ব্যবহৃত। ইতালীয় উচ্চারণ আপনার ফোনের টেক্সট-টু-স্পিচ ব্যবহার করে।';
+  String get creditsBody =>
+      'এই অ্যাপের অনুবাদ ও উদাহরণ বাক্য হাতে লেখা ও যাচাই করা। শব্দতালিকা মুক্ত সূত্রের সঙ্গে মিলিয়ে দেখা হয়েছে: Wiktionary ও Wikizionario (CC BY-SA 4.0), Tatoeba-র বাক্য (CC BY 2.0 FR) এবং Open Multilingual Wordnet। ছবিতে Google Noto Emoji (Apache 2.0) ব্যবহৃত। ইতালীয় উচ্চারণ আপনার ফোনের টেক্সট-টু-স্পিচ ব্যবহার করে।';
 
   @override
   String get dataCoverage => 'এই সংস্করণের শব্দতালিকা';
@@ -327,7 +335,8 @@ class AppLocalizationsBn extends AppLocalizations {
   String get mascotTryAgain => 'চালিয়ে যান!';
 
   @override
-  String get adsTestIdsNotice => 'সেটআপ দরকার: বিজ্ঞাপন এখনো Google-এর টেস্ট আইডি ব্যবহার করে। আয়ের জন্য আসল AdMob আইডি দিন।';
+  String get adsTestIdsNotice =>
+      'সেটআপ দরকার: বিজ্ঞাপন এখনো Google-এর টেস্ট আইডি ব্যবহার করে। আয়ের জন্য আসল AdMob আইডি দিন।';
 
   @override
   String get demoBadge => 'ডেমো কনটেন্ট';
@@ -486,7 +495,8 @@ class AppLocalizationsBn extends AppLocalizations {
   String get moreLanguages => 'আরও ভাষা';
 
   @override
-  String get languageNoteWordTranslations => 'শব্দের অনুবাদ দশটি প্রধান ভাষায় আছে; অন্য ইন্টারফেস ভাষায় ইংরেজি দেখানো হয়।';
+  String get languageNoteWordTranslations =>
+      'শব্দের অনুবাদ দশটি প্রধান ভাষায় আছে; অন্য ইন্টারফেস ভাষায় ইংরেজি দেখানো হয়।';
 
   @override
   String get bigPreparing => 'Preparing the dictionary…';
@@ -544,7 +554,8 @@ class AppLocalizationsBn extends AppLocalizations {
   String get bigDictTitle => 'Big dictionary';
 
   @override
-  String get bigDictCredits => 'The big dictionary of Italian words (over 100,000 words when complete) comes from Wiktionary, through kaikki.org, under the CC BY-SA 4.0 licence. The meanings in the ten languages were prepared for this app from the Wiktionary definitions.';
+  String get bigDictCredits =>
+      'The big dictionary of Italian words (over 100,000 words when complete) comes from Wiktionary, through kaikki.org, under the CC BY-SA 4.0 licence. The meanings in the ten languages were prepared for this app from the Wiktionary definitions.';
 
   @override
   String get bigSearchingOnline => 'Searching online…';
@@ -553,5 +564,6 @@ class AppLocalizationsBn extends AppLocalizations {
   String get bigNotAllowed => 'This word cannot be added to the dictionary.';
 
   @override
-  String get bigNotFoundOnline => 'Not found online either: check how you wrote it.';
+  String get bigNotFoundOnline =>
+      'Not found online either: check how you wrote it.';
 }

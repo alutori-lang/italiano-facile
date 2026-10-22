@@ -101,7 +101,8 @@ class AppLocalizationsEn extends AppLocalizations {
   String get searchingOnline => 'Searching online…';
 
   @override
-  String get offlineNotice => 'You are offline. All words in the app still work.';
+  String get offlineNotice =>
+      'You are offline. All words in the app still work.';
 
   @override
   String get onlineResultTitle => 'From Wiktionary';
@@ -113,7 +114,8 @@ class AppLocalizationsEn extends AppLocalizations {
   String get removeFromMyWords => 'Remove from my words';
 
   @override
-  String get myWordsEmpty => 'No saved words yet. Use “Add to my words” in Search.';
+  String get myWordsEmpty =>
+      'No saved words yet. Use “Add to my words” in Search.';
 
   @override
   String get quizOnMyWords => 'Quiz on my words';
@@ -276,7 +278,8 @@ class AppLocalizationsEn extends AppLocalizations {
   String get removeAds => 'Remove ads';
 
   @override
-  String get removeAdsBody => 'One payment, no ads ever again. All words, topics and quizzes stay free.';
+  String get removeAdsBody =>
+      'One payment, no ads ever again. All words, topics and quizzes stay free.';
 
   @override
   String get buy => 'Buy';
@@ -297,7 +300,8 @@ class AppLocalizationsEn extends AppLocalizations {
   String get nothingToRestore => 'No earlier purchase found.';
 
   @override
-  String get webPurchaseNotice => 'Purchases are available in the Android and iPhone app.';
+  String get webPurchaseNotice =>
+      'Purchases are available in the Android and iPhone app.';
 
   @override
   String get storeUnavailable => 'The store is not available right now.';
@@ -306,16 +310,20 @@ class AppLocalizationsEn extends AppLocalizations {
   String get voiceHelpTitle => 'Install the Italian voice';
 
   @override
-  String get voiceHelpBody => 'Your phone has no Italian voice yet. Open Settings › System › Languages › Text-to-speech, choose the Google speech engine and install Italian. Reading the words works anyway.';
+  String get voiceHelpBody =>
+      'Your phone has no Italian voice yet. Open Settings › System › Languages › Text-to-speech, choose the Google speech engine and install Italian. Reading the words works anyway.';
 
   @override
-  String get privacyBody => 'This app works offline and has no login. Your progress, saved words and settings stay on your phone only. We never collect your name, e-mail or location. Ads come from Google AdMob and are shown only after you accept them in the consent form; you can change your choice at any time in Settings. “Search online” sends only the word you typed to Wiktionary. For ages 13+.';
+  String get privacyBody =>
+      'This app works offline and has no login. Your progress, saved words and settings stay on your phone only. We never collect your name, e-mail or location. Ads come from Google AdMob and are shown only after you accept them in the consent form; you can change your choice at any time in Settings. “Search online” sends only the word you typed to Wiktionary. For ages 13+.';
 
   @override
-  String get aboutBody => 'A small, honest app for people living in Italy: search a word, learn ten new ones a day, and test yourself like in the driving-licence quiz. Everything works offline, with no account.';
+  String get aboutBody =>
+      'A small, honest app for people living in Italy: search a word, learn ten new ones a day, and test yourself like in the driving-licence quiz. Everything works offline, with no account.';
 
   @override
-  String get creditsBody => 'Translations and example sentences are written and checked by hand for this app. Word lists were cross-checked against open sources: Wiktionary and Wikizionario (CC BY-SA 4.0), Tatoeba example sentences (CC BY 2.0 FR) and the Open Multilingual Wordnet. Pictures use Google Noto Emoji (Apache 2.0). Italian pronunciation uses your phone\'s own text-to-speech.';
+  String get creditsBody =>
+      'Translations and example sentences are written and checked by hand for this app. Word lists were cross-checked against open sources: Wiktionary and Wikizionario (CC BY-SA 4.0), Tatoeba example sentences (CC BY 2.0 FR) and the Open Multilingual Wordnet. Pictures use Google Noto Emoji (Apache 2.0). Italian pronunciation uses your phone\'s own text-to-speech.';
 
   @override
   String get dataCoverage => 'Word list in this version';
@@ -327,7 +335,8 @@ class AppLocalizationsEn extends AppLocalizations {
   String get mascotTryAgain => 'Keep going!';
 
   @override
-  String get adsTestIdsNotice => 'Setup needed: the ads still use Google\'s test ids. Paste the real AdMob ids to earn from them.';
+  String get adsTestIdsNotice =>
+      'Setup needed: the ads still use Google\'s test ids. Paste the real AdMob ids to earn from them.';
 
   @override
   String get demoBadge => 'Demo content';
@@ -486,7 +495,8 @@ class AppLocalizationsEn extends AppLocalizations {
   String get moreLanguages => 'More languages';
 
   @override
-  String get languageNoteWordTranslations => 'Word translations are shown in the ten main languages; other interface languages fall back to English.';
+  String get languageNoteWordTranslations =>
+      'Word translations are shown in the ten main languages; other interface languages fall back to English.';
 
   @override
   String get bigPreparing => 'Preparing the dictionary…';
@@ -544,7 +554,8 @@ class AppLocalizationsEn extends AppLocalizations {
   String get bigDictTitle => 'Big dictionary';
 
   @override
-  String get bigDictCredits => 'The big dictionary of Italian words (over 100,000 words when complete) comes from Wiktionary, through kaikki.org, under the CC BY-SA 4.0 licence. The meanings in the ten languages were prepared for this app from the Wiktionary definitions.';
+  String get bigDictCredits =>
+      'The big dictionary of Italian words (over 100,000 words when complete) comes from Wiktionary, through kaikki.org, under the CC BY-SA 4.0 licence. The meanings in the ten languages were prepared for this app from the Wiktionary definitions.';
 
   @override
   String get bigSearchingOnline => 'Searching online…';
@@ -553,5 +564,6 @@ class AppLocalizationsEn extends AppLocalizations {
   String get bigNotAllowed => 'This word cannot be added to the dictionary.';
 
   @override
-  String get bigNotFoundOnline => 'Not found online either: check how you wrote it.';
+  String get bigNotFoundOnline =>
+      'Not found online either: check how you wrote it.';
 }
