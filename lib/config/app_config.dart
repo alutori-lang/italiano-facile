@@ -7,7 +7,7 @@ class AppConfig {
   const AppConfig._();
 
   /// Shown in the store listing and the About screen.
-  static const String appName = 'Italian Words: Learn & Play';
+  static const String appName = 'Italiano Facile per Stranieri';
   static const String appVersion = '1.0.0';
   static const String packageName = 'dev.fluttercursor.app.simple_flutter_app_651';
 

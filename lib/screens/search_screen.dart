@@ -16,6 +16,7 @@ import '../ui/theme.dart';
 import '../ui/widgets/big_entry_card.dart';
 import '../ui/widgets/button_content.dart';
 import '../ui/widgets/screen_header.dart';
+import '../ui/widgets/tricolour_frame.dart';
 import '../ui/widgets/word_card.dart';
 import 'big_entry_screen.dart';
 import 'my_words_screen.dart';
@@ -286,26 +287,34 @@ class _SearchScreenState extends State<SearchScreen> {
                 ],
               ),
             ),
-            TextField(
-              key: const ValueKey<String>('search-field'),
-              controller: _controller,
-              textInputAction: TextInputAction.search,
-              onChanged: (String value) => _runSearch(value, remember: false),
-              onSubmitted: _runSearch,
-              decoration: InputDecoration(
-                hintText: t.searchHint,
-                prefixIcon: const Icon(Icons.search_rounded),
-                suffixIcon: query.isEmpty
-                    ? null
-                    : IconButton(
-                        key: const ValueKey<String>('search-clear'),
-                        tooltip: t.clearRecent,
-                        icon: const Icon(Icons.close_rounded),
-                        onPressed: () {
-                          _controller.clear();
-                          _runSearch('', remember: false);
-                        },
-                      ),
+            TricolourFrame(
+              child: TextField(
+                key: const ValueKey<String>('search-field'),
+                controller: _controller,
+                textInputAction: TextInputAction.search,
+                onChanged: (String value) => _runSearch(value, remember: false),
+                onSubmitted: _runSearch,
+                decoration: InputDecoration(
+                  hintText: t.searchHint,
+                  // The tricolour frame is the border here.
+                  filled: true,
+                  fillColor: context.surface,
+                  border: InputBorder.none,
+                  enabledBorder: InputBorder.none,
+                  focusedBorder: InputBorder.none,
+                  prefixIcon: const Icon(Icons.search_rounded),
+                  suffixIcon: query.isEmpty
+                      ? null
+                      : IconButton(
+                          key: const ValueKey<String>('search-clear'),
+                          tooltip: t.clearRecent,
+                          icon: const Icon(Icons.close_rounded),
+                          onPressed: () {
+                            _controller.clear();
+                            _runSearch('', remember: false);
+                          },
+                        ),
+                ),
               ),
             ),
             const SizedBox(height: AppSpace.l),

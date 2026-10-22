@@ -9,7 +9,7 @@ class AppLocalizationsUr extends AppLocalizations {
   AppLocalizationsUr([String locale = 'ur']) : super(locale);
 
   @override
-  String get appTitle => 'Italian Words: Learn & Play';
+  String get appTitle => 'Italiano Facile per Stranieri';
 
   @override
   String get tabSearch => 'تلاش';
@@ -101,8 +101,7 @@ class AppLocalizationsUr extends AppLocalizations {
   String get searchingOnline => 'آن لائن تلاش ہو رہی ہے…';
 
   @override
-  String get offlineNotice =>
-      'آپ آف لائن ہیں۔ ایپ کے تمام الفاظ پھر بھی کام کرتے ہیں۔';
+  String get offlineNotice => 'آپ آف لائن ہیں۔ ایپ کے تمام الفاظ پھر بھی کام کرتے ہیں۔';
 
   @override
   String get onlineResultTitle => 'ویکشنری سے';
@@ -114,8 +113,7 @@ class AppLocalizationsUr extends AppLocalizations {
   String get removeFromMyWords => 'میرے الفاظ سے نکالیں';
 
   @override
-  String get myWordsEmpty =>
-      'ابھی کوئی لفظ محفوظ نہیں۔ تلاش میں ”میرے الفاظ میں شامل کریں“ دبائیں۔';
+  String get myWordsEmpty => 'ابھی کوئی لفظ محفوظ نہیں۔ تلاش میں ”میرے الفاظ میں شامل کریں“ دبائیں۔';
 
   @override
   String get quizOnMyWords => 'میرے الفاظ کا کوئز';
@@ -214,8 +212,7 @@ class AppLocalizationsUr extends AppLocalizations {
   }
 
   @override
-  String get quizNotEnoughWords =>
-      'اس موضوع میں کوئز کے لیے مزید الفاظ درکار ہیں۔';
+  String get quizNotEnoughWords => 'اس موضوع میں کوئز کے لیے مزید الفاظ درکار ہیں۔';
 
   @override
   String get topicsSubtitle => 'موضوع کے حساب سے سیکھیں';
@@ -279,8 +276,7 @@ class AppLocalizationsUr extends AppLocalizations {
   String get removeAds => 'اشتہارات ہٹائیں';
 
   @override
-  String get removeAdsBody =>
-      'ایک بار ادائیگی، پھر کبھی اشتہار نہیں۔ تمام الفاظ، موضوعات اور کوئز مفت رہتے ہیں۔';
+  String get removeAdsBody => 'ایک بار ادائیگی، پھر کبھی اشتہار نہیں۔ تمام الفاظ، موضوعات اور کوئز مفت رہتے ہیں۔';
 
   @override
   String get buy => 'خریدیں';
@@ -301,8 +297,7 @@ class AppLocalizationsUr extends AppLocalizations {
   String get nothingToRestore => 'کوئی سابقہ خریداری نہیں ملی۔';
 
   @override
-  String get webPurchaseNotice =>
-      'خریداری Android اور iPhone ایپ میں دستیاب ہے۔';
+  String get webPurchaseNotice => 'خریداری Android اور iPhone ایپ میں دستیاب ہے۔';
 
   @override
   String get storeUnavailable => 'اسٹور ابھی دستیاب نہیں ہے۔';
@@ -311,20 +306,16 @@ class AppLocalizationsUr extends AppLocalizations {
   String get voiceHelpTitle => 'اطالوی آواز انسٹال کریں';
 
   @override
-  String get voiceHelpBody =>
-      'آپ کے فون میں ابھی اطالوی آواز نہیں ہے۔ ترتیبات › سسٹم › زبانیں › ٹیکسٹ ٹو اسپیچ کھولیں، Google انجن چنیں اور اطالوی انسٹال کریں۔ الفاظ پڑھنا پھر بھی کام کرتا ہے۔';
+  String get voiceHelpBody => 'آپ کے فون میں ابھی اطالوی آواز نہیں ہے۔ ترتیبات › سسٹم › زبانیں › ٹیکسٹ ٹو اسپیچ کھولیں، Google انجن چنیں اور اطالوی انسٹال کریں۔ الفاظ پڑھنا پھر بھی کام کرتا ہے۔';
 
   @override
-  String get privacyBody =>
-      'یہ ایپ آف لائن چلتی ہے اور لاگ اِن نہیں مانگتی۔ آپ کی پیش رفت، محفوظ الفاظ اور ترتیبات صرف آپ کے فون پر رہتی ہیں۔ ہم آپ کا نام، ای میل یا مقام کبھی جمع نہیں کرتے۔ اشتہارات Google AdMob سے آتے ہیں اور رضامندی فارم میں قبول کرنے کے بعد ہی دکھائے جاتے ہیں؛ آپ ترتیبات میں کبھی بھی تبدیل کر سکتے ہیں۔ ”آن لائن تلاش“ صرف لکھا ہوا لفظ ویکشنری کو بھیجتی ہے۔ 13 سال اور اوپر کے لیے۔';
+  String get privacyBody => 'یہ ایپ آف لائن چلتی ہے اور لاگ اِن نہیں مانگتی۔ آپ کی پیش رفت، محفوظ الفاظ اور ترتیبات صرف آپ کے فون پر رہتی ہیں۔ ہم آپ کا نام، ای میل یا مقام کبھی جمع نہیں کرتے۔ اشتہارات Google AdMob سے آتے ہیں اور رضامندی فارم میں قبول کرنے کے بعد ہی دکھائے جاتے ہیں؛ آپ ترتیبات میں کبھی بھی تبدیل کر سکتے ہیں۔ ”آن لائن تلاش“ صرف لکھا ہوا لفظ ویکشنری کو بھیجتی ہے۔ 13 سال اور اوپر کے لیے۔';
 
   @override
-  String get aboutBody =>
-      'اطالیہ میں رہنے والوں کے لیے ایک چھوٹی، ایماندار ایپ: لفظ تلاش کریں، روز دس نئے الفاظ سیکھیں اور ڈرائیونگ ٹیسٹ کی طرح خود کو آزمائیں۔ سب کچھ آف لائن چلتا ہے، بغیر اکاؤنٹ۔';
+  String get aboutBody => 'اطالیہ میں رہنے والوں کے لیے ایک چھوٹی، ایماندار ایپ: لفظ تلاش کریں، روز دس نئے الفاظ سیکھیں اور ڈرائیونگ ٹیسٹ کی طرح خود کو آزمائیں۔ سب کچھ آف لائن چلتا ہے، بغیر اکاؤنٹ۔';
 
   @override
-  String get creditsBody =>
-      'اس ایپ کے تراجم اور مثالی جملے ہاتھ سے لکھے اور جانچے گئے ہیں۔ الفاظ کی فہرستیں کھلے ذرائع سے ملائی گئیں: Wiktionary اور Wikizionario (CC BY-SA 4.0)، Tatoeba کے جملے (CC BY 2.0 FR) اور Open Multilingual Wordnet۔ تصاویر Google Noto Emoji (Apache 2.0) سے ہیں۔ اطالوی تلفظ آپ کے فون کی ٹیکسٹ ٹو اسپیچ سے آتا ہے۔';
+  String get creditsBody => 'اس ایپ کے تراجم اور مثالی جملے ہاتھ سے لکھے اور جانچے گئے ہیں۔ الفاظ کی فہرستیں کھلے ذرائع سے ملائی گئیں: Wiktionary اور Wikizionario (CC BY-SA 4.0)، Tatoeba کے جملے (CC BY 2.0 FR) اور Open Multilingual Wordnet۔ تصاویر Google Noto Emoji (Apache 2.0) سے ہیں۔ اطالوی تلفظ آپ کے فون کی ٹیکسٹ ٹو اسپیچ سے آتا ہے۔';
 
   @override
   String get dataCoverage => 'اس ورژن میں الفاظ کی فہرست';
@@ -336,8 +327,7 @@ class AppLocalizationsUr extends AppLocalizations {
   String get mascotTryAgain => 'آگے بڑھیں!';
 
   @override
-  String get adsTestIdsNotice =>
-      'سیٹ اپ ضروری: اشتہارات ابھی Google کی ٹیسٹ آئی ڈی استعمال کرتے ہیں۔ کمائی کے لیے اصل AdMob آئی ڈی لگائیں۔';
+  String get adsTestIdsNotice => 'سیٹ اپ ضروری: اشتہارات ابھی Google کی ٹیسٹ آئی ڈی استعمال کرتے ہیں۔ کمائی کے لیے اصل AdMob آئی ڈی لگائیں۔';
 
   @override
   String get demoBadge => 'ڈیمو مواد';
@@ -496,8 +486,7 @@ class AppLocalizationsUr extends AppLocalizations {
   String get moreLanguages => 'مزید زبانیں';
 
   @override
-  String get languageNoteWordTranslations =>
-      'الفاظ کے تراجم دس بنیادی زبانوں میں ہیں؛ باقی انٹرفیس زبانوں میں انگریزی دکھائی جاتی ہے۔';
+  String get languageNoteWordTranslations => 'الفاظ کے تراجم دس بنیادی زبانوں میں ہیں؛ باقی انٹرفیس زبانوں میں انگریزی دکھائی جاتی ہے۔';
 
   @override
   String get bigPreparing => 'Preparing the dictionary…';
@@ -555,8 +544,7 @@ class AppLocalizationsUr extends AppLocalizations {
   String get bigDictTitle => 'Big dictionary';
 
   @override
-  String get bigDictCredits =>
-      'The big dictionary of Italian words (over 100,000 words when complete) comes from Wiktionary, through kaikki.org, under the CC BY-SA 4.0 licence. The meanings in the ten languages were prepared for this app from the Wiktionary definitions.';
+  String get bigDictCredits => 'The big dictionary of Italian words (over 100,000 words when complete) comes from Wiktionary, through kaikki.org, under the CC BY-SA 4.0 licence. The meanings in the ten languages were prepared for this app from the Wiktionary definitions.';
 
   @override
   String get bigSearchingOnline => 'Searching online…';
@@ -565,6 +553,5 @@ class AppLocalizationsUr extends AppLocalizations {
   String get bigNotAllowed => 'This word cannot be added to the dictionary.';
 
   @override
-  String get bigNotFoundOnline =>
-      'Not found online either: check how you wrote it.';
+  String get bigNotFoundOnline => 'Not found online either: check how you wrote it.';
 }

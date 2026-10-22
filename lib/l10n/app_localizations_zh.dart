@@ -9,7 +9,7 @@ class AppLocalizationsZh extends AppLocalizations {
   AppLocalizationsZh([String locale = 'zh']) : super(locale);
 
   @override
-  String get appTitle => 'Italian Words: Learn & Play';
+  String get appTitle => 'Italiano Facile per Stranieri';
 
   @override
   String get tabSearch => '搜索';
@@ -306,20 +306,16 @@ class AppLocalizationsZh extends AppLocalizations {
   String get voiceHelpTitle => '安装意大利语语音';
 
   @override
-  String get voiceHelpBody =>
-      '你的手机还没有意大利语语音。打开 设置 › 系统 › 语言 › 文字转语音，选择 Google 引擎并安装意大利语。阅读单词仍然可用。';
+  String get voiceHelpBody => '你的手机还没有意大利语语音。打开 设置 › 系统 › 语言 › 文字转语音，选择 Google 引擎并安装意大利语。阅读单词仍然可用。';
 
   @override
-  String get privacyBody =>
-      '本应用可离线使用，无需登录。你的学习进度、收藏单词和设置只保存在手机本地。我们绝不收集你的姓名、邮箱或位置。广告来自 Google AdMob，只有在你于授权表单中同意后才会显示；你可以随时在设置中更改选择。“在线搜索”仅把你输入的单词发送给维基词典。适合 13 岁以上。';
+  String get privacyBody => '本应用可离线使用，无需登录。你的学习进度、收藏单词和设置只保存在手机本地。我们绝不收集你的姓名、邮箱或位置。广告来自 Google AdMob，只有在你于授权表单中同意后才会显示；你可以随时在设置中更改选择。“在线搜索”仅把你输入的单词发送给维基词典。适合 13 岁以上。';
 
   @override
-  String get aboutBody =>
-      '一款为在意大利生活的人做的小而实在的应用：查一个词，每天学十个新词，并像考驾照那样自测。全部离线可用，无需账号。';
+  String get aboutBody => '一款为在意大利生活的人做的小而实在的应用：查一个词，每天学十个新词，并像考驾照那样自测。全部离线可用，无需账号。';
 
   @override
-  String get creditsBody =>
-      '本应用的翻译与例句均由人工撰写并校对。词表与开放来源逐条核对：Wiktionary 与 Wikizionario（CC BY-SA 4.0）、Tatoeba 例句（CC BY 2.0 FR）以及 Open Multilingual Wordnet。图片使用 Google Noto Emoji（Apache 2.0）。意大利语发音使用手机自带的文字转语音。';
+  String get creditsBody => '本应用的翻译与例句均由人工撰写并校对。词表与开放来源逐条核对：Wiktionary 与 Wikizionario（CC BY-SA 4.0）、Tatoeba 例句（CC BY 2.0 FR）以及 Open Multilingual Wordnet。图片使用 Google Noto Emoji（Apache 2.0）。意大利语发音使用手机自带的文字转语音。';
 
   @override
   String get dataCoverage => '本版本的词表';
@@ -331,8 +327,7 @@ class AppLocalizationsZh extends AppLocalizations {
   String get mascotTryAgain => '继续加油！';
 
   @override
-  String get adsTestIdsNotice =>
-      '需要设置：广告仍在使用 Google 的测试 ID。请填入真实的 AdMob ID 才能获得收入。';
+  String get adsTestIdsNotice => '需要设置：广告仍在使用 Google 的测试 ID。请填入真实的 AdMob ID 才能获得收入。';
 
   @override
   String get demoBadge => '演示内容';
@@ -549,8 +544,7 @@ class AppLocalizationsZh extends AppLocalizations {
   String get bigDictTitle => 'Big dictionary';
 
   @override
-  String get bigDictCredits =>
-      'The big dictionary of Italian words (over 100,000 words when complete) comes from Wiktionary, through kaikki.org, under the CC BY-SA 4.0 licence. The meanings in the ten languages were prepared for this app from the Wiktionary definitions.';
+  String get bigDictCredits => 'The big dictionary of Italian words (over 100,000 words when complete) comes from Wiktionary, through kaikki.org, under the CC BY-SA 4.0 licence. The meanings in the ten languages were prepared for this app from the Wiktionary definitions.';
 
   @override
   String get bigSearchingOnline => 'Searching online…';
@@ -559,6 +553,5 @@ class AppLocalizationsZh extends AppLocalizations {
   String get bigNotAllowed => 'This word cannot be added to the dictionary.';
 
   @override
-  String get bigNotFoundOnline =>
-      'Not found online either: check how you wrote it.';
+  String get bigNotFoundOnline => 'Not found online either: check how you wrote it.';
 }

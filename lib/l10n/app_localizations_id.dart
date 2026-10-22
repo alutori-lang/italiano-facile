@@ -9,7 +9,7 @@ class AppLocalizationsId extends AppLocalizations {
   AppLocalizationsId([String locale = 'id']) : super(locale);
 
   @override
-  String get appTitle => 'Italian Words: Learn & Play';
+  String get appTitle => 'Italiano Facile per Stranieri';
 
   @override
   String get tabSearch => 'Cari';
@@ -101,8 +101,7 @@ class AppLocalizationsId extends AppLocalizations {
   String get searchingOnline => 'Mencari online…';
 
   @override
-  String get offlineNotice =>
-      'Anda offline. Semua kata di aplikasi tetap bisa dipakai.';
+  String get offlineNotice => 'Anda offline. Semua kata di aplikasi tetap bisa dipakai.';
 
   @override
   String get onlineResultTitle => 'Dari Wiktionary';
@@ -114,8 +113,7 @@ class AppLocalizationsId extends AppLocalizations {
   String get removeFromMyWords => 'Hapus dari kata saya';
 
   @override
-  String get myWordsEmpty =>
-      'Belum ada kata tersimpan. Gunakan “Tambah ke kata saya” di Cari.';
+  String get myWordsEmpty => 'Belum ada kata tersimpan. Gunakan “Tambah ke kata saya” di Cari.';
 
   @override
   String get quizOnMyWords => 'Kuis kata saya';
@@ -214,8 +212,7 @@ class AppLocalizationsId extends AppLocalizations {
   }
 
   @override
-  String get quizNotEnoughWords =>
-      'Kategori ini butuh lebih banyak kata untuk kuis.';
+  String get quizNotEnoughWords => 'Kategori ini butuh lebih banyak kata untuk kuis.';
 
   @override
   String get topicsSubtitle => 'Belajar per kategori';
@@ -279,8 +276,7 @@ class AppLocalizationsId extends AppLocalizations {
   String get removeAds => 'Hapus iklan';
 
   @override
-  String get removeAdsBody =>
-      'Sekali bayar, tanpa iklan selamanya. Semua kata, topik, dan kuis tetap gratis.';
+  String get removeAdsBody => 'Sekali bayar, tanpa iklan selamanya. Semua kata, topik, dan kuis tetap gratis.';
 
   @override
   String get buy => 'Beli';
@@ -301,8 +297,7 @@ class AppLocalizationsId extends AppLocalizations {
   String get nothingToRestore => 'Tidak ada pembelian sebelumnya.';
 
   @override
-  String get webPurchaseNotice =>
-      'Pembelian tersedia di aplikasi Android dan iPhone.';
+  String get webPurchaseNotice => 'Pembelian tersedia di aplikasi Android dan iPhone.';
 
   @override
   String get storeUnavailable => 'Toko tidak tersedia saat ini.';
@@ -311,20 +306,16 @@ class AppLocalizationsId extends AppLocalizations {
   String get voiceHelpTitle => 'Pasang suara Italia';
 
   @override
-  String get voiceHelpBody =>
-      'Ponsel Anda belum memiliki suara Italia. Buka Pengaturan › Sistem › Bahasa › Teks ke ucapan, pilih mesin Google dan pasang bahasa Italia. Membaca kata tetap bisa.';
+  String get voiceHelpBody => 'Ponsel Anda belum memiliki suara Italia. Buka Pengaturan › Sistem › Bahasa › Teks ke ucapan, pilih mesin Google dan pasang bahasa Italia. Membaca kata tetap bisa.';
 
   @override
-  String get privacyBody =>
-      'Aplikasi ini bekerja offline dan tanpa login. Kemajuan, kata tersimpan, dan pengaturan Anda hanya tersimpan di ponsel. Kami tidak pernah mengumpulkan nama, e-mail, atau lokasi. Iklan berasal dari Google AdMob dan hanya tampil setelah Anda setuju pada formulir izin; Anda dapat mengubahnya di Pengaturan. “Cari online” hanya mengirim kata yang Anda tulis ke Wiktionary. Untuk usia 13+.';
+  String get privacyBody => 'Aplikasi ini bekerja offline dan tanpa login. Kemajuan, kata tersimpan, dan pengaturan Anda hanya tersimpan di ponsel. Kami tidak pernah mengumpulkan nama, e-mail, atau lokasi. Iklan berasal dari Google AdMob dan hanya tampil setelah Anda setuju pada formulir izin; Anda dapat mengubahnya di Pengaturan. “Cari online” hanya mengirim kata yang Anda tulis ke Wiktionary. Untuk usia 13+.';
 
   @override
-  String get aboutBody =>
-      'Aplikasi kecil dan jujur untuk Anda yang tinggal di Italia: cari sebuah kata, pelajari sepuluh kata baru setiap hari, dan uji diri seperti tes SIM. Semua bekerja offline, tanpa akun.';
+  String get aboutBody => 'Aplikasi kecil dan jujur untuk Anda yang tinggal di Italia: cari sebuah kata, pelajari sepuluh kata baru setiap hari, dan uji diri seperti tes SIM. Semua bekerja offline, tanpa akun.';
 
   @override
-  String get creditsBody =>
-      'Terjemahan dan contoh kalimat ditulis serta diperiksa secara manual untuk aplikasi ini. Daftar kata dibandingkan dengan sumber terbuka: Wiktionary dan Wikizionario (CC BY-SA 4.0), kalimat Tatoeba (CC BY 2.0 FR), dan Open Multilingual Wordnet. Gambar memakai Google Noto Emoji (Apache 2.0). Pelafalan Italia memakai teks-ke-ucapan ponsel Anda.';
+  String get creditsBody => 'Terjemahan dan contoh kalimat ditulis serta diperiksa secara manual untuk aplikasi ini. Daftar kata dibandingkan dengan sumber terbuka: Wiktionary dan Wikizionario (CC BY-SA 4.0), kalimat Tatoeba (CC BY 2.0 FR), dan Open Multilingual Wordnet. Gambar memakai Google Noto Emoji (Apache 2.0). Pelafalan Italia memakai teks-ke-ucapan ponsel Anda.';
 
   @override
   String get dataCoverage => 'Daftar kata di versi ini';
@@ -336,8 +327,7 @@ class AppLocalizationsId extends AppLocalizations {
   String get mascotTryAgain => 'Terus semangat!';
 
   @override
-  String get adsTestIdsNotice =>
-      'Perlu disiapkan: iklan masih memakai id uji Google. Tempel id AdMob asli agar menghasilkan.';
+  String get adsTestIdsNotice => 'Perlu disiapkan: iklan masih memakai id uji Google. Tempel id AdMob asli agar menghasilkan.';
 
   @override
   String get demoBadge => 'Konten demo';
@@ -496,8 +486,7 @@ class AppLocalizationsId extends AppLocalizations {
   String get moreLanguages => 'Bahasa lain';
 
   @override
-  String get languageNoteWordTranslations =>
-      'Terjemahan kata tersedia dalam sepuluh bahasa utama; bahasa antarmuka lain memakai bahasa Inggris.';
+  String get languageNoteWordTranslations => 'Terjemahan kata tersedia dalam sepuluh bahasa utama; bahasa antarmuka lain memakai bahasa Inggris.';
 
   @override
   String get bigPreparing => 'Preparing the dictionary…';
@@ -555,8 +544,7 @@ class AppLocalizationsId extends AppLocalizations {
   String get bigDictTitle => 'Big dictionary';
 
   @override
-  String get bigDictCredits =>
-      'The big dictionary of Italian words (over 100,000 words when complete) comes from Wiktionary, through kaikki.org, under the CC BY-SA 4.0 licence. The meanings in the ten languages were prepared for this app from the Wiktionary definitions.';
+  String get bigDictCredits => 'The big dictionary of Italian words (over 100,000 words when complete) comes from Wiktionary, through kaikki.org, under the CC BY-SA 4.0 licence. The meanings in the ten languages were prepared for this app from the Wiktionary definitions.';
 
   @override
   String get bigSearchingOnline => 'Searching online…';
@@ -565,6 +553,5 @@ class AppLocalizationsId extends AppLocalizations {
   String get bigNotAllowed => 'This word cannot be added to the dictionary.';
 
   @override
-  String get bigNotFoundOnline =>
-      'Not found online either: check how you wrote it.';
+  String get bigNotFoundOnline => 'Not found online either: check how you wrote it.';
 }

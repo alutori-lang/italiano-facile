@@ -9,7 +9,7 @@ class AppLocalizationsDe extends AppLocalizations {
   AppLocalizationsDe([String locale = 'de']) : super(locale);
 
   @override
-  String get appTitle => 'Italian Words: Learn & Play';
+  String get appTitle => 'Italiano Facile per Stranieri';
 
   @override
   String get tabSearch => 'Suchen';
@@ -101,8 +101,7 @@ class AppLocalizationsDe extends AppLocalizations {
   String get searchingOnline => 'Suche online…';
 
   @override
-  String get offlineNotice =>
-      'Sie sind offline. Alle Wörter in der App funktionieren weiterhin.';
+  String get offlineNotice => 'Sie sind offline. Alle Wörter in der App funktionieren weiterhin.';
 
   @override
   String get onlineResultTitle => 'Aus dem Wiktionary';
@@ -114,8 +113,7 @@ class AppLocalizationsDe extends AppLocalizations {
   String get removeFromMyWords => 'Aus meinen Wörtern entfernen';
 
   @override
-  String get myWordsEmpty =>
-      'Noch keine gespeicherten Wörter. Nutzen Sie „Zu meinen Wörtern“ in der Suche.';
+  String get myWordsEmpty => 'Noch keine gespeicherten Wörter. Nutzen Sie „Zu meinen Wörtern“ in der Suche.';
 
   @override
   String get quizOnMyWords => 'Quiz mit meinen Wörtern';
@@ -214,8 +212,7 @@ class AppLocalizationsDe extends AppLocalizations {
   }
 
   @override
-  String get quizNotEnoughWords =>
-      'Diese Kategorie braucht mehr Wörter für ein Quiz.';
+  String get quizNotEnoughWords => 'Diese Kategorie braucht mehr Wörter für ein Quiz.';
 
   @override
   String get topicsSubtitle => 'Nach Kategorie lernen';
@@ -237,8 +234,7 @@ class AppLocalizationsDe extends AppLocalizations {
   String get quiz20 => 'Quiz 20';
 
   @override
-  String get flashcardTapToFlip =>
-      'Karte antippen, um die Übersetzung zu sehen';
+  String get flashcardTapToFlip => 'Karte antippen, um die Übersetzung zu sehen';
 
   @override
   String get interfaceLanguage => 'App-Sprache';
@@ -262,8 +258,7 @@ class AppLocalizationsDe extends AppLocalizations {
   String get resetProgress => 'Fortschritt zurücksetzen';
 
   @override
-  String get resetProgressConfirm =>
-      'Serie, Ergebnisse und gespeicherte Wörter löschen?';
+  String get resetProgressConfirm => 'Serie, Ergebnisse und gespeicherte Wörter löschen?';
 
   @override
   String get resetDone => 'Fortschritt zurückgesetzt';
@@ -281,8 +276,7 @@ class AppLocalizationsDe extends AppLocalizations {
   String get removeAds => 'Werbung entfernen';
 
   @override
-  String get removeAdsBody =>
-      'Eine Zahlung, nie wieder Werbung. Wörter, Themen und Quiz bleiben kostenlos.';
+  String get removeAdsBody => 'Eine Zahlung, nie wieder Werbung. Wörter, Themen und Quiz bleiben kostenlos.';
 
   @override
   String get buy => 'Kaufen';
@@ -303,8 +297,7 @@ class AppLocalizationsDe extends AppLocalizations {
   String get nothingToRestore => 'Kein früherer Kauf gefunden.';
 
   @override
-  String get webPurchaseNotice =>
-      'Käufe sind in der Android- und iPhone-App verfügbar.';
+  String get webPurchaseNotice => 'Käufe sind in der Android- und iPhone-App verfügbar.';
 
   @override
   String get storeUnavailable => 'Der Store ist gerade nicht verfügbar.';
@@ -313,20 +306,16 @@ class AppLocalizationsDe extends AppLocalizations {
   String get voiceHelpTitle => 'Italienische Stimme installieren';
 
   @override
-  String get voiceHelpBody =>
-      'Ihr Telefon hat noch keine italienische Stimme. Öffnen Sie Einstellungen › System › Sprachen › Text-in-Sprache, wählen Sie die Google-Engine und installieren Sie Italienisch. Das Lesen der Wörter funktioniert trotzdem.';
+  String get voiceHelpBody => 'Ihr Telefon hat noch keine italienische Stimme. Öffnen Sie Einstellungen › System › Sprachen › Text-in-Sprache, wählen Sie die Google-Engine und installieren Sie Italienisch. Das Lesen der Wörter funktioniert trotzdem.';
 
   @override
-  String get privacyBody =>
-      'Diese App funktioniert offline und ohne Anmeldung. Ihr Fortschritt, Ihre gespeicherten Wörter und Einstellungen bleiben nur auf Ihrem Telefon. Wir erfassen niemals Namen, E-Mail oder Standort. Werbung kommt von Google AdMob und wird nur nach Ihrer Zustimmung im Einwilligungsformular gezeigt; Sie können Ihre Wahl in den Einstellungen jederzeit ändern. „Online suchen“ sendet nur das eingegebene Wort an das Wiktionary. Ab 13 Jahren.';
+  String get privacyBody => 'Diese App funktioniert offline und ohne Anmeldung. Ihr Fortschritt, Ihre gespeicherten Wörter und Einstellungen bleiben nur auf Ihrem Telefon. Wir erfassen niemals Namen, E-Mail oder Standort. Werbung kommt von Google AdMob und wird nur nach Ihrer Zustimmung im Einwilligungsformular gezeigt; Sie können Ihre Wahl in den Einstellungen jederzeit ändern. „Online suchen“ sendet nur das eingegebene Wort an das Wiktionary. Ab 13 Jahren.';
 
   @override
-  String get aboutBody =>
-      'Eine kleine, ehrliche App für Menschen, die in Italien leben: ein Wort suchen, täglich zehn neue lernen und sich wie bei der Führerscheinprüfung testen. Alles funktioniert offline, ohne Konto.';
+  String get aboutBody => 'Eine kleine, ehrliche App für Menschen, die in Italien leben: ein Wort suchen, täglich zehn neue lernen und sich wie bei der Führerscheinprüfung testen. Alles funktioniert offline, ohne Konto.';
 
   @override
-  String get creditsBody =>
-      'Übersetzungen und Beispielsätze wurden für diese App von Hand geschrieben und geprüft. Die Wortlisten wurden mit offenen Quellen abgeglichen: Wiktionary und Wikizionario (CC BY-SA 4.0), Tatoeba-Sätze (CC BY 2.0 FR) und Open Multilingual Wordnet. Die Bilder nutzen Google Noto Emoji (Apache 2.0). Die italienische Aussprache nutzt die Sprachausgabe Ihres Telefons.';
+  String get creditsBody => 'Übersetzungen und Beispielsätze wurden für diese App von Hand geschrieben und geprüft. Die Wortlisten wurden mit offenen Quellen abgeglichen: Wiktionary und Wikizionario (CC BY-SA 4.0), Tatoeba-Sätze (CC BY 2.0 FR) und Open Multilingual Wordnet. Die Bilder nutzen Google Noto Emoji (Apache 2.0). Die italienische Aussprache nutzt die Sprachausgabe Ihres Telefons.';
 
   @override
   String get dataCoverage => 'Wortliste dieser Version';
@@ -338,8 +327,7 @@ class AppLocalizationsDe extends AppLocalizations {
   String get mascotTryAgain => 'Weiter so!';
 
   @override
-  String get adsTestIdsNotice =>
-      'Einrichtung nötig: Die Werbung nutzt noch Googles Test-IDs. Fügen Sie die echten AdMob-IDs ein, um zu verdienen.';
+  String get adsTestIdsNotice => 'Einrichtung nötig: Die Werbung nutzt noch Googles Test-IDs. Fügen Sie die echten AdMob-IDs ein, um zu verdienen.';
 
   @override
   String get demoBadge => 'Demo-Inhalt';
@@ -498,8 +486,7 @@ class AppLocalizationsDe extends AppLocalizations {
   String get moreLanguages => 'Weitere Sprachen';
 
   @override
-  String get languageNoteWordTranslations =>
-      'Wortübersetzungen gibt es in den zehn Hauptsprachen; andere Oberflächensprachen nutzen Englisch.';
+  String get languageNoteWordTranslations => 'Wortübersetzungen gibt es in den zehn Hauptsprachen; andere Oberflächensprachen nutzen Englisch.';
 
   @override
   String get bigPreparing => 'Preparing the dictionary…';
@@ -557,8 +544,7 @@ class AppLocalizationsDe extends AppLocalizations {
   String get bigDictTitle => 'Big dictionary';
 
   @override
-  String get bigDictCredits =>
-      'The big dictionary of Italian words (over 100,000 words when complete) comes from Wiktionary, through kaikki.org, under the CC BY-SA 4.0 licence. The meanings in the ten languages were prepared for this app from the Wiktionary definitions.';
+  String get bigDictCredits => 'The big dictionary of Italian words (over 100,000 words when complete) comes from Wiktionary, through kaikki.org, under the CC BY-SA 4.0 licence. The meanings in the ten languages were prepared for this app from the Wiktionary definitions.';
 
   @override
   String get bigSearchingOnline => 'Searching online…';
@@ -567,6 +553,5 @@ class AppLocalizationsDe extends AppLocalizations {
   String get bigNotAllowed => 'This word cannot be added to the dictionary.';
 
   @override
-  String get bigNotFoundOnline =>
-      'Not found online either: check how you wrote it.';
+  String get bigNotFoundOnline => 'Not found online either: check how you wrote it.';
 }

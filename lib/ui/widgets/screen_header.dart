@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../theme.dart';
+import 'tricolour_frame.dart';
 
 /// The header used at the top of every tab: a big title, a quiet subtitle and
 /// an optional pill on the end side.
@@ -31,6 +32,8 @@ class ScreenHeader extends StatelessWidget {
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
+          const AppLogo(),
+          const SizedBox(width: AppSpace.s + 2),
           Expanded(
             flex: 3,
             child: Column(

@@ -9,7 +9,7 @@ class AppLocalizationsIt extends AppLocalizations {
   AppLocalizationsIt([String locale = 'it']) : super(locale);
 
   @override
-  String get appTitle => 'Italian Words: Learn & Play';
+  String get appTitle => 'Italiano Facile per Stranieri';
 
   @override
   String get tabSearch => 'Cerca';
@@ -101,8 +101,7 @@ class AppLocalizationsIt extends AppLocalizations {
   String get searchingOnline => 'Ricerca online…';
 
   @override
-  String get offlineNotice =>
-      'Sei offline. Tutte le parole dell\'app funzionano comunque.';
+  String get offlineNotice => 'Sei offline. Tutte le parole dell\'app funzionano comunque.';
 
   @override
   String get onlineResultTitle => 'Da Wikizionario';
@@ -114,8 +113,7 @@ class AppLocalizationsIt extends AppLocalizations {
   String get removeFromMyWords => 'Togli dalle mie parole';
 
   @override
-  String get myWordsEmpty =>
-      'Ancora nessuna parola salvata. Usa “Aggiungi alle mie parole” nella Ricerca.';
+  String get myWordsEmpty => 'Ancora nessuna parola salvata. Usa “Aggiungi alle mie parole” nella Ricerca.';
 
   @override
   String get quizOnMyWords => 'Quiz sulle mie parole';
@@ -214,8 +212,7 @@ class AppLocalizationsIt extends AppLocalizations {
   }
 
   @override
-  String get quizNotEnoughWords =>
-      'Questa categoria ha bisogno di più parole per il quiz.';
+  String get quizNotEnoughWords => 'Questa categoria ha bisogno di più parole per il quiz.';
 
   @override
   String get topicsSubtitle => 'Impara per categoria';
@@ -261,8 +258,7 @@ class AppLocalizationsIt extends AppLocalizations {
   String get resetProgress => 'Azzera i progressi';
 
   @override
-  String get resetProgressConfirm =>
-      'Cancellare serie, punteggi e parole salvate?';
+  String get resetProgressConfirm => 'Cancellare serie, punteggi e parole salvate?';
 
   @override
   String get resetDone => 'Progressi azzerati';
@@ -280,8 +276,7 @@ class AppLocalizationsIt extends AppLocalizations {
   String get removeAds => 'Togli la pubblicità';
 
   @override
-  String get removeAdsBody =>
-      'Un solo pagamento, mai più pubblicità. Parole, argomenti e quiz restano gratis.';
+  String get removeAdsBody => 'Un solo pagamento, mai più pubblicità. Parole, argomenti e quiz restano gratis.';
 
   @override
   String get buy => 'Acquista';
@@ -299,35 +294,28 @@ class AppLocalizationsIt extends AppLocalizations {
   String get purchaseError => 'L\'acquisto non è andato a buon fine.';
 
   @override
-  String get nothingToRestore =>
-      'Richiesta inviata. Se avevi già comprato, la pubblicità sparisce tra pochi secondi.';
+  String get nothingToRestore => 'Richiesta inviata. Se avevi già comprato, la pubblicità sparisce tra pochi secondi.';
 
   @override
-  String get webPurchaseNotice =>
-      'Gli acquisti sono disponibili nell\'app Android e iPhone.';
+  String get webPurchaseNotice => 'Gli acquisti sono disponibili nell\'app Android e iPhone.';
 
   @override
-  String get storeUnavailable =>
-      'Lo store non è disponibile in questo momento.';
+  String get storeUnavailable => 'Lo store non è disponibile in questo momento.';
 
   @override
   String get voiceHelpTitle => 'Installa la voce italiana';
 
   @override
-  String get voiceHelpBody =>
-      'Il telefono non ha ancora una voce italiana. Apri Impostazioni › Sistema › Lingue › Sintesi vocale, scegli il motore Google e installa l\'italiano. Leggere le parole funziona comunque.';
+  String get voiceHelpBody => 'Il telefono non ha ancora una voce italiana. Apri Impostazioni › Sistema › Lingue › Sintesi vocale, scegli il motore Google e installa l\'italiano. Leggere le parole funziona comunque.';
 
   @override
-  String get privacyBody =>
-      'Questa app funziona offline e non richiede login. I tuoi progressi, le parole salvate e le impostazioni restano solo sul tuo telefono. Non raccogliamo nome, e-mail o posizione. La pubblicità viene da Google AdMob e viene mostrata solo dopo la tua accettazione nel modulo di consenso; puoi cambiare scelta quando vuoi nelle Impostazioni. “Cerca online” invia a Wikizionario solo la parola digitata. Per età 13+.';
+  String get privacyBody => 'Questa app funziona offline e non richiede login. I tuoi progressi, le parole salvate e le impostazioni restano solo sul tuo telefono. Non raccogliamo nome, e-mail o posizione. La pubblicità viene da Google AdMob e viene mostrata solo dopo la tua accettazione nel modulo di consenso; puoi cambiare scelta quando vuoi nelle Impostazioni. “Cerca online” invia a Wikizionario solo la parola digitata. Per età 13+.';
 
   @override
-  String get aboutBody =>
-      'Un\'app piccola e onesta per chi vive in Italia: cerca una parola, impara dieci parole nuove al giorno e mettiti alla prova come nel quiz della patente. Tutto funziona offline, senza account.';
+  String get aboutBody => 'Un\'app piccola e onesta per chi vive in Italia: cerca una parola, impara dieci parole nuove al giorno e mettiti alla prova come nel quiz della patente. Tutto funziona offline, senza account.';
 
   @override
-  String get creditsBody =>
-      'Le traduzioni e le frasi di esempio sono scritte e controllate a mano per questa app. Gli elenchi di parole sono stati confrontati con fonti aperte: Wiktionary e Wikizionario (CC BY-SA 4.0), frasi di Tatoeba (CC BY 2.0 FR) e Open Multilingual Wordnet. Le immagini usano Google Noto Emoji (Apache 2.0). La pronuncia italiana usa la sintesi vocale del telefono.';
+  String get creditsBody => 'Le traduzioni e le frasi di esempio sono scritte e controllate a mano per questa app. Gli elenchi di parole sono stati confrontati con fonti aperte: Wiktionary e Wikizionario (CC BY-SA 4.0), frasi di Tatoeba (CC BY 2.0 FR) e Open Multilingual Wordnet. Le immagini usano Google Noto Emoji (Apache 2.0). La pronuncia italiana usa la sintesi vocale del telefono.';
 
   @override
   String get dataCoverage => 'Elenco di parole in questa versione';
@@ -339,8 +327,7 @@ class AppLocalizationsIt extends AppLocalizations {
   String get mascotTryAgain => 'Dai, continua!';
 
   @override
-  String get adsTestIdsNotice =>
-      'Configurazione necessaria: la pubblicità usa ancora gli id di test di Google. Incolla gli id AdMob reali per guadagnare.';
+  String get adsTestIdsNotice => 'Configurazione necessaria: la pubblicità usa ancora gli id di test di Google. Incolla gli id AdMob reali per guadagnare.';
 
   @override
   String get demoBadge => 'Contenuto dimostrativo';
@@ -499,8 +486,7 @@ class AppLocalizationsIt extends AppLocalizations {
   String get moreLanguages => 'Altre lingue';
 
   @override
-  String get languageNoteWordTranslations =>
-      'Scegli la tua lingua: vedrai il significato delle parole italiane in questa lingua e potrai cercare scrivendo in questa lingua.';
+  String get languageNoteWordTranslations => 'Scegli la tua lingua: vedrai il significato delle parole italiane in questa lingua e potrai cercare scrivendo in questa lingua.';
 
   @override
   String get bigPreparing => 'Preparazione del dizionario…';
@@ -558,17 +544,14 @@ class AppLocalizationsIt extends AppLocalizations {
   String get bigDictTitle => 'Grande dizionario';
 
   @override
-  String get bigDictCredits =>
-      'Il grande dizionario delle parole italiane (oltre 100.000 parole a lavoro finito) viene da Wiktionary, tramite kaikki.org, con licenza CC BY-SA 4.0. I significati nelle dieci lingue sono stati preparati per questa app a partire dalle definizioni di Wiktionary.';
+  String get bigDictCredits => 'Il grande dizionario delle parole italiane (oltre 100.000 parole a lavoro finito) viene da Wiktionary, tramite kaikki.org, con licenza CC BY-SA 4.0. I significati nelle dieci lingue sono stati preparati per questa app a partire dalle definizioni di Wiktionary.';
 
   @override
   String get bigSearchingOnline => 'Sto cercando online…';
 
   @override
-  String get bigNotAllowed =>
-      'Questa parola non si può aggiungere al dizionario.';
+  String get bigNotAllowed => 'Questa parola non si può aggiungere al dizionario.';
 
   @override
-  String get bigNotFoundOnline =>
-      'Non l\'abbiamo trovata nemmeno online: controlla come l\'hai scritta.';
+  String get bigNotFoundOnline => 'Non l\'abbiamo trovata nemmeno online: controlla come l\'hai scritta.';
 }

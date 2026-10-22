@@ -9,7 +9,7 @@ class AppLocalizationsHi extends AppLocalizations {
   AppLocalizationsHi([String locale = 'hi']) : super(locale);
 
   @override
-  String get appTitle => 'Italian Words: Learn & Play';
+  String get appTitle => 'Italiano Facile per Stranieri';
 
   @override
   String get tabSearch => 'खोज';
@@ -101,8 +101,7 @@ class AppLocalizationsHi extends AppLocalizations {
   String get searchingOnline => 'ऑनलाइन खोज रहे हैं…';
 
   @override
-  String get offlineNotice =>
-      'आप ऑफ़लाइन हैं। ऐप के सभी शब्द फिर भी काम करते हैं।';
+  String get offlineNotice => 'आप ऑफ़लाइन हैं। ऐप के सभी शब्द फिर भी काम करते हैं।';
 
   @override
   String get onlineResultTitle => 'विक्शनरी से';
@@ -114,8 +113,7 @@ class AppLocalizationsHi extends AppLocalizations {
   String get removeFromMyWords => 'मेरे शब्दों से हटाएँ';
 
   @override
-  String get myWordsEmpty =>
-      'अभी कोई शब्द सहेजा नहीं गया। खोज में “मेरे शब्दों में जोड़ें” दबाएँ।';
+  String get myWordsEmpty => 'अभी कोई शब्द सहेजा नहीं गया। खोज में “मेरे शब्दों में जोड़ें” दबाएँ।';
 
   @override
   String get quizOnMyWords => 'मेरे शब्दों का क्विज़';
@@ -278,8 +276,7 @@ class AppLocalizationsHi extends AppLocalizations {
   String get removeAds => 'विज्ञापन हटाएँ';
 
   @override
-  String get removeAdsBody =>
-      'एक बार भुगतान, फिर कोई विज्ञापन नहीं। सभी शब्द, विषय और क्विज़ मुफ़्त रहते हैं।';
+  String get removeAdsBody => 'एक बार भुगतान, फिर कोई विज्ञापन नहीं। सभी शब्द, विषय और क्विज़ मुफ़्त रहते हैं।';
 
   @override
   String get buy => 'खरीदें';
@@ -309,20 +306,16 @@ class AppLocalizationsHi extends AppLocalizations {
   String get voiceHelpTitle => 'इतालवी आवाज़ इंस्टॉल करें';
 
   @override
-  String get voiceHelpBody =>
-      'आपके फ़ोन में इतालवी आवाज़ नहीं है। सेटिंग्स › सिस्टम › भाषाएँ › टेक्स्ट-टू-स्पीच खोलें, Google इंजन चुनें और इतालवी इंस्टॉल करें। शब्द पढ़ना फिर भी काम करता है।';
+  String get voiceHelpBody => 'आपके फ़ोन में इतालवी आवाज़ नहीं है। सेटिंग्स › सिस्टम › भाषाएँ › टेक्स्ट-टू-स्पीच खोलें, Google इंजन चुनें और इतालवी इंस्टॉल करें। शब्द पढ़ना फिर भी काम करता है।';
 
   @override
-  String get privacyBody =>
-      'यह ऐप ऑफ़लाइन चलता है और लॉगिन नहीं मांगता। आपकी प्रगति, सहेजे शब्द और सेटिंग्स केवल आपके फ़ोन पर रहती हैं। हम नाम, ई-मेल या लोकेशन कभी नहीं लेते। विज्ञापन Google AdMob से आते हैं और सहमति फ़ॉर्म में स्वीकार करने के बाद ही दिखते हैं; आप सेटिंग्स में कभी भी बदल सकते हैं। “ऑनलाइन खोजें” केवल लिखा शब्द विक्शनरी को भेजता है। 13+ के लिए।';
+  String get privacyBody => 'यह ऐप ऑफ़लाइन चलता है और लॉगिन नहीं मांगता। आपकी प्रगति, सहेजे शब्द और सेटिंग्स केवल आपके फ़ोन पर रहती हैं। हम नाम, ई-मेल या लोकेशन कभी नहीं लेते। विज्ञापन Google AdMob से आते हैं और सहमति फ़ॉर्म में स्वीकार करने के बाद ही दिखते हैं; आप सेटिंग्स में कभी भी बदल सकते हैं। “ऑनलाइन खोजें” केवल लिखा शब्द विक्शनरी को भेजता है। 13+ के लिए।';
 
   @override
-  String get aboutBody =>
-      'इटली में रहने वालों के लिए एक छोटा, ईमानदार ऐप: शब्द खोजें, रोज़ दस नए शब्द सीखें और ड्राइविंग टेस्ट जैसे खुद को परखें। सब कुछ ऑफ़लाइन चलता है, बिना अकाउंट।';
+  String get aboutBody => 'इटली में रहने वालों के लिए एक छोटा, ईमानदार ऐप: शब्द खोजें, रोज़ दस नए शब्द सीखें और ड्राइविंग टेस्ट जैसे खुद को परखें। सब कुछ ऑफ़लाइन चलता है, बिना अकाउंट।';
 
   @override
-  String get creditsBody =>
-      'इस ऐप के अनुवाद और उदाहरण वाक्य हाथ से लिखे और जाँचे गए हैं। शब्द सूचियाँ खुले स्रोतों से मिलाई गईं: Wiktionary और Wikizionario (CC BY-SA 4.0), Tatoeba वाक्य (CC BY 2.0 FR) और Open Multilingual Wordnet। चित्र Google Noto Emoji (Apache 2.0) के हैं। इतालवी उच्चारण फ़ोन की टेक्स्ट-टू-स्पीच से आता है।';
+  String get creditsBody => 'इस ऐप के अनुवाद और उदाहरण वाक्य हाथ से लिखे और जाँचे गए हैं। शब्द सूचियाँ खुले स्रोतों से मिलाई गईं: Wiktionary और Wikizionario (CC BY-SA 4.0), Tatoeba वाक्य (CC BY 2.0 FR) और Open Multilingual Wordnet। चित्र Google Noto Emoji (Apache 2.0) के हैं। इतालवी उच्चारण फ़ोन की टेक्स्ट-टू-स्पीच से आता है।';
 
   @override
   String get dataCoverage => 'इस संस्करण की शब्द सूची';
@@ -334,8 +327,7 @@ class AppLocalizationsHi extends AppLocalizations {
   String get mascotTryAgain => 'चलते रहो!';
 
   @override
-  String get adsTestIdsNotice =>
-      'सेटअप ज़रूरी: विज्ञापन अभी Google की टेस्ट आईडी इस्तेमाल करते हैं। कमाई के लिए असली AdMob आईडी डालें।';
+  String get adsTestIdsNotice => 'सेटअप ज़रूरी: विज्ञापन अभी Google की टेस्ट आईडी इस्तेमाल करते हैं। कमाई के लिए असली AdMob आईडी डालें।';
 
   @override
   String get demoBadge => 'डेमो सामग्री';
@@ -494,8 +486,7 @@ class AppLocalizationsHi extends AppLocalizations {
   String get moreLanguages => 'और भाषाएँ';
 
   @override
-  String get languageNoteWordTranslations =>
-      'शब्दों के अनुवाद दस मुख्य भाषाओं में हैं; बाकी इंटरफ़ेस भाषाओं में अंग्रेज़ी दिखती है।';
+  String get languageNoteWordTranslations => 'शब्दों के अनुवाद दस मुख्य भाषाओं में हैं; बाकी इंटरफ़ेस भाषाओं में अंग्रेज़ी दिखती है।';
 
   @override
   String get bigPreparing => 'Preparing the dictionary…';
@@ -553,8 +544,7 @@ class AppLocalizationsHi extends AppLocalizations {
   String get bigDictTitle => 'Big dictionary';
 
   @override
-  String get bigDictCredits =>
-      'The big dictionary of Italian words (over 100,000 words when complete) comes from Wiktionary, through kaikki.org, under the CC BY-SA 4.0 licence. The meanings in the ten languages were prepared for this app from the Wiktionary definitions.';
+  String get bigDictCredits => 'The big dictionary of Italian words (over 100,000 words when complete) comes from Wiktionary, through kaikki.org, under the CC BY-SA 4.0 licence. The meanings in the ten languages were prepared for this app from the Wiktionary definitions.';
 
   @override
   String get bigSearchingOnline => 'Searching online…';
@@ -563,6 +553,5 @@ class AppLocalizationsHi extends AppLocalizations {
   String get bigNotAllowed => 'This word cannot be added to the dictionary.';
 
   @override
-  String get bigNotFoundOnline =>
-      'Not found online either: check how you wrote it.';
+  String get bigNotFoundOnline => 'Not found online either: check how you wrote it.';
 }
