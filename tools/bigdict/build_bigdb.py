@@ -173,6 +173,18 @@ def main(data_dir, app_dir):
                 (w, k, 'phrase', None, None, tr[0], None, None,
                  SEP.join(tr), json.dumps(rom, ensure_ascii=False), 500000))
             n_entries += 1
+            rows = set()
+            for slot, meaning in enumerate(tr):
+                for v in variants(meaning):
+                    kk = norm(v)
+                    if kk:
+                        rows.add((kk, slot))
+            for lang, slot in ROM_SLOT.items():
+                for v in str(rom.get(lang, '')).split('|'):
+                    kk = romkey(v)
+                    if kk:
+                        rows.add((kk, slot))
+            n_keys += len(rows)
     n_forms = 0
     seen = set()
     for fname in ('forms.tsv', 'forms_extra.tsv'):

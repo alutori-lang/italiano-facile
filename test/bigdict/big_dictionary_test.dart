@@ -379,10 +379,16 @@ void main() {
     expect(
         (await on.lookup('zzparolanuova', LearnerLanguage.urdu)).first.entry.it,
         'zzparolanuova');
-    expect((await on.lookup('نیا لفظ', LearnerLanguage.urdu)).first.entry.it,
-        'zzparolanuova');
-    expect((await on.lookup('naya lafz', LearnerLanguage.urdu)).first.entry.it,
-        'zzparolanuova');
+    // Real dictionary words may share the meaning ("neoformazione"), so
+    // the learned word must be among the answers, not necessarily first.
+    expect(
+        (await on.lookup('نیا لفظ', LearnerLanguage.urdu))
+            .map((BigHit h) => h.entry.it),
+        contains('zzparolanuova'));
+    expect(
+        (await on.lookup('naya lafz', LearnerLanguage.urdu))
+            .map((BigHit h) => h.entry.it),
+        contains('zzparolanuova'));
     expect((await on.askServer('parolaccia', LearnerLanguage.urdu)).status,
         ServerLookupStatus.notAllowed);
     expect((await on.askServer('xqzw', LearnerLanguage.urdu)).status,
@@ -399,9 +405,15 @@ void main() {
         (await on.lookup('second page', LearnerLanguage.urdu))
             .map((BigHit h) => h.entry.it),
         contains('zzseconda'));
-    expect(await on.lookup('zzparolanuova', LearnerLanguage.urdu), isEmpty,
+    expect(
+        (await on.lookup('zzparolanuova', LearnerLanguage.urdu))
+            .map((BigHit h) => h.entry.it),
+        isNot(contains('zzparolanuova')),
         reason: 'removed on the server');
-    expect(await on.lookup('naya lafz', LearnerLanguage.urdu), isEmpty);
+    expect(
+        (await on.lookup('naya lafz', LearnerLanguage.urdu))
+            .map((BigHit h) => h.entry.it),
+        isNot(contains('zzparolanuova')));
     // Next sync starts from the saved `next`.
     await on.syncUpdates();
     expect(sinces.last, '3000');
