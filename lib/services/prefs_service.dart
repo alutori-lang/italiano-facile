@@ -29,6 +29,16 @@ class PrefsService {
   static const String kTodayDay = 'today_day';
   static const String kTodaySeen = 'today_seen';
   static const String kAdsRemoved = 'ads_removed';
+
+  /// How many times the app has been started (ads: no app open ad in the
+  /// very first session).
+  static const String kAdsLaunches = 'ads_launches';
+
+  /// When the last app open ad was shown (milliseconds since epoch).
+  static const String kAppOpenLast = 'ads_app_open_last';
+
+  /// "1 hour without ads" reward: when it ends (milliseconds since epoch).
+  static const String kNoAdsUntil = 'ads_no_ads_until';
   static const String kCorrectPrefix = 'correct_';
   static const String kBestPrefix = 'best_';
 
@@ -73,6 +83,9 @@ class PrefsService {
       kDark,
       kSlowAudio,
       kAdsRemoved,
+      kAdsLaunches,
+      kAppOpenLast,
+      kNoAdsUntil,
       kPersonalId,
       // The daily reminder is a setting, not progress: wiping it here would
       // turn the switch off on disk while the notification keeps firing.

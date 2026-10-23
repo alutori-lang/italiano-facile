@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../app_scope.dart';
 import '../l10n/app_localizations.dart';
 import '../ui/theme.dart';
+import '../ui/widgets/ad_banner_area.dart';
 import 'quiz_category_screen.dart';
 import 'search_screen.dart';
 import 'settings_screen.dart';
@@ -83,6 +84,9 @@ class _HomeShellState extends State<HomeShell> {
       bottomNavigationBar: Column(
         mainAxisSize: MainAxisSize.min,
         children: <Widget>[
+          // The one shared ad strip of the four tabs, above the bar: it is
+          // built once here, so switching tabs never reloads the banner.
+          const AdBannerArea(),
           // A thin Italian tricolour strip, as in the approved design.
           Row(
             children: AppColors.tricolour

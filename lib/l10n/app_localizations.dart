@@ -735,7 +735,7 @@ abstract class AppLocalizations {
   /// adsTestIdsNotice
   ///
   /// In en, this message translates to:
-  /// **'Setup needed: the ads still use Google\'s test ids. Paste the real AdMob ids to earn from them.'**
+  /// **'Debug build: the ads still use Google\'s test ids. The release build uses the real AdMob ids.'**
   String get adsTestIdsNotice;
 
   /// demoBadge
@@ -1181,6 +1181,54 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Not found online either: check how you wrote it.'**
   String get bigNotFoundOnline;
+
+  /// rewardNoAdsLink
+  ///
+  /// In en, this message translates to:
+  /// **'Remove ads for 1 hour (watch a video)'**
+  String get rewardNoAdsLink;
+
+  /// rewardNoAdsTitle
+  ///
+  /// In en, this message translates to:
+  /// **'1 hour without ads'**
+  String get rewardNoAdsTitle;
+
+  /// rewardNoAdsSubtitle
+  ///
+  /// In en, this message translates to:
+  /// **'Watch a short video: no ads for one hour.'**
+  String get rewardNoAdsSubtitle;
+
+  /// rewardNotAvailable
+  ///
+  /// In en, this message translates to:
+  /// **'Video not available, try again later'**
+  String get rewardNotAvailable;
+
+  /// rewardGranted
+  ///
+  /// In en, this message translates to:
+  /// **'Done! No ads for one hour.'**
+  String get rewardGranted;
+
+  /// rewardNotEarned
+  ///
+  /// In en, this message translates to:
+  /// **'Video closed early: watch it to the end to remove the ads.'**
+  String get rewardNotEarned;
+
+  /// noAdsActiveTitle
+  ///
+  /// In en, this message translates to:
+  /// **'Ads switched off'**
+  String get noAdsActiveTitle;
+
+  /// noAdsRemaining
+  ///
+  /// In en, this message translates to:
+  /// **'No ads for another {minutes} min'**
+  String noAdsRemaining(int minutes);
 }
 
 class _AppLocalizationsDelegate

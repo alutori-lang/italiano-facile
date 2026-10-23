@@ -45,12 +45,12 @@
 	<true/>
 	<key>UIApplicationSupportsIndirectInputEvents</key>
 	<true/>
-	<!-- AdMob application id. Replace with the real one from the AdMob
-	     console; this is Google's official TEST app id. -->
+	<!-- AdMob application id (real, publisher pub-9396424020196768).
+	     Debug builds still use Google's TEST ad units. -->
 	<key>GADApplicationIdentifier</key>
-	<string>ca-app-pub-3940256099942544~1458002511</string>
+	<string>ca-app-pub-9396424020196768~6384502911</string>
 	<key>NSUserTrackingUsageDescription</key>
-	<string>This identifier will be used to show you ads that are more relevant to you. You can keep using the app and all its words either way.</string>
+	<string>Questo identificativo serve solo a mostrarti pubblicità più adatta a te. Puoi usare l'app e tutte le sue parole in ogni caso, qualunque cosa scegli.</string>
 	<key>SKAdNetworkItems</key>
 	<array>
 		<dict>

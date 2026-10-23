@@ -11,15 +11,26 @@ import 'package:simple_flutter_app_651/ui/widgets/banner_ad_slot.dart';
 import '../support/pump_app.dart';
 
 void main() {
-  test('Ads: Google test ad ids are used until real ones are configured', () {
+  test('Ads: debug builds (and tests) use Google test ad units, release '
+      'builds the real AdMob ones', () {
+    expect(AdsConfig.usingTestIds, kDebugMode);
     expect(AdsConfig.usingTestIds, isTrue);
-    expect(AdsConfig.androidBanner, startsWith('ca-app-pub-3940256099942544'));
+    expect(AdsConfig.bannerUnitId, startsWith('ca-app-pub-3940256099942544/'));
     expect(
-      AdsConfig.androidInterstitial,
-      startsWith('ca-app-pub-3940256099942544'),
+      AdsConfig.interstitialUnitId,
+      startsWith('ca-app-pub-3940256099942544/'),
     );
-    expect(AdsConfig.androidAppId, startsWith('ca-app-pub-3940256099942544'));
-    expect(AdsConfig.iosAppId, startsWith('ca-app-pub-3940256099942544'));
+    expect(
+      AdsConfig.unitIdFor(
+        AdFormat.banner,
+        platform: TargetPlatform.android,
+        test: false,
+      ),
+      'ca-app-pub-9396424020196768/9358772739',
+    );
+    // The app ids are always the real ones.
+    expect(AdsConfig.androidAppId, 'ca-app-pub-9396424020196768~5781867681');
+    expect(AdsConfig.iosAppId, 'ca-app-pub-9396424020196768~6384502911');
   });
 
   test('Ads: the app id in the config matches the Android manifest', () {

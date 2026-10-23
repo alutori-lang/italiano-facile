@@ -24,7 +24,7 @@ Future<void> main() async {
   final SettingsController settings = SettingsController(prefs);
   final ProgressService progress = ProgressService(prefs);
   final TtsService tts = TtsService();
-  final AdsService ads = AdsService();
+  final AdsService ads = AdsService(prefs: prefs);
   final PurchaseService purchases = PurchaseService(prefs);
   final NotificationService notifications = NotificationService();
   final OnlineLookupService online = OnlineLookupService();
@@ -66,7 +66,13 @@ Future<void> main() async {
 
   if (screenshot == null) {
     await ads.start(adsRemoved: purchases.adsRemoved);
+    // Cold start only: an app open ad when every rule allows it (never in
+    // the very first session, where the language picker comes first).
+    await ads.showAppOpenOnColdStart(
+      firstLaunchUi: !settings.hasChosenLanguage,
+    );
     await ads.preloadInterstitial();
+    unawaited(ads.preloadRewarded());
     await notifications.init();
   }
 }

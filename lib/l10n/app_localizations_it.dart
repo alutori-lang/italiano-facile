@@ -356,7 +356,7 @@ class AppLocalizationsIt extends AppLocalizations {
 
   @override
   String get adsTestIdsNotice =>
-      'Configurazione necessaria: la pubblicità usa ancora gli id di test di Google. Incolla gli id AdMob reali per guadagnare.';
+      'Versione debug: la pubblicità usa ancora gli id di test di Google. La versione release usa gli id AdMob reali.';
 
   @override
   String get demoBadge => 'Contenuto dimostrativo';
@@ -587,4 +587,33 @@ class AppLocalizationsIt extends AppLocalizations {
   @override
   String get bigNotFoundOnline =>
       'Non l\'abbiamo trovata nemmeno online: controlla come l\'hai scritta.';
+
+  @override
+  String get rewardNoAdsLink =>
+      'Togli la pubblicità per 1 ora (guarda un video)';
+
+  @override
+  String get rewardNoAdsTitle => '1 ora senza pubblicità';
+
+  @override
+  String get rewardNoAdsSubtitle =>
+      'Guarda un breve video: niente pubblicità per un\'ora.';
+
+  @override
+  String get rewardNotAvailable => 'Video non disponibile, riprova più tardi';
+
+  @override
+  String get rewardGranted => 'Fatto! Niente pubblicità per un\'ora.';
+
+  @override
+  String get rewardNotEarned =>
+      'Video chiuso prima della fine: guardalo tutto per togliere la pubblicità.';
+
+  @override
+  String get noAdsActiveTitle => 'Pubblicità spenta';
+
+  @override
+  String noAdsRemaining(int minutes) {
+    return 'Ancora $minutes min senza pubblicità';
+  }
 }

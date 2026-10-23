@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 
 import '../app_scope.dart';
@@ -6,6 +8,7 @@ import '../l10n/app_localizations.dart';
 import '../models/learner_language.dart';
 import '../services/settings_controller.dart';
 import '../ui/theme.dart';
+import '../ui/widgets/ad_banner_area.dart';
 import '../ui/widgets/button_content.dart';
 import 'about_screen.dart';
 import 'paywall_screen.dart';
@@ -203,6 +206,13 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 ),
               ],
             ),
+            // "1 ora senza pubblicità": last, so the rows above keep their
+            // place on a short phone.
+            if (!scope.purchases.adsRemoved &&
+                (scope.ads.adsAllowed || scope.ads.rewardActive)) ...<Widget>[
+              const SizedBox(height: AppSpace.m),
+              const _SettingsCard(children: <Widget>[_RewardNoAdsTile()]),
+            ],
           ],
         ),
       ),
@@ -441,6 +451,79 @@ class _SettingsCard extends StatelessWidget {
 
 /// Shown only while the ads still use Google's test ids, so the owner can see
 /// at a glance that the real ones are still missing.
+/// "1 ora senza pubblicità": watch a video to switch every ad off for an
+/// hour; while it runs, the row shows the time left (updated every minute).
+class _RewardNoAdsTile extends StatefulWidget {
+  const _RewardNoAdsTile();
+
+  @override
+  State<_RewardNoAdsTile> createState() => _RewardNoAdsTileState();
+}
+
+class _RewardNoAdsTileState extends State<_RewardNoAdsTile> {
+  Timer? _ticker;
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    _syncTicker();
+  }
+
+  void _syncTicker() {
+    final bool active = AppScope.of(context).ads.rewardActive;
+    if (active && _ticker == null) {
+      _ticker = Timer.periodic(const Duration(seconds: 30), (_) {
+        if (!mounted) return;
+        setState(() {});
+        if (!AppScope.of(context).ads.rewardActive) {
+          _ticker?.cancel();
+          _ticker = null;
+        }
+      });
+    } else if (!active && _ticker != null) {
+      _ticker!.cancel();
+      _ticker = null;
+    }
+  }
+
+  @override
+  void dispose() {
+    _ticker?.cancel();
+    super.dispose();
+  }
+
+  /// Minutes left, rounded up so the row never reads "0 min" while active.
+  static int minutesLeft(Duration left) =>
+      (left.inSeconds / 60).ceil().clamp(1, 60 * 24);
+
+  @override
+  Widget build(BuildContext context) {
+    final AppLocalizations t = AppLocalizations.of(context);
+    final AppScope scope = AppScope.of(context);
+    final bool active = scope.ads.rewardActive;
+    return ListTile(
+      key: const ValueKey<String>('settings-reward-no-ads'),
+      dense: true,
+      leading: Icon(
+        active ? Icons.check_circle_rounded : Icons.ondemand_video_rounded,
+      ),
+      title: Text(active ? t.noAdsActiveTitle : t.rewardNoAdsTitle),
+      subtitle: Text(
+        active
+            ? t.noAdsRemaining(minutesLeft(scope.ads.noAdsRemaining))
+            : t.rewardNoAdsSubtitle,
+        key: const ValueKey<String>('settings-reward-no-ads-subtitle'),
+      ),
+      onTap: active
+          ? null
+          : () async {
+              await watchRewardForNoAds(context);
+              if (mounted) setState(_syncTicker);
+            },
+    );
+  }
+}
+
 class _TestAdsNotice extends StatelessWidget {
   const _TestAdsNotice({required this.message});
 

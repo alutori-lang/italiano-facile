@@ -7,7 +7,7 @@ import '../models/word.dart';
 import '../services/quiz_service.dart';
 import '../ui/theme.dart';
 import '../ui/widgets/audio_button.dart';
-import '../ui/widgets/banner_ad_slot.dart';
+import '../ui/widgets/ad_banner_area.dart';
 import '../ui/widgets/button_content.dart';
 import '../ui/widgets/mascot.dart';
 import '../ui/widgets/picture_box.dart';
@@ -170,7 +170,7 @@ class _QuizResultScreenState extends State<QuizResultScreen> {
                 ],
               ),
             ),
-            const BannerAdSlot(),
+            const AdBannerArea(),
           ],
         ),
       ),

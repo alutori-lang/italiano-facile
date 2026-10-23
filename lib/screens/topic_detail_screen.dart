@@ -7,6 +7,7 @@ import '../models/topic.dart';
 import '../models/word.dart';
 import '../services/quiz_service.dart';
 import '../ui/theme.dart';
+import '../ui/widgets/ad_banner_area.dart';
 import '../ui/widgets/button_content.dart';
 import '../ui/widgets/word_card.dart';
 import 'flashcards_screen.dart';
@@ -119,6 +120,7 @@ class TopicDetailScreen extends StatelessWidget {
                 },
               ),
             ),
+            const AdBannerArea(),
           ],
         ),
       ),

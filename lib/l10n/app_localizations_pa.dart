@@ -582,6 +582,33 @@ class AppLocalizationsPa extends AppLocalizations {
   @override
   String get bigNotFoundOnline =>
       'Not found online either: check how you wrote it.';
+
+  @override
+  String get rewardNoAdsLink => 'Remove ads for 1 hour (watch a video)';
+
+  @override
+  String get rewardNoAdsTitle => '1 hour without ads';
+
+  @override
+  String get rewardNoAdsSubtitle => 'Watch a short video: no ads for one hour.';
+
+  @override
+  String get rewardNotAvailable => 'Video not available, try again later';
+
+  @override
+  String get rewardGranted => 'Done! No ads for one hour.';
+
+  @override
+  String get rewardNotEarned =>
+      'Video closed early: watch it to the end to remove the ads.';
+
+  @override
+  String get noAdsActiveTitle => 'Ads switched off';
+
+  @override
+  String noAdsRemaining(int minutes) {
+    return 'No ads for another $minutes min';
+  }
 }
 
 /// The translations for Panjabi Punjabi, using the Arabic script (`pa_Arab`).

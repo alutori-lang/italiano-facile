@@ -6,7 +6,6 @@ import '../l10n/app_localizations.dart';
 import '../models/topic.dart';
 import '../models/word.dart';
 import '../ui/theme.dart';
-import '../ui/widgets/banner_ad_slot.dart';
 import '../ui/widgets/screen_header.dart';
 import 'topic_detail_screen.dart';
 
@@ -55,7 +54,6 @@ class TopicsScreen extends StatelessWidget {
               ),
             ),
           ),
-          const BannerAdSlot(),
         ],
       ),
     );

@@ -3,9 +3,12 @@ import 'package:google_mobile_ads/google_mobile_ads.dart';
 
 import '../../app_scope.dart';
 
-/// One adaptive banner, shown only at the bottom of Topics and of the quiz
-/// result screen. It renders nothing on the web, nothing before consent, and
-/// nothing for a user who bought "remove ads". A failed load retries once.
+/// One anchored adaptive banner. It lives inside [AdBannerArea], the single
+/// shared ad strip at the bottom of the four tabs and of the detail and quiz
+/// result screens. It renders nothing on the web, nothing before consent,
+/// nothing for a user who bought "remove ads" and nothing while a "1 hour
+/// without ads" reward runs. A failed load retries once; when ads become
+/// allowed again (consent, reward over) it loads afresh.
 class BannerAdSlot extends StatefulWidget {
   const BannerAdSlot({super.key});
 
@@ -32,6 +35,7 @@ class _BannerAdSlotState extends State<BannerAdSlot> {
         _loaded = false;
       }
       _requested = false;
+      _attempts = 0;
       return;
     }
     if (!_requested) {

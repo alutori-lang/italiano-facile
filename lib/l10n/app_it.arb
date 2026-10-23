@@ -101,7 +101,7 @@
   "dataCoverage": "Elenco di parole in questa versione",
   "mascotCheer": "Bravo!",
   "mascotTryAgain": "Dai, continua!",
-  "adsTestIdsNotice": "Configurazione necessaria: la pubblicità usa ancora gli id di test di Google. Incolla gli id AdMob reali per guadagnare.",
+  "adsTestIdsNotice": "Versione debug: la pubblicità usa ancora gli id di test di Google. La versione release usa gli id AdMob reali.",
   "demoBadge": "Contenuto dimostrativo",
   "topicGreetings": "Saluti e basi",
   "topicNumbers": "Numeri",
@@ -175,5 +175,13 @@
   "bigDictCredits": "Il grande dizionario delle parole italiane (oltre 100.000 parole a lavoro finito) viene da Wiktionary, tramite kaikki.org, con licenza CC BY-SA 4.0. I significati nelle dieci lingue sono stati preparati per questa app a partire dalle definizioni di Wiktionary.",
   "bigSearchingOnline": "Sto cercando online…",
   "bigNotAllowed": "Questa parola non si può aggiungere al dizionario.",
-  "bigNotFoundOnline": "Non l'abbiamo trovata nemmeno online: controlla come l'hai scritta."
+  "bigNotFoundOnline": "Non l'abbiamo trovata nemmeno online: controlla come l'hai scritta.",
+  "rewardNoAdsLink": "Togli la pubblicità per 1 ora (guarda un video)",
+  "rewardNoAdsTitle": "1 ora senza pubblicità",
+  "rewardNoAdsSubtitle": "Guarda un breve video: niente pubblicità per un'ora.",
+  "rewardNotAvailable": "Video non disponibile, riprova più tardi",
+  "rewardGranted": "Fatto! Niente pubblicità per un'ora.",
+  "rewardNotEarned": "Video chiuso prima della fine: guardalo tutto per togliere la pubblicità.",
+  "noAdsActiveTitle": "Pubblicità spenta",
+  "noAdsRemaining": "Ancora {minutes} min senza pubblicità"
 }

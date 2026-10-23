@@ -352,7 +352,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get adsTestIdsNotice =>
-      'Setup needed: the ads still use Google\'s test ids. Paste the real AdMob ids to earn from them.';
+      'Debug build: the ads still use Google\'s test ids. The release build uses the real AdMob ids.';
 
   @override
   String get demoBadge => 'Demo content';
@@ -582,4 +582,31 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get bigNotFoundOnline =>
       'Not found online either: check how you wrote it.';
+
+  @override
+  String get rewardNoAdsLink => 'Remove ads for 1 hour (watch a video)';
+
+  @override
+  String get rewardNoAdsTitle => '1 hour without ads';
+
+  @override
+  String get rewardNoAdsSubtitle => 'Watch a short video: no ads for one hour.';
+
+  @override
+  String get rewardNotAvailable => 'Video not available, try again later';
+
+  @override
+  String get rewardGranted => 'Done! No ads for one hour.';
+
+  @override
+  String get rewardNotEarned =>
+      'Video closed early: watch it to the end to remove the ads.';
+
+  @override
+  String get noAdsActiveTitle => 'Ads switched off';
+
+  @override
+  String noAdsRemaining(int minutes) {
+    return 'No ads for another $minutes min';
+  }
 }

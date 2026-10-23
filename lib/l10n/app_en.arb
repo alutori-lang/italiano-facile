@@ -473,7 +473,7 @@
   "@mascotTryAgain": {
     "description": "mascotTryAgain"
   },
-  "adsTestIdsNotice": "Setup needed: the ads still use Google's test ids. Paste the real AdMob ids to earn from them.",
+  "adsTestIdsNotice": "Debug build: the ads still use Google's test ids. The release build uses the real AdMob ids.",
   "@adsTestIdsNotice": {
     "description": "adsTestIdsNotice"
   },
@@ -782,5 +782,42 @@
   "bigNotFoundOnline": "Not found online either: check how you wrote it.",
   "@bigNotFoundOnline": {
     "description": "bigNotFoundOnline"
+  },
+  "rewardNoAdsLink": "Remove ads for 1 hour (watch a video)",
+  "@rewardNoAdsLink": {
+    "description": "rewardNoAdsLink"
+  },
+  "rewardNoAdsTitle": "1 hour without ads",
+  "@rewardNoAdsTitle": {
+    "description": "rewardNoAdsTitle"
+  },
+  "rewardNoAdsSubtitle": "Watch a short video: no ads for one hour.",
+  "@rewardNoAdsSubtitle": {
+    "description": "rewardNoAdsSubtitle"
+  },
+  "rewardNotAvailable": "Video not available, try again later",
+  "@rewardNotAvailable": {
+    "description": "rewardNotAvailable"
+  },
+  "rewardGranted": "Done! No ads for one hour.",
+  "@rewardGranted": {
+    "description": "rewardGranted"
+  },
+  "rewardNotEarned": "Video closed early: watch it to the end to remove the ads.",
+  "@rewardNotEarned": {
+    "description": "rewardNotEarned"
+  },
+  "noAdsActiveTitle": "Ads switched off",
+  "@noAdsActiveTitle": {
+    "description": "noAdsActiveTitle"
+  },
+  "noAdsRemaining": "No ads for another {minutes} min",
+  "@noAdsRemaining": {
+    "description": "noAdsRemaining",
+    "placeholders": {
+      "minutes": {
+        "type": "int"
+      }
+    }
   }
 }

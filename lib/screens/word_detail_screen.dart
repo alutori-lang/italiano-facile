@@ -4,6 +4,7 @@ import '../l10n/app_localizations.dart';
 import '../models/topic.dart';
 import '../models/word.dart';
 import '../ui/theme.dart';
+import '../ui/widgets/ad_banner_area.dart';
 import '../ui/widgets/button_content.dart';
 import '../ui/widgets/word_card.dart';
 
@@ -27,20 +28,22 @@ class WordDetailScreen extends StatelessWidget {
         ),
       ),
       body: SafeArea(
-        child: ListView(
-          padding: const EdgeInsets.fromLTRB(
-            AppSpace.xl,
-            AppSpace.s,
-            AppSpace.xl,
-            AppSpace.xxl,
-          ),
-          children: <Widget>[
-            WordCard(
-              word: word,
-              highlight: true,
-              heroTag: 'word-picture:${word.id}',
+        child: WithAdBanner(
+          child: ListView(
+            padding: const EdgeInsets.fromLTRB(
+              AppSpace.xl,
+              AppSpace.s,
+              AppSpace.xl,
+              AppSpace.xxl,
             ),
-          ],
+            children: <Widget>[
+              WordCard(
+                word: word,
+                highlight: true,
+                heroTag: 'word-picture:${word.id}',
+              ),
+            ],
+          ),
         ),
       ),
     );

@@ -36,6 +36,14 @@ class _FlashcardsScreenState extends State<FlashcardsScreen> {
     super.dispose();
   }
 
+  /// The last card's "Done": the deck is finished. One interstitial may
+  /// follow, under the same frequency cap as a finished quiz.
+  void _finishDeck() {
+    final AppScope scope = AppScope.of(context);
+    Navigator.of(context).maybePop();
+    scope.ads.maybeShowInterstitial();
+  }
+
   @override
   Widget build(BuildContext context) {
     final AppLocalizations t = AppLocalizations.of(context);
@@ -170,7 +178,7 @@ class _FlashcardsScreenState extends State<FlashcardsScreen> {
                           duration: const Duration(milliseconds: 240),
                           curve: Curves.easeOut,
                         )
-                    : () => Navigator.of(context).maybePop(),
+                    : _finishDeck,
                 child: ButtonContent(
                   icon: _index + 1 < widget.words.length
                       ? Icons.arrow_forward_rounded
