@@ -90,6 +90,15 @@ class AppLocalizationsEs extends AppLocalizations {
   }
 
   @override
+  String wordsAndPhrasesTotal(int count) {
+    final intl.NumberFormat countNumberFormat =
+        intl.NumberFormat.decimalPattern(localeName);
+    final String countString = countNumberFormat.format(count);
+
+    return '$countString palabras y frases';
+  }
+
+  @override
   String get recentSearches => 'Búsquedas recientes';
 
   @override
@@ -660,6 +669,15 @@ class AppLocalizationsEs419 extends AppLocalizationsEs {
     final String phrasesString = phrasesNumberFormat.format(phrases);
 
     return '$wordsString palabras · $phrasesString frases';
+  }
+
+  @override
+  String wordsAndPhrasesTotal(int count) {
+    final intl.NumberFormat countNumberFormat =
+        intl.NumberFormat.decimalPattern(localeName);
+    final String countString = countNumberFormat.format(count);
+
+    return '$countString palabras y frases';
   }
 
   @override

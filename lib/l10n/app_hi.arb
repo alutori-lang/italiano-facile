@@ -24,6 +24,7 @@
   "typePhrase": "वाक्य",
   "searchHint": "इतालवी, अंग्रेज़ी, اردو, বাংলা…",
   "wordsAndPhrases": "{words} शब्द · {phrases} वाक्य",
+  "wordsAndPhrasesTotal": "{count} शब्द और वाक्य",
   "recentSearches": "हाल की खोजें",
   "clearRecent": "मिटाएँ",
   "noResults": "कोई शब्द नहीं मिला",

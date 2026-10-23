@@ -24,6 +24,7 @@
   "typePhrase": "Frase",
   "searchHint": "Scrivi in italiano o nella tua lingua…",
   "wordsAndPhrases": "{words} parole · {phrases} frasi",
+  "wordsAndPhrasesTotal": "{count} parole e frasi",
   "recentSearches": "Ricerche recenti",
   "clearRecent": "Cancella",
   "noResults": "Nessuna parola trovata",

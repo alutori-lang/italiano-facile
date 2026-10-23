@@ -1,7 +1,10 @@
 """Builds the offline big dictionary (SQLite) for the Italian Words app.
 
 Inputs (in dictdata/out):  selected.jsonl, tr/*.json, forms.tsv, forms_extra.tsv
-Output: <app>/assets/dict/big.db  and  <app>/test/fixtures/norm_cases.json
+Output: <app>/assets/dict/big/big.db.000 ... = big.db split in 2 MiB parts (the phone
+        copies it part by part, so the UI is never blocked for long),
+        <app>/assets/dict/big_parts.txt ("<parts>\n<total bytes>\n"),
+        <app>/assets/dict/big_version.txt and <app>/test/fixtures/norm_cases.json
 
 Schema
   meta(k TEXT PRIMARY KEY, v TEXT)                  -- version, counts
@@ -10,17 +13,22 @@ Schema
       tr  = the 10 meanings joined with U+001F (slot order of LearnerLanguage)
       rom = JSON {"ur": "...|...", "pa": ..., "bn": ..., "zh": ...}
   forms(form TEXT, entry_id INTEGER)                -- "andavamo" -> andare (normalized form)
-  keys(...) is NOT shipped (it would triple the size): the app builds it on the
-  phone for the chosen language only, with the same norm()/romkey()/variants():
+  keys(key TEXT, slot INTEGER, entry_id INTEGER, PRIMARY KEY(key, slot, entry_id))
+      WITHOUT ROWID -- the reverse index (meaning -> entry), shipped ready for ALL
+      languages so the phone never builds it. Exactly what computeKeys() in
+      lib/data/big_dictionary.dart gives with the same norm()/romkey()/variants():
       slot 0..9 = translation of that language (normalized with norm())
       slot 11 = Roman Urdu, 12 = Roman Punjabi, 14 = Banglish, 16 = pinyin  (romkey())
-  indexes on entries(it_norm), forms(form), keys(key)
+      meta.keys = its row count (parity tests in test/bigdict)
+  indexes on entries(it_norm), forms(form)
 
 The normalization below is the CONTRACT with the Dart side (lib/services/text_norm.dart):
 any change here must be mirrored there; test/fixtures/norm_cases.json is the parity test.
-Usage: python -I build_bigdb.py <dictdata_dir> <app_dir>
+Usage: python -I build_bigdb.py <dictdata_dir> <app_dir> [--keep]
+  (big.db is built in <dictdata_dir>/out/ and deleted after the split unless --keep)
 """
 import glob
+import shutil
 import hashlib
 import json
 import os
@@ -31,6 +39,10 @@ import unicodedata
 
 SEP = '\u001f'
 ROM_SLOT = {'ur': 11, 'pa': 12, 'bn': 14, 'zh': 16}
+PART_BYTES = 2 * 1024 * 1024  # one asset part: a few ms to load on a phone
+# Part of the content hash: bump it when the shape of big.db changes (e.g. the
+# shipped keys table), so phones copy the new file.
+DB_SCHEMA = 'keys-v1'
 
 LATIN_MARKS = re.compile(r'[̀-ͯ]')
 ARABIC_MARKS = re.compile(r'[ً-ٰٟۖ-ۭـ]')
@@ -109,7 +121,8 @@ def main(data_dir, app_dir):
     for line in open(os.path.join(data_dir, 'out', 'selected.jsonl'), encoding='utf-8'):
         x = json.loads(line)
         sel[(x['w'], x['pos'])] = x
-    db_path = os.path.join(app_dir, 'assets', 'dict', 'big.db')
+    # Built outside the app: what is shipped are its parts (split_parts()).
+    db_path = os.path.join(data_dir, 'out', 'big.db')
     tmp = db_path + '.tmp'
     if os.path.exists(tmp):
         os.remove(tmp)
@@ -124,6 +137,7 @@ def main(data_dir, app_dir):
     ''')
     by_word = {}
     n_entries = n_keys = 0
+    key_rows = []
     for path in sorted(glob.glob(os.path.join(data_dir, 'out', 'tr', '*.json'))):
         for it in json.load(open(path, encoding='utf-8')):
             if it.get('bad'):
@@ -155,6 +169,7 @@ def main(data_dir, app_dir):
                     if k:
                         rows.add((k, slot))
             n_keys += len(rows)
+            key_rows.extend((k, slot, eid) for k, slot in rows)
     # Everyday phrases by situation (gen_phrases.py): shipped as pos "phrase";
     # their English translation doubles as the gloss.
     seen_ph = set()
@@ -167,7 +182,7 @@ def main(data_dir, app_dir):
             seen_ph.add(k)
             tr = [t.strip() for t in it['tr']]
             rom = it.get('rom') or {}
-            con.execute(
+            cur = con.execute(
                 'INSERT INTO entries(it,it_norm,pos,g,pl,gloss,ex_it,ex_en,tr,rom,rank)'
                 ' VALUES(?,?,?,?,?,?,?,?,?,?,?)',
                 (w, k, 'phrase', None, None, tr[0], None, None,
@@ -185,6 +200,15 @@ def main(data_dir, app_dir):
                     if kk:
                         rows.add((kk, slot))
             n_keys += len(rows)
+            key_rows.extend((kk, slot, cur.lastrowid) for kk, slot in rows)
+    # The reverse index for every language, shipped ready (sorted: fast insert).
+    key_rows.sort()
+    con.execute('CREATE TABLE keys(key TEXT NOT NULL, slot INTEGER NOT NULL, '
+                'entry_id INTEGER NOT NULL, PRIMARY KEY(key, slot, entry_id)) WITHOUT ROWID')
+    con.executemany('INSERT INTO keys VALUES(?,?,?)', key_rows)
+    n_table = con.execute('SELECT COUNT(*) FROM keys').fetchone()[0]
+    assert n_table == n_keys == len(key_rows), (n_table, n_keys, len(key_rows))
+    del key_rows
     n_forms = 0
     seen = set()
     for fname in ('forms.tsv', 'forms_extra.tsv'):
@@ -207,6 +231,7 @@ def main(data_dir, app_dir):
     # Content hash: any change to any shipped row (or to the forms) changes the
     # version, so phones re-copy big.db (the app compares it with big_version.txt).
     h = hashlib.sha1()
+    h.update(DB_SCHEMA.encode('utf-8') + b'\n')
     for row in con.execute('SELECT it, pos, g, pl, gloss, ex_it, ex_en, tr, rom, rank'
                            ' FROM entries ORDER BY id'):
         h.update(json.dumps(row, ensure_ascii=False).encode('utf-8'))
@@ -220,6 +245,10 @@ def main(data_dir, app_dir):
     con.execute('VACUUM')
     con.close()
     os.replace(tmp, db_path)
+    n_parts = split_parts(db_path, app_dir)
+    single = os.path.join(app_dir, 'assets', 'dict', 'big.db')
+    if os.path.exists(single):
+        os.remove(single)  # the old one-file asset (before the parts)
     fx = os.path.join(app_dir, 'test', 'fixtures')
     os.makedirs(fx, exist_ok=True)
     with open(os.path.join(fx, 'norm_cases.json'), 'w', encoding='utf-8') as f:
@@ -230,7 +259,31 @@ def main(data_dir, app_dir):
     # re-copies big.db only when the bundled dictionary really changed.
     with open(os.path.join(app_dir, 'assets', 'dict', 'big_version.txt'), 'w', encoding='utf-8') as f:
         f.write(meta['version'])
-    print(meta, f'{os.path.getsize(db_path) // 1024} KB')
+    print(meta, f'{os.path.getsize(db_path) // 1024} KB in {n_parts} parts')
+    if '--keep' not in sys.argv[3:]:
+        os.remove(db_path)  # the parts are the shipped copy; disk is limited
+
+
+def split_parts(db_path, app_dir):
+    """Writes big.db as <app>/assets/dict/big/big.db.000, .001, ... (PART_BYTES
+    each) and <app>/assets/dict/big_parts.txt = "<parts>\\n<total bytes>\\n"."""
+    out = os.path.join(app_dir, 'assets', 'dict', 'big')
+    if os.path.isdir(out):
+        shutil.rmtree(out)
+    os.makedirs(out)
+    n = 0
+    with open(db_path, 'rb') as f:
+        while True:
+            chunk = f.read(PART_BYTES)
+            if not chunk:
+                break
+            with open(os.path.join(out, f'big.db.{n:03d}'), 'wb') as g:
+                g.write(chunk)
+            n += 1
+    with open(os.path.join(app_dir, 'assets', 'dict', 'big_parts.txt'), 'w',
+              encoding='utf-8', newline='\n') as f:
+        f.write(f'{n}\n{os.path.getsize(db_path)}\n')
+    return n
 
 
 if __name__ == '__main__':

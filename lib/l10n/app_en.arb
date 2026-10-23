@@ -107,6 +107,16 @@
       }
     }
   },
+  "wordsAndPhrasesTotal": "{count} words and phrases",
+  "@wordsAndPhrasesTotal": {
+    "description": "Search header: words and phrases in one count",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "format": "decimalPattern"
+      }
+    }
+  },
   "recentSearches": "Recent searches",
   "@recentSearches": {
     "description": "recentSearches"

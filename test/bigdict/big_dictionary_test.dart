@@ -1,4 +1,4 @@
-// Indexing ~100k entries per language takes longer than the default 30 s.
+// The parity check runs computeKeys over many entries; keep a wide margin.
 @Timeout(Duration(minutes: 10))
 library;
 
@@ -16,8 +16,8 @@ import 'package:sqflite_common_ffi/sqflite_ffi.dart';
 
 import 'big_support.dart';
 
-/// Repository tests on the REAL assets/dict/big.db (still partial while the
-/// translation runs): the words checked are picked from what is in it.
+/// Repository tests on the REAL big.db (assets/dict/big/ parts, with its
+/// shipped reverse index): the words checked are picked from what is in it.
 void main() {
   sqfliteFfiInit();
 
@@ -31,12 +31,14 @@ void main() {
     await big.open();
     // ignore: avoid_print
     print('big.db: ${big.entryCount} entries, version ${big.version}; '
-        'copy ${big.lastCopyMs} ms, open total ${sw.elapsedMilliseconds} ms');
+        'copy ${big.lastCopyMs} ms (longest part ${big.longestCopyStepMs} '
+        'ms), open total ${sw.elapsedMilliseconds} ms');
     expect(big.ready, isTrue);
-    await big.useLanguage(LearnerLanguage.urdu);
-    // ignore: avoid_print
-    print('index Urdu: ${big.lastIndexMs} ms');
-    expect(big.isIndexed(LearnerLanguage.urdu), isTrue);
+    // The reverse index ships in big.db: every language is searchable
+    // at once, nothing is built.
+    for (final LearnerLanguage lang in LearnerLanguage.values) {
+      expect(big.isIndexed(lang), isTrue, reason: lang.tag);
+    }
   });
 
   tearDownAll(() async {
@@ -86,9 +88,6 @@ void main() {
 
   test('Big dictionary: پیار and piyar/pyaar find "amore" in Punjabi',
       () async {
-    await big.useLanguage(LearnerLanguage.punjabiShahmukhi);
-    // ignore: avoid_print
-    print('index Punjabi (Shahmukhi): ${big.lastIndexMs} ms');
     final List<String> script =
         await its('پیار', LearnerLanguage.punjabiShahmukhi);
     final List<String> piyar =
@@ -103,10 +102,8 @@ void main() {
   });
 
   test('Big dictionary: Banglish and pinyin', () async {
-    await big.useLanguage(LearnerLanguage.bengali);
     expect(await its('bhalobasha', LearnerLanguage.bengali), contains('amore'));
     expect(await its('ভালোবাসা', LearnerLanguage.bengali), contains('amore'));
-    await big.useLanguage(LearnerLanguage.chineseSimplified);
     final List<String> fanqie =
         await its('fanqie', LearnerLanguage.chineseSimplified);
     // ignore: avoid_print
@@ -130,7 +127,11 @@ void main() {
   });
 
   test('Big dictionary: English meanings when English is chosen', () async {
-    await big.useLanguage(LearnerLanguage.english);
+    final Stopwatch sw = Stopwatch()..start();
+    final List<String> love = await its('love', LearnerLanguage.english);
+    // ignore: avoid_print
+    print('love (en) → ${love.take(3)} in ${sw.elapsedMilliseconds} ms');
+    expect(love.first, 'amore');
     expect(await its('love', LearnerLanguage.english), contains('amore'));
     expect(await its('to go', LearnerLanguage.english), contains('andare'));
   });
@@ -182,7 +183,6 @@ void main() {
   });
 
   test('Big dictionary: English words work for every language', () async {
-    await big.useLanguage(LearnerLanguage.bengali);
     expect(await its('love', LearnerLanguage.bengali), contains('amore'));
     expect(await its('water', LearnerLanguage.urdu), contains('acqua'));
   });
@@ -195,33 +195,100 @@ void main() {
     expect(en.firstWhere((BigHit h) => h.entry.it == 'amore').score, 930);
   });
 
-  test('Big dictionary: the phone index has exactly the builder\'s keys',
+  test(
+      'Big dictionary: the shipped index has exactly the keys computeKeys '
+      'gives (meta.keys = rows; a sample of entries compared key by key)',
       () async {
-    // build_bigdb.py counts (key, slot) rows per entry over all ten slots and
-    // the four Latin-letter slots; computeKeys must produce the same number.
     final Database db = await databaseFactoryFfi.openDatabase(
       '${dir.path}/big.db',
       options: OpenDatabaseOptions(readOnly: true),
     );
-    final List<Map<String, Object?>> rows =
-        await db.rawQuery('SELECT id, tr, rom FROM entries');
-    final String want =
-        (await db.rawQuery("SELECT v FROM meta WHERE k = 'keys'")).first['v']!
-            as String;
-    await db.close();
-    final List<Object> all = computeKeys(KeyJob(
-      ids: <int>[for (final Map<String, Object?> r in rows) r['id']! as int],
-      tr: <String>[
-        for (final Map<String, Object?> r in rows) r['tr']! as String,
-      ],
-      rom: <String>[
-        for (final Map<String, Object?> r in rows) (r['rom'] as String?) ?? '',
-      ],
-      trSlots: List<int>.generate(LearnerLanguage.count, (int i) => i),
-      romLangs: BigDictionary.romSlots.keys.toList(),
-      romSlotList: BigDictionary.romSlots.values.toList(),
-    ));
-    expect(all.length ~/ 3, int.parse(want));
+    try {
+      final String want =
+          (await db.rawQuery("SELECT v FROM meta WHERE k = 'keys'"))
+              .first['v']! as String;
+      final int rows = (await db.rawQuery('SELECT COUNT(*) AS n FROM keys'))
+          .first['n']! as int;
+      expect(rows, int.parse(want), reason: 'meta.keys = rows of keys');
+      // A spread sample (every 50th entry, words and phrases) plus the words
+      // the other tests rely on: the rows for those ids must be exactly what
+      // the Dart side computes (same norm/romkey/variants as the builder).
+      final List<Map<String, Object?>> sample = await db.rawQuery(
+          'SELECT id, tr, rom FROM entries WHERE id % 50 = 0 '
+          "OR it_norm IN ('amore','acqua','casa','pomodoro','andare')");
+      expect(sample.length, greaterThan(1000));
+      final List<int> ids = <int>[
+        for (final Map<String, Object?> r in sample) r['id']! as int,
+      ];
+      final List<Object> flat = computeKeys(BigDictionary.allSlotsJob(
+        ids,
+        <String>[
+          for (final Map<String, Object?> r in sample) r['tr']! as String,
+        ],
+        <String>[
+          for (final Map<String, Object?> r in sample)
+            (r['rom'] as String?) ?? '',
+        ],
+      ));
+      final Set<String> mine = <String>{
+        for (int i = 0; i < flat.length; i += 3)
+          '${flat[i]}|${flat[i + 1]}|${flat[i + 2]}',
+      };
+      expect(mine.length, flat.length ~/ 3, reason: 'no duplicate rows');
+      final Set<String> shipped = <String>{};
+      for (int i = 0; i < ids.length; i += 500) {
+        final List<int> part =
+            ids.sublist(i, i + 500 > ids.length ? ids.length : i + 500);
+        for (final Map<String, Object?> r in await db.rawQuery(
+            'SELECT key, slot, entry_id FROM keys WHERE entry_id IN '
+            '(${List<String>.filled(part.length, '?').join(',')})',
+            part)) {
+          shipped.add('${r['key']}|${r['slot']}|${r['entry_id']}');
+        }
+      }
+      // ignore: avoid_print
+      print('parity sample: ${ids.length} entries, ${mine.length} keys');
+      expect(shipped.difference(mine), isEmpty, reason: 'only in big.db');
+      expect(mine.difference(shipped), isEmpty, reason: 'only in Dart');
+    } finally {
+      await db.close();
+    }
+  });
+
+  test('Big dictionary: the copy goes part by part (small steps)', () async {
+    final List<String> manifest =
+        File(BigDictionary.assetParts).readAsLinesSync();
+    final int parts = int.parse(manifest[0]);
+    expect(parts, greaterThan(1));
+    for (int i = 0; i < parts; i++) {
+      expect(File(BigDictionary.partName(i)).lengthSync(),
+          lessThanOrEqualTo(2 * 1024 * 1024));
+    }
+    expect(File(BigDictionary.partName(parts)).existsSync(), isFalse);
+    expect(File('${dir.path}/big.db').lengthSync(), int.parse(manifest[1]));
+    expect(File('${dir.path}/big.db.tmp').existsSync(), isFalse);
+  });
+
+  test('Big dictionary: a copy with a missing part is never used', () async {
+    final Directory d6 = await Directory.systemTemp.createTemp('bigdict_cut');
+    final BigDictionary cut = BigDictionary(
+      databaseFactory: databaseFactoryFfi,
+      directory: () async => d6,
+      loadAsset: (String key) async {
+        if (key == BigDictionary.partName(1)) {
+          return ByteData(0); // a part that did not arrive
+        }
+        return ByteData.sublistView(await File(key).readAsBytes());
+      },
+      loadString: (String key) => File(key).readAsString(),
+    );
+    await cut.open();
+    expect(cut.status, BigDictStatus.failed);
+    expect(File('${d6.path}/big.db').existsSync(), isFalse);
+    await cut.close();
+    try {
+      await d6.delete(recursive: true);
+    } catch (_) {}
   });
 
   test('Big dictionary: indexed slots per language', () {
@@ -237,14 +304,14 @@ void main() {
     expect(BigDictionary.romSlotsFor(LearnerLanguage.french), isEmpty);
   });
 
-  test('Big dictionary: a second start reuses the copy and the index',
-      () async {
+  test('Big dictionary: a second start reuses the copy', () async {
     final BigDictionary again =
         makeBigDictionary(dir, factory: databaseFactoryFfi);
     await again.open();
     expect(again.ready, isTrue);
     expect(again.copies, 0, reason: 'same version: no new copy');
     expect(again.isIndexed(LearnerLanguage.urdu), isTrue);
+    expect(await again.lookup('love', LearnerLanguage.french), isNotEmpty);
     await again.close();
   });
 
@@ -259,7 +326,9 @@ void main() {
           directory: () async => d5,
           loadAsset: (String key) async =>
               ByteData.sublistView(await File(key).readAsBytes()),
-          loadString: (String key) async => version,
+          loadString: (String key) async => key == BigDictionary.assetVersion
+              ? version
+              : await File(key).readAsString(),
         );
     final BigDictionary first = make();
     await first.open();
@@ -367,7 +436,7 @@ void main() {
 
     final BigDictionary off = makeBigDictionary(d2,
         factory: databaseFactoryFfi, client: client, baseUrl: '');
-    await off.start(LearnerLanguage.urdu);
+    await off.open();
     expect(off.serverEnabled, isFalse);
     expect((await off.askServer('zzparolanuova', LearnerLanguage.urdu)).status,
         ServerLookupStatus.off);
@@ -379,7 +448,7 @@ void main() {
         factory: databaseFactoryFfi,
         client: client,
         baseUrl: 'https://words.test');
-    await on.start(LearnerLanguage.urdu);
+    await on.open();
     final ServerLookup got =
         await on.askServer('zzparolanuova', LearnerLanguage.urdu);
     expect(got.status, ServerLookupStatus.found);
@@ -434,7 +503,7 @@ void main() {
         factory: databaseFactoryFfi,
         client: MockClient((_) async => throw const SocketException('offline')),
         baseUrl: 'https://words.test');
-    await broken.start(LearnerLanguage.urdu);
+    await broken.open();
     expect((await broken.askServer('qualcosa', LearnerLanguage.urdu)).status,
         ServerLookupStatus.failed);
     expect(await broken.syncUpdates(), 0);
@@ -455,7 +524,9 @@ void main() {
       databaseFactory: databaseFactoryFfi,
       directory: () async => d4,
       loadAsset: (String key) async {
-        await Future<void>.delayed(const Duration(milliseconds: 500));
+        if (key == BigDictionary.partName(0)) {
+          await Future<void>.delayed(const Duration(milliseconds: 500));
+        }
         return ByteData.sublistView(await File(key).readAsBytes());
       },
       loadString: (String key) => File(key).readAsString(),
@@ -485,7 +556,7 @@ void main() {
       loadAsset: (String key) async => throw const FileSystemException('none'),
       loadString: (String key) async => throw const FileSystemException('none'),
     );
-    await bad.start(LearnerLanguage.urdu);
+    await bad.open();
     expect(bad.status, BigDictStatus.failed);
     expect(await bad.lookup('casa', LearnerLanguage.urdu), isEmpty);
     await bad.close();

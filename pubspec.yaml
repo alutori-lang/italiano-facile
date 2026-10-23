@@ -40,6 +40,7 @@ flutter:
 
   assets:
     - assets/dict/
+    - assets/dict/big/
     - assets/images/
 
   # Script fonts. Drop the .ttf files into assets/fonts/ and uncomment to bundle

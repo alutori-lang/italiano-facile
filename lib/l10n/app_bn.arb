@@ -24,6 +24,7 @@
   "typePhrase": "বাক্যাংশ",
   "searchHint": "ইতালীয়, ইংরেজি, اردو, বাংলা…",
   "wordsAndPhrases": "{words} শব্দ · {phrases} বাক্যাংশ",
+  "wordsAndPhrasesTotal": "{count} শব্দ ও বাক্যাংশ",
   "recentSearches": "সাম্প্রতিক খোঁজ",
   "clearRecent": "মুছুন",
   "noResults": "কোনো শব্দ পাওয়া যায়নি",

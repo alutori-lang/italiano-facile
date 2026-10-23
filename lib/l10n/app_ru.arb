@@ -24,6 +24,7 @@
   "typePhrase": "Фраза",
   "searchHint": "Итальянский, английский, اردو, বাংলা…",
   "wordsAndPhrases": "{words} слов · {phrases} фраз",
+  "wordsAndPhrasesTotal": "{count} слов и фраз",
   "recentSearches": "Недавние запросы",
   "clearRecent": "Очистить",
   "noResults": "Слово не найдено",

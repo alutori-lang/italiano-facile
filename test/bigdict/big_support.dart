@@ -5,13 +5,13 @@ import 'package:http/http.dart' as http;
 import 'package:simple_flutter_app_651/data/big_dictionary.dart';
 import 'package:sqflite_common_ffi/sqflite_ffi.dart';
 
-/// A [BigDictionary] on the real assets/dict/big.db, copied into [dir].
+/// A [BigDictionary] on the real big.db (assets/dict/big/ parts), copied
+/// into [dir].
 BigDictionary makeBigDictionary(
   Directory dir, {
   required DatabaseFactory factory,
   http.Client? client,
   String baseUrl = '',
-  bool useIsolate = true,
 }) {
   return BigDictionary(
     databaseFactory: factory,
@@ -26,6 +26,5 @@ BigDictionary makeBigDictionary(
     },
     httpClient: client,
     serverBaseUrl: baseUrl,
-    useIsolate: useIsolate,
   );
 }

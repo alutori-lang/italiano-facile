@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart' show RenderParagraph;
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart' as http;
 import 'package:http/testing.dart';
@@ -27,6 +28,7 @@ import 'package:simple_flutter_app_651/services/text_norm.dart';
 import 'package:simple_flutter_app_651/services/tts_service.dart';
 import 'package:simple_flutter_app_651/ui/theme.dart';
 import 'package:simple_flutter_app_651/ui/widgets/big_entry_card.dart';
+import 'package:simple_flutter_app_651/ui/widgets/word_card.dart';
 import 'package:sqflite_common_ffi/sqflite_ffi.dart';
 
 import 'big_support.dart';
@@ -38,9 +40,10 @@ Future<void> _pumpSearch(
   WidgetTester tester,
   Locale translation, {
   BigDictionary? big,
+  double width = 390,
 }) async {
   SharedPreferences.setMockInitialValues(<String, Object>{});
-  tester.view.physicalSize = const Size(390, 844);
+  tester.view.physicalSize = Size(width, 844);
   tester.view.devicePixelRatio = 1.0;
   addTearDown(tester.view.reset);
   final PrefsService prefs = await PrefsService.open();
@@ -93,10 +96,8 @@ void main() {
     _big = makeBigDictionary(
       _dir,
       factory: databaseFactoryFfiNoIsolate,
-      useIsolate: false,
     );
-    await _big.start(LearnerLanguage.urdu);
-    await _big.useLanguage(LearnerLanguage.punjabiShahmukhi);
+    await _big.open();
     expect(_big.ready, isTrue);
   });
 
@@ -209,14 +210,13 @@ void main() {
       final BigDictionary d = makeBigDictionary(
         _dir,
         factory: databaseFactoryFfiNoIsolate,
-        useIsolate: false,
         baseUrl: 'https://words.test',
         client: MockClient((http.Request req) {
           expect(req.url.path, '/v1/lookup');
           return answer.future;
         }),
       );
-      await d.start(LearnerLanguage.urdu);
+      await d.open();
       return d;
     }))!;
     await _pumpSearch(tester, const Locale('ur'), big: online);
@@ -237,5 +237,73 @@ void main() {
     expect(find.text('Questa parola non si può aggiungere al dizionario.'),
         findsOneWidget);
     await tester.runAsync(online.close);
+  });
+
+  testWidgets(
+      "Search: English 'love' shows l'amore first (exact big meaning beats "
+      'a loose curated match such as tenero)', (WidgetTester tester) async {
+    await _pumpSearch(tester, const Locale('en'));
+    await _type(tester, 'love');
+    final List<Widget> cards = tester
+        .widgetList(find.byWidgetPredicate(
+            (Widget w) => w is WordCard || w is BigEntryCard))
+        .toList();
+    expect(cards, isNotEmpty);
+    final Widget first = cards.first;
+    final String it = first is WordCard
+        ? first.word.it
+        : (first as BigEntryCard).entry.headword;
+    // ignore: avoid_print
+    print('love (en) → first: $it; then ${cards.skip(1).take(4).map(
+          (Widget w) =>
+              w is WordCard ? w.word.it : (w as BigEntryCard).entry.headword,
+        ).toList()}');
+    expect(it, "l'amore");
+  });
+
+  test('Search: merged order (score, then common word, then curated)', () {
+    final List<String> order = MergedItem.order<String>(<MergedItem<String>>[
+      const MergedItem<String>(950, 7668, true, 'tenero'),
+      const MergedItem<String>(950, 345, true, 'amore'),
+      const MergedItem<String>(1000, null, false, 'big exact'),
+      const MergedItem<String>(880, null, true, 'curated a'),
+      const MergedItem<String>(880, null, false, 'big b'),
+      const MergedItem<String>(880, null, true, 'curated c'),
+    ]).map((MergedItem<String> m) => m.value).toList();
+    expect(order, <String>[
+      'big exact',
+      'amore',
+      'tenero',
+      'curated a',
+      'curated c',
+      'big b',
+    ]);
+  });
+
+  testWidgets(
+      'Search: the header count fits on ONE line at 360 px '
+      '("… parole e frasi")', (WidgetTester tester) async {
+    await _pumpSearch(tester, const Locale('ur'), width: 360);
+    final Finder sub =
+        find.byKey(const ValueKey<String>('screen-header-subtitle'));
+    expect(sub, findsOneWidget);
+    final String text = tester.widget<Text>(sub).data!;
+    // ignore: avoid_print
+    print('header subtitle: "$text"');
+    expect(text, matches(RegExp(r'^\d{1,3}(\.\d{3})+ parole e frasi$')),
+        reason: 'one count, Italian thousands separator');
+    final RenderParagraph para = tester.renderObject<RenderParagraph>(
+        find.descendant(of: sub, matching: find.byType(RichText)));
+    expect(para.didExceedMaxLines, isFalse);
+    expect(para.size.height, lessThan(24), reason: 'a single line');
+    // FittedBox may shrink it a little, never to an unreadable size.
+    final double shown = tester.getSize(sub).width;
+    final RenderBox box = tester.renderObject<RenderBox>(find.ancestor(
+        of: sub, matching: find.byType(FittedBox)));
+    // ignore: avoid_print
+    print('subtitle ${para.size.width.toStringAsFixed(0)} px in a '
+        '${box.size.width.toStringAsFixed(0)} px column');
+    expect(box.size.width / shown, greaterThan(0.8));
+    expect(tester.takeException(), isNull);
   });
 }

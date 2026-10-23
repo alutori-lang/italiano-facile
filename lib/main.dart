@@ -56,9 +56,9 @@ Future<void> main() async {
   // Everything below happens after the first frame, so startup stays fast
   // and the app is usable offline straight away.
   if (big != null) {
-    // Copy on first launch, then index the chosen language in the
-    // background; re-index when the user picks another language.
-    unawaited(_startBigDictionary(big, settings));
+    // Copied part by part on first launch (the UI stays usable and the
+    // curated words work meanwhile); its search index is shipped ready.
+    unawaited(_startBigDictionary(big));
   }
   await tts.init();
   await purchases.init();
@@ -71,16 +71,9 @@ Future<void> main() async {
   }
 }
 
-/// Opens the big dictionary (copying it on first launch), indexes the chosen
-/// language, follows later language changes and fetches server updates.
-/// Never throws: the curated app works without it.
-Future<void> _startBigDictionary(
-  BigDictionary big,
-  SettingsController settings,
-) async {
-  await big.start(settings.translationLanguage);
-  settings.addListener(() {
-    big.useLanguage(settings.translationLanguage);
-  });
+/// Opens the big dictionary (copying it on first launch) and fetches the
+/// server updates. Never throws: the curated app works without it.
+Future<void> _startBigDictionary(BigDictionary big) async {
+  await big.open();
   await big.syncUpdates();
 }

@@ -1,10 +1,10 @@
 import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
-import 'dart:isolate';
+import 'dart:typed_data';
 
 import 'package:flutter/foundation.dart';
-import 'package:flutter/services.dart' show ByteData, rootBundle;
+import 'package:flutter/services.dart' show rootBundle;
 import 'package:http/http.dart' as http;
 import 'package:path/path.dart' as p;
 import 'package:path_provider/path_provider.dart';
@@ -35,14 +35,19 @@ class BigHit {
 /// The big offline dictionary (~100,000 Italian words from Wiktionary, with
 /// the meaning in the ten languages).
 ///
-/// assets/dict/big.db (read only) is copied once to the app's support folder.
-/// Next to it, user.db holds what the phone builds or receives itself:
-///  * `keys` — the reverse index (meaning → entry) for the CHOSEN language
-///    only, built in the background with [TextNorm]; the Italian lookup works
-///    before it is ready.
+/// big.db ships in the assets split in small parts (assets/dict/big/,
+/// see tools/bigdict/build_bigdb.py); on first launch (and when the bundled
+/// version changes) the parts are copied one by one to the app's support
+/// folder, so the UI never waits more than a few milliseconds and the
+/// curated words work meanwhile. big.db already holds the reverse index
+/// (`keys`: meaning → entry) for EVERY language: nothing is built on the
+/// phone.
+///
+/// Next to it, user.db holds what the phone receives itself:
 ///  * `learned` — words received later from the word server
 ///    ([ServerConfig]); searched exactly like the big entries.
-///  * `umeta` — which language is indexed for which dictionary version.
+///  * `keys` — the (small) reverse index of the learned words, all slots.
+///  * `umeta` — which dictionary version the learned index belongs to.
 ///
 /// Nothing here may break the curated app: every failure ends in
 /// [BigDictStatus.failed] or an empty result, never in an exception.
@@ -54,16 +59,25 @@ class BigDictionary extends ChangeNotifier {
     Future<String> Function(String key)? loadString,
     http.Client? httpClient,
     String? serverBaseUrl,
-    this.useIsolate = true,
   })  : _factory = databaseFactory,
         _directory = directory ?? getApplicationSupportDirectory,
         _loadAsset = loadAsset ?? rootBundle.load,
-        _loadString = loadString ?? rootBundle.loadString,
+        _loadString = loadString ?? _loadStringUncached,
         _client = httpClient,
         _baseUrl = serverBaseUrl ?? ServerConfig.baseUrl;
 
-  static const String assetDb = 'assets/dict/big.db';
+  /// The parts of big.db: big.db.000, big.db.001, … ([partName]).
+  static const String assetPartsDir = 'assets/dict/big';
+
+  /// Two lines: the number of parts, then the total size in bytes.
+  static const String assetParts = 'assets/dict/big_parts.txt';
   static const String assetVersion = 'assets/dict/big_version.txt';
+
+  static String partName(int i) =>
+      '$assetPartsDir/big.db.${i.toString().padLeft(3, '0')}';
+
+  static Future<String> _loadStringUncached(String key) =>
+      rootBundle.loadString(key, cache: false);
 
   final sqflite.DatabaseFactory? _factory;
   final Future<Directory> Function() _directory;
@@ -72,16 +86,11 @@ class BigDictionary extends ChangeNotifier {
   final http.Client? _client;
   final String _baseUrl;
 
-  /// Off in widget tests that want everything on one isolate.
-  final bool useIsolate;
-
   sqflite.Database? _db;
   Future<void>? _opening;
-  Future<void> _indexChain = Future<void>.value();
-  LearnerLanguage? _wanted;
-  final Set<int> _indexed = <int>{};
   String _bigVersion = '';
   int _entryCount = 0;
+  bool _shippedKeys = false;
   int _busy = 0;
   Timer? _preparingTimer;
 
@@ -89,27 +98,27 @@ class BigDictionary extends ChangeNotifier {
   BigDictStatus get status => _status;
   bool get ready => _status == BigDictStatus.ready;
 
-  /// True once preparing (copy or index) has taken longer than 300 ms: the
+  /// True once preparing (the first copy) has taken longer than 300 ms: the
   /// one-time "Preparazione del dizionario…" notice.
   bool _showPreparing = false;
   bool get showPreparing => _showPreparing;
 
-  /// True while the reverse index of some language is being built.
-  bool get indexing => _building != null;
-  LearnerLanguage? _building;
-
   int get entryCount => _entryCount;
   String get version => _bigVersion;
-  bool isIndexed(LearnerLanguage lang) => _indexed.contains(lang.slot);
+
+  /// True when the meanings of [lang] can be searched: big.db is open and
+  /// carries its shipped reverse index (every language at once).
+  bool isIndexed(LearnerLanguage lang) => ready && _shippedKeys;
   bool get serverEnabled => _baseUrl.isNotEmpty;
 
-  /// Milliseconds the last copy / last index build took (for the tests and
-  /// the report; 0 when nothing was needed).
+  /// Milliseconds the last copy took (0 when nothing was needed), and the
+  /// longest single step of it (loading or writing one part) — the longest
+  /// the UI isolate was busy with the copy at once.
   int lastCopyMs = 0;
+  int longestCopyStepMs = 0;
 
   /// How many times this instance copied big.db from the assets (0 or 1).
   int copies = 0;
-  int lastIndexMs = 0;
 
   /// Latin-letter index slots (see build_bigdb.py ROM_SLOT).
   static const Map<String, int> romSlots = <String, int>{
@@ -119,9 +128,10 @@ class BigDictionary extends ChangeNotifier {
     'zh': 16,
   };
 
-  /// Bumped when the set of indexed slots per language changes, so an old
-  /// index on the phone is rebuilt.
-  static const String indexSchema = '2';
+  /// Bumped when the learned-word index in user.db changes shape, so it is
+  /// rebuilt (3: big.db ships its own index; user.db keeps learned words
+  /// only, every slot).
+  static const String indexSchema = '3';
 
   /// Translation slots searched when [lang] is chosen. Urdu and the two
   /// Punjabi scripts are close: their users type each other's words
@@ -177,13 +187,19 @@ class BigDictionary extends ChangeNotifier {
     }
   }
 
-  // ---------------------------------------------------------------- start
+  /// Everything computeKeys indexes: what build_bigdb.py ships in big.db,
+  /// and what the learned words get in user.db.
+  static KeyJob allSlotsJob(List<int> ids, List<String> tr, List<String> rom) =>
+      KeyJob(
+        ids: ids,
+        tr: tr,
+        rom: rom,
+        trSlots: List<int>.generate(LearnerLanguage.count, (int i) => i),
+        romLangs: romSlots.keys.toList(),
+        romSlotList: romSlots.values.toList(),
+      );
 
-  /// Opens (copying on first launch) and indexes [lang]. Never throws.
-  Future<void> start(LearnerLanguage lang) async {
-    await open();
-    if (ready) await useLanguage(lang);
-  }
+  // ---------------------------------------------------------------- start
 
   /// Copies big.db when needed and opens it. Never throws.
   Future<void> open() => _opening ??= _open();
@@ -241,27 +257,35 @@ class BigDictionary extends ChangeNotifier {
           _entryCount = int.tryParse('${row['v']}') ?? 0;
         }
       }
+      _shippedKeys = (await db.rawQuery(
+              "SELECT 1 FROM big.sqlite_master WHERE type = 'table' "
+              "AND name = 'keys'"))
+          .isNotEmpty;
+      if (!_shippedKeys) {
+        debugPrint('BigDictionary: big.db has no keys table; '
+            'meanings are not searchable');
+      }
       final String? indexedFor = await _umeta(db, 'big_version');
       final String? schema = await _umeta(db, 'idx_schema');
       if (indexedFor != _bigVersion || schema != indexSchema) {
-        // A new dictionary (the old reverse index points to old ids) or a
-        // new set of indexed slots: start the index again.
+        // A new dictionary or an older user.db (which held a whole phone-built
+        // index): keep only the learned words' keys, rebuilt for every slot.
         await db.transaction((sqflite.Transaction txn) async {
           await txn.delete('keys');
           await txn.rawDelete("DELETE FROM umeta WHERE k LIKE 'idx_%'");
+          await _insertKeys(txn, await txn.rawQuery(
+              'SELECT id, tr, rom FROM learned'));
           await _setUmeta(txn, 'big_version', _bigVersion);
           await _setUmeta(txn, 'idx_schema', indexSchema);
         });
       }
-      final List<Map<String, Object?>> idx = await db.rawQuery(
-          "SELECT k FROM umeta WHERE k LIKE 'idx_%' AND v = ?",
-          <Object>[_bigVersion]);
-      for (final Map<String, Object?> row in idx) {
-        final int? slot = int.tryParse('${row['k']}'.substring(4));
-        if (slot != null) _indexed.add(slot);
-      }
       _db = db;
       _setStatus(BigDictStatus.ready);
+      // One line in logcat: how the start went (copy, longest UI step).
+      debugPrint('BigDictionary: ready, $_entryCount entries, '
+          'copy ${copies > 0 ? '$lastCopyMs ms (longest part '
+              '$longestCopyStepMs ms)' : 'not needed'}, '
+          'index ${_shippedKeys ? 'shipped' : 'missing'}');
     } catch (e) {
       debugPrint('BigDictionary: not available ($e)');
       _setStatus(BigDictStatus.failed);
@@ -310,13 +334,42 @@ class BigDictionary extends ChangeNotifier {
     }
   }
 
+  /// Copies the parts one after the other into `<target>.tmp`, then renames
+  /// it: a copy cut short (app killed) is never taken for a good big.db.
+  /// Each step holds the UI isolate only for one small part.
   Future<void> _copyAsset(String target) async {
-    final ByteData data = await _loadAsset(assetDb);
+    final List<String> manifest = (await _loadString(assetParts))
+        .split('\n')
+        .map((String l) => l.trim())
+        .where((String l) => l.isNotEmpty)
+        .toList();
+    final int parts = int.parse(manifest[0]);
+    final int total = manifest.length > 1 ? int.parse(manifest[1]) : -1;
     final File tmp = File('$target.tmp');
-    await tmp.writeAsBytes(
-      data.buffer.asUint8List(data.offsetInBytes, data.lengthInBytes),
-      flush: true,
-    );
+    final RandomAccessFile out = await tmp.open(mode: FileMode.write);
+    int written = 0;
+    try {
+      for (int i = 0; i < parts; i++) {
+        final Stopwatch step = Stopwatch()..start();
+        final ByteData data = await _loadAsset(partName(i));
+        final Uint8List bytes =
+            data.buffer.asUint8List(data.offsetInBytes, data.lengthInBytes);
+        if (step.elapsedMilliseconds > longestCopyStepMs) {
+          longestCopyStepMs = step.elapsedMilliseconds;
+        }
+        await out.writeFrom(bytes);
+        written += bytes.length;
+        // Let a frame through between two parts.
+        await Future<void>.delayed(Duration.zero);
+      }
+      await out.flush();
+    } finally {
+      await out.close();
+    }
+    if (total >= 0 && written != total) {
+      await tmp.delete();
+      throw FileSystemException('big.db: $written of $total bytes', tmp.path);
+    }
     final File old = File(target);
     if (old.existsSync()) await old.delete();
     await tmp.rename(target);
@@ -334,84 +387,23 @@ class BigDictionary extends ChangeNotifier {
 
   // ---------------------------------------------------------------- index
 
-  /// Makes sure the reverse index of [lang] exists, building it in the
-  /// background when needed. Calls queue up; a newer language wins.
-  Future<void> useLanguage(LearnerLanguage lang) {
-    _wanted = lang;
-    _indexChain = _indexChain.then((_) async {
-      try {
-        await _ensureIndex(lang);
-      } catch (e) {
-        debugPrint('BigDictionary: index failed ($e)');
-      }
-    });
-    return _indexChain;
-  }
-
-  Future<void> _ensureIndex(LearnerLanguage lang) async {
-    final sqflite.Database? db = _db;
-    if (db == null || _wanted != lang || _indexed.contains(lang.slot)) return;
-    _building = lang;
-    _beginBusy();
-    final Stopwatch sw = Stopwatch()..start();
-    try {
-      int lastId = 0;
-      const int chunk = 4000;
-      while (true) {
-        if (_wanted != lang) return; // the user picked another language
-        final List<Map<String, Object?>> rows = await db.rawQuery(
-          'SELECT id, tr, rom FROM big.entries WHERE id > ? ORDER BY id LIMIT ?',
-          <Object>[lastId, chunk],
-        );
-        if (rows.isEmpty) break;
-        lastId = rows.last['id']! as int;
-        await _insertKeys(db, rows, lang, 1);
-      }
-      final List<Map<String, Object?>> learned =
-          await db.rawQuery('SELECT id, tr, rom FROM learned');
-      await _insertKeys(db, learned, lang, -1);
-      await _setUmeta(db, 'idx_${lang.slot}', _bigVersion);
-      _indexed.add(lang.slot);
-      lastIndexMs = sw.elapsedMilliseconds;
-    } finally {
-      _building = null;
-      _endBusy();
-    }
-  }
-
-  Future<void> _insertKeys(
+  /// Indexes learned words (rows of `learned`, a handful) for every slot in
+  /// user.db's own `keys`, with negative entry ids.
+  static Future<void> _insertKeys(
     sqflite.DatabaseExecutor db,
     List<Map<String, Object?>> rows,
-    LearnerLanguage lang,
-    int idSign,
   ) async {
     if (rows.isEmpty) return;
-    final Map<String, int> roms = romSlotsFor(lang);
-    final KeyJob job = KeyJob(
-      ids: <int>[
-        for (final Map<String, Object?> r in rows) (r['id']! as int) * idSign
-      ],
-      tr: <String>[
+    final List<Object> flat = computeKeys(allSlotsJob(
+      <int>[for (final Map<String, Object?> r in rows) -(r['id']! as int)],
+      <String>[
         for (final Map<String, Object?> r in rows) (r['tr'] as String?) ?? ''
       ],
-      rom: <String>[
+      <String>[
         for (final Map<String, Object?> r in rows) (r['rom'] as String?) ?? ''
       ],
-      trSlots: trSlotsFor(lang),
-      romLangs: roms.keys.toList(),
-      romSlotList: roms.values.toList(),
-    );
-    final List<Object> flat =
-        useIsolate ? await _runJob(job) : computeKeys(job);
+    ));
     const int perStatement = 300; // 900 variables < SQLite's old 999 limit
-    await (db is sqflite.Database
-        ? db.transaction(
-            (sqflite.Transaction txn) => _write(txn, flat, perStatement))
-        : _write(db, flat, perStatement));
-  }
-
-  static Future<void> _write(
-      sqflite.DatabaseExecutor db, List<Object> flat, int perStatement) async {
     final sqflite.Batch batch = db.batch();
     for (int i = 0; i < flat.length; i += perStatement * 3) {
       final int end = i + perStatement * 3 < flat.length
@@ -419,16 +411,13 @@ class BigDictionary extends ChangeNotifier {
           : flat.length;
       final int n = (end - i) ~/ 3;
       batch.rawInsert(
-        'INSERT OR IGNORE INTO keys(key, slot, entry_id) VALUES '
+        'INSERT OR IGNORE INTO main.keys(key, slot, entry_id) VALUES '
         '${List<String>.filled(n, '(?,?,?)').join(',')}',
         flat.sublist(i, end),
       );
     }
     await batch.commit(noResult: true);
   }
-
-  static Future<List<Object>> _runJob(KeyJob job) =>
-      Isolate.run(() => computeKeys(job));
 
   // ---------------------------------------------------------------- lookup
 
@@ -440,7 +429,11 @@ class BigDictionary extends ChangeNotifier {
     final sqflite.Database? db = _db;
     if (db == null) return const <BigHit>[];
     try {
-      return await _lookup(db, raw, lang, limit);
+      final Stopwatch sw = Stopwatch()..start();
+      final List<BigHit> hits = await _lookup(db, raw, lang, limit);
+      debugPrint('BigDictionary: lookup "$raw" (${lang.tag}) '
+          '${hits.length} hits in ${sw.elapsedMilliseconds} ms');
+      return hits;
     } catch (e) {
       debugPrint('BigDictionary: lookup failed ($e)');
       return const <BigHit>[];
@@ -498,17 +491,35 @@ class BigDictionary extends ChangeNotifier {
         int exactOther, int prefix, bool allowPrefix) async {
       if (slots.isEmpty) return;
       final String inSlots = List<String>.filled(slots.length, '?').join(',');
-      final List<Map<String, Object?>> rows = allowPrefix
-          ? await db.rawQuery(
-              'SELECT k.entry_id AS id, k.key AS key, k.slot AS slot FROM keys k '
-              'LEFT JOIN big.entries e ON e.id = k.entry_id '
-              'WHERE k.key >= ? AND k.key < ? AND k.slot IN ($inSlots) '
-              'ORDER BY k.key = ? DESC, e.rank IS NULL, e.rank LIMIT 120',
-              <Object>[key, '$key$_top', ...slots, key])
-          : await db.rawQuery(
-              'SELECT entry_id AS id, key, slot FROM keys '
+      // big.keys: shipped in big.db for every language; main.keys: the
+      // learned words (negative ids).
+      final List<Map<String, Object?>> rows = <Map<String, Object?>>[
+        if (_shippedKeys)
+          ...await db.rawQuery(
+              'SELECT entry_id AS id, key, slot FROM big.keys '
               'WHERE key = ? AND slot IN ($inSlots)',
-              <Object>[key, ...slots]);
+              <Object>[key, ...slots]),
+        ...await db.rawQuery(
+            'SELECT entry_id AS id, key, slot FROM main.keys '
+            'WHERE key = ? AND slot IN ($inSlots)',
+            <Object>[key, ...slots]),
+        if (allowPrefix && _shippedKeys)
+          // The most common of the first 3000 keys starting so: a short
+          // prefix ("ca") has ~20,000 keys, sorting them all would take
+          // ~1 s on a phone.
+          ...await db.rawQuery(
+              'SELECT k.id AS id, k.key AS key, k.slot AS slot FROM '
+              '(SELECT entry_id AS id, key, slot FROM big.keys '
+              'WHERE key > ? AND key < ? AND slot IN ($inSlots) LIMIT 3000) k '
+              'JOIN big.entries e ON e.id = k.id '
+              'ORDER BY e.rank IS NULL, e.rank LIMIT 120',
+              <Object>[key, '$key$_top', ...slots]),
+        if (allowPrefix)
+          ...await db.rawQuery(
+              'SELECT entry_id AS id, key, slot FROM main.keys '
+              'WHERE key > ? AND key < ? AND slot IN ($inSlots) LIMIT 20',
+              <Object>[key, '$key$_top', ...slots]),
+      ];
       for (final Map<String, Object?> r in rows) {
         final bool isExact = r['key'] == key;
         hit(
@@ -741,11 +752,7 @@ class BigDictionary extends ChangeNotifier {
             .delete('keys', where: 'entry_id = ?', whereArgs: <Object>[-id]);
       }
       final Map<String, Object?> saved = <String, Object?>{...row, 'id': id};
-      for (final int slot in _indexed) {
-        final LearnerLanguage lang = LearnerLanguage.values
-            .firstWhere((LearnerLanguage l) => l.slot == slot);
-        await _insertKeys(txn, <Map<String, Object?>>[saved], lang, -1);
-      }
+      await _insertKeys(txn, <Map<String, Object?>>[saved]);
       return BigEntry.fromRow(saved, learned: true);
     });
   }
@@ -786,7 +793,7 @@ class BigDictionary extends ChangeNotifier {
   /// Closes the database (tests).
   Future<void> close() async {
     _preparingTimer?.cancel();
-    await _indexChain;
+    await _opening;
     await _db?.close();
     _db = null;
   }

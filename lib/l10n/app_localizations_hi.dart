@@ -90,6 +90,15 @@ class AppLocalizationsHi extends AppLocalizations {
   }
 
   @override
+  String wordsAndPhrasesTotal(int count) {
+    final intl.NumberFormat countNumberFormat =
+        intl.NumberFormat.decimalPattern(localeName);
+    final String countString = countNumberFormat.format(count);
+
+    return '$countString शब्द और वाक्य';
+  }
+
+  @override
   String get recentSearches => 'हाल की खोजें';
 
   @override

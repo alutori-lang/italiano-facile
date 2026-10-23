@@ -24,6 +24,7 @@
   "typePhrase": "වාක්‍ය ඛණ්ඩය",
   "searchHint": "ඉතාලි, ඉංග්‍රීසි, اردو, বাংলা…",
   "wordsAndPhrases": "{words} වචන · {phrases} වාක්‍ය",
+  "wordsAndPhrasesTotal": "{count} වචන සහ වාක්‍ය",
   "recentSearches": "මෑත සෙවීම්",
   "clearRecent": "ඉවත් කරන්න",
   "noResults": "වචනයක් හමු නොවිණි",

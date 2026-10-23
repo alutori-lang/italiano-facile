@@ -90,6 +90,15 @@ class AppLocalizationsBn extends AppLocalizations {
   }
 
   @override
+  String wordsAndPhrasesTotal(int count) {
+    final intl.NumberFormat countNumberFormat =
+        intl.NumberFormat.decimalPattern(localeName);
+    final String countString = countNumberFormat.format(count);
+
+    return '$countString শব্দ ও বাক্যাংশ';
+  }
+
+  @override
   String get recentSearches => 'সাম্প্রতিক খোঁজ';
 
   @override

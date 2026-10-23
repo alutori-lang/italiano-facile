@@ -90,6 +90,15 @@ class AppLocalizationsPa extends AppLocalizations {
   }
 
   @override
+  String wordsAndPhrasesTotal(int count) {
+    final intl.NumberFormat countNumberFormat =
+        intl.NumberFormat.decimalPattern(localeName);
+    final String countString = countNumberFormat.format(count);
+
+    return '$countString ਸ਼ਬਦ ਅਤੇ ਵਾਕ';
+  }
+
+  @override
   String get recentSearches => 'ਹਾਲੀਆ ਖੋਜਾਂ';
 
   @override
@@ -658,6 +667,15 @@ class AppLocalizationsPaArab extends AppLocalizationsPa {
     final String phrasesString = phrasesNumberFormat.format(phrases);
 
     return '$wordsString لفظ · $phrasesString جملے';
+  }
+
+  @override
+  String wordsAndPhrasesTotal(int count) {
+    final intl.NumberFormat countNumberFormat =
+        intl.NumberFormat.decimalPattern(localeName);
+    final String countString = countNumberFormat.format(count);
+
+    return '$countString لفظ تے جملے';
   }
 
   @override

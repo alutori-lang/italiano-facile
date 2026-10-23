@@ -24,6 +24,7 @@
   "typePhrase": "جملہ",
   "searchHint": "اطالوی، انگریزی، اردو، বাংলা…",
   "wordsAndPhrases": "{words} الفاظ · {phrases} جملے",
+  "wordsAndPhrasesTotal": "{count} الفاظ اور جملے",
   "recentSearches": "حالیہ تلاشیں",
   "clearRecent": "صاف کریں",
   "noResults": "کوئی لفظ نہیں ملا",

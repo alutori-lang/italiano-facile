@@ -24,6 +24,7 @@
   "typePhrase": "جملہ",
   "searchHint": "اطالوی، انگریزی، اردو، বাংলা…",
   "wordsAndPhrases": "{words} لفظ · {phrases} جملے",
+  "wordsAndPhrasesTotal": "{count} لفظ تے جملے",
   "recentSearches": "حالیہ تلاشاں",
   "clearRecent": "صاف کرو",
   "noResults": "کوئی لفظ نہیں ملیا",

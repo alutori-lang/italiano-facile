@@ -24,6 +24,7 @@
   "typePhrase": "短语",
   "searchHint": "意大利语、英语、اردو、বাংলা…",
   "wordsAndPhrases": "{words} 个单词 · {phrases} 个短语",
+  "wordsAndPhrasesTotal": "{count} 个单词和短语",
   "recentSearches": "最近的搜索",
   "clearRecent": "清除",
   "noResults": "未找到单词",

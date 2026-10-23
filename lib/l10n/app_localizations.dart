@@ -270,6 +270,12 @@ abstract class AppLocalizations {
   /// **'{words} words · {phrases} phrases'**
   String wordsAndPhrases(int words, int phrases);
 
+  /// Search header: words and phrases in one count
+  ///
+  /// In en, this message translates to:
+  /// **'{count} words and phrases'**
+  String wordsAndPhrasesTotal(int count);
+
   /// recentSearches
   ///
   /// In en, this message translates to:

@@ -24,6 +24,7 @@
   "typePhrase": "Satz",
   "searchHint": "Italienisch, Englisch, اردو, বাংলা…",
   "wordsAndPhrases": "{words} Wörter · {phrases} Sätze",
+  "wordsAndPhrasesTotal": "{count} Wörter und Sätze",
   "recentSearches": "Letzte Suchen",
   "clearRecent": "Löschen",
   "noResults": "Kein Wort gefunden",

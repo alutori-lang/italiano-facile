@@ -24,6 +24,7 @@
   "typePhrase": "ਵਾਕ",
   "searchHint": "ਇਤਾਲਵੀ, ਅੰਗਰੇਜ਼ੀ, اردو, বাংলা…",
   "wordsAndPhrases": "{words} ਸ਼ਬਦ · {phrases} ਵਾਕ",
+  "wordsAndPhrasesTotal": "{count} ਸ਼ਬਦ ਅਤੇ ਵਾਕ",
   "recentSearches": "ਹਾਲੀਆ ਖੋਜਾਂ",
   "clearRecent": "ਸਾਫ਼ ਕਰੋ",
   "noResults": "ਕੋਈ ਸ਼ਬਦ ਨਹੀਂ ਮਿਲਿਆ",

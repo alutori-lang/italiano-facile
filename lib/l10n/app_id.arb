@@ -24,6 +24,7 @@
   "typePhrase": "Frasa",
   "searchHint": "Italia, Inggris, اردو, বাংলা…",
   "wordsAndPhrases": "{words} kata · {phrases} frasa",
+  "wordsAndPhrasesTotal": "{count} kata dan frasa",
   "recentSearches": "Pencarian terbaru",
   "clearRecent": "Hapus",
   "noResults": "Kata tidak ditemukan",

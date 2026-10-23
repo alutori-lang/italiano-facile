@@ -16,61 +16,91 @@ class ScreenHeader extends StatelessWidget {
     required this.title,
     this.subtitle,
     this.trailing,
+    this.subtitleOneLine = false,
   });
 
   final String title;
   final String? subtitle;
   final Widget? trailing;
 
+  /// Puts the subtitle on its own line under the whole header row (logo,
+  /// title and pill), on ONE line: next to the language pill a 360 px phone
+  /// leaves the title column ~90 px, too narrow for "109.636 parole e
+  /// frasi". If even the full width is not enough it shrinks a little rather
+  /// than wrapping or being cut.
+  final bool subtitleOneLine;
+
   @override
   Widget build(BuildContext context) {
+    final bool below = subtitleOneLine && subtitle != null;
+    final Widget row = Row(
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: <Widget>[
+        const AppLogo(),
+        const SizedBox(width: AppSpace.s + 2),
+        Expanded(
+          flex: 3,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisSize: MainAxisSize.min,
+            children: <Widget>[
+              Text(
+                title,
+                maxLines: 2,
+                overflow: TextOverflow.ellipsis,
+                style: context.texts.headlineMedium,
+              ),
+              if (subtitle != null && !below) ...<Widget>[
+                const SizedBox(height: 2),
+                Text(
+                  subtitle!,
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
+                  style: context.texts.bodySmall,
+                ),
+              ],
+            ],
+          ),
+        ),
+        if (trailing != null) ...<Widget>[
+          const SizedBox(width: AppSpace.m),
+          // The trailing control keeps its natural width (up to 45% of the
+          // row) so a language name is never squeezed to nothing.
+          ConstrainedBox(
+            constraints: BoxConstraints(
+              maxWidth: MediaQuery.sizeOf(context).width * 0.45,
+            ),
+            child: trailing!,
+          ),
+        ],
+      ],
+    );
     return Padding(
       padding: const EdgeInsets.only(
         top: AppSpace.s,
         bottom: AppSpace.l,
       ),
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: <Widget>[
-          const AppLogo(),
-          const SizedBox(width: AppSpace.s + 2),
-          Expanded(
-            flex: 3,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+      child: !below
+          ? row
+          : Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
               mainAxisSize: MainAxisSize.min,
               children: <Widget>[
-                Text(
-                  title,
-                  maxLines: 2,
-                  overflow: TextOverflow.ellipsis,
-                  style: context.texts.headlineMedium,
-                ),
-                if (subtitle != null) ...<Widget>[
-                  const SizedBox(height: 2),
-                  Text(
+                row,
+                const SizedBox(height: 2),
+                FittedBox(
+                  fit: BoxFit.scaleDown,
+                  alignment: AlignmentDirectional.centerStart,
+                  child: Text(
                     subtitle!,
-                    maxLines: 2,
-                    overflow: TextOverflow.ellipsis,
+                    key: const ValueKey<String>('screen-header-subtitle'),
+                    maxLines: 1,
+                    softWrap: false,
                     style: context.texts.bodySmall,
                   ),
-                ],
+                ),
               ],
             ),
-          ),
-          if (trailing != null) ...<Widget>[
-            const SizedBox(width: AppSpace.m),
-            // The trailing control keeps its natural width (up to 45% of the
-            // row) so a language name is never squeezed to nothing.
-            ConstrainedBox(
-              constraints: BoxConstraints(
-                maxWidth: MediaQuery.sizeOf(context).width * 0.45,
-              ),
-              child: trailing!,
-            ),
-          ],
-        ],
-      ),
     );
   }
 }

@@ -90,6 +90,15 @@ class AppLocalizationsEn extends AppLocalizations {
   }
 
   @override
+  String wordsAndPhrasesTotal(int count) {
+    final intl.NumberFormat countNumberFormat =
+        intl.NumberFormat.decimalPattern(localeName);
+    final String countString = countNumberFormat.format(count);
+
+    return '$countString words and phrases';
+  }
+
+  @override
   String get recentSearches => 'Recent searches';
 
   @override

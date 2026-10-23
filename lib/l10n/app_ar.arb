@@ -24,6 +24,7 @@
   "typePhrase": "عبارة",
   "searchHint": "الإيطالية، الإنجليزية، اردو، বাংলা…",
   "wordsAndPhrases": "{words} كلمة · {phrases} عبارة",
+  "wordsAndPhrasesTotal": "{count} كلمة وعبارة",
   "recentSearches": "أحدث عمليات البحث",
   "clearRecent": "حذف",
   "noResults": "لم يتم العثور على كلمة",

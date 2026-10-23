@@ -90,6 +90,15 @@ class AppLocalizationsZh extends AppLocalizations {
   }
 
   @override
+  String wordsAndPhrasesTotal(int count) {
+    final intl.NumberFormat countNumberFormat =
+        intl.NumberFormat.decimalPattern(localeName);
+    final String countString = countNumberFormat.format(count);
+
+    return '$countString 个单词和短语';
+  }
+
+  @override
   String get recentSearches => '最近的搜索';
 
   @override

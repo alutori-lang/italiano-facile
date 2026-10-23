@@ -24,6 +24,7 @@
   "typePhrase": "Frase",
   "searchHint": "Italiano, inglés, اردو, বাংলা…",
   "wordsAndPhrases": "{words} palabras · {phrases} frases",
+  "wordsAndPhrasesTotal": "{count} palabras y frases",
   "recentSearches": "Búsquedas recientes",
   "clearRecent": "Borrar",
   "noResults": "No se encontró ninguna palabra",

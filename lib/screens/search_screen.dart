@@ -58,6 +58,15 @@ class _SearchScreenState extends State<SearchScreen> {
   BigDictionary? _big;
   List<SearchHit> _bigWords = const <SearchHit>[];
   List<BigHit> _bigEntries = const <BigHit>[];
+
+  /// Curated words already found by the curated search that the big
+  /// dictionary also found, with ITS (better) score: "love" is only a loose
+  /// curated match for some words but the exact big meaning of l'amore.
+  Map<String, int> _bigBoost = const <String, int>{};
+
+  /// Frequency rank of the big entry behind a curated word or a big card
+  /// (lower = more common): breaks ties between equal scores.
+  Map<String, int> _bigRank = const <String, int>{};
   bool _bigPending = false;
   int _bigSeq = 0;
   bool _bigIndexedSeen = false;
@@ -144,6 +153,8 @@ class _SearchScreenState extends State<SearchScreen> {
         setState(() {
           _bigWords = const <SearchHit>[];
           _bigEntries = const <BigHit>[];
+          _bigBoost = const <String, int>{};
+          _bigRank = const <String, int>{};
           _bigPending = false;
           _serverSearching = false;
           _server = ServerLookupStatus.off;
@@ -157,12 +168,25 @@ class _SearchScreenState extends State<SearchScreen> {
     final Set<String> shown = <String>{
       for (final SearchHit hit in hits) hit.word.id,
     };
+    final Set<String> curatedHits = Set<String>.of(shown);
     final List<SearchHit> words = <SearchHit>[];
     final List<BigHit> entries = <BigHit>[];
+    final Map<String, int> boost = <String, int>{};
+    final Map<String, int> rank = <String, int>{};
     for (final BigHit hit in found) {
       final Word? curated = _curated[TextNorm.norm(hit.entry.it)];
       if (curated != null) {
-        if (shown.add(curated.id)) words.add(SearchHit(curated, hit.score));
+        final int? r = hit.entry.rank;
+        if (r != null && r < (rank[curated.id] ?? 1 << 30)) {
+          rank[curated.id] = r;
+        }
+        if (curatedHits.contains(curated.id)) {
+          if (hit.score > (boost[curated.id] ?? 0)) {
+            boost[curated.id] = hit.score;
+          }
+        } else if (shown.add(curated.id)) {
+          words.add(SearchHit(curated, hit.score));
+        }
       } else {
         entries.add(hit);
       }
@@ -170,6 +194,8 @@ class _SearchScreenState extends State<SearchScreen> {
     setState(() {
       _bigWords = words;
       _bigEntries = entries;
+      _bigBoost = boost;
+      _bigRank = rank;
       _bigPending = false;
       _server = ServerLookupStatus.off;
       _serverSearching = false;
@@ -198,14 +224,18 @@ class _SearchScreenState extends State<SearchScreen> {
 
   /// Curated and big-dictionary answers in ONE list, best match first: a
   /// big-dictionary word that matches exactly (e.g. "piyar" → l'amore) comes
-  /// before a curated word that only matched loosely. On equal scores the
-  /// curated card (picture, explanation) wins.
+  /// before a curated word that only matched loosely. A curated word gets
+  /// the better of its curated and its big score. On equal scores the more
+  /// common word (big frequency rank) wins, then the curated card (picture,
+  /// explanation).
   List<Widget> _mergedResults() {
-    final List<(int, int, Widget)> items = <(int, int, Widget)>[];
+    final List<MergedItem<Widget>> items = <MergedItem<Widget>>[];
     for (final SearchHit hit in <SearchHit>[..._hits, ..._bigWords]) {
-      items.add((
-        hit.score,
-        1,
+      final int boosted = _bigBoost[hit.word.id] ?? 0;
+      items.add(MergedItem<Widget>(
+        boosted > hit.score ? boosted : hit.score,
+        _bigRank[hit.word.id],
+        true,
         Padding(
           padding: const EdgeInsets.only(bottom: AppSpace.l),
           child: WordCard(
@@ -217,9 +247,10 @@ class _SearchScreenState extends State<SearchScreen> {
       ));
     }
     for (final BigHit hit in _bigEntries) {
-      items.add((
+      items.add(MergedItem<Widget>(
         hit.score,
-        0,
+        hit.entry.rank,
+        false,
         Padding(
           padding: const EdgeInsets.only(bottom: AppSpace.m),
           child: BigEntryCard(
@@ -229,11 +260,9 @@ class _SearchScreenState extends State<SearchScreen> {
         ),
       ));
     }
-    items.sort(((int, int, Widget) a, (int, int, Widget) b) {
-      final int byScore = b.$1.compareTo(a.$1);
-      return byScore != 0 ? byScore : b.$2.compareTo(a.$2);
-    });
-    return <Widget>[for (final (int, int, Widget) item in items) item.$3];
+    return <Widget>[
+      for (final MergedItem<Widget> item in MergedItem.order(items)) item.value,
+    ];
   }
 
   void _openBigEntry(BigEntry entry) {
@@ -302,10 +331,12 @@ class _SearchScreenState extends State<SearchScreen> {
           children: <Widget>[
             ScreenHeader(
               title: t.tabSearch,
-              subtitle: t.wordsAndPhrases(
-                repo.wordCount + (big?.entryCount ?? 0),
-                repo.phraseCount,
+              // One count, so it fits on one line next to the language pill
+              // (the big dictionary holds words and phrases together).
+              subtitle: t.wordsAndPhrasesTotal(
+                repo.wordCount + repo.phraseCount + (big?.entryCount ?? 0),
               ),
+              subtitleOneLine: true,
               trailing: Row(
                 mainAxisSize: MainAxisSize.min,
                 children: <Widget>[
@@ -567,5 +598,35 @@ class _SearchScreenState extends State<SearchScreen> {
         ),
       ],
     ];
+  }
+}
+
+/// One row of the merged Search list (see [_SearchScreenState]).
+class MergedItem<T> {
+  const MergedItem(this.score, this.rank, this.curated, this.value);
+
+  final int score;
+
+  /// Big-dictionary frequency rank, lower = more common; null = unknown.
+  final int? rank;
+  final bool curated;
+  final T value;
+
+  /// Best score first; equal scores: more common word, then the curated
+  /// card, then the original order (a stable sort).
+  static List<MergedItem<T>> order<T>(List<MergedItem<T>> items) {
+    final List<(int, MergedItem<T>)> indexed = <(int, MergedItem<T>)>[
+      for (int i = 0; i < items.length; i++) (i, items[i]),
+    ];
+    indexed.sort(((int, MergedItem<T>) a, (int, MergedItem<T>) b) {
+      final int byScore = b.$2.score.compareTo(a.$2.score);
+      if (byScore != 0) return byScore;
+      final int ra = a.$2.rank ?? 1 << 30;
+      final int rb = b.$2.rank ?? 1 << 30;
+      if (ra != rb) return ra.compareTo(rb);
+      if (a.$2.curated != b.$2.curated) return a.$2.curated ? -1 : 1;
+      return a.$1.compareTo(b.$1);
+    });
+    return <MergedItem<T>>[for (final (int, MergedItem<T>) e in indexed) e.$2];
   }
 }
