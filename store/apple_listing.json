@@ -1,5 +1,5 @@
 {
-  "bundleId": "dev.fluttercursor.app.simple_flutter_app_651",
+  "bundleId": "com.dreamcodestudio.italianofacile",
   "primaryLanguage": "en-US",
   "ageRating": "12+ (suitable for ages 13 and up)",
   "primaryCategory": "EDUCATION",
@@ -17,8 +17,8 @@
     }
   ],
   "keywords": "italian,translator,dictionary,learn italian,urdu,punjabi,bengali,chinese,italy,offline",
-  "supportUrl": "",
-  "privacyPolicyUrl": "",
+  "supportUrl": "https://alutori-lang.github.io/italiano-facile/",
+  "privacyPolicyUrl": "https://alutori-lang.github.io/italiano-facile/privacy.html",
   "localizations": {
     "en": {
       "name": "Italiano Facile per Stranieri",
@@ -127,5 +127,7 @@
     "dataCollected": "none",
     "tracking": "Only if the user accepts the ads consent form.",
     "notes": "Progress and settings stay on the device. Ads come from Google AdMob after consent. A future optional online lookup will send only the typed word and chosen language, never the user's identity."
-  }
+  },
+  "marketingUrl": "https://alutori-lang.github.io/italiano-facile/",
+  "contactEmail": "salsostaff20@gmail.com"
 }

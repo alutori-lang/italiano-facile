@@ -9,14 +9,15 @@ class AppConfig {
   /// Shown in the store listing and the About screen.
   static const String appName = 'Italiano Facile per Stranieri';
   static const String appVersion = '1.0.0';
-  static const String packageName = 'dev.fluttercursor.app.simple_flutter_app_651';
+  static const String packageName = 'com.dreamcodestudio.italianofacile';
 
   /// Support address shown in About / privacy. Empty = hidden.
-  static const String supportEmail = '';
+  static const String supportEmail = 'salsostaff20@gmail.com';
 
   /// Public privacy-policy URL once the owner has published one. Empty = the
   /// in-app privacy screen is used alone.
-  static const String privacyPolicyUrl = '';
+  static const String privacyPolicyUrl =
+      'https://alutori-lang.github.io/italiano-facile/privacy.html';
 
   /// Language used for text-to-speech. The learning language never changes.
   static const String ttsLanguage = 'it-IT';

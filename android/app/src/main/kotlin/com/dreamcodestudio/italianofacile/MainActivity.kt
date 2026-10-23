@@ -1,4 +1,4 @@
-package dev.fluttercursor.app.simple_flutter_app_651
+package com.dreamcodestudio.italianofacile
 
 import io.flutter.embedding.android.FlutterActivity
 
