@@ -1,3 +1,7 @@
+// Indexing ~100k entries per language takes longer than the default 30 s.
+@Timeout(Duration(minutes: 10))
+library;
+
 import 'dart:convert';
 import 'dart:io';
 import 'dart:typed_data';
@@ -111,7 +115,13 @@ void main() {
     final bool hasPomodoro =
         (await big.lookup('pomodoro', LearnerLanguage.chineseSimplified))
             .any((BigHit h) => h.entry.it == 'pomodoro');
-    if (hasPomodoro) expect(fanqie, contains('pomodoro'));
+    // Chinese has two words for tomato (番茄 fanqie, 西红柿 xihongshi); the
+    // dictionary may give either, so accept both spellings.
+    if (hasPomodoro) {
+      final List<String> xihongshi =
+          await its('xihongshi', LearnerLanguage.chineseSimplified);
+      expect(<String>[...fanqie, ...xihongshi], contains('pomodoro'));
+    }
     final List<String> shui =
         await its('shui', LearnerLanguage.chineseSimplified);
     expect(shui, contains('acqua'));
