@@ -207,7 +207,27 @@ class AdSdkMock {
     this.canRequestAds = true,
     this.consentUpdateDelay = Duration.zero,
     this.initializeFails = false,
+    this.loadedFormats = const <String>{},
   });
+
+  /// Load methods ('loadInterstitialAd', 'loadRewardedAd', 'loadAppOpenAd')
+  /// that answer "ad loaded" like the SDK does when an ad is available.
+  Set<String> loadedFormats;
+  final Map<int, String> _formatOf = <int, String>{};
+
+  /// Sends an ad event from the "platform" to the plugin.
+  void _event(int adId, String eventName, [Map<String, Object?>? extra]) {
+    final MethodChannel channel = instanceManager.channel;
+    final ByteData data = channel.codec.encodeMethodCall(
+      MethodCall('onAdEvent', <dynamic, dynamic>{
+        'adId': adId,
+        'eventName': eventName,
+        ...?extra,
+      }),
+    );
+    TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger
+        .handlePlatformMessage(channel.name, data, (ByteData? _) {});
+  }
 
   /// What UMP says after the consent flow.
   bool canRequestAds;
@@ -240,6 +260,30 @@ class AdSdkMock {
           return InitializationStatus(<String, AdapterStatus>{});
         case 'AdSize#getAnchoredAdaptiveBannerAdSize':
           return 60;
+        case 'loadInterstitialAd':
+        case 'loadRewardedAd':
+        case 'loadAppOpenAd':
+          final Object? args = call.arguments;
+          final int? adId =
+              args is Map ? (args['adId'] as num?)?.toInt() : null;
+          if (adId != null) {
+            _formatOf[adId] = call.method;
+            if (loadedFormats.contains(call.method)) {
+              scheduleMicrotask(() => _event(adId, 'onAdLoaded'));
+            }
+          }
+          return null;
+        case 'showAdWithoutView':
+          final Object? args = call.arguments;
+          final int? adId =
+              args is Map ? (args['adId'] as num?)?.toInt() : null;
+          if (adId != null) {
+            scheduleMicrotask(() {
+              _event(adId, 'onAdShowedFullScreenContent');
+              _event(adId, 'onAdDismissedFullScreenContent');
+            });
+          }
+          return null;
         default:
           return null;
       }
@@ -334,6 +378,7 @@ Future<T3App> pumpT3App(
   Map<String, Object> initialPrefs = kLanguageChosen,
   FakeStore? store,
   AdSdkMock? sdk,
+  DateTime Function()? clock,
   http.Client? httpClient,
   bool startServices = true,
   bool keepPrefs = false,
@@ -357,7 +402,9 @@ Future<T3App> pumpT3App(
   final SettingsController settings = SettingsController(prefs);
   final ProgressService progress = ProgressService(prefs);
   final TtsService tts = TtsService();
-  final AdsService ads = AdsService();
+  // Built as main.dart builds it (prefs: launch count, reward hour).
+  final AdsService ads = AdsService(prefs: prefs, clock: clock);
+  addTearDown(ads.dispose);
   final PurchaseService purchases = PurchaseService(prefs, iap: theStore);
   final FakeNotifications notifications = FakeNotifications();
   final OnlineLookupService online =
@@ -463,4 +510,12 @@ void withPlatform(TargetPlatform platform) {
 Future<void> goBack(WidgetTester tester) async {
   await tester.tap(find.byType(BackButton).last);
   await tester.pumpAndSettle();
+}
+
+/// A clock the test moves by hand.
+class T3Clock {
+  T3Clock(this.now);
+  DateTime now;
+  DateTime call() => now;
+  void advance(Duration d) => now = now.add(d);
 }

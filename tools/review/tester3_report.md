@@ -1,5 +1,16 @@
 # Tester 3 report — every option, payment and ad
 
+## Update 2026-10-23: new approved ad design
+
+- All four HIGH/MEDIUM findings below (purchase not stopping ads, restore not stopping ads, consent order/canRequestAds, reset clearing the reminder) are **fixed** in lib/; the tests that caught them now pass.
+- `ads_t3_test.dart` now follows the approved design. Free users get one shared banner strip (`ad-banner-area` + "1 ora senza pubblicità" link) on all four tabs, loaded once. The strip is absent on the pushed Settings and Paywall screens. The quiz result has its own strip. The quiz question and flashcard screens have no strip and request no banner. During the reward hour there is no banner, no link and no interstitial; they come back when the hour is over. Interstitial timing with an injected clock: none before 3:00, one at 3:00, none within 3 minutes, one again. A source check confirms the interstitial callers are only quiz_result + flashcards, and lists the approved banner hosts.
+- The harness builds `AdsService(prefs:, clock:)` the way main.dart does, and the ad SDK mock can now answer "ad loaded" and "shown/dismissed".
+- Most app-open and rewarded rules are already covered by `test/ads/ads_rules_test.dart`: frequency, first launch, 4 h cap and expiry, buyer, reward hour, video closed early. They are not duplicated here.
+- `flutter test test/tester3`: 71 passed, 0 failed. Full `flutter test`: 356 passed, 6 skipped, 0 failed.
+- No new real app bug was found. The refund/revocation gap remains, by design for now.
+
+(The original 2026-10-21 report follows.)
+
 App: "Italian Words: Learn & Play" (simple_flutter_app_651) · date 2026-10-21
 Command: `flutter test test/tester3` → **61 passed, 7 failed** (68 tests).
 No file under `lib/` was changed.

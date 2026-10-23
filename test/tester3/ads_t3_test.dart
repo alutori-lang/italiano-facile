@@ -8,11 +8,14 @@ import 'package:in_app_purchase/in_app_purchase.dart';
 import 'package:simple_flutter_app_651/data/word_repository.dart';
 import 'package:simple_flutter_app_651/models/word.dart';
 import 'package:simple_flutter_app_651/screens/home_shell.dart';
+import 'package:simple_flutter_app_651/screens/flashcards_screen.dart';
 import 'package:simple_flutter_app_651/screens/paywall_screen.dart';
+import 'package:simple_flutter_app_651/screens/quiz_play_screen.dart';
 import 'package:simple_flutter_app_651/screens/quiz_result_screen.dart';
 import 'package:simple_flutter_app_651/services/ads_service.dart';
 import 'package:simple_flutter_app_651/services/prefs_service.dart';
 import 'package:simple_flutter_app_651/services/quiz_service.dart';
+import 'package:simple_flutter_app_651/ui/widgets/banner_ad_slot.dart';
 
 import 't3_harness.dart';
 
@@ -137,12 +140,28 @@ void main() {
   });
 
   group('Banner placement', () {
-    testWidgets('no banner on Search (incl. listening), Today, Quiz list, '
-        'Settings, Paywall; banner on Topics', (WidgetTester tester) async {
+    testWidgets(
+        'free user: ONE shared banner strip on all four tabs (Cerca, Oggi, '
+        'Quiz, Argomenti), loaded once, also while a word is spoken; pushed '
+        'Settings and Paywall have no strip', (WidgetTester tester) async {
       final AdSdkMock sdk = AdSdkMock();
       await pumpT3App(tester, sdk: sdk);
       expect(sdk.count('MobileAds#initialize'), 1);
 
+      for (final String tab in <String>[
+        'tab-search',
+        'tab-today',
+        'tab-quiz',
+        'tab-topics',
+      ]) {
+        await tapKey(tester, tab);
+        expect(find.byKey(const ValueKey<String>('ad-banner-area')),
+            findsOneWidget,
+            reason: tab);
+        expect(find.byKey(const ValueKey<String>('ad-reward-link')),
+            findsOneWidget,
+            reason: 'reward link under the banner on $tab');
+      }
       // Search with a result and a tap on the audio button.
       await tapKey(tester, 'tab-search');
       await tester.enterText(find.byType(TextField).first, 'casa');
@@ -154,26 +173,139 @@ void main() {
         await tester.tap(audio.first);
         await tester.pumpAndSettle();
       }
-      await tapKey(tester, 'tab-today');
-      await tapKey(tester, 'tab-quiz');
+      expect(find.byKey(const ValueKey<String>('ad-banner-area')),
+          findsOneWidget);
+      expect(sdk.count('loadBannerAd'), 1,
+          reason: 'one shared banner, not one per tab: ${sdk.log}');
+
       await openSettings(tester);
+      expect(find.byKey(const ValueKey<String>('ad-banner-area')),
+          findsNothing,
+          reason: 'Settings is a pushed screen without a strip');
       await tapKey(tester, 'settings-remove-ads');
       expect(find.byType(PaywallScreen), findsOneWidget);
-      expect(sdk.count('loadBannerAd'), 0, reason: '${sdk.log}');
-
-      await goBack(tester);
-      await tester.pumpAndSettle();
-      await goBack(tester);
-      await tester.pumpAndSettle();
-      await tapKey(tester, 'tab-topics');
+      expect(find.byKey(const ValueKey<String>('ad-banner-area')),
+          findsNothing,
+          reason: 'never an ad on the paywall');
       expect(sdk.count('loadBannerAd'), 1);
     });
 
-    testWidgets('quiz result shows a banner', (WidgetTester tester) async {
+    testWidgets('quiz result carries its own banner strip',
+        (WidgetTester tester) async {
       final AdSdkMock sdk = AdSdkMock();
       await pumpT3App(tester, sdk: sdk);
+      expect(sdk.count('loadBannerAd'), 1, reason: 'shell banner');
       await pushQuizResult(tester);
-      expect(sdk.count('loadBannerAd'), 1);
+      expect(
+        find.descendant(
+          of: find.byType(QuizResultScreen),
+          matching: find.byKey(const ValueKey<String>('ad-banner-area')),
+        ),
+        findsOneWidget,
+      );
+      expect(sdk.count('loadBannerAd'), 2, reason: 'shell + quiz result');
+    });
+
+    testWidgets('no banner strip on the quiz question or flashcard screens',
+        (WidgetTester tester) async {
+      final AdSdkMock sdk = AdSdkMock();
+      await pumpT3App(tester, sdk: sdk);
+      await tapKey(tester, 'tab-quiz');
+      final Finder fruit =
+          find.byKey(const ValueKey<String>('quiz-category:fruit'));
+      await tester.scrollUntilVisible(fruit, 200,
+          scrollable: find.byType(Scrollable).first);
+      await tester.ensureVisible(fruit);
+      await tester.pumpAndSettle();
+      await tester.tap(fruit);
+      await tester.pumpAndSettle();
+      expect(find.byType(QuizPlayScreen), findsOneWidget);
+      expect(find.byKey(const ValueKey<String>('ad-banner-area')),
+          findsNothing,
+          reason: 'quiz question screen must have no ad');
+      expect(
+        find.descendant(
+          of: find.byType(QuizPlayScreen),
+          matching: find.byType(BannerAdSlot, skipOffstage: false),
+          skipOffstage: false,
+        ),
+        findsNothing,
+      );
+      final int before = sdk.count('loadBannerAd');
+      // Leave the quiz half-way: no interstitial.
+      await goBack(tester);
+      expect(sdk.count('showAdWithoutView'), 0);
+
+      final List<Word> words =
+          WordRepository.instance.byTopic('fruit').take(3).toList();
+      Navigator.of(tester.element(find.byType(HomeShell))).push(
+        MaterialPageRoute<void>(
+          builder: (_) => FlashcardsScreen(words: words, title: 'Frutta'),
+        ),
+      );
+      await tester.pumpAndSettle();
+      expect(find.byKey(const ValueKey<String>('ad-banner-area')),
+          findsNothing,
+          reason: 'flashcard screen must have no ad');
+      expect(
+        find.descendant(
+          of: find.byType(FlashcardsScreen),
+          matching: find.byType(BannerAdSlot, skipOffstage: false),
+          skipOffstage: false,
+        ),
+        findsNothing,
+      );
+      expect(sdk.count('loadBannerAd'), before,
+          reason: 'no banner requested by quiz question / flashcards');
+    });
+
+    testWidgets(
+        'reward hour: banner and link disappear on the tabs and on quiz '
+        'result, no interstitial; they come back when the hour is over',
+        (WidgetTester tester) async {
+      final T3Clock clock = T3Clock(DateTime(2026, 10, 23, 10));
+      final AdSdkMock sdk = AdSdkMock(
+        loadedFormats: <String>{'loadInterstitialAd'},
+      );
+      final T3App app = await pumpT3App(tester, sdk: sdk, clock: clock.call);
+      await tapKey(tester, 'tab-topics');
+      expect(find.byKey(const ValueKey<String>('ad-reward-link')),
+          findsOneWidget);
+      final int bannersBefore = sdk.count('loadBannerAd');
+
+      await app.ads.handleUserEarnedReward();
+      await tester.pumpAndSettle();
+      expect(app.ads.rewardActive, isTrue);
+      expect(app.ads.shouldShowAds, isFalse);
+      for (final String tab in <String>[
+        'tab-search',
+        'tab-today',
+        'tab-quiz',
+        'tab-topics',
+      ]) {
+        await tapKey(tester, tab);
+        expect(find.byKey(const ValueKey<String>('ad-reward-link')),
+            findsNothing,
+            reason: tab);
+        expect(tester.getSize(find.byType(BannerAdSlot)).height, 0,
+            reason: tab);
+      }
+      clock.advance(const Duration(minutes: 30));
+      await pushQuizResult(tester);
+      expect(sdk.count('loadBannerAd'), bannersBefore,
+          reason: 'no banner requested during the reward hour');
+      expect(sdk.count('showAdWithoutView'), 0,
+          reason: 'no interstitial during the reward hour');
+      await goBack(tester);
+
+      // The hour ends (AdsService adds 1 s grace to its timer).
+      clock.advance(const Duration(minutes: 31));
+      await tester.pump(const Duration(hours: 1, seconds: 2));
+      await tester.pumpAndSettle();
+      expect(app.ads.rewardActive, isFalse);
+      expect(app.ads.shouldShowAds, isTrue);
+      expect(sdk.count('loadBannerAd'), greaterThan(bannersBefore),
+          reason: 'banner requested again after the hour');
     });
 
     testWidgets('a buyer gets no banner on Topics or quiz result and no '
@@ -221,9 +353,8 @@ void main() {
       expect(
         app.ads.shouldShowAds,
         isFalse,
-        reason: 'ads.adsRemoved is never updated when the purchase arrives '
-            'on the stream (paywall_screen.dart:164-167, '
-            'settings_screen.dart:260-261, main.dart:52)',
+        reason: 'a purchase confirmed later on the store stream must turn '
+            'the ads off at once (PurchaseService.linkAds)',
       );
       await goBack(tester);
       await tester.pumpAndSettle();
@@ -300,26 +431,69 @@ void main() {
       expect(sdk.count('showAdWithoutView'), 0);
     });
 
-    test('interstitial is triggered only from the quiz result screen', () {
-      final List<String> callers = <String>[];
-      final List<String> bannerHosts = <String>[];
+    testWidgets(
+        'in-session timing with a moved clock: none in the first 3 min, then '
+        'one, then none for 3 min, then one again', (WidgetTester tester) async {
+      final T3Clock clock = T3Clock(DateTime(2026, 10, 23, 10));
+      final AdSdkMock sdk = AdSdkMock(
+        loadedFormats: <String>{'loadInterstitialAd'},
+      );
+      await pumpT3App(tester, sdk: sdk, clock: clock.call);
+
+      Future<void> finishQuiz() async {
+        await pushQuizResult(tester);
+        await tester.pumpAndSettle();
+        await goBack(tester);
+      }
+
+      clock.advance(const Duration(minutes: 2, seconds: 59));
+      await finishQuiz();
+      expect(sdk.count('showAdWithoutView'), 0, reason: 'quiet 3 minutes');
+
+      clock.advance(const Duration(seconds: 1)); // 3:00 after launch
+      await finishQuiz();
+      expect(sdk.count('showAdWithoutView'), 1);
+
+      clock.advance(const Duration(minutes: 2, seconds: 59));
+      await finishQuiz();
+      expect(sdk.count('showAdWithoutView'), 1, reason: '3-minute cap');
+
+      clock.advance(const Duration(minutes: 1));
+      await finishQuiz();
+      expect(sdk.count('showAdWithoutView'), 2);
+    });
+
+    test(
+        'interstitial is triggered only from the quiz result and the '
+        'flashcard finish; banner strip hosts are the approved ones', () {
+      final Set<String> callers = <String>{};
+      final Set<String> bannerHosts = <String>{};
       for (final FileSystemEntity f
           in Directory('lib').listSync(recursive: true)) {
         if (f is! File || !f.path.endsWith('.dart')) continue;
         final String src = f.readAsStringSync();
         final String name = f.path.replaceAll('\\', '/');
-        if (name.endsWith('services/ads_service.dart')) continue;
+        if (name.startsWith('lib/services/') || name.contains('/widgets/')) {
+          continue;
+        }
         if (src.contains('maybeShowInterstitial(')) callers.add(name);
-        if (src.contains('const BannerAdSlot()')) bannerHosts.add(name);
+        if (src.contains('AdBannerArea(') ||
+            src.contains('WithAdBanner(') ||
+            src.contains('BannerAdSlot(')) {
+          bannerHosts.add(name);
+        }
       }
-      expect(callers, <String>['lib/screens/quiz_result_screen.dart']);
-      expect(
-        bannerHosts.toSet(),
-        <String>{
-          'lib/screens/topics_screen.dart',
-          'lib/screens/quiz_result_screen.dart',
-        },
-      );
+      expect(callers, <String>{
+        'lib/screens/quiz_result_screen.dart',
+        'lib/screens/flashcards_screen.dart',
+      });
+      expect(bannerHosts, <String>{
+        'lib/screens/home_shell.dart',
+        'lib/screens/topic_detail_screen.dart',
+        'lib/screens/word_detail_screen.dart',
+        'lib/screens/big_entry_screen.dart',
+        'lib/screens/quiz_result_screen.dart',
+      });
     });
   });
 }
